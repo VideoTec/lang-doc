@@ -1,0 +1,4 @@
+GL_BLEND
+If enabled, blend the computed fragment color values with the values in the color buffers. 
+
+See glBlendFunc.

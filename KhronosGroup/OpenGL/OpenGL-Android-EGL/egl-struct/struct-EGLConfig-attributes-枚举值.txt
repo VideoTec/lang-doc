@@ -1,0 +1,62 @@
+列表：
+
+
+
+-------------------------------------------------------------------------------------
+EGL_COLOR_BUFFER_TYPE - EGL_RGB_BUFFER or EGL_LUMINANCE_BUFFER
+-------------------------------------------------------------------------------------
+Must be followed by one of EGL_RGB_BUFFER or EGL_LUMINANCE_BUFFER.
+
+EGL_RGB_BUFFER 
+indicates an RGB color buffer; 
+in this case, attributes 
+EGL_RED_SIZE, 
+EGL_GREEN_SIZE and 
+EGL_BLUE_SIZE         must be non-zero, 
+and 
+EGL_LUMINANCE_SIZE    must be zero.
+
+EGL_LUMINANCE_BUFFER 
+indicates a luminance color buffer. 
+In this case 
+EGL_RED_SIZE, 
+EGL_GREEN_SIZE, 
+EGL_BLUE_SIZE         must be zero, 
+and 
+EGL_LUMINANCE_SIZE    must be non-zero.
+
+For both RGB and luminance color buffers, EGL_ALPHA_SIZE may be zero or non-zero.
+
+-------------------------------------------------------------------------------------
+EGL_CONFIG_CAVEAT - EGL_DONT_CARE, EGL_NONE, EGL_SLOW_CONFIG, or EGL_NON_CONFORMANT_CONFIG
+-------------------------------------------------------------------------------------
+caveat[英][ˈkæviæt] [美][ˈkeviˌæt, ˈkævi-, ˈkɑviˌɑt] n.警告，附加说明
+
+Must be followed by EGL_DONT_CARE, EGL_NONE, EGL_SLOW_CONFIG, or EGL_NON_CONFORMANT_CONFIG.
+
+If EGL_DONT_CARE is specified, then configs are not matched for this attribute. The default value is EGL_DONT_CARE.
+
+If EGL_NONE is specified, 
+then configs are matched for this attribute, 
+but only configs with no caveats (neither EGL_SLOW_CONFIG or EGL_NON_CONFORMANT_CONFIG) will be considered.
+
+If EGL_SLOW_CONFIG is specified, 
+then only slow configs configurations will be considered. 
+The meaning of``slow'' is implementation-dependent, but typically indicates a non-hardware-accelerated (software) implementation.
+
+If EGL_NON_CONFORMANT_CONFIG is specified, 
+then only configs supporting non-conformant OpenGL ES contexts will be considered.
+
+If the EGL version is 1.3 or later, 
+caveat EGL_NON_CONFORMANT_CONFIG is obsolete, 
+since the same information can be specified via the EGL_CONFORMANT attribute on a per-client-API basis, not just for OpenGL ES.
+
+
+-------------------------------------------------------------------------------------
+EGL_TRANSPARENT_TYPE - EGL_NONE or EGL_TRANSPARENT_RGB
+-------------------------------------------------------------------------------------
+Must be followed by one of EGL_NONE or EGL_TRANSPARENT_RGB. 
+If EGL_NONE is specified, then only opaque frame buffer configurations will be considered. 
+If EGL_TRANSPARENT_RGB is specified, then only transparent frame buffer configurations will be considered. 
+The default value is EGL_NONE.
+Most implementations support only opaque frame buffer configurations.

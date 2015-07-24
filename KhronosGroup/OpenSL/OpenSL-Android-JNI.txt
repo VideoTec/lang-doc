@@ -1,0 +1,51 @@
+出现异常：
+ Caused by: java.lang.UnsatisfiedLinkError: Cannot load library: reloc_library[1290]: 31602 cannot locate 'slCreateEngine'...
+12-22 11:38:25.317: E/AndroidRuntime(20376): 	at java.lang.Runtime.loadLibrary(Runtime.java:370)
+12-22 11:38:25.317: E/AndroidRuntime(20376): 	at java.lang.System.loadLibrary(System.java:535)
+12-22 11:38:25.317: E/AndroidRuntime(20376): 	at com.example.opensltest.FOpenSL.<clinit>(FOpenSL.java:5)
+代码如下：
+void initOpenSL(JNIEnv *env, jobject clazz, jstring jni_str) {
+   SLresult result = SL_RESULT_SUCCESS;
+   SLObjectItf engine_obj = NULL;
+   result = slCreateEngine(&engine_obj, 0, NULL, 0, NULL, NULL);
+   LOGI("create engine return: %d", result);
+}
+
+怎么指定链接libOpenSLES.so
+原因是：makefile 链接参数里没有写 -lOpenSLES。
+奇怪的是，不写这个，链接生成libopesl.so，不提示错误，连警告都没有。
+链接时，应该提示：为什么没有提示？
+undefined reference to xxx
+
+用HTC出错，换了个机器P6，就不出这个错。P6可以正常播放
+12-29 15:50:37.860: E/ExtendedExtractor(902): Failed to open MM_PARSER_LIB, dlerror = Cannot load library: load_library[1096]: Library 'libmmparser.so' not found 
+12-29 15:50:37.860: E/ExtendedExtractor(902): Failed to open MM_PARSER_LITE_LIB, dlerror = Cannot load library: load_library[1096]: Library 'libmmparser_lite.so' not found 
+
+#include "include/ExtendedExtractor.h"
+static const char* MM_PARSER_LIB = "libmmparser.so";
+static const char* MM_PARSER_LITE_LIB = "libmmparser_lite.so";
+
+LOGV("Failed to open MM_PARSER_LIB, dlerror = %s \n", dlerror());
+HTC也可以播放，虽然出上面的错误，只是声音太小，没听到
+
+又出下面的错误：
+12-30 15:50:36.075: E/libOpenSLES(22245): Error (-2147483648) encountered while prefetching
+#define ERROR_PLAYER_PREFETCH_d \
+        "Error (%d) encountered while prefetching"
+这个错误出现在下面的源文件里：
+http://omapzoom.org/?p=platform/frameworks/wilhelm.git;a=blob;f=src/android/AudioPlayer_to_android.cpp;h=c3244bb4ef9bab7f18c4e911e4647928801a2afb;hb=HEAD
+static void sfplayer_handlePrefetchEvent(int event, int data1, int data2, void* user)
+case android::GenericPlayer::kEventPrepared:
+SL_LOGE(ERROR_PLAYER_PREFETCH_d, data1);
+
+/frameworks/wilhelm/src/sllog.c OpenSL ES 模块的LOG输出，编译时已经确定了，无法动态改变
+#include "sles_allinclusive.h"
+
+#ifdef ANDROID
+/** \brief Log messages are prefixed by this tag */
+const char slLogTag[] = "libOpenSLES";
+#endif
+
+#ifndef USE_LOG
+#define USE_LOG SLAndroidLogLevel_Info 定义了只输出大于info的LOG
+#endif

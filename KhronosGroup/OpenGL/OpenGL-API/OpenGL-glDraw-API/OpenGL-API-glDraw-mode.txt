@@ -1,0 +1,42 @@
+mode: This parameter specify which primitive will be rendered and how its structure is organized. 
+
+This parameter can be:
+strip[英][strɪp] [美][strɪp] n.长条，条板；带状地带（或森林、湖面等）；（足球队员的）运动服
+fan[英][fæn] [美][fæn] n.扇子，风扇；迷，粉丝；扇形物；扬谷机
+
+---------------------------------------------------------------------------
+Points are composed by single sequences of 3 values (x,y,z).
+---------------------------------------------------------------------------
+GL_POINTS: Draw points. 
+
+---------------------------------------------------------------------------
+Lines are composed by two sequences of 3 values (x,y,z / x,y,z).
+---------------------------------------------------------------------------
+GL_LINES: Draw Lines. 
+GL_LINE_STRIP: Draw Lines forming a strip.
+GL_LINE_LOOP: Draw Lines closing a loop of them.
+
+举例： 六个点
+{v0,v1,v2,v3,v4,v5}
+GL_LINES 绘制出三条线
+GL_LINE_STRIP 绘制出五条线
+GL_LINE_LOOP 绘制出六条线
+
+---------------------------------------------------------------------------
+Triangles are composed by three sequences of 3 values (x,y,z / x,y,z / x,y,z).
+---------------------------------------------------------------------------
+GL_TRIANGLES: Draw Triangles. 
+GL_TRIANGLE_STRIP: Draw Triangles forming a strip.
+GL_TRIANGLE_FAN: Draw Triangles forming a fan.
+
+举例： 六个点
+{v0,v1,v2,v3,v4,v5}
+
+GL_TRIANGLES 两个三角形 
+{v0, v1, v2} {v3, v4, v5}
+
+GL_TRIANGLE_STRIP reuse the last formed line
+{v0, v1, v2} {v2, v0, v3} {v3, v2, v4}, {v4, v3, v5}
+
+GL_TRIANGLE_FAN always return to the first vertex, 
+ {0,1,2, 0,2,3, 0,3,4, 0,4,5}

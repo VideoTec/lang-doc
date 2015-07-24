@@ -1,0 +1,20 @@
+http://stackoverflow.com/questions/14894698/why-does-extern-const-int-n-not-work-as-expected
+My project consists of only two source files:
+
+a.cpp:
+
+const int n = 8;
+b.cpp:
+
+extern const int n;
+
+int main()
+{
+    // error LNK2001: unresolved external symbol "int const n" (?n@@3HB)
+    int m = n; 
+}
+I know there are several methods to make it work; however, I just wonder WHY it does't work?
+
+It's because const implies internal linkage by default, so your "definition" isn't visible outside of the translation unit where it appears.
+
+In this case, by far the best solution is to put the declaration (extern int const n;) in a header file, and include that in both a.cpp and b.cpp. The linkage is determined by the first declaration the compiler sees, so the later definition in a.cpp will have the correct (external) linkage.

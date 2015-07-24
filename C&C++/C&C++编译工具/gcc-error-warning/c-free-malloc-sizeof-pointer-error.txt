@@ -1,0 +1,39 @@
+OpenSLPlayer *player_tmp = malloc(sizeof(player_tmp));  这里的有个明显的错误，造成下面的问题。
+错误是：sizeof(player_tmp) 是指针的大小，应该写成
+OpenSLPlayer *player_tmp = malloc(sizeof(*player_tmp));
+
+typedef struct OpenSLPlayer {
+  char            file_name[1024];
+  SLObjectItf       play_obj;
+  SLPlayItf         play_itf;
+  SLVolumeItf       volume_itf;
+  SLDataLocator_URI data_locator_uri;
+  SLDataSource      data_source;
+} OpenSLPlayer;
+
+  OpenSLPlayer *player_tmp = malloc(sizeof(player_tmp));
+  strcpy(player_tmp->file_name, filename);  如果不复制这个字符串也不会出错
+                                            strcpy(player_tmp->file_name, "tttt"); --------------------不出错
+											strcpy(player_tmp->file_name, "/sdcard/test11.mp4"); ------出错
+  free(player_tmp);  
+  这句会出错
+  01-22 16:30:33.541: A/libc(29377): Fatal signal 11 (SIGSEGV) at 0x6100347c (code=1)
+  
+  如果把结构体改成下面，就不会出错
+  typedef struct OpenSLPlayer {
+  SLObjectItf       play_obj;
+  SLPlayItf         play_itf;
+  SLVolumeItf       volume_itf;
+  SLDataLocator_URI data_locator_uri;
+  SLDataSource      data_source;
+  char            file_name[1024];
+} OpenSLPlayer;
+
+简化
+typedef struct TTT {
+  char            file_name[1024];
+} TTT;
+
+TTT *t = malloc(sizeof(t));
+strcpy(t->file_name, "/sdcard/test11.mp4");
+free(t);

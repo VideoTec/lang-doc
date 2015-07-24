@@ -1,0 +1,19 @@
+Declaration Order
+
+Use the specified order of declarations within a class: public: before private:, methods before data members (variables), etc.
+
+Your class definition should start with its public: section, followed by its protected: section and then its private: section. If any of these sections are empty, omit them.
+
+Within each section, the declarations generally should be in the following order:
+
+Typedefs and Enums
+Constants (static const data members)
+Constructors
+Destructor
+Methods, including static methods
+Data Members (except static const data members)
+Friend declarations should always be in the private section. If copying and assignment are disabled with a macro such as DISALLOW_COPY_AND_ASSIGN, it should be at the end of the private: section, and should be the last thing in the class. See Copyable and Movable Types.
+
+Method definitions in the corresponding .cc file should be the same as the declaration order, as much as possible.
+
+Do not put large method definitions inline in the class definition. Usually, only trivial or performance-critical, and very short, methods may be defined inline. See Inline Functions for more details.

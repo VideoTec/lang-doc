@@ -1,0 +1,35 @@
+GLuint create_program(GLuint vertex_shader, GLuint fragment_shader) {
+    GLuint name;
+
+    // Creates the program name/index.
+    name = glCreateProgram();
+
+    // Will attach the fragment and vertex shaders to the program object.
+    glAttachShader(name, vertex_shader);
+    glAttachShader(name, fragment_shader);
+
+    // Will link the program into OpenGL's core.
+    glLinkProgram(name);
+
+#if defined(DEBUG)
+
+    GLint log_length;
+
+    // This function is different than the shaders one.
+    glGetProgramiv(name, GL_INFO_LOG_LENGTH, &log_length);
+
+    if (log_length > 0)
+    {
+        GLchar *log = (GLchar *)malloc(log_length);
+
+        // This function is different than the shaders one.
+        glGetProgramInfoLog(name, log_length, &log_length, log);
+
+        printf("%s",log);
+
+        free(log);
+    }
+#endif
+
+    return name;
+}

@@ -1,0 +1,19 @@
+c 程序语言的入口函数
+
+In C and C++, the function prototype of the main function looks like one of the following:
+
+int main(void);
+int main();
+ 
+int main(int argc, char **argv);
+int main(int argc, char *argv[]);
+
+The parameters argc, argument count, and argv, argument vector, 
+respectively[rɪˈspɛktɪvli]分别地 give the number and values of the program's command-line arguments.
+
+argv 数组的第一个参数为 命令行的路径
+By convention, the command-line arguments specified by argc and argv include the name of the program as the first element if argc is greater than 0;
+if a user types a command of "rm file", the shell will initialise the rm process with argc = 2 and argv = ["rm", "file", NULL]
+
+main 函数能够 external linkage
+main() must be declared as if it has external linkage; it cannot be declared static or inline.

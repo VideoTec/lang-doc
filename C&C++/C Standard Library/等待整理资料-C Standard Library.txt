@@ -1,0 +1,94 @@
+size_t fwrite(const void* buffer, size_t size, size_t count, FILE* stream);
+size         要写入内容的单字节数
+count     要进行写入size字节的数据项的个数
+
+两个变量的作用？
+
+注意其返回值的区别：
+fwrite(src, 1, 50000, dst) == 1              应该是返回：50000
+fwrite(src, 50000, 1, dst) == 50000  应该是返回：1
+
+fread(buf, 1000, 1, stream), 有些数据可能，读不到？ 
+The difference in fread(buf, 1000, 1, stream) and fread(buf, 1, 1000, stream) is, that in the first case you get only one chunk of 1000 bytes or nuthin, if the file is smaller and in the second case you get everything in the file less than and up to 1000 bytes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fwrite 
+fwrite 速度是很慢的
+ 
+for(int x = 0; x < video_decoder_ctx->width / 2; x++) {
+                        fwrite(v_line_ptr + x, 1, 1, yuv_file_handle);
+                        fwrite(u_line_ptr + x, 1, 1, yuv_file_handle);
+                        int index = x * 2;
+ }
+
+改为缓存，一次写入，速度提升了许多: 4.5s -> 1.5s   11.5s ->3.5.s
+                    for(int x = 0; x < video_decoder_ctx->width / 2; x++) {
+                        int index = x * 2;
+                        uv_data_temp[index] = v_line_ptr[x];
+                        uv_data_temp[index + 1] = u_line_ptr[x];
+                    }
+                    fwrite(uv_data_temp, 1, video_decoder_ctx->width, yuv_file_handle);
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					malloc: *** error for object 0xa587a90: double free
+					   CMSampleBufferRef video_sample = [source_ nextVideoSample];
+
+    if (!video_sample) {
+
+        return nil;
+
+    }
+
+    CVPixelBufferRef video_pixel_buffer = CMSampleBufferGetImageBuffer(video_sample);
+
+    CVPixelBufferLockBaseAddress(video_pixel_buffer, 0);
+
+    
+
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(video_pixel_buffer);
+
+    unsigned char *baseAddress = (unsigned char *)CVPixelBufferGetBaseAddress(video_pixel_buffer);
+
+    for (int rowIndex = 0; rowIndex < height_; rowIndex++) {
+
+        void *rowPtr = baseAddress + rowIndex * bytesPerRow;
+
+        memcpy(image_buffer_, rowPtr, width_ * 4);
+
+    }
+
+    
+
+    CVPixelBufferUnlockBaseAddress(video_pixel_buffer, 0);
+
+    CVPixelBufferRelease(video_pixel_buffer);
+
+    CFRelease(video_sample);
+
+    return image_buffer_;
+
+

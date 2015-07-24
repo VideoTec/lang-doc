@@ -1,0 +1,12 @@
+glUniform1i and glUniform1iv are the only two functions 
+that may be used to load uniform variables defined as sampler types.
+
+in order to change a uniform value, you must first bind the program to the context with glUseProgram​. 
+The glUniform*​ functions do not take a program object name; 
+they use the currently bound program. 
+
+参考
+https://www.opengl.org/wiki/GLSL_:_common_mistakes
+
+glUniform doesn't work
+You probably did not bind the correct shader first. Call glUseProgram(myprogram)​ first.

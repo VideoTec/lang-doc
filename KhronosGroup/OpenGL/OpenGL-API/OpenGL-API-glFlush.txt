@@ -1,0 +1,6 @@
+文档
+https://www.khronos.org/opengles/sdk/docs/man/xhtml/glFlush.xml
+
+void glFlush(void);
+force execution of GL commands in finite time 
+finite[英][ˈfaɪnaɪt] [美][ˈfaɪˌnaɪt] adj.有限的；[语]限定的；[数]有穷的，有限的

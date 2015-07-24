@@ -1,0 +1,13 @@
+	SLresult (*CreateAudioPlayer) (
+		SLEngineItf self,
+		SLObjectItf * pPlayer,
+		SLDataSource *pAudioSrc,
+		SLDataSink *pAudioSnk,
+		SLuint32 numInterfaces,
+		const SLInterfaceID * pInterfaceIds,
+		const SLboolean * pInterfaceRequired
+	);
+	
+	函数调用完后还有用吗？不再需要，可以传递临时变量，或者，局部变量的指针
+	pAudioSrc
+	pAudioSnk

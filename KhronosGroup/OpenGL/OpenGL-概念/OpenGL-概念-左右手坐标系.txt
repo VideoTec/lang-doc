@@ -1,0 +1,12 @@
+左手坐标就是z轴向里 
+右手坐标就是z轴向外 
+用你们的手来比一下就知道了 
+x轴和y轴的方向不变，用大拇指向x方向，食指指向y轴的方向，那么中指指向的方向就是z的方向 
+
+参考
+http://www.cnblogs.com/hust-ruan/archive/2011/12/09/2282035.html
+
+众所周知，OpenGL使用的是右手坐标系，而Direct3D使用的是左手坐标系。
+
+http://www.klayge.org/2011/07/15/%E8%B7%A8%E8%B6%8Aopengl%E5%92%8Cd3d%E7%9A%84%E9%B8%BF%E6%B2%9F%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%BC%80%E7%AF%87/
+OpenGL用右手坐标系，而D3D用左手；裁剪空间里OpenGL的z是[-1, 1]，而D3D是[0, 1]

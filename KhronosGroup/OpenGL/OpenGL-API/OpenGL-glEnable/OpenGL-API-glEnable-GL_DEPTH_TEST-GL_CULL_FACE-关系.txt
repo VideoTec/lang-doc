@@ -1,0 +1,39 @@
+artifacts[英]['ɑ:rtɪfækts] [美]['ɑ:rtɪfækts] 加工品
+watertight[英][ˈwɔ:tətaɪt] [美][ˈwɔ:tərtaɪt] adj.不漏水的；水密的；防渗的；无懈可击的
+
+GL_CULL_FACE is to be enabled for performance reasons, 
+as it easily removes half of the triangles to draw, normally without visual artifacts if your geometry is watertight, and CCW.
+
+GL_DEPTH_TEST is to be enabled to avoid ugly artifacts that depend on the angle of view and drawing order 
+(otherwise ie. if back of the cube is drawn last, if will appear "above" the front of the cube).
+
+So yes, both should be enabled.
+
+http://blog.csdn.net/shimazhuge/article/details/17896879
+
+1.深度测试 
+在绘制图形的过程中，有时一个物体的一部分会被其前方的物体挡住(从观察者的角度看)，
+如果这是这个物体在档在其前面的物体绘制完成之后绘制，那么屏幕中显示的图形将不是我们所希望的，即后面的物体挡住了前面的物体。 
+只需启用一项称为深度测试的功能就可以解决这一问题，深度测试是一种移除被挡住表面的有效技术，
+
+它的过程是：
+在绘制一个像素时，会给他分配一个值(称为z值)，这个值表示它与观察者的距离。
+然后，如果需要在同一个位置上绘制另一个像素，将比较新像素和已经保存的该位置的像素的z值。
+如果新像素的z的值比较大，即它离观察者更近因而在原来那个像素的前面，原来的像素就会被新像素挡住。
+这一操作在内部有深度缓冲区完成。 
+
+为了使深度缓冲区正常完成深度测试功能，子啊每次渲染场景时，必须先清除深度缓冲区： 
+glClear(GL_COLOR_BUFFER_BIT｜GL_DEPTH_BUFFER_BIT) 
+
+2.隐藏表面 
+启用深度测试之后，我们得到良好的视觉效果，但是还是付出了一些性能代价，因为每个画出的像素都必须与先前像素的z值比较。
+但是如果我们知道某些表面无论如何也不必画出，我们可以将其指出，
+这种技术称为"剔除"，这种技术可以将已知永远看不到的几何图形消除掉，这样可以显著的改善性能。 
+
+那么哪些表面时永远看不到的呢？最常见的例子就是封闭物体的内部表面。
+一种称为回溯的技术可以消除表面的背面，通过glEnable/glDisable(GL_CULL_FACE)来实现。
+启用剔除技术后，我们发现三棱锥的底面消失了，这是因为在绘制的过程中，我们都使用了顺时针绕法的多边形正面，
+但这样底面的正面正对着三棱锥的内部，故此启用剔除技术后把底面剔出掉了，
+要改变这种状况，可以在绘制三棱锥的底面前调用函数glFrontFace(GL_CCW); 
+
+http://content.gpwiki.org/index.php/OpenGL:Tutorials:Tutorial_Framework:Adding_Depth_and_Color

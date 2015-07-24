@@ -1,0 +1,16 @@
+fseek 
+语法: 
+  #include <stdio.h>
+  int fseek( FILE *stream, long offset, int origin );
+
+ 
+
+函数fseek()为给出的流设置位置数据. origin的值应该是下列值其中之一(在stdio.h中定义): 
+
+名称 说明 
+SEEK_SET 从文件的开始处开始搜索 
+SEEK_CUR 从当前位置开始搜索 
+SEEK_END 从文件的结束处开始搜索 
+
+
+fseek()成功时返回0,失败时返回非零. 你可以使用fseek()移动超过一个文件,但是不能在开始处之前. 使用fseek()清除关联到流的EOF标记.

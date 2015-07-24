@@ -1,0 +1,17 @@
+
+OpenMAX DL is the interface between physical hardware, 
+such as digital signal processor (DSP) chips and CPUs, and software, like video codecs and 3D engines. 
+It allows companies to easily integrate[美][ˈɪntɪˌɡret]使整合 new hardware that supports OpenMAX DL 
+without reoptimizing 重新优化 their low level software
+
+OpenMAX DL is split into five application domains:
+AC - Audio Codecs (MP3 decoder and AAC decoder components)
+IC - Image Codecs (JPEG components)
+IP - Image Processing (Generic image processing functions)
+SP - Signal Processing (Generic audio processing functions)
+VC - Video Codecs (H264 and MP4 components)
+
+OpenMAX DL（Development Layer）定义了一套API，包含了
+音频、视频和图像功能的函数集合，
+这些函数需要由芯片厂商针对处理器特性进行实现和优化，
+然后被编解码器厂商在各种编解码器上使用

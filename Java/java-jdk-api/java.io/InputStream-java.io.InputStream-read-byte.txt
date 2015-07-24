@@ -1,0 +1,10 @@
+public abstract int read ()
+
+Added in API level 1
+
+Reads a single byte from this stream and returns it as an integer in the range from 0 to 255. Returns -1 if the end of the stream has been reached. 
+
+Blocks until 
+1）one byte has been read, 
+2）the end of the source stream is detected or 
+3）an exception is thrown.

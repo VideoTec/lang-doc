@@ -1,0 +1,10 @@
+跳过了指针的初始。未定义的行为
+
+void fun() {
+  if(...)
+    goto fail;
+  char *ptr = malloc(...);
+
+fail:
+  if(ptr) free(ptr);
+}

@@ -1,0 +1,3 @@
+结构体，临时变量写法
+
+av_rescale_q(sub->start_display_time, (AVRational){ 1, 1000 }, AV_TIME_BASE_Q);

@@ -1,0 +1,28 @@
+---------------------------------------
+线程类的 join 方法
+---------------------------------------
+    public final void join() throws InterruptedException {
+        VMThread t = vmThread;
+        if (t == null) {
+            return;
+        }
+
+        synchronized (t) {
+            while (isAlive()) {
+                t.wait();
+            }
+        }
+    }
+
+---------------------------------------
+Java的标准异常对象
+---------------------------------------
+throw new NullPointerException("demo");
+
+所有的Java内置的运行时异常有两个构造函数：
+一个没有参数，
+一个带有一个字符串参数。
+
+当用到第二种形式时，参数指定描述异常的字符串。
+如果对象用作 print( )或println( )的参数时，该字符串被显示。
+这同样可以通过调用getMessage( )来实现，getMessage( )是由Throwable定义的

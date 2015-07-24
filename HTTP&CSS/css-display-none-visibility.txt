@@ -1,0 +1,19 @@
+关闭一个元素的显示（对布局没有影响）；
+其所有后代元素都也被会被关闭显示。文档渲染时，该元素如同不存在。
+
+要想让元素在隐藏的同时占据其原有的位置，请参见 visibility  属性。
+
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/visibility
+
+visible
+元素正常显示。
+
+hidden
+隐藏元素，但是其他元素的布局不改变，相当于此元素变成透明。要注意若将其子元素设为 visibility: visible，则该子元素依然可见。
+
+collapse
+用于表格行、列、列组和行组，隐藏表格的行或列，并且不占用任何空间（与将 display: none 用于表格的行/列上的效果相当）。但是其他行与列的宽和高不会重新计算，行与列的宽高计算依然会将被设为 collapse 的行和列考虑进去。这是用于快速从表格中删除一行或一列，而无需重新计算表格其他元素的宽和高。（用于其他元素时，collapse 效果与 hidden 相同。)
+
+p        { visibility: hidden; }   /* 隐藏段落                       */
+p.showme { visibility: visible; }  /* 只有 class 设为 showme 的才会显示*/
+tr.col   { visibility: collapse; } /* 折叠 class 设为 col 的行        */

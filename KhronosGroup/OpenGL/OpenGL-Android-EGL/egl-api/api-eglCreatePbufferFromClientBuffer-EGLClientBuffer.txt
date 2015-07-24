@@ -1,0 +1,11 @@
+EGLSurface eglCreatePbufferFromClientBuffer(	EGLDisplay display,
+ 	EGLenum buftype,
+ 	EGLClientBuffer buffer,
+ 	EGLConfig config,
+ 	EGLint const * attrib_list);
+
+是一个结构体指针
+typedef void *EGLClientBuffer;
+
+buffer
+Specifies the OpenVG VGImage handle of the buffer to be bound.

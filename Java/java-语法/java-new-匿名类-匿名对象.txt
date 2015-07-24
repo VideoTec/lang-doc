@@ -1,0 +1,106 @@
+  public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        final Surface s = holder.getSurface();
+        new Runnable() {
+            @Override
+            public void run() {
+                mTest.test(s);
+            }
+        }.run();
+    }
+	
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        final Surface s = holder.getSurface();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mTest.test(s);
+            }
+        }).start();
+    }
+
+
+
+参考
+http://www.cnblogs.com/chenssy/p/3390871.html
+匿名内部类由于没有名字，所以它的创建方式有点儿奇怪。创建格式如下：
+
+new 父类构造器（参数列表）|实现接口（）  -- 两者选其一：继承类 或者 实现接口
+{  
+     //匿名内部类的类体部分  
+}
+在这里我们看到使用匿名内部类我们必须要继承一个父类或者实现一个接口，
+当然也仅能只继承一个父类或者实现一个接口。
+同时它也是没有class关键字，这是因为匿名内部类是直接使用new来生成一个对象的引用。
+当然这个引用是隐式的。
+
+在使用匿名内部类的过程中，我们需要注意如下几点：
+
+      1、使用匿名内部类时，我们必须是继承一个类或者实现一个接口，但是两者不可兼得，同时也只能继承一个类或者实现一个接口。
+
+     2、匿名内部类中是不能定义构造函数的。
+
+     3、匿名内部类中不能存在任何的静态成员变量和静态方法。
+
+      4、匿名内部类为局部内部类，所以局部内部类的所有限制同样对匿名内部类生效。
+
+     5、匿名内部类不能是抽象的，它必须要实现继承的类或者实现的接口的所有抽象方法。
+
+如果定义了一个匿名内部类，并且希望它使用一个其外部定义的参数，那么编译器会要求该参数引用是final的
+public class OuterClass {
+    public void display(final String name,String age){
+        class InnerClass{
+            void display(){
+                System.out.println(name);  这里的 name 和 外部类中的 name 是不同的值
+            }
+        }
+    }
+}
+java编译之后实际的操作如下
+public class OuterClass$InnerClass {
+    public InnerClass(String name,String age){
+        this.InnerClass$name = name;
+        this.InnerClass$age = age;
+    }
+    
+    
+    public void display(){
+        System.out.println(this.InnerClass$name + "----" + this.InnerClass$age );
+    }
+}
+
+我们一般都是利用构造器来完成某个实例的初始化工作的，
+但是匿名内部类是没有构造器的！那怎么来初始化匿名内部类呢？使用构造代码块！
+利用构造代码块能够达到为匿名内部类创建一个构造器的效果。
+
+public class OutClass {
+    public InnerClass getInnerClass(final int age,final String name){
+        return new InnerClass() {
+            int age_ ;
+            String name_;
+            //构造代码块完成初始化工作
+            {
+                if(0 < age && age < 200){
+                    age_ = age;
+                    name_ = name;
+                }
+            }
+            public String getName() {
+                return name_;
+            }
+            
+            public int getAge() {
+                return age_;
+            }
+        };
+    }
+    
+    public static void main(String[] args) {
+        OutClass out = new OutClass();
+        
+        InnerClass inner_1 = out.getInnerClass(201, "chenssy");
+        System.out.println(inner_1.getName());
+        
+        InnerClass inner_2 = out.getInnerClass(23, "chenssy");
+        System.out.println(inner_2.getName());
+    }
+}

@@ -1,0 +1,15 @@
+16:51 2015/6/11
+android 录制声音的测试工程
+
+        try {
+            mFileChannel = new FileOutputStream("/sdcard/tt.pcm").getChannel();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+异常如下：
+java.io.FileNotFoundException: /sdcard/tt.pcm: open failed: EACCES (Permission denied)
+
+原因是没有写sdcard的权限
+AndroidManifest.xml

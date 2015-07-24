@@ -1,0 +1,29 @@
+代码：
+  int video_frame_duration = av_rescale_q(40, (AVRational){1, 1000}, (AVRational){1, 600});
+  printf("duration: %d\n", video_frame_duration);
+  为什么输出 -1431655699
+  最后查找原因是:
+  没有添加头文件： #include <libavutil/mathematics.h>
+
+警告：
+media_data_writer_test.c(16) : warning C4013: “av_rescale_q”未定义；假设外部返回 int
+                              'function' undefined; assuming extern returning int
+
+产生的原因：
+编译器遇到对未定义函数的调用
+The compiler encountered a call to an undefined function.
+
+解决方法：
+https://msdn.microsoft.com/zh-cn/library/d3ct4kz9.aspx
+To fix by checking the following possible causes
+Incorrect spelling of function name
+External functions not prototyped as extern
+
+怎么定义为错误？
+第一种方法：
+#pragma warning (error: 4013).
+
+第二种方法：
+Or the /we4013 command line option - for which I cannot seem to find any documentation.
+注意：
+批处理时，命令行中，使用 -we4013

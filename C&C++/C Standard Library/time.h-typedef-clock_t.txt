@@ -1,0 +1,52 @@
+http://www.cnblogs.com/wiseman/archive/2005/10/24/260576.html
+
+计时
+
+C/C++中的计时函数是clock()，而与其相关的数据类型是clock_t。在MSDN中，查得对clock函数定义如下：
+
+clock_t clock( void );
+
+这个函数返回从“开启这个程序进程”到“程序中调用clock()函数”时之间的CPU时钟计时单元（clock tick）数，在MSDN中称之为挂钟时间（wall-clock）。其中clock_t是用来保存时间的数据类型，在time.h文件中，我们可以找到对它的定义：
+
+#ifndef _CLOCK_T_DEFINED
+typedef long clock_t;
+#define _CLOCK_T_DEFINED
+#endif
+
+很明显，clock_t是一个长整形数。在time.h文件中，还定义了一个常量CLOCKS_PER_SEC，它用来表示一秒钟会有多少个时钟计时单元，其定义如下：
+
+#define CLOCKS_PER_SEC ((clock_t)1000)
+
+可以看到可以看到每过千分之一秒（1毫秒），调用clock（）函数返回的值就加1。下面举个例子，你可以使用公式clock()/CLOCKS_PER_SEC来计算一个进程自身的运行时间：
+
+void elapsed_time()
+{
+printf("Elapsed time:%u secs.\n",clock()/CLOCKS_PER_SEC);
+}
+
+当然，你也可以用clock函数来计算你的机器运行一个循环或者处理其它事件到底花了多少时间：
+
+#include “stdio.h”
+#include “stdlib.h”
+#include “time.h”
+
+int main( void )
+{
+   long    i = 10000000L;
+   clock_t start, finish;
+   double  duration;
+   /* 测量一个事件持续的时间*/
+   printf( "Time to do %ld empty loops is ", i );
+   start = clock();
+   while( i-- )      ;
+   finish = clock();
+   duration = (double)(finish - start) / CLOCKS_PER_SEC;
+   printf( "%f seconds\n", duration );
+   system("pause");
+}
+
+在笔者的机器上，运行结果如下：
+
+Time to do 10000000 empty loops is 0.03000 seconds
+
+上面我们看到时钟计时单元的长度为1毫秒，那么计时的精度也为1毫秒，那么我们可不可以通过改变CLOCKS_PER_SEC的定义，通过把它定义的大一些，从而使计时精度更高呢？通过尝试，你会发现这样是不行的。在标准C/C++中，最小的计时单位是一毫秒

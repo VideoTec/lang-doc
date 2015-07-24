@@ -1,0 +1,5 @@
+http://code.tutsplus.com/zh-hans/tutorials/the-30-css-selectors-you-must-memorize--net-16048
+
+基本的id，class类选择器和descendant后代选择器
+
+30个你必须熟记的CSS选择器

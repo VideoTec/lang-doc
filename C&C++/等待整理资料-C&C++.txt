@@ -1,0 +1,188 @@
+2014.10.14 【计划】《C99标准的 "7.18 Integer types <stdint.h> "》
+
+
+pthread
+pthread_t :  线程句柄，线程ID，pthread_self()函数
+pthread_attr_t：线程属性
+pthread_barrier_t：同步屏障数据类型
+pthread_mutex_t：mutex数据类型
+pthread_cond_t：条件变量数据类型
+
+
+pthread_exit()：终止当前线程
+pthread_cancel()：请求中断另外一个线程的运行
+pthread_kill()：向指定ID的线程发送一个信号
+
+POSIX规范要求
+pthread_cond_signal至少唤醒一个pthread_cond_wait上的线程，
+有些实现为了简便，在单处理器上也会唤醒多个线程
+
+pthread_cond_wait(): 
+等待条件变量的特殊条件发生；
+pthread_cond_wait() 必须与一个pthread_mutex配套使用。
+该函数调用实际上依次做了3件事：（解锁-》挂起-》加锁）
+1）对当前pthread_mutex解锁、把当前线程挂起到当前条件变量的线程队列、被其它线程的信号唤醒后对当前pthread_mutex申请加锁。
+2）如果线程收到一个信号被唤醒，将被配套的互斥锁重新锁住，pthread_cond_wait() 函数将不返回直到线程获得配套的互斥锁。
+
+需要注意的是，一个条件变量不应该与多个互斥锁配套使用
+
+error C2065: 'uint8_t' : undeclared identifier
+为什么？You need to include <stdint.h> (or <cstdint>),
+
+Initializing a struct while calling a function
+http://www.cplusplus.com/forum/general/10835/
+MyFunc( (MyStruct){1, 2, 3} ); c++中编译出错，应该写成MyFunc( {1, 2, 3} );
+
+浮点数，符号E，的意义
+int64_t avgBitRate = (int64_t)(sourceSize * 8E6 / maxDurationUs);
+8E6   /* = 0.000008*/
+
+
+字面量 literals
+http://www.cplusplus.com/doc/tutorial/constants/
+ literal constant 字面量常量
+ 
+ 
+c++ 11 字符串字面量
+u8"I'm a UTF-8 string."
+u"This is a UTF-16 string."
+U"This is a UTF-32 string."
+
+u8"This is a Unicode Character: \u2018."
+u"This is a bigger Unicode Character: \u2018."
+U"This is a Unicode Character: \u2018."
+
+在'\u'之后的是16个比特的十六进制数值；它不需要'0x'的前标。识别字'\u'代表了一个16位的Unicode codepoint；如果要输入32位的codepoint，使用'\U'和32个比特的十六进制数值
+
+icu iconv
+ 
+ stdint.h  指定位长的整数类型
+传统C语言的short、int、long等整数类型是与平台相关的，不同平台上的位长是不同的
+
+就是使用C99标准中stdint.h所提供的指定位长的整数类型。
+GCC对C99标准支持性较好，而VC的步骤很慢，貌似直到VC2010才支持stdint.h
+
+// to fix C3861: 'UINT64_C' was not declared in this scope : include <stdint.h>
+#define __STDC_CONSTANT_MACROS
+#ifdef _STDINT_H
+#undef _STDINT_H
+#endif
+
+
+#include <stdarg.h>
+
+int ftp_cmd(SOCKET s, char *response_buffer, char *fmt, ...) {
+	char command[1024]{ 0 }; //fix maybe too samll
+	va_list list;
+	va_start(list, fmt);
+	iFtpLength = vsprintf(aFtpBuffer, cFmt, vVaStartUse);
+}
+首先，必须调用va_start() 传递有效的参数列表va_list和函数强制的第一个参数。第一个参数代表将要传递的参数的个数。 
+其次，调用va_arg()传递参数列表va_list 和将被返回的参数的类型。va_arg()的返回值是当前的参数。 
+再次，对所有的参数重复调用va_arg() 
+最后，调用va_end()传递va_list对完成后的清除是必须的。
+#include <stdarg.h>
+#include <stdio.h>
+int vprintf( char *format, va_list arg_ptr );
+int vfprintf( FILE *stream, const char *format, va_list arg_ptr );
+int vsprintf( char *buffer, char *format, va_list arg_ptr );
+
+void error( char *fmt, ... ) {
+      va_list args;
+      
+      va_start( args, fmt );
+      fprintf( stderr, "Error: " );
+      vfprintf( stderr, fmt, args );
+      fprintf( stderr, "\n" );
+      va_end( args );
+      exit( 1 );
+}
+
+
+
+
+
+PRId64 是个宏
+printf PRId64的问题
+c++ __STDC_FORMAT_MACROS
+
+
+#include <string.h> strlen
+#include <stdlib.h> atoi
+#include <stdio.h> printf
+
+
+
+#if 与或 运算
+#if aa && bb
+#endif
+
+
+
+linux gcc 编译警告：
+warning: implicit declaration of function ‘printf’
+需要包含头文件：
+#include <stdio.h>
+
+
+
+
+c++11 标准整数类型
+
+
+
+
+
+
+
+c++  new byte
+uv_data_temp = new uint8_t[video_decoder_ctx->width * video_decoder_ctx->height / 2];
+
+delete[] uv_data_temp;
+
+In C++11 you can use uniform initializtion as well: new int[10] {}. You can also provide values to initialize with: new int[10] {1,2,3}
+int* a = new int[10] { 1,2,3,4,5,6,7,8,9,10 };
+
+c++11 的统一初始化列表
+class C
+{
+int a;
+int b;
+public:
+ C(int i, int j);
+};
+
+C c {0,0}; //C++11 only. Equivalent to: C c(0,0);
+
+数组分两种，
+一种编译期可确定大小的 - 这个可以初始化
+一种编译期不可确定大小的 - 这个不可以初始化
+uv_data_temp = new uint8_t[video_decoder_ctx->width / 2]{0};
+jni/VideoCache.cpp:58:71: warning: non-constant array size in new, unable to ver
+ify length of initializer-list [enabled by default]
+
+
+
+
+
+int main(int argc, char **argv)
+
+
+按字节对齐，写BITMAP文件时的结构体，大小是？
+typedef struct tagBITMAPFILEHEADER {
+  int16_t  bfType;
+  int32_t bfSize;
+  int16_t  bfReserved1;
+  int16_t  bfReserved2;
+  int32_t bfOffBits;
+} BITMAPFILEHEADER, *PBITMAPFILEHEADER;
+
+struct BITMAPFILEHEADER_S{
+  WORD bfType;
+  DWORD bfSize;
+  WORD bfReserved1;
+  WORD bfReserved2;
+  DWORD bfOffbits;
+} __attribute__((__packed__));
+You can force the compiler not to align the structure by adding the attribute __attribute__((__packed__)) but as far as I know it only works in gcc
+you ever need to do this with Visual C++, you can do #pragma pack(push, 1) before the struct definition and then #pragma pack(pop) after the definition

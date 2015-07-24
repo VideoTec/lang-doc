@@ -1,0 +1,141 @@
+着色器
+const char *vertex_shader_string = " \
+      uniform mat4 u_mvpMatrix; \
+      attribute vec4 a_vertex; \
+      attribute vec4 a_color; \
+      varying vec4 fr_color; \
+      void main() { \
+        gl_Position = u_mvpMatrix * a_vertex; \
+        fr_color = a_color; \
+      }";
+ const char *fragment_shader_string = " \
+       precision mediump float; \             如果不指定精度，就不会输出颜色
+       varying vec4 fr_color; \
+       void main() { \
+         gl_FragColor = fr_color; \
+       }";
+
+顶点，索引，颜色 数据
+GLfloat vertices5[] = {
+        // top (+z)
+        -1, -1,  1,
+         1, -1,  1,
+        -1,  1,  1,
+        -1,  1,  1,
+         1, -1,  1,
+         1,  1,  1, 
+
+        // bottom (-z)
+        -1, -1, -1,
+        -1,  1, -1,
+         1, -1, -1,
+         1, -1, -1,
+        -1,  1, -1,
+         1,  1, -1,
+
+        // right (+x)
+         1, -1, -1, 
+         1,  1, -1, 
+         1, -1,  1, 
+         1, -1,  1, 
+         1,  1, -1, 
+         1,  1,  1, 
+
+        // left (-x)
+        -1, -1, -1, 
+        -1, -1,  1, 
+        -1,  1, -1, 
+        -1,  1, -1, 
+        -1, -1,  1, 
+        -1,  1,  1, 
+
+        // front (+y)
+        -1, -1, -1,
+         1, -1, -1,
+        -1, -1,  1,
+        -1, -1,  1,
+         1, -1, -1,
+         1, -1,  1,
+
+        // back (-y)
+        -1,  1, -1,
+        -1,  1,  1,
+         1,  1, -1,
+         1,  1, -1,
+        -1,  1,  1,
+         1,  1,  1,
+    };
+     GLushort indices5[] = { 
+         0, 1, 2, 
+         3, 4, 5,
+
+         6, 7, 8,
+         9,10,11,
+
+        12,13,14,
+        15,16,17,
+
+        18,19,20,
+        21,22,23,
+
+        24,25,26,
+        27,28,29,
+
+        30,31,32,
+        33,34,35
+    };
+	
+    GLfloat color1[] = { 255,   0,   0 };
+    GLfloat color2[] = {   0, 255,   0 };
+    GLfloat color3[] = {   0,   0, 255 };
+    GLfloat color4[] = { 255, 255,   0 };
+    GLfloat color5[] = {   0, 255, 255 };
+    GLfloat color6[] = { 255, 255, 255 };
+
+    GLfloat color[] = {
+        color1[0], color1[1], color1[2],
+        color1[0], color1[1], color1[2],
+        color1[0], color1[1], color1[2],
+        color1[0], color1[1], color1[2],
+        color1[0], color1[1], color1[2],
+        color1[0], color1[1], color1[2],
+
+        color2[0], color2[1], color2[2],
+        color2[0], color2[1], color2[2],
+        color2[0], color2[1], color2[2],
+        color2[0], color2[1], color2[2],
+        color2[0], color2[1], color2[2],
+        color2[0], color2[1], color2[2],
+
+        color3[0], color3[1], color3[2],
+        color3[0], color3[1], color3[2],
+        color3[0], color3[1], color3[2],
+        color3[0], color3[1], color3[2],
+        color3[0], color3[1], color3[2],
+        color3[0], color3[1], color3[2],
+
+        color4[0], color4[1], color4[2],
+        color4[0], color4[1], color4[2],
+        color4[0], color4[1], color4[2],
+        color4[0], color4[1], color4[2],
+        color4[0], color4[1], color4[2],
+        color4[0], color4[1], color4[2],
+
+        color5[0], color5[1], color5[2],
+        color5[0], color5[1], color5[2],
+        color5[0], color5[1], color5[2],
+        color5[0], color5[1], color5[2],
+        color5[0], color5[1], color5[2],
+        color5[0], color5[1], color5[2],
+
+        color6[0], color6[1], color6[2],
+        color6[0], color6[1], color6[2],
+        color6[0], color6[1], color6[2],
+        color6[0], color6[1], color6[2],
+        color6[0], color6[1], color6[2],
+        color6[0], color6[1], color6[2],
+    };
+	
+	glVertexAttribPointer(color_loc, 3, GL_FLOAT, GL_FALSE, 0, color);
+	glVertexAttribPointer(vertexLoc, 3, GL_FLOAT, GL_FALSE, 0, vertices5);
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, indices5);

@@ -1,0 +1,19 @@
+C Programming const array initializer
+You can't do this at global scope in C, only at local scope, i.e. within a function:
+
+#define NUM_DIMENSIONS 3
+
+const int X_ORIGIN = 1233086;             
+const int Y_ORIGIN = -4728071;              
+const int Z_ORIGIN = 4085704;
+
+const int xyzOrigin[NUM_DIMENSIONS] = {X_ORIGIN, Y_ORIGIN, Z_ORIGIN}; // FAIL  在 c++ 中就可以通过编译
+
+void foo(void)
+{
+    const int xyzOrigin[NUM_DIMENSIONS] = {X_ORIGIN, Y_ORIGIN, Z_ORIGIN}; // OK
+}
+Alternatively you could compile the code as C++ rather than C.
+
+数组前面的 CONST 肯定是修饰数组成员的。
+数组本身，是不可改变的，本身就是CONST，是一块连续的内存空间

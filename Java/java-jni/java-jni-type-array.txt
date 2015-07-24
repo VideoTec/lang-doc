@@ -1,0 +1,9 @@
+Object[]        jobjectArray     任何对象的数组
+boolean[]       jbooleanArray    布尔型数组
+byte[]          jbyteArray       比特型数组
+char[]          jcharArray       字符型数组
+short[]         jshortArray      短整型数组
+int[]           jintArray        整型数组
+long[]          jlongArray       长整型数组
+float[]         jfloatArray      浮点型数组
+double[]        jdoubleArray     双浮点型数组

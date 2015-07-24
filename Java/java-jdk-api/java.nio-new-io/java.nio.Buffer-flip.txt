@@ -1,0 +1,25 @@
+http://developer.android.com/reference/java/nio/Buffer.html#flip()
+
+public final Buffer flip ()
+
+Added in API level 1
+Flips this buffer.
+
+The limit is set to the current position, then 
+the position is set to zero, and 
+the mark is cleared.
+
+The content of this buffer is not changed.
+
+Returns
+this buffer.
+
+看下面的例子，由写入转为读取时，需要， flip
+
+    fc = new FileInputStream("main.java").getChannel();
+    ByteBuffer buff = ByteBuffer.allocate(BSIZE);
+    fc.read(buff);
+    buff.flip();
+    while (buff.hasRemaining()) {
+      System.out.print((char) buff.get());
+    }

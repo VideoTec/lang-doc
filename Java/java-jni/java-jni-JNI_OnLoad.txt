@@ -1,0 +1,29 @@
+extern "C" jint JNI_OnLoad(JavaVM *jvm, void *reserved) {
+    JNIEnv *env = 0;
+    jclass fopensl_jni_cls;
+    LOGI("JNI Hello World: v1.0.0");
+    LOGI("JNI_OnLoad jvm: %X", (unsigned int)jvm);
+
+    if(jvm->GetEnv((void **)&env, JNI_VERSION_1_4) < 0) {
+        LOGI("jvm->GetEnv failed");
+        return JNI_FALSE;
+    }
+    
+    fopensl_jni_cls = env->FindClass(FOPENSL_JNI_CLS);
+
+    if(fopensl_jni_cls) {
+        LOGI("RegisterNatives begin");
+        env->RegisterNatives(fopensl_jni_cls, g_fopensl_jnicls_methods, g_methods_num);
+        LOGI("RegisterNatives end");
+
+    } else {
+        LOGI("cannt find java class: &s", FOPENSL_JNI_CLS);
+    }
+    fv_audio_player_init();
+    fv_audio_player_set_audio("/sdcard/test11.mp4", "/sdcard/dream.m4a");
+    return JNI_VERSION_1_4;
+}
+
+extern "C" void JNI_OnUnload(JavaVM *jvm, void *reserved) {
+    int destroy_opensl();
+}

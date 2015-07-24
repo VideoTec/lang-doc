@@ -1,0 +1,23 @@
+malloc 
+语法: 
+
+ 
+  #include <stdlib.h>
+  void *malloc( size_t size );
+ 
+
+功能： 函数指向一个大小为size的空间，如果错误发生返回NULL。 存储空间的指针必须为堆，不能是栈。这样以便以后用free函数释放空间。例如: 
+
+    typedef struct data_type {
+      int age;
+      char name[20];
+    } data;
+    
+    data *bob;
+    bob = (data*) malloc( sizeof(data) );
+    if( bob != NULL ) {
+      bob->age = 22;
+      strcpy( bob->name, "Robert" );
+      printf( "%s is %d years old\n", bob->name, bob->age );
+    }
+    free( bob );

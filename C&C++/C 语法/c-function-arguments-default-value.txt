@@ -1,0 +1,19 @@
+设置函数的默认值
+
+int mm_out_file_add_audio_track(MMOutFile *out,
+                                int sample_rate = 44100,
+                                int nb_channels = 2,
+                                int sample_fmt = 8, /*AV_SAMPLE_FMT_FLTP*/,
+                                int bitrate = 64000);
+出错：
+e:\winapp\libav-test\mm_out_file.h(12) : error C2143: 语法错误 : 缺少“)”(在“=”的前面)
+e:\winapp\libav-test\mm_out_file.h(12) : error C2072: “mm_out_file_add_audio_track”: 函数的初始化
+e:\winapp\libav-test\mm_out_file.h(13) : error C2059: 语法错误:“类型”
+e:\winapp\libav-test\mm_out_file.h(15) : error C2059: 语法错误:“)”
+
+
+Default values on arguments in C functions and function overloading in C
+no, Standard C does not support either. 
+
+Default parameters is a C++ feature.
+C has no default parameters.

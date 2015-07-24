@@ -1,0 +1,7 @@
+#include <stdio.h>
+FILE *fopen(const char *fname, const char *mode);
+
+fopen()
+函数打开由fname(文件名)指定的文件, 并返回一个关联该文件的流.
+如果发生错误, fopen()返回NULL.
+mode(方式)是用于决定文件的用途(例如 用于输入,输出,等等)

@@ -1,0 +1,30 @@
+public abstract boolean retainAll (Collection<?> collection)
+
+retain[英][rɪˈteɪn] [美][rɪˈten]
+vt.保持；留在心中，记住；雇用；付定金保留
+
+Added in API level 1
+Removes all objects from this Collection that are not also found in the Collection passed (optional). After this method returns this Collection will only contain elements that also can be found in the Collection passed to this method.
+
+Parameters
+collection	the collection of objects to retain.
+
+Returns
+true if this Collection is modified, false otherwise.
+
+Throws
+UnsupportedOperationException	if removing from this Collection is not supported.
+ClassCastException	if one or more elements of collection isn't of the correct type.
+NullPointerException	if collection contains at least one null element and this Collection doesn't support null elements.
+NullPointerException	if collection is null.
+
+-----------------------------------
+用法
+-----------------------------------
+private static Map<Class<? extends BaseFragment>, BaseFragment> fragments = 
+         new HashMap<Class<? extends BaseFragment>, BaseFragment>();
+private static Map<Integer, BaseFragment> viewsContainer = new HashMap<Integer, BaseFragment>();
+
+		fragments.remove(fragment.getClass());
+		// 与fragments同步
+		viewsContainer.values().retainAll(fragments.values());

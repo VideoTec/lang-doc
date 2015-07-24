@@ -1,0 +1,13 @@
+Runnable target;
+
+    /**
+     * Calls the <code>run()</code> method of the Runnable object the receiver
+     * holds. If no Runnable is set, does nothing.
+     *
+     * @see Thread#start
+     */
+    public void run() {
+        if (target != null) {
+            target.run();
+        }
+    }

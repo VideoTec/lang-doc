@@ -1,0 +1,24 @@
+Name
+
+glDetachShader — detach a shader object from a program object
+
+C Specification
+
+void glDetachShader(
+GLuint program,
+GLuint shader
+);
+ 
+Parameters
+
+program
+Specifies the program object from which to detach the shader object.
+
+shader
+Specifies the shader object to be detached.
+
+Description
+
+glDetachShader detaches the shader object specified by shader from the program object specified by program. This command can be used to undo the effect of the command glAttachShader.
+
+If shader has already been flagged for deletion by a call to glDeleteShader and it is not attached to any other program object, it will be deleted after it has been detached

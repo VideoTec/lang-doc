@@ -1,0 +1,77 @@
+Java JNI 的 本地 和 全局 引用的概念
+
+THE JNI exposes instance and array types (such as jobject, jclass, jstring, and jarray) as opaque references.
+Native code never directly inspects the con-tents of an opaque reference pointer. 
+Instead it uses JNI functions to access the data structure pointed to by an opaque reference. 
+By only dealing with opaque ref-erences, 
+you need not worry about internal object layout that is dependent upon a particular Java virtual machine implementation. 
+You do, however, need to learn more about different kinds of references in the JNI:
+
+• The JNI supports three kinds of opaque references: 
+local references, 
+global references, and 
+weak global references.
+
+• Local and global references have different lifetimes. 
+Local references are automatically freed, 
+whereas global and weak global references remain valid until they are freed by the programmer.
+
+• A local or global reference keeps the referenced object from being garbage collected. 
+A weak global reference, on the other hand, allows the referenced object to be garbage collected.
+
+• Not all references can be used in all contexts. 
+It is illegal, for example, to use a local reference after the native method that created the reference returns.
+
+In this chapter, we will discuss these issues in detail. 
+Managing JNI references properly is crucial to writing reliable and space-efﬁcient code.
+
+-----------------------------------------------
+5.1   Local and Global References
+-----------------------------------------------
+What are local and global references, and how are they different? We will use a
+series of examples to illustrate local and global references.
+
+-----------------------------------------------
+5.1.2   Global References
+-----------------------------------------------
+You can use a global reference across multiple invocations of a native method. 
+A global reference can be used across multiple threads and remains valid until it is freed by the programmer. 
+
+Like a local reference, 
+a global reference ensures that the referenced object will not be garbage collected.
+
+Unlike local references, 
+which are created by most JNI functions, global ref-erences are created by just one JNI function, NewGlobalRef. 
+
+The following ver-sion of MyNewString illustrates how to use a global reference. 
+We highlight the differences between the code below and the code that mistakenly cached a local reference in the last section:
+
+/* This code is OK */
+jstring
+MyNewString(JNIEnv *env, jchar *chars, jint len)
+{
+    static jclass stringClass = NULL;
+    ...
+    if (stringClass == NULL) {
+        jclass localRefCls =
+            (*env)->FindClass(env, "java/lang/String");
+        if (localRefCls == NULL) {
+            return NULL; /* exception thrown */
+        }
+        /* Create a global reference */
+        stringClass = (*env)->NewGlobalRef(env, localRefCls);
+        /* The local reference is no longer useful */
+        (*env)->DeleteLocalRef(env, localRefCls);
+        /* Is the global reference created successfully? */
+        if (stringClass == NULL) {
+            return NULL; /* out of memory exception thrown */
+        }
+    }
+    ...
+}
+
+The modiﬁed version passes the local reference returned from FindClass to NewGlobalRef, 
+which creates a global reference to the java.lang.String class object. 
+
+We check whether the NewGlobalRef has successfully created string-Class after deleting localRefCls 
+because the local reference localRefCls needs to be deleted in either case.

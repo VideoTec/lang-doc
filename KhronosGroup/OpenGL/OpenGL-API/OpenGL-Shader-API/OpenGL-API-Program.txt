@@ -1,0 +1,44 @@
+
+
+------------------------------------------
+正常操作流程
+------------------------------------------
+创建 空program对象：creates an empty program object and returns a non-zero value by which it can be referenced.
+GLuint glCreateProgram(	void);
+
+
+删除 program对象：delete a program object
+void glDeleteProgram(GLuint program);
+
+关联 program的shader对象：attach a shader object to a program object
+void glAttachShader(GLuint program, GLuint shader)
+
+链接：link a program object
+void glLinkProgram(GLuint program);
+
+安装，装配：install a program object as part of current rendering state
+void glUseProgram(GLuint program);
+
+获取，program对象的信息
+glGet with the argument GL_CURRENT_PROGRAM
+glGetActiveAttrib with a valid program object and the index of an active attribute variable
+glGetActiveUniform with a valid program object and the index of an active uniform variable
+glGetAttachedShaders with a valid program object
+glGetAttribLocation with a valid program object and the name of an attribute variable
+
+glGetProgramiv with a valid program object and the parameter to be queried
+GL_DELETE_STATUS
+GL_LINK_STATUS
+GL_VALIDATE_STATUS
+GL_INFO_LOG_LENGTH
+GL_ATTACHED_SHADERS
+GL_ACTIVE_ATTRIBUTES
+GL_ACTIVE_ATTRIBUTE_MAX_LENGTH
+GL_ACTIVE_UNIFORMS
+GL_ACTIVE_UNIFORM_MAX_LENGTH
+
+glGetProgramInfoLog with a valid program object
+
+glGetUniform with a valid program object and the location of a uniform variable
+glGetUniformLocation with a valid program object and the name of a uniform variable
+glIsProgram

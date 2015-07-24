@@ -1,0 +1,26 @@
+http://developer.android.com/reference/java/util/Map.html
+
+public interface java.util.Map<K, V>
+
+-----------------------------------
+派生类：
+-----------------------------------
+
+AbstractMap<K, V>, ArrayMap<K, V>, Attributes, AuthProvider, 
+ConcurrentHashMap<K, V>, ConcurrentMap<K, V>, 
+ConcurrentNavigableMap<K, V>, ConcurrentSkipListMap<K, V>, 
+EnumMap<K extends Enum<K>, V>, 
+HashMap<K, V>, Hashtable<K, V>, 
+IdentityHashMap<K, V>, 
+LinkedHashMap<K, V>, 
+NavigableMap<K, V>, 
+Properties, Provider, 
+SortedMap<K, V>, TreeMap<K, V>, WeakHashMap<K, V>
+
+-----------------------------------
+概述：
+-----------------------------------
+
+A Map is a data structure consisting of a set of keys and values in which each key is mapped to a single value. The class of the objects used as keys is declared when the Map is declared, as is the class of the corresponding values.
+
+A Map provides helper methods to iterate through all of the keys contained in it, as well as various methods to access and update the key/value pairs.

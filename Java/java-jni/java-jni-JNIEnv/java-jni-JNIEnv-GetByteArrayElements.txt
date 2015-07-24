@@ -1,0 +1,13 @@
+    {"pushAudioToMediaTarget", "(I[BI)V", (void *)media_target_push_audio}
+
+    void media_target_push_audio(JNIEnv *env, jobject clazz, CMediaTarget *src, jbyteArray audio, jint nb_sample) {
+        LOGI("JNI: media_target_push_audio: %X. begin", (unsigned int)src);
+        void *audio_buffer = 0;
+        audio_buffer = (void*)env->GetByteArrayElements(audio, 0);
+        if(src) src->push_audio((uint8_t*)audio_buffer, nb_sample);
+        env->ReleaseByteArrayElements(audio, (jbyte*)audio_buffer, 0);
+        LOGI("JNI: media_target_push_audio: %X. after", (unsigned int)src);
+    }
+
+20:34 2015/7/13
+GetByteArrayElements 返回值应该是 jbyte*

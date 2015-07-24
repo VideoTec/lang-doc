@@ -1,0 +1,12 @@
+https://zh.wikibooks.org/zh/Java/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B
+
+http://blog.csdn.net/ning109314/article/details/7633962
+[值类型]也就是基本数据类型
+
+基本数据类型常被称为四类八种
+四类：   1，整型 2，浮点型 3，字符型 4，逻辑型
+八种：   
+          1，整型3种 byte，short，int，long
+         2，浮点型2种 float，double
+         3，字符型1种 char
+         4，逻辑型1种 boolean

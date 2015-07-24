@@ -1,0 +1,47 @@
+Class<? extends BaseFragment> fragmentClass = fragment.getClass();
+
+http://blog.163.com/lby67224262@126/blog/static/1714153412011418516101/
+Jdk1.5中支持了泛型，在泛型的使用过程中经常会遇到这样一类问题
+
+类Parent
+ public   class  Parent  {
+  //  your code 
+ } 
+ 
+类Child
+ public   class  Child  extends  Parent {
+ //  your code 
+ } 
+ 
+ 调用
+ 
+ import  java.util.ArrayList;
+ import  java.util.List;
+
+ import  com.test.Child;
+
+ public   class  Test  {
+     public   static   void  doTest(List < Parent >  list) {
+        
+    } 
+      public   static   void  main(String[] args) {
+        List < Parent >  parentList  =   new  ArrayList < Parent > ();
+        List < Child >  childList  =   new  ArrayList < Child > ();
+        doTest(parentList);
+         // 注意这里编译错误 
+         doTest(childList);
+        
+    } 
+ } 
+  你会发现编译错误，但是在我们的需求中Child的集合类是可以代替Parent的集合类来使用的，
+  但是因为编译器不认同，因为两个集合类List < Parent > 和 List < Child >  之间没有直接的继承关系
+  
+  修改方法：
+  import  java.util.ArrayList;
+  import  java.util.List;
+
+   public   class  Test  {
+         // 这里更改一下，利用问号解决问题  
+      public   static   void  doTest(List <?   extends  Parent >  list) {
+        
+    } 

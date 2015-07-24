@@ -1,0 +1,23 @@
+------------------------------------------
+文档的重要概念
+------------------------------------------
+
+------------------------------------------
+current rendering state 例句
+------------------------------------------
+glUseProgram - install a program object as part of current rendering state
+glUniform operates on the program object that was made part of current state by calling glUseProgram.
+
+------------------------------------------
+executables - 链接成功后的，正在使用的，着色器可执行体
+------------------------------------------
+the executables that are part of the current state
+
+------------------------------------------
+Shader stages:
+------------------------------------------
+Vertex Shader
+Tessellation
+Geometry Shader
+Fragment Shader
+Compute Shader

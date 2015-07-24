@@ -1,0 +1,37 @@
+文档
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglMakeCurrent.xhtml
+attach an EGL rendering context to EGL surfaces
+
+EGLBoolean eglMakeCurrent(
+EGLDisplay display,
+EGLSurface draw,      Specifies the EGL draw surface.
+EGLSurface read,      Specifies the EGL read surface.
+EGLContext context
+);
+
+重点一： draw 和 read 的区别
+
+draw
+draw is used for all GL operations（除了使用 read 之外的操作）
+
+read
+any pixel data read back (glReadPixels, glCopyTexImage2D, and glCopyTexSubImage2D), 
+which is taken from the frame buffer values of read.
+
+重点二：每个线程对应一个上下文 EGLContext
+
+eglMakeCurrent binds context to the current rendering thread and to the draw and read surfaces.
+
+If the calling thread has already a current rendering context, 
+that context is flushed and marked as no longer current.
+
+重点三：释放线程当前 EGLContext 时
+To release the current context without assigning a new one, 
+call eglMakeCurrent with draw and read set to EGL_NO_SURFACE and context set to EGL_NO_CONTEXT.
+
+示例：eglMakeCurrent(display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+
+重点四：和 viewport and scissor dimensions 的关系
+The first time that context is made current, 
+the viewport and scissor dimensions are set to the size of the draw surface. 
+The viewport and scissor are not modified when context is subsequently made current.

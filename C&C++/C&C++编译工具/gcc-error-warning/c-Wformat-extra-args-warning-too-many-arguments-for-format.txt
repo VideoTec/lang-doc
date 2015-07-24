@@ -1,0 +1,29 @@
+-Wformat-extra-args
+
+--------------------------------------
+ 缺少了个 %s
+--------------------------------------
+下面的代码，产生警告，缺少了个 %s
+
+ LOGI("input audio frame size: %d", codec_ctx->frame_size, file_name);
+ jni/fv_audio_decoder.c:108:3: warning: too many arguments for format [-Wformat-extra-args]
+ 
+ -----------------------------------
+ 2015.02.05  % 写成了 &
+ -----------------------------------
+ #define REG_JNI(name, class_name) \
+  extern JNINativeMethod g_##name##_methods[]; \
+  extern const int g_##name##_methods_num; \
+  jclass java_##name##_clazz = (*env)->FindClass(env, class_name); \
+  if(java_##name##_clazz) { \
+    if((*env)->RegisterNatives(env, java_##name##_clazz, g_##name##_methods, g_##name##_methods_num)) { \
+      LOGE("register natives failed for class: %s", class_name); \
+    } else { \
+      LOGI("register natives success for class: %s", class_name); \
+    } \
+  } else { \
+    LOGE("cannt find java class: &s", class_name); \  
+  }
+  
+  jni/jni_entry.c:26:5: warning: too many arguments for format [-Wformat-extra-args]
+     REG_JNI(helloworld, "com/example/jni/HelloWorld");

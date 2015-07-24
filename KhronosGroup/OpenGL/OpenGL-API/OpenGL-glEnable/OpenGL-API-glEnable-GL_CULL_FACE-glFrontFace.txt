@@ -1,0 +1,52 @@
+define front- and back-facing polygons
+
+void glFrontFace(
+GLenum mode  Specifies the orientation of front-facing polygons. 
+             GL_CW and GL_CCW are accepted. The initial value is GL_CCW.
+);
+
+counterclockwise[英][ˌkaʊntəˈklɒkwaɪz] [美][ˌkaʊntərˈklɑ:kwaɪz] adj.逆时针方向的，自右向左的
+polygons[英]['pɒlɪgəns] [美]['pɒlɪgəns] 多边形
+eliminate[英][ɪˈlɪmɪneɪt] [美][ɪˈlɪməˌnet] vt.排除，消除；淘汰；除掉；<口>干掉
+elimination[英][ɪˌlɪmɪ'neɪʃn] [美][ɪˌlɪməˈneʃən] n.排除；除去；根除；淘汰
+interior[英][ɪnˈtɪəriə(r)] [美][ɪnˈtɪriə(r)] n.内部；内地；内政；内心
+winding[英][ˈwaɪndɪŋ] [美][ˈwaɪndɪŋ] n.绕，缠；线圈，弯曲
+projection[英][prəˈdʒekʃn] [美][prəˈdʒɛkʃən] n.预测；规划，设计；[心]投射；突起物
+imaginary[英][ɪˈmædʒɪnəri] [美][ɪˈmædʒɪneri] adj.想像中的，假想的，虚构的；[数]虚数的；幻；虚幻
+
+In a scene composed entirely of opaque closed surfaces, back-facing polygons are never visible. Eliminating these invisible polygons has the obvious benefit of speeding up the rendering of the image. 
+
+To enable and disable elimination of back-facing polygons, call glEnable and glDisable with argument GL_CULL_FACE.
+
+The projection of a polygon to window coordinates is said to have clockwise winding if an imaginary object following the path from its first vertex, its second vertex, and so on, to its last vertex, and finally back to its first vertex, moves in a clockwise direction about the interior of the polygon. 
+
+The polygon's winding is said to be counterclockwise if the imaginary object following the same path moves in a counterclockwise direction about the interior of the polygon. 
+
+glFrontFace specifies whether polygons with clockwise winding in window coordinates, or counterclockwise winding in window coordinates, are taken to be front-facing. 
+
+Passing GL_CCW to mode selects counterclockwise polygons as front-facing; GL_CW selects clockwise polygons as front-facing. 
+By default, counterclockwise polygons are taken to be front-facing
+
+
+举例
+  glFrontFace(GL_CCW);
+  glEnable(GL_CULL_FACE);
+  glCullFace(GL_BACK);
+  
+在一个全部由不透明封闭表面组成的场景中，背面多边形是永远看不见的。
+剔除这些不可见的多边形对于加速图形的渲染有很大的益处。
+开启和关闭剔除功能可以调用带GL_CULL_FACE参数的glEnable和glDisable函数。默认剔除功能是关闭的。
+
+如果一个虚构的对象的顶点是按照多边形内部顺时针的方向进行绘制的，
+那么可以称这个多边形基于窗口坐标的投影是顺时针的。反之，则为逆时针。
+
+glFrontFace就是用来指定多边形在窗口坐标中的方向是逆时针还是顺时针的。
+GL_CCW说明逆时针多边形为正面，而GL_CW说明顺时针多边形为正面。默认是逆时针多边形为正面
+
+参考
+http://stackoverflow.com/questions/7231848/confused-about-triangle-winding-and-transformations
+http://wiki.delphigl.com/index.php/glFrontFace
+http://www.xuebuyuan.com/1570360.html
+
+问题：
+H:\doc\Computer software\KhronosGroup\OpenGL\OpenGL-API\OpenGL-glDraw-API\OpenGL-API-glDrawElements-能画出线-画不出三角形.txt

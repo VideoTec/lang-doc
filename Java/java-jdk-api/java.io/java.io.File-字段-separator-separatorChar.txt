@@ -1,0 +1,21 @@
+----------------------------------------------
+public static final String separator
+----------------------------------------------
+
+Added in API level 1
+The system-dependent string used to separate components in filenames ('/'). See separatorChar.
+
+----------------------------------------------
+public static final char separatorChar
+----------------------------------------------
+
+Added in API level 1
+The system-dependent character used to separate components in filenames ('/'). Use of this (rather than hard-coding '/') helps portability to other operating systems.
+
+This field is initialized from the system property "file.separator". Later changes to that property will have no effect on this field or this class.
+
+使用示例：获取路径中的目录字符串
+File file = File("C:\\abcfolder\\textfile.txt");
+String absolutePath = file.getAbsolutePath();
+String filePath = absolutePath.
+    substring(0,absolutePath.lastIndexOf(File.separator));

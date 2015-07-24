@@ -1,0 +1,29 @@
+http://developer.android.com/reference/java/nio/channels/FileChannel.html#read(java.nio.ByteBuffer)
+
+public abstract int read (ByteBuffer buffer)
+
+Reads bytes from this file channel into the given buffer.
+
+The maximum number of bytes that will be read is the remaining number of bytes in the buffer when the method is invoked. 
+The bytes will be copied into the buffer starting at the buffer's current position.
+
+The call may block if other threads are also attempting to read from this channel.
+
+Upon completion, the buffer's position is set to the end of the bytes that have been read. 
+The buffer's limit is not changed.
+
+Parameters
+buffer	the byte buffer to receive the bytes.
+
+Returns
+the number of bytes actually read.
+
+Throws
+AsynchronousCloseException	if another thread closes the channel during the read.
+ClosedByInterruptException	if another thread interrupts the calling thread during the read.
+ClosedChannelException	if this channel is closed.
+IOException	if another I/O error occurs, details are in the message.
+NonReadableChannelException	if the channel has not been opened in a mode that permits reading
+
+14:44 2015/6/12
+问题：读到文件结尾会发生什么？while (in.read(bb)!=-1)

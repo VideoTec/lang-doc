@@ -1,0 +1,63 @@
+宏 PRId64 PRIu64
+
+how-to-print-a-int64-t-type-in-c
+int64_t t;
+printf("%" PRId64 "\n", t);
+
+uint64_t t;
+printf("%" PRIu64 "\n", t); //#include <inttypes.h>
+C99还定义了相应数据类型的打印方式，使用PRIu64打印uint64 
+
+you can also use PRIx64 to print in hexadecimal.
+These macros are defined in inttypes.h
+
+也可以写成  %lld。 %I64d 是windows平台使用的。
+
+注意下面的写法不正确：
+int64_t my_int = 999999999999999999;
+printf("This is my_int: %I64d\n", my_int);
+warning: format ‘%I64d’ expects type ‘int’, but argument 2 has type ‘int64_t’
+
+#include <inttypes.h> 头文件中的定义
+  #undef __PRI_8_LENGTH_MODIFIER__
+  #undef __PRI_64_LENGTH_MODIFIER__
+  #undef __SCN_8_LENGTH_MODIFIER__
+  #undef __SCN_64_LENGTH_MODIFIER__
+
+  #if defined(__STDC_LIBRARY_SUPPORTED__)
+    #define __PRI_8_LENGTH_MODIFIER__ "hh"
+    #define __PRI_64_LENGTH_MODIFIER__ "ll"
+    #define __SCN_8_LENGTH_MODIFIER__ "hh"
+    #define __SCN_64_LENGTH_MODIFIER__ "ll"
+  #else
+    #define __PRI_8_LENGTH_MODIFIER__ ""  /* none */
+    #define __PRI_64_LENGTH_MODIFIER__ "q"
+  #endif
+  
+  #define PRId8         __PRI_8_LENGTH_MODIFIER__ "d"
+  #define PRIi8         __PRI_8_LENGTH_MODIFIER__ "i"
+  #define PRIo8         __PRI_8_LENGTH_MODIFIER__ "o"
+  #define PRIu8         __PRI_8_LENGTH_MODIFIER__ "u"
+  #define PRIx8         __PRI_8_LENGTH_MODIFIER__ "x"
+  #define PRIX8         __PRI_8_LENGTH_MODIFIER__ "X"
+
+  #define PRId16        "hd"
+  #define PRIi16        "hi"
+  #define PRIo16        "ho"
+  #define PRIu16        "hu"
+  #define PRIx16        "hx"
+  #define PRIX16        "hX"
+
+  #define PRId32        "ld"
+  #define PRIi32        "li"
+  #define PRIo32        "lo"
+  #define PRIu32        "lu"
+  #define PRIx32        "lx"
+  #define PRIX32        "lX"
+
+  #define PRId64        __PRI_64_LENGTH_MODIFIER__ "d"
+  #define PRIi64        __PRI_64_LENGTH_MODIFIER__ "i"
+  #define PRIo64        __PRI_64_LENGTH_MODIFIER__ "o"
+  #define PRIu64        __PRI_64_LENGTH_MODIFIER__ "u"
+  #define PRIx64        __PRI_64_LENGTH_MODIFIER__ "x"
+  #define PRIX64        __PRI_64_LENGTH_MODIFIER__ "X"

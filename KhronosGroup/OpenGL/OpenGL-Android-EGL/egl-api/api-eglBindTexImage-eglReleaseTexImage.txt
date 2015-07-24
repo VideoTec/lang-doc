@@ -1,0 +1,62 @@
+文档
+
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglBindTexImage.xhtml
+
+eglBindTexImage — Defines a two-dimensional texture image
+C Specification
+EGLBoolean eglBindTexImage(	EGLDisplay display,
+ 	EGLSurface surface,
+ 	EGLint buffer);
+ 
+Parameters
+display
+Specifies the EGL display connection.
+
+surface
+Specifies the EGL surface.
+
+buffer
+Specifies the texture image data.
+
+Description
+The texture image consists of the image data in buffer for the specified surface, and need not be copied.
+
+The texture target, the texture format and the size of the texture components are derived from attributes of the specified surface, which must be a pbuffer supporting one of the EGL_BIND_TO_TEXTURE_RGB or EGL_BIND_TO_TEXTURE_RGBA attributes.
+
+The pbuffer attribute EGL_TEXTURE_FORMAT determines the base internal format of the texture.
+
+The texture target is derived from the EGL_TEXTURE_TARGET attribute of surface. If the attribute value is EGL_TEXTURE_2D, then buffer defines a texture for the two-dimensional texture object which is bound to the current context (hereafter referred to as the current texture object).
+
+If display and surface are the display and surface for the calling thread's current context, eglBindTexImage performs an implicit glFlush. For other surfaces, eglBindTexImage waits for all effects from previously issued OpenGL ES commands drawing to the surface to complete before defining the texture image, as though glFinish were called on the last context to which that surface were bound.
+
+After eglBindTexImage is called, the specified surface is no longer available for reading or writing. Any read operation, such as glReadPixels or eglCopyBuffers, which reads values from any of the surface's color buffers or ancillary buffers will produce indeterminate results. In addition, draw operations that are done to the surface before its color buffer is released from the texture produce indeterminate results. Specifically, if the surface is current to a context and thread then rendering commands will be processed and the context state will be updated, but the surface may or may not be written.
+
+Texture mipmap levels are automatically generated when all of the following conditions are met while calling eglBindTexImage:
+
+The EGL_MIPMAP_TEXTURE attribute of the pbuffer being bound is EGL_TRUE.
+
+The OpenGL ES texture parameter GL_GENERATE_MIPMAP is GL_TRUE for the currently bound texture.
+
+The value of the EGL_MIPMAP_LEVEL attribute of the pbuffer being bound is equal to the value of the texture parameter GL_TEXTURE_BASE_LEVEL. In this case, additional mipmap levels are generated as described in section 3.8 of the OpenGL ES 1.1 Specification.
+
+In this case, additional mipmap levels are generated as described in section 3.8 of the OpenGL ES 1.1 Specification.
+
+Notes
+eglSwapBuffers has no effect if it is called on a bound surface.
+
+Any existing images associated with the different mipmap levels of the texture object are freed (it is as if glTexImage was called with an image of zero width).
+
+The color buffer is bound to a texture object. If the texture object is shared between contexts, then the color buffer is also shared. If a texture object is deleted before eglReleaseTexImage is called, then the color buffer is released and the surface is made available for reading and writing.
+
+It is not an error to call glTexImage2D or glCopyTexImage2D to replace an image of a texture object that has a color buffer bound to it. However, these calls will cause the color buffer to be released back to the surface and new memory will be allocated for the texture. Note that the color buffer is released even if the image that is being defined is a mipmap level that was not defined by the color buffer.
+
+eglBindTexImage is ignored if there is no current rendering context.
+
+Errors
+EGL_BAD_ACCESS is generated if buffer is already bound to a texture.
+
+EGL_BAD_MATCH is generated if the surface attribute EGL_TEXTURE_FORMAT is set to EGL_NO_TEXTURE.
+
+EGL_BAD_MATCH is generated if buffer is not a valid buffer (currently only EGL_BACK_BUFFER may be specified).
+
+EGL_BAD_SURFACE is generated if surface is not an EGL surface, or is not a pbuffer surface supporting texture binding.

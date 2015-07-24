@@ -1,0 +1,22 @@
+void cropping_process_callback_jvm(float percentage)
+{
+    jfloat per = percentage;
+    
+    java_env.jenv->CallVoidMethod(java_env.jobj, java_env.method_cropping_progress, per);
+}
+
+Call<type>Method Routines
+Call<type>MethodA Routines
+Call<type>MethodV Routines
+NativeType Call<type>Method(JNIEnv *env, jobject obj, jmethodID methodID, ...);
+NativeType Call<type>MethodA(JNIEnv *env, jobject obj, jmethodID methodID, const jvalue *args);
+NativeType Call<type>MethodV(JNIEnv *env, jobject obj, jmethodID methodID, va_list args);
+
+Methods from these three families of operations are used to call a Java instance method from a native method.
+They only differ in their mechanism for passing parameters to the methods that they call.
+
+These families of operations invoke an instance (nonstatic) method on a Java object, according to the specified method ID.
+The methodID argument must be obtained by calling GetMethodID().
+
+Java类 的私有方法 和 构造方法 的调用
+When these functions are used to call private methods and constructors, the method ID must be derived from the real class of obj, not from one of its superclasses.

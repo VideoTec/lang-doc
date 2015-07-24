@@ -1,0 +1,57 @@
+
+------------------------------------
+数组形参 相当于 指针形参
+数组不能 传值 只能传址
+------------------------------------
+When passing an array as a parameter, this
+
+void arraytest(int a[])
+means exactly the same as
+void arraytest(int *a)
+
+so you are modifying the values in main.
+
+historical[英][hɪˈstɒrɪkl] [美][hɪˈstɔ:rɪkl] adj.历史的，历史上的；有关历史研究的；有根据的；基于史实的
+For historical reasons, arrays are not first class citizens and cannot be passed by value.
+
+------------------------------------
+示例 一
+------------------------------------
+
+#if LIBSWRESAMPLE_VERSION_MAJOR < 1
+#define SWR_CH_MAX 32   ///< Maximum number of channels
+#endif
+
+声明：
+
+int swr_convert(struct SwrContext *s, uint8_t **out, int out_count,
+                                const uint8_t **in , int in_count);
+								
+								
+实现：
+int swr_convert(struct SwrContext *s, uint8_t *out_arg[SWR_CH_MAX], int out_count,
+                                const uint8_t *in_arg [SWR_CH_MAX], int  in_count)
+								
+								
+------------------------------------
+示例 二
+------------------------------------
+
+#define AV_ERROR_MAX_STRING_SIZE 64
+
+static inline char *av_make_error_string(char *errbuf, size_t errbuf_size, int errnum)
+{
+    av_strerror(errnum, errbuf, errbuf_size);
+    return errbuf;
+}
+
+/**
+ * Convenience macro, the return value should be used only directly in
+ * function arguments but never stand-alone.
+ 这个返回值是个临时变量，不能单独使用。
+ 一个临时变量数组，已经初始化，请问能不能作为函数参数传递给子函数
+ 参考
+ http://stackoverflow.com/questions/17328898/c-version-of-c99-temporary-local-array-variable
+ */
+#define av_err2str(errnum) \
+    av_make_error_string((char[AV_ERROR_MAX_STRING_SIZE]){0}, AV_ERROR_MAX_STRING_SIZE, errnum)

@@ -1,0 +1,26 @@
+OpenMAX AL is the interface between multimedia applications, such as a media player, and the platform media framework. 
+It allows companies that develop applications to easily migrate their applications 
+to different platforms (customers) that support the OpenMAX AL application programming interface (API)
+
+OpenMAX AL features include:
+Video playback and recording
+Audio playback and recording
+Image capture (camera) and display
+Camera controls
+Radio and RDS
+Basic MIDI playback
+Metadata extraction and insertion
+
+The OpenMAX AL API is divided into two profiles: 
+Media Player and 
+Media Player/Recorder
+
+OpenMAX AL包括
+引擎对象（Engine Object）、
+媒体对象（Media Object）、
+元数据提取器对象（Metadata Extractor Object）、
+音频输出混音器对象（Audio Output Mix Objects）、
+照相机对象（Camera Objects）、
+LED阵列对象（LED Array Objects）、
+FM对象（Radio Objects）、
+振动控制对象（Vibration Control Objects）

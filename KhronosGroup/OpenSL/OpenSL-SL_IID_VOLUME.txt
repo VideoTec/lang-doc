@@ -1,0 +1,51 @@
+SLVolumeItf       volume_itf;
+
+const SLInterfaceID ids[] = { SL_IID_VOLUME };
+const SLboolean req[] = { SL_BOOLEAN_TRUE };
+(*g_engine_itf)->CreateAudioPlayer(g_engine_itf, player_obj, source, sink, 1, ids, req);
+(*player_obj)->GetInterface( player_obj, SL_IID_VOLUME, &volume_itf );
+
+-------------------------------------
+关于 VolumeLevel 的概念理解错误
+-------------------------------------
+// SL_MILLIBEL_MIN 有效
+// SL_MILLIBEL_MAX 无效
+void opensl_player_mute(OpenSLPlayer *player, int mute) {
+  if(player) {
+    if(player->volume_itf) {
+      LOGI("mute(%d) audio for:%s", mute, player->file_name);
+      SLmillibel vol = 0;
+      if(mute) vol = SL_MILLIBEL_MIN;
+      else vol = SL_MILLIBEL_MAX;
+      (*player->volume_itf)->SetVolumeLevel(player->volume_itf, vol);
+    }
+  }
+}
+
+-------------------------------------
+关于 VolumeLevel 的接口
+-------------------------------------
+	SLresult (*SetVolumeLevel) (
+		SLVolumeItf self,
+		SLmillibel level
+	);
+	SLresult (*GetVolumeLevel) (
+		SLVolumeItf self,
+		SLmillibel *pLevel
+	);
+	SLresult (*GetMaxVolumeLevel) (
+		SLVolumeItf  self,
+		SLmillibel *pMaxLevel
+	);
+
+--------------------------------------
+SLVolumeItf 的 SetMute 接口
+--------------------------------------
+	SLresult (*SetMute) (
+		SLVolumeItf self,
+		SLboolean mute
+	);
+	SLresult (*GetMute) (
+		SLVolumeItf self,
+		SLboolean *pMute
+	);

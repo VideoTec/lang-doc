@@ -1,0 +1,29 @@
+jni/JNIInterface.h:20:24: error: previous declaration of 'JNINativeMethod g_fopensl_jnicls_methods []' with 'C++' linkage
+jni/libopensl.cpp:27:42: error: conflicts with new declaration with 'C' linkage
+jni/JNIInterface.h:19:18: error: previous declaration of 'int const g_methods_num' with 'C++' linkage
+jni/libopensl.cpp:31:11: error: conflicts with new declaration with 'C' linkage
+jni/libopensl.cpp:31:97: error: expected '}' at end of input
+
+出错原因是
+libopensl.cpp 包含了头文件 audio_mix.h
+
+audio_mix.h 头文件 里写错了
+
+#ifndef _AUDIO_MIX_H_
+#define _AUDIO_MIX_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int create_audio_mix(const char *file1, const char *file2);
+int close_audio_mix();
+int audio_mix_cbk(unsigned char *buffer);
+
+void ffmpeg_register_all();
+
+#ifdef _cplusplus                                                       错误的原因：这里少加了个下划线
+} /*extern "C {"*/
+#endif
+
+#endif /*_AUDIO_MIX_H_*/

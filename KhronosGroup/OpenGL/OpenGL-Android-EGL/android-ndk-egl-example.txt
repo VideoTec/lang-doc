@@ -1,0 +1,4 @@
+https://github.com/tsaarni/android-native-egl-example
+
+注意这个例子是用 glesv1 为基础写的。
+链接的动态库是：GLESv1_CM

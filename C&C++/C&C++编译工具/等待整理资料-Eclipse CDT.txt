@@ -1,0 +1,12 @@
+linux eclipse cdt 安装方法
+见：doc\Computer software\Linux平台\linux-java-eclipse.txt
+
+《linux eclipse cdt 奇怪现象：编译构建菜单项没有了》
+build selected
+右键菜单，这个菜单命令，突然就没有了
+只能用主菜单的，project -> build/build all/clean
+
+http://www.oschina.net/question/4873_19441
+c/c++ build -> settings -> tool settings -> 编译器和链接器 参数设置
+${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}
+${OUTPUT_PREFIX}${OUTPUT} 这个合成输出文件名

@@ -1,0 +1,39 @@
+Avoid to use GL_DYNAMIC_DRAW as much as possible!
+Personally, I don't like to use GL_DYNAMIC_DRAW, if you stop to think about it you will see that doesn't exist in the 3D world an effect of behavior which only can be done changing the original vertex data, normal data or texture coordinate data.
+
+glBufferSubData — update a subset of a buffer object's data store
+
+C Specification
+
+void glBufferSubData(
+GLenum target,
+GLintptr offset,
+GLsizeiptr size,
+const GLvoid * data
+);
+ 
+Parameters
+
+target
+Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER or GL_ELEMENT_ARRAY_BUFFER.
+
+offset
+Specifies the offset into the buffer object's data store where data replacement will begin, measured in bytes.
+
+size
+Specifies the size in bytes of the data store region being replaced.
+
+data
+Specifies a pointer to the new data that will be copied into the data store.
+
+Description
+
+glBufferSubData redefines some or all of the data store for the buffer object currently bound to target. Data starting at byte offset offset and extending for size bytes is copied to the data store from the memory pointed to by data. An error is thrown if offset and size together define a range beyond the bounds of the buffer object's data store.
+
+Notes
+
+When replacing the entire data store, consider using glBufferSubData rather than completely recreating the data store with glBufferData. This avoids the cost of reallocating the data store.
+
+Consider using multiple buffer objects to avoid stalling the rendering pipeline during data store updates. If any rendering in the pipeline makes reference to data in the buffer object being updated by glBufferSubData, especially from the specific region being updated, that rendering must drain from the pipeline before the data store can be updated.
+
+Clients must align data elements consistent with the requirements of the client platform, with an additional base-level requirement that an offset within a buffer to a datum comprising N be a multiple of N.

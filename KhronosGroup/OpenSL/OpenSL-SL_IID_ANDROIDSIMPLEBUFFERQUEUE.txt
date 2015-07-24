@@ -1,0 +1,65 @@
+/*---------------------------------------------------------------------------*/
+/* Android Android Simple Buffer Queue Data Locator                          */
+/*---------------------------------------------------------------------------*/
+
+/** Addendum to Data locator macros  */
+#define SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE ((SLuint32) 0x800007BD)
+
+/** BufferQueue-based data locator definition where locatorType must be SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE*/
+typedef struct SLDataLocator_AndroidSimpleBufferQueue {
+	SLuint32	locatorType;
+	SLuint32	numBuffers;               这个有什么用？OpenSL, 用这个值来分配缓存大小
+                                          ap->mBufferQueue.mArray = (BufferHeader *)
+                                                malloc((ap->mBufferQueue.mNumBuffers + 1) * sizeof(BufferHeader));
+} SLDataLocator_AndroidSimpleBufferQueue;
+
+/*---------------------------------------------------------------------------*/
+/* Android Simple Buffer Queue Interface                                     */
+/*---------------------------------------------------------------------------*/
+
+extern SL_API const SLInterfaceID SL_IID_ANDROIDSIMPLEBUFFERQUEUE;
+
+struct SLAndroidSimpleBufferQueueItf_;
+typedef const struct SLAndroidSimpleBufferQueueItf_ * const * SLAndroidSimpleBufferQueueItf;
+
+typedef void (SLAPIENTRY *slAndroidSimpleBufferQueueCallback)(
+	SLAndroidSimpleBufferQueueItf caller,
+	void *pContext
+);
+
+/** Android simple buffer queue state **/
+
+typedef struct SLAndroidSimpleBufferQueueState_ {
+	SLuint32	count;
+	SLuint32	index;
+} SLAndroidSimpleBufferQueueState;
+
+
+struct SLAndroidSimpleBufferQueueItf_ {
+	SLresult (*Enqueue) (
+		SLAndroidSimpleBufferQueueItf self,
+		const void *pBuffer,
+		SLuint32 size
+	);
+	SLresult (*Clear) (
+		SLAndroidSimpleBufferQueueItf self
+	);
+	SLresult (*GetState) (
+		SLAndroidSimpleBufferQueueItf self,
+		SLAndroidSimpleBufferQueueState *pState
+	);
+	SLresult (*RegisterCallback) (
+		SLAndroidSimpleBufferQueueItf self,
+		slAndroidSimpleBufferQueueCallback callback,
+		void* pContext
+	);
+	
+};
+result = (*decBuffQueueItf)->RegisterCallback(decBuffQueueItf, DecPlayCallback, &cntxt);
+/* Callback for decoding buffer queue events */
+void DecPlayCallback(SLAndroidSimpleBufferQueueItf queueItf, void *pContext)
+{
+}
+
+设置回调 ，并开始解码时，出现下面的错误
+01-13 15:40:12.677: D/MP3Extractor(16763): Unable to resync. Signalling end of stream.

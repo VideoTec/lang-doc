@@ -1,0 +1,10 @@
+    CMediaTarget *media_target_init(JNIEnv *env, jobject clazz, jstring fname) {
+        const char *utf8 = env->GetStringUTFChars(fname, NULL);
+        if(!utf8) LOGE("JNI: media_target_init: GetStringUTFChars failed");
+
+        LOGI("JNI: media_target_init: %s", utf8);
+        CMediaTarget *obj = new CMediaTarget(utf8);
+
+        env->ReleaseStringUTFChars(fname, utf8);
+        return obj;
+    }

@@ -1,0 +1,45 @@
+strip[英][strɪp] [美][strɪp] 
+vi.剥光；表演脱衣舞；剥除
+vt.除去，剥去；剥夺；删除；清除，拆除
+n.长条，条板；带状地带（或森林、湖面等）；（足球队员的）运动服
+
+What is “strip” (GCC application) used for?
+strip removes or modifies the symbol table attached to the output of the assembler and link editor. 
+This is useful to save space after a program has been debugged and to limit dynamically bound symbols.
+
+文档
+http://linux.about.com/library/cmd/blcmdl1_strip.htm
+https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html#Link-Options
+
+strip - Discard symbols from object files.  
+SYNOPSIS
+
+strip [-F bfdname |--target=bfdname ] 
+      [-I bfdname |--input-target=bfdname ] 
+      [-O bfdname |--output-target=bfdname ] 
+      [-s|--strip-all] [-S|-g|-d|--strip-debug] 
+      [-K symbolname |--keep-symbol=symbolname ] 
+      [-N symbolname |--strip-symbol=symbolname ] 
+      [-x|--discard-all ] [-X |--discard-locals] 
+      [-R sectionname |--remove-section=sectionname ] 
+      [-o file ] [-p|--preserve-dates] 
+      [-v |--verbose]  [-V|--version] [--help] 
+      objfile...  
+DESCRIPTION
+
+GNU strip discards all symbols from object files objfile. The list of object files may include archives. At least one object file must be given.
+strip modifies the files named in its argument, rather than writing modified copies under different names.
+
+用法
+strip hello.o
+
+msys strip
+
+
+msvc strip
+http://stackoverflow.com/questions/5751220/best-way-to-strip-off-symbols
+With Visual C++ (and other Microsoft compilers) on Windows, symbols aren't part of the binaries. 
+Instead, they are stored in separate files called "Program Database" files (.pdb files). 
+Just don't provide the .pdb files.
+
+With the GNU toolchain you would use strip to remove symbols from the binaries

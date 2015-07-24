@@ -1,0 +1,8 @@
+java.io.FileOutputStream
+
+FileOutputStream stream = new FileOutputStream(path);
+try {
+    stream.write(bytes);
+} finally {
+    stream.close();
+}

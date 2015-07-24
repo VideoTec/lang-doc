@@ -1,0 +1,13 @@
+JNI 字符串传递和转换
+const char *utf8 = (*env)->GetStringUTFChars(env, uri, NULL);
+(*env)->ReleaseStringUTFChars(env, uri, utf8);
+
+
+注册JNI方法
+JNINativeMethod g_fopensl_jnicls_methods[] = {
+    {"initOpenSL", "(Ljava/lang/String;)V", (void *)initOpenSL}
+	{"destroyOpenSL", "()V", (void *)destroyOpenSL}  注意无参数的写法
+};
+fopensl_jni_cls = env->FindClass(FOPENSL_JNI_CLS);
+
+env->RegisterNatives(fopensl_jni_cls, g_fopensl_jnicls_methods, 1);

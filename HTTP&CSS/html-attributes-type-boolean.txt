@@ -1,0 +1,28 @@
+
+布尔属性列表
+<option> 的 disabled selected
+<select> <input> 的 requiredd optional
+
+http://www.w3.org/TR/html4/intro/sgmltut.html#h-3.3.4.2
+
+Boolean attributes 
+
+Some attributes play the role of boolean variables (e.g., the selected attribute for the OPTION element). Their appearance in the start tag of an element implies that the value of the attribute is "true". Their absence implies a value of "false".
+
+Boolean attributes may legally take a single value: the name of the attribute itself (e.g., selected="selected").
+
+This example defines the selected attribute to be a boolean attribute.
+
+selected     (selected)  #IMPLIED  -- option is pre-selected --
+The attribute is set to "true" by appearing in the element's start tag:
+
+<OPTION selected="selected">
+...contents...
+</OPTION>
+In HTML, boolean attributes may appear in minimized form -- the attribute's value appears alone in the element's start tag. Thus, selected may be set by writing:
+
+<OPTION selected>
+instead of:
+
+<OPTION selected="selected">
+Authors should be aware that many user agents only recognize the minimized form of boolean attributes and not the full form.

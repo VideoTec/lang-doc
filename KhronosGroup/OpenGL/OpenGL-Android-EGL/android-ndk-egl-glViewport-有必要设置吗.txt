@@ -1,0 +1,41 @@
+void glViewport(
+    GLint x,
+ 	GLint y,
+ 	GLsizei width,
+ 	GLsizei height);
+
+-----------------------------------------------------------
+Android 缺省将viewport 设置成和显示屏幕大小一致
+-----------------------------------------------------------
+eglMakeCurrent
+重点四：和 viewport and scissor dimensions 的关系
+The first time that context is made current, 
+the viewport and scissor dimensions are set to the size of the draw surface. 
+The viewport and scissor are not modified when context is subsequently made current.
+
+-----------------------------------------------------------
+播放视频的窗口，大小比例不用调整，只需要调整 glViewPort 来适应视频的长宽
+-----------------------------------------------------------
+https://www.virag.si/2014/03/playing-video-with-opengl-on-android/
+private void adjustViewport()
+    {
+        float surfaceAspect = height / (float)width;
+        float videoAspect = videoHeight / (float)videoWidth;
+
+        if (surfaceAspect > videoAspect)
+        {
+            float heightRatio = height / (float)videoHeight;
+            int newWidth = (int)(width * heightRatio);
+            int xOffset = (newWidth - width) / 2;
+            GLES20.glViewport(-xOffset, 0, newWidth, height);
+        }
+        else
+        {
+            float widthRatio = width / (float)videoWidth;
+            int newHeight = (int)(height * widthRatio);
+            int yOffset = (newHeight - height) / 2;
+            GLES20.glViewport(0, -yOffset, width, newHeight);
+        }
+
+        adjustViewport = false;
+    }

@@ -1,0 +1,20 @@
+brace[英][breɪs] [美][bres] [语]大括号
+
+Initializes an object from braced-init-list
+list initialization (since C++11)
+
+direct-list-initialization
+T object { arg1, arg2, ... };	(1)	
+T { arg1, arg2, ... };	(2)	
+new T { arg1, arg2, ... }	(3)	
+Class { T member { arg1, arg2, ... }; };	(4)	
+Class::Class() : member{arg1, arg2, ...} {...	(5)	
+
+copy-list-initialization
+T object = {arg1, arg2, ...};	(6)	
+function( { arg1, arg2, ... } ) ;	(7)	
+return { arg1, arg2, ... } ;	(8)	
+object[ { arg1, arg2, ... } ] ;	(9)	
+object = { arg1, arg2, ... } ;	(10)	
+U( { arg1, arg2, ... } )	(11)	
+Class { T member = { arg1, arg2, ... }; };	(12)	

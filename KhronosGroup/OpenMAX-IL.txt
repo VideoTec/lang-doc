@@ -1,0 +1,26 @@
+OpenMAX IL is the interface between media framework, 
+
+类似于下面的框架：
+StageFright or MediaCodec API on Android, 
+DirectShow on Windows, 
+FFmpeg or Libav on Linux, or 
+GStreamer for cross-platform 
+
+and a set of multimedia components (such as an audio or video codecs). 
+
+It allows companies that build platforms (e.g. allowing an implementation of an MP3 player) to 
+easily change components like 
+MP3 decoders and 
+Equalizer effects and 
+buy components for their platform from different vendors.
+
+The OpenMAX IL API strives to give media components portability across an array of platforms using the C-language. In the OpenMAX IL, components represent individual blocks of functionality. Components can be sources, sinks, codecs, filters, splitters, mixers, or any other data operator. Depending on the implementation, a component could possibly represent a piece of hardware, a software codec, another processor, or a combination thereof.
+
+The interface abstracts the hardware and software architecture in the system. The OpenMAX IL API allows the user to load, control, connect, and unload the individual components. This flexible core architecture allows the Integration Layer to easily implement almost any media use case and mesh with existing graph-based media frameworks. The key focus of the OpenMAX IL API is portability of media components.
+
+The OpenMAX IL API design devotes particular attention to use case flexibility and optimized data transfers between components.
+
+Open source OpenMAX IL implementations are available,
+
+Bellagio, is maintained by STMicroelectronics.
+LIM OpenMAX, an implementation that has both AL and IL.

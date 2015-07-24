@@ -1,0 +1,18 @@
+#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+
+void helloworld(JNIEnv *env, jobject clazz, jstring jni_str) {
+  const char *str_utf8 = env->GetStringUTFChars(jni_str, nullptr);
+  LOGI(str_utf8);
+  env->ReleaseStringUTFChars(jni_str, str_utf8);
+}
+
+jni/hello_world.cpp:7:3: error: format not a string literal字面量 and no format arguments [-Werror=format-security]
+LOGI(str_utf8); 改成 LOGI("%s", str_utf8);
+
+-Wformat-security
+If -Wformat is specified, also warn about uses of format functions that represent possible security problems. 
+At present, this warns about calls to printf and scanf functions where 
+the format string is not a string literal [英][ˈlɪtərəl] [美][ˈlɪtərəl]字面量 and there are no format arguments, as in printf (foo);. 
+This may be a security hole if the format string came from untrusted input and contains ‘%n’. 
+(This is currently a subset of what -Wformat-nonliteral warns about, but in future warnings may be added to -Wformat-security that are not included in -Wformat-nonliteral.) 
+

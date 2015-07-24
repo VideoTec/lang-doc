@@ -1,0 +1,2 @@
+struct SLSeekItf_;
+typedef const struct SLSeekItf_ * const * SLSeekItf;

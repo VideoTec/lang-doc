@@ -1,0 +1,21 @@
+出处
+E:\android\ndk\samples\hello-gl2\jni\gl_code.cpp
+
+static const char gVertexShader[] = 
+    "attribute vec4 vPosition;\n"
+    "void main() {\n"
+    "  gl_Position = vPosition;\n"
+    "}\n";
+
+static const char gFragmentShader[] = 
+    "precision mediump float;\n"
+    "void main() {\n"
+    "  gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);\n"
+    "}\n";
+
+对应的绘制代码
+
+const GLfloat gTriangleVertices[] = { 0.0f, 0.5f, -0.5f, -0.5f,
+        0.5f, -0.5f };
+glVertexAttribPointer(gvPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, gTriangleVertices);
+glDrawArrays(GL_TRIANGLES, 0, 3);

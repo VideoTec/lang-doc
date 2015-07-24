@@ -1,0 +1,26 @@
+Name
+
+glGenBuffers — generate buffer object names
+
+C Specification
+
+void glGenBuffers(
+GLsizei n,
+GLuint * buffers
+);
+ 
+Parameters
+
+n
+Specifies the number of buffer object names to be generated.
+
+buffers
+Specifies an array in which the generated buffer object names are stored.
+
+Description
+
+glGenBuffers returns n buffer object names in buffers. There is no guarantee that the names form a contiguous set of integers; however, it is guaranteed that none of the returned names was in use immediately before the call to glGenBuffers.
+
+Buffer object names returned by a call to glGenBuffers are not returned by subsequent calls, unless they are first deleted with glDeleteBuffers.
+
+No buffer objects are associated with the returned buffer object names until they are first bound by calling glBindBuffer.

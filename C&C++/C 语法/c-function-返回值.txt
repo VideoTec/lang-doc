@@ -1,0 +1,44 @@
+参考：
+http://blog.csdn.net/haiwil/article/details/6691854
+
+函数不能通过返回指向栈内存的指针(注意这里指的是栈，返回指向堆内存的指针是可以的)
+
+数组是不能作为函数的返回值的，原因是编译器把数组名认为是局部变量（数组）的地址
+返回一个数组一般用返回指向这个数组的指针代替
+
+----------------------------
+示例一：字符串常量 可正确返回
+----------------------------
+#include <stdio.h>   
+char *returnStr()   
+{   
+    char *p="hello world!";   
+    return p;   
+}   
+int main()   
+{   
+    char *str;   
+    str=returnStr();   
+    printf("%s\n", str);   
+    return 0;   
+}  
+
+这个是没有问题的，因为 "hello world!"是一个字符串常量，存放在只读数据段，函数退出时，该字符串常量所在内存不会被回收
+
+----------------------------
+示例二： 
+----------------------------
+#include <stdio.h>   
+char *returnStr()   
+{   
+    char p[]="hello world!";   分配临时变量
+    return p;   
+}   
+int main()   
+{   
+    char *str;   
+    str=returnStr();   
+    printf("%s\n", str);   
+    return 0;   
+}   
+"hello world!"是局部变量存放在栈中。当returnStr函数退出时，栈要清空，局部变量的内存也被清空了

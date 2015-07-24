@@ -1,0 +1,20 @@
+代码：
+int mm_out_file_add_audio_track(MMOutFile *out) {
+  AVFormatContext *ofmt = out->fmt_ctx;
+  AVCodec *aac_encoder = avcodec_find_encoder(AV_CODEC_ID_AAC);
+  if(!aac_encoder)
+    goto fail;
+
+  AVStream *audio_stream = avformat_new_stream(ofmt, aac_encoder);
+  if(!audio_stream)
+    goto fail;
+
+错误：，然而使用GCC能编译成功
+m_out_file.c(99) : error C2275: “AVStream”: 将此类型用作表达式非法
+        libav/include\libavformat/avformat.h(879) : 参见“AVStream”的声明
+
+将C代码在VC++中编译，经常会出现error C2275错误，结果是变量的定义位置不对，应该在 函数块（代码块） 的最前面
+
+修改方法
+1. 把 AVStream *audio_stream 定义放到函数开头
+2. 把前面的IF语句，用 {} 包起来，这样后面就成新的代码块了

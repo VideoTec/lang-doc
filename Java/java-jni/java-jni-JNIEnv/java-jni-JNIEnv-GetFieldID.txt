@@ -1,0 +1,7 @@
+jfieldID GetFieldID(JNIEnv *env, jclass clazz, const char *name, const char *sig);
+
+Returns the field ID for an instance (nonstatic) field of a class. The field is specified by its name and signature. The Get<type>Field and Set<type>Field families of accessor functions use field IDs to retrieve object fields.
+
+GetFieldID() causes an uninitialized class to be initialized.
+
+GetFieldID() cannot be used to obtain the length field of an array. Use GetArrayLength() instead.

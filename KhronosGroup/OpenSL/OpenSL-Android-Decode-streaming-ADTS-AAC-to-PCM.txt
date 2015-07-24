@@ -1,0 +1,8 @@
+   Audio Data Transport Stream (ADTS) is a format, used by MPEG TS or Shoutcast to stream audio, usually AAC
+   ADTS全称是(Audio Data Transport Stream)，是AAC的一种十分常见的传输格式
+   ADTS 头中相对有用的信息 采样率、声道数、帧长度
+   FAAC默认的封装，但FAAC亦可输出MPEG-4
+   
+   Decode streaming ADTS AAC to PCM
+   the compressed audio source is a stream of AAC frames contained by ADTS headers
+the application manages this stream, that is the data is not located within a network resource identified by URI or within a local file identified by file descriptor.

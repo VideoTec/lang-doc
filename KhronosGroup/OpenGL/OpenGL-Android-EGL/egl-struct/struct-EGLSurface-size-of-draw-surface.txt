@@ -1,0 +1,10 @@
+EGLBoolean eglMakeCurrent(
+EGLDisplay display,
+EGLSurface draw,      Specifies the EGL draw surface.
+EGLSurface read,      Specifies the EGL read surface.
+EGLContext context
+);
+
+重点四：和 viewport and scissor dimensions 的关系
+The first time that context is made current, the viewport and scissor dimensions are set to the size of the draw surface. 
+The viewport and scissor are not modified when context is subsequently made current.

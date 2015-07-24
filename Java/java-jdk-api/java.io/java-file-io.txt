@@ -1,0 +1,58 @@
+Java 流(Stream)、文件(File)和IO
+
+一个流被定义为一个数据序列。输入流用于从源读取数据，输出流用于向目标写数据
+下面将要讨论的两个重要的流是FileInputStream 和FileOutputStream
+
+InputStream f = new FileInputStream("C:/java/hello");
+或者
+File f = new File("C:/java/hello");
+InputStream f = new FileInputStream(f);
+
+方法及描述
+public void close() throws IOException{}
+关闭此文件输入流并释放与此流有关的所有系统资源。抛出IOException异常。
+
+protected void finalize()throws IOException {}
+这个方法清除与该文件的连接。确保在不再引用文件输入流时调用其 close 方法。抛出IOException异常。
+
+public int read(int r)throws IOException{}
+这个方法从InputStream对象读取指定字节的数据。返回为整数值。返回下一字节数据，如果已经到结尾则返回-1。
+
+public int read(byte[] r) throws IOException{}
+这个方法从输入流读取r.length长度的字节。返回读取的字节数。如果是文件结尾则返回-1。
+
+public int available() throws IOException{}
+返回下一次对此输入流调用的方法可以不受阻塞地从此输入流读取的字节数。返回一个整数值
+
+FileChannel 对象不能直接创建。
+一个 FileChannel 实例只能通过
+在一个打开的 File 对象（RandomAccessFile、FileInputStream 或 FileOutputStream）上调用 getChannel() 方法获取。
+调用 getChannel() 方法会
+返回一个连接到相同文件的 FileChannel 对象且
+该 FileChannel 对象具有与 File 对象相同的访问权限，
+然后你就可以使用通道对象来利用强大的 FileChannel API了
+
+同大多数通道一样，只要有可能，FileChannel 都会尝试使用本地 I/O 服务。
+FileChannel 类本身是抽象的，
+你从 getChannel() 方法获取的实际对象是一个具体子类（subclass）的一个实例（instance），
+该子类可能使用本地代码来实现以上 API 方法中的一些或全部
+
+Reading files using Java NIO's FileChannel and MappedByteBuffer 
+will most likely result in a solution that will be much faster than any solution involving FileInputStream. 
+Basically, memory-map large files, and use direct buffers for small ones
+
+示例代码：
+http://nadeausoftware.com/articles/2008/02/java_tip_how_read_files_quickly#FileChannelwithdirectByteBufferandbytegets
+FileInputStream f = new FileInputStream( name );
+FileChannel ch = f.getChannel( );
+ByteBuffer bb = ByteBuffer.allocateDirect( SIZE );
+long checkSum = 0L;
+int nRead;
+while ( (nRead=ch.read( bb )) != -1 )
+{
+    bb.position( 0 );
+    bb.limit( nRead );
+    while ( bb.hasRemaining() )
+        checkSum += bb.get( );
+    bb.clear( );
+}

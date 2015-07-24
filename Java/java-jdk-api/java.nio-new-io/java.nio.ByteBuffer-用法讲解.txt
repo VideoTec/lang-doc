@@ -1,0 +1,10 @@
+https://worldmodscode.wordpress.com/2012/12/14/the-java-bytebuffer-a-crash-course/
+
+In my experience, java.nio.ByteBuffer 
+is a source of confusion and subtle bugs when developers first encounter it, 
+because it is not immediately obvious how to use it correctly. 
+
+It took some repeated reading of the API docs and some experience to realize some subtleties, 
+before I felt comfortable with them. 
+
+This post is a short crash in how to use them correctly, to hopefully save others some trouble.

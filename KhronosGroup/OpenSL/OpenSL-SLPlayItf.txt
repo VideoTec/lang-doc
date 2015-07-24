@@ -1,0 +1,2 @@
+struct SLPlayItf_;
+typedef const struct SLPlayItf_ * const * SLPlayItf;

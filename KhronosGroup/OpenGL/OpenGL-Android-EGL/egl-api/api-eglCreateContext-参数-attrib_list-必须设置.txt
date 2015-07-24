@@ -1,0 +1,31 @@
+E:\doc\Computer software\KhronosGroup\OpenGL\OpenGL-Android-called unimplemented OpenGL ES API.txt
+
+创建 EGL 上下文件时没有指定正确的属性列表
+EGLint attribs_context[] = {EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE};
+EGLContext context = eglCreateContext(display, config, EGL_NO_CONTEXT, attribs_context)
+
+导致下面的错误：
+
+05-28 16:00:53.000: I/EglSample(8704): Initializing context
+05-28 16:00:53.020: D/libEGL(8704): loaded /system/lib/egl/libEGL_mali.so
+05-28 16:00:53.050: D/libEGL(8704): loaded /system/lib/egl/libGLESv1_CM_mali.so
+05-28 16:00:53.055: D/libEGL(8704): loaded /system/lib/egl/libGLESv2_mali.so
+05-28 16:00:53.080: D/(8704): Device driver API match
+05-28 16:00:53.080: D/(8704): Device driver API version: 10
+05-28 16:00:53.080: D/(8704): User space API version: 10 
+05-28 16:00:53.080: D/(8704): mali: REVISION=Linux-r2p4-02rel0 BUILD_DATE=Tue Oct 16 15:37:13 KST 2012 
+05-28 16:00:53.135: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: I/EglSample(8704): glGetAttribLocation("vPosition") = 43
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API

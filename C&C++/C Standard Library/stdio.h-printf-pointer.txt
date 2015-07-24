@@ -1,0 +1,15 @@
+代码：
+LOGI("yuv_frame_: %04X; rgb_frame_: %04X", yuv_frame_, rgb_frame_);
+
+警告：
+jni/utils.h:14:77: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'AVFrame*' [-Wformat=]
+
+原因：
+you are compiling with the -Wformat warning flag, that will type check the calls to printf() and scanf()
+The format specifier for pointer is %p, not %x
+you must use %8p instead of %08p (The leading zero is not supported for the specifier p
+
+You must cast any pointer to void pointer when passing it variadically through to printf: 
+printf("%p", (void*)(&x));. 
+Different pointer types are not required to be laid out the same way, 
+but they are guaranteed to be convertible losslessly to void*

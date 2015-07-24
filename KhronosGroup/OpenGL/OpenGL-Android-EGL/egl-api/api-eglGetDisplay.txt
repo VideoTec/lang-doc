@@ -1,0 +1,19 @@
+文档
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglGetDisplay.xhtml
+eglGetDisplay — return an EGL display connection
+
+注意：
+1. 如果找不到合适的 Display 返回：EGL_NO_DISPLAY is returned. No error is generated
+2. Use eglInitialize to initialize the display connection
+
+头文件
+E:\android\ndk\platforms\android-19\arch-arm\usr\include\EGL\egl.h
+#include <EGL/egl.h>
+
+typedef void *EGLDisplay;
+#define EGL_DEFAULT_DISPLAY		((EGLNativeDisplayType)0)
+#define EGL_NO_DISPLAY			((EGLDisplay)0)
+EGLAPI EGLDisplay EGLAPIENTRY eglGetDisplay(EGLNativeDisplayType display_id);
+
+示例：
+EGLDisplay display = eglGetDisplay(EGL_DEFAULT_DISPLAY);

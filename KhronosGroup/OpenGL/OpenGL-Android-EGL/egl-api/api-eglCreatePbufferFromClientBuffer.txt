@@ -1,0 +1,99 @@
+文档
+
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglCreatePbufferFromClientBuffer.xhtml
+
+eglCreatePbufferFromClientBuffer — create a new EGL pixel buffer surface bound to an OpenVG image
+C Specification
+EGLSurface eglCreatePbufferFromClientBuffer(	EGLDisplay display,
+ 	EGLenum buftype,
+ 	EGLClientBuffer buffer,
+ 	EGLConfig config,
+ 	EGLint const * attrib_list);
+ 
+Parameters
+display
+Specifies the EGL display connection.
+
+buftype
+Specifies the type of client API buffer to be bound. Must be EGL_OPENVG_IMAGE, corresponding to an OpenVG VGImage buffer.
+
+buffer
+Specifies the OpenVG VGImage handle of the buffer to be bound.
+
+config
+Specifies the EGL frame buffer configuration that defines the frame buffer resource available to the surface.
+
+attrib_list
+Specifies pixel buffer surface attributes. May be NULL or empty (first attribute is EGL_NONE).
+
+Description
+eglCreatePbufferFromClientBuffer creates an off-screen pixel buffer surface and returns its handle. If eglCreatePbufferFromClientBuffer fails to create a pixel buffer surface, EGL_NO_SURFACE is returned.
+
+The new pixel buffer surface is similar to a pixel buffer created with eglCreatePbufferSurface, but storage for the color buffer is provided by a client API buffer. Other buffer required by config, such as depth, stencil, and alpha mask, are allocated by EGL.
+
+buftype must be EGL_OPENVG_IMAGE, corresponding to an OpenVG VGImage buffer. buffer must be a valid VGImage handle in the current OpenVG context, cast into the type EGLClientBuffer.
+
+The height, width,, OpenVG alpha format, and OpenVG colorspace (surface attributes EGL_HEIGHT, EGL_WIDTH, EGL_VG_ALPHA_FORMAT, and EGL_VG_COLORSPACE, respectively) of the resulting surface are determined by the size and format of buffer.
+
+Surface attributes are specified as a list of attribute-value pairs, terminated with EGL_NONE. Accepted attributes are:
+
+EGL_MIPMAP_TEXTURE
+Specifies whether storage for mipmaps should be allocated. Space for mipmaps will be set aside if the attribute value is EGL_TRUE and EGL_TEXTURE_FORMAT is not EGL_NO_TEXTURE. The default value is EGL_FALSE.
+
+EGL_TEXTURE_FORMAT
+Specifies the format of the texture that will be created when a pbuffer is bound to a texture map. Possible values are EGL_NO_TEXTURE, EGL_TEXTURE_RGB, and EGL_TEXTURE_RGBA. The default value is EGL_NO_TEXTURE.
+
+EGL_TEXTURE_TARGET
+Specifies the target for the texture that will be created when the pbuffer is created with a texture format of EGL_TEXTURE_RGB or EGL_TEXTURE_RGBA. Possible values are EGL_NO_TEXTURE, or EGL_TEXTURE_2D. The default value is EGL_NO_TEXTURE.
+
+Any EGL rendering context that was created with respect to config can be used to render into the surface. Use eglMakeCurrent to attach an EGL rendering context to the surface.
+
+Use eglQuerySurface to retrieve the dimensions of the allocated pixel buffer surface or the ID of config.
+
+Use eglDestroySurface to destroy the surface.
+
+Notes
+eglCreatePbufferFromClientBuffer is supported only if the EGL version is 1.2 or greater, and if the EGL implementation supports the OpenVG client API.
+
+Currently eglCreatePbufferFromClientBuffer only supports binding OpenVG VGImage buffers to pixel buffers. While other client API resources could be supported in the future, mechanisms such as OpenGL ES framebuffer objects, and the family of EGL and client API extensions for defining and using EGLImageKHR images, are a more flexible and general framework to satisfy most of the same needs.
+
+If the value of config attribute EGL_TEXTURE_FORMAT is not EGL_NO_TEXTURE, then the pbuffer width and height specify the size of the level zero texture image
+
+If EGL_LARGEST_PBUFFER is specified and if the pbuffer will be used as a texture (i.e. the value of EGL_TEXTURE_TARGET is EGL_TEXTURE_2D, and the value of EGL_TEXTURE FORMAT is EGL_TEXTURE_RGB or EGL_TEXTURE_RGBA), then the aspect ratio will be preserved and the new width and height will be valid sizes for the texture target (e.g. if the underlying OpenGL ES implementation does not support non-power-of-two textures, both the width and height will be a power of 2).
+
+The contents of the depth and stencil buffers may not be preserved when rendering a texture to the pbuffer and switching which image of the texture is rendered to (e.g., switching from rendering one mipmap level to rendering another).
+
+Binding client API buffers to EGL pbuffers create the possibility of race conditions, and of buffers being deleted through one API while still in use in another API. To avoid these problems, a number of constraints apply to bound client API buffers:
+
+Bound buffers may be used exclusively by either EGL, or the client API that originally created them. For example, if a VGImage is bound to a pbuffer, and that pbuffer is bound to any client API rendering context, then the VGImage may not be used as the explicit source or destination of any OpenVG operation. Errors resulting from such use are described in client API specifications. Similarly, while a VGImage is in use by OpenVG, the pbuffer it is bound to may not be made current to any client API context using eglMakeCurrent.
+
+Binding a buffer creates an additional reference to it, and implementations must respect outstanding references when destroying objects. For example, if a VGImage is bound to a pbuffer, destroying the image with vgDestroyImage will not free the underlying buffer, because it is still in use by EGL. However, following vgDestroyImage the buffer may only be referred to via the EGL pbuffer handle, since the OpenVG handle to that buffer no longer exists. Similarly, destroying the pbuffer with eglDestroySurface will not free the underlying buffer, because it is still in use by OpenVG . However, following eglDestroySurface the buffer may only be referred to via the OpenVG VGImage handle, since the EGL pbuffer handle no longer exists.
+
+Errors
+EGL_NO_SURFACE is returned if creation of the context fails.
+
+EGL_BAD_DISPLAY is generated if display is not an EGL display connection.
+
+EGL_NOT_INITIALIZED is generated if display has not been initialized.
+
+EGL_BAD_CONFIG is generated if config is not an EGL frame buffer configuration.
+
+EGL_BAD_PARAMETER is generated if buftype is not EGL_OPENVG_IMAGE, or if buffer is not a valid handle to a VGImage object in the currently bound OpenVG context.
+
+EGL_BAD_ACCESS is generated if there is no current OpenVG context, or if buffer is already bound to another pixel buffer or in use by OpenVG as discussed in the Notes section above.
+
+EGL_BAD_ALLOC is generated if there are not enough resources to allocate the new surface.
+
+EGL_BAD_ATTRIBUTE is generated if attrib_list contains an invalid pixel buffer attribute or if an attribute value is not recognized or out of range.
+
+EGL_BAD_ATTRIBUTE is generated if attrib_list contains any of the attributes EGL_MIPMAP_TEXTURE, EGL_TEXTURE_FORMAT, or EGL_TEXTURE_TARGET, and config does not support OpenGL ES rendering (e.g. the EGL version is 1.2 or later, and the EGL_RENDERABLE_TYPE attribute of config does not include at least one of EGL_OPENGL_ES_BIT or EGL_OPENGL_ES2_BIT).
+
+EGL_BAD_MATCH is generated if config does not support rendering to pixel buffers (the EGL_SURFACE_TYPE attribute does not contain EGL_PBUFFER_BIT).
+
+EGL_BAD_MATCH is generated if the buffers contained in buffer do not match the bit depths for those buffers specified by config.
+
+EGL_BAD_MATCH is generated if the EGL_TEXTURE_FORMAT attribute is not EGL_NO_TEXTURE, and EGL_WIDTH and/or EGL_HEIGHT specify an invalid size (e.g., the texture size is not a power of 2, and the underlying OpenGL ES implementation does not support non-power-of-two textures).
+
+EGL_BAD_MATCH is generated if the EGL_TEXTURE_FORMAT attribute is EGL_NO_TEXTURE, and EGL_TEXTURE_TARGET is something other than EGL_NO_TEXTURE; or, EGL_TEXTURE_FORMAT is something other than EGL_NO_TEXTURE, and EGL_TEXTURE_TARGET is EGL_NO_TEXTURE.
+
+EGL_BAD_MATCH is generated if the implementation has additional constraints on which types of client API buffers may be bound to pixel buffer surfaces. For example, it is possible that the OpenVG implementation might not support a VGImage being bound to a pixel buffer which will be used as a mipmapped OpenGL ES texture (e.g. whose EGL_MIPMAP_TEXTURE attribute is TRUE). Any such constraints should be documented by the implementation release notes.

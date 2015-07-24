@@ -1,0 +1,25 @@
+
+http://www.cnblogs.com/wiseman/archive/2005/10/24/260576.html
+
+#ifndef _TIME_T_DEFINED
+typedef long time_t;         /* 时间值 */
+#define _TIME_T_DEFINED     /* 避免重复定义 time_t */
+#endif
+
+日历时间（Calendar Time）是通过time_t数据类型来表示的，
+用time_t表示的时间（日历时间）是从一个时间点（例如：1970年1月1日0时0分0秒）到此时的秒数。
+在time.h中，我们也可以看到time_t是一个长整型数
+
+ANSI C标准称使用tm结构的这种时间表示为分解时间(broken-down time)
+
+以time_t为参数类型或返回值类型的函数：
+double difftime(time_t time1, time_t time0);
+time_t mktime(struct tm * timeptr);
+time_t time(time_t * timer);
+
+char * asctime(const struct tm * timeptr);
+char * ctime(const time_t *timer);
+
+两种不同的函数将日历时间（一个用time_t表示的整数）转换为我们平时看到的把年月日时分秒分开显示的时间格式tm：
+struct tm * gmtime(const time_t *timer);      世界标准时间（即格林尼治时间）                                        
+struct tm * localtime(const time_t * timer);  本地时间

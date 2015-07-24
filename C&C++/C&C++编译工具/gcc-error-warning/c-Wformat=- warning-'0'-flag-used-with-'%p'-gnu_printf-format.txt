@@ -1,0 +1,8 @@
+代码：
+LOGI("yuv_frame_: %04p; rgb_frame_: %04p", yuv_frame_, rgb_frame_);
+
+警告：
+warning: '0' flag used with '%p' gnu_printf format [-Wformat=]
+
+原因：
+you must use %8p instead of %08p (The leading zero is not supported for the specifier p

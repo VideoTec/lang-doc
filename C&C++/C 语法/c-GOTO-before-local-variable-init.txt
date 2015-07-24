@@ -1,0 +1,66 @@
+goto 造成 局部变量未初始化
+GOTO before local variable
+参考下面的链接
+http://stackoverflow.com/questions/25005450/goto-before-local-variable
+
+2015.01.29 我碰到了这个问题， 结果这个未定义的行为，表现为 指针未初始化
+
+OpenSLPlayer *create_opensl_player(const char *filename) {
+  FILE *f = fopen(filename, "rb");
+  if(0 == f) {
+    LOGE("cannt open audio file:%s", filename);
+    goto fail;                                    这里 GOTO 之后，player_tmp 指针未初始化 更确切的说是：does have undefined behavior
+  }
+  fclose(f);
+
+  OpenSLPlayer *player_tmp = malloc(sizeof(*player_tmp));
+  strcpy(player_tmp->file_name, filename);
+
+  SLDataLocator_URI data_locator_uri;
+  SLDataSource      data_source;
+  data_locator_uri.locatorType = SL_DATALOCATOR_URI;
+  data_locator_uri.URI = filename;
+  data_source.pLocator = &data_locator_uri;
+  data_source.pFormat = &g_format_mime;
+
+  SLresult result = SL_RESULT_SUCCESS;
+  const SLInterfaceID ids[] = { SL_IID_VOLUME };
+  const SLboolean req[] = { SL_BOOLEAN_TRUE }; 
+
+  result = (*g_engine_itf)->CreateAudioPlayer(
+      g_engine_itf,
+      &player_tmp->play_obj,
+      &data_source,
+      &g_data_sink_output_mix,
+      1, ids, req);
+  if(result != SL_RESULT_SUCCESS) {
+    LOGE("crate player object fail:%d", result);
+    goto fail;
+  }
+
+  result = (*player_tmp->play_obj)->Realize(player_tmp->play_obj, SL_BOOLEAN_FALSE);
+  if(result != SL_RESULT_SUCCESS) {
+    LOGE("player object Realize fail:%d", result);
+    goto fail;
+  }
+  result = (*player_tmp->play_obj)->GetInterface(player_tmp->play_obj, SL_IID_PLAY, &player_tmp->play_itf);
+  if(result != SL_RESULT_SUCCESS) {
+    LOGE("get play interface fail:%d", result);
+    goto fail;
+  }
+  result = (*player_tmp->play_obj)->GetInterface(player_tmp->play_obj, SL_IID_VOLUME, &player_tmp->volume_itf);
+  if(result != SL_RESULT_SUCCESS) {
+    LOGE("get volume interface fail:%d", result);
+    goto fail;
+  }
+
+  LOGI("create player success for:%s", (char *)filename);
+  return player_tmp;
+
+fail:
+  if(player_tmp) {
+    LOGE("create player fail for:%s", (char *)filename);
+    opensl_player_destroy(&player_tmp);
+  }
+  return 0;
+}

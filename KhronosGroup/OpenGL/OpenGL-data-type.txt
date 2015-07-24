@@ -1,0 +1,47 @@
+OpenGL 数据类型：
+
+typedef khronos_int8_t GLbyte;
+typedef khronos_float_t GLclampf;
+typedef khronos_int32_t GLfixed;
+typedef short GLshort;
+typedef unsigned short GLushort;
+typedef void GLvoid;
+typedef struct __GLsync *GLsync;
+typedef khronos_int64_t GLint64;
+typedef khronos_uint64_t GLuint64;
+typedef unsigned int GLenum;
+typedef unsigned int GLuint;
+typedef char GLchar;
+typedef khronos_float_t GLfloat;
+typedef khronos_ssize_t GLsizeiptr;
+typedef khronos_intptr_t GLintptr;
+typedef unsigned int GLbitfield;
+typedef int GLint;
+typedef unsigned char GLboolean;
+typedef int GLsizei;
+typedef khronos_uint8_t GLubyte;
+
+E:\android\ndk\platforms\android-15\arch-arm\usr\include\KHR\khrplatform.h
+
+ * The types in this file should only be used to define API-specific types.
+ * Types defined in this file:
+ *    khronos_int8_t              signed   8  bit
+ *    khronos_uint8_t             unsigned 8  bit
+ *    khronos_int16_t             signed   16 bit
+ *    khronos_uint16_t            unsigned 16 bit
+ *    khronos_int32_t             signed   32 bit
+ *    khronos_uint32_t            unsigned 32 bit
+ *    khronos_int64_t             signed   64 bit
+ *    khronos_uint64_t            unsigned 64 bit
+ *    khronos_intptr_t            signed   same number of bits as a pointer
+ *    khronos_uintptr_t           unsigned same number of bits as a pointer
+ *    khronos_ssize_t             signed   size
+ *    khronos_usize_t             unsigned size
+ *    khronos_float_t             signed   32 bit floating point
+ *    khronos_time_ns_t           unsigned 64 bit time in nanoseconds
+ *    khronos_utime_nanoseconds_t unsigned time interval or absolute time in
+ *                                         nanoseconds
+ *    khronos_stime_nanoseconds_t signed time interval in nanoseconds
+ *
+ * KHRONOS_SUPPORT_INT64 is 1 if 64 bit integers are supported; otherwise 0.
+ * KHRONOS_SUPPORT_FLOAT is 1 if floats are supported; otherwise 0.

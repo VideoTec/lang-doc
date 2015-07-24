@@ -1,0 +1,42 @@
+EGLContext - EGL rendering context
+
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglDestroyContext.xhtml
+EGLBoolean eglDestroyContext(EGLDisplay display, EGLContext context);
+注意一：线程问题，如果其它线程引用了这个 context ，会等待
+        变成状态： becomes not current to any thread 再销毁
+
+-------------------------------------------------------
+
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglCreateContext.xhtml
+EGLContext eglCreateContext(
+EGLDisplay display,
+EGLConfig config,           从 EGLConfig* 数组里选择一个
+                            Specifies the EGL frame buffer configuration 
+                            that defines the frame buffer resource 
+                            available to the rendering context
+EGLContext share_context,   EGL_NO_CONTEXT indicates that 
+                            no sharing is to take place
+EGLint const * attrib_list  Only the attribute EGL_CONTEXT_CLIENT_VERSION may be specified
+                            以 EGL_NONE 结束
+                            EGL_CONTEXT_CLIENT_VERSION, 1 生成 OpenGL ES 1.x context (默认值)
+                            EGL_CONTEXT_CLIENT_VERSION, 2 生成 OpenGL ES 2.x context
+                            EGL_CONTEXT_CLIENT_VERSION is only valid when the current rendering API is EGL_OPENGL_ES_API.
+);
+creates an EGL rendering context 
+for the current rendering API (as set with eglBindAPI) and returns a handle to the context
+
+注意一：必须先绑定 rendering API - glBindAPI
+
+例子：
+EGLint attribs_context[] = {EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE};
+EGLContext context = eglCreateContext(display, config, EGL_NO_CONTEXT, attribs_context)
+
+16:39 2015/5/28
+E:\doc\Computer software\KhronosGroup\OpenGL\android-gles2-called unimplemented OpenGL ES API.txt
+因没正确设置上下文件版本，造成的错误
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API

@@ -1,0 +1,16 @@
+文档
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglDestroySurface.xhtml
+EGLBoolean eglDestroySurface(EGLDisplay display, EGLSurface surface);
+注意一：surface 的状态变成 becomes not current to any thread 才会被销毁
+注意二：resources associated with a pbuffer surface are not released until 
+        all color buffers of that pbuffer bound to a texture object have been released.
+
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglCreateWindowSurface.xhtml
+EGLSurface eglCreateWindowSurface(
+EGLDisplay display,
+EGLConfig config,               Specifies the EGL frame buffer configuration 
+                                that defines the frame buffer resource available to the surface
+NativeWindowType native_window,
+EGLint const * attrib_list      May be NULL or empty (first attribute is EGL_NONE)
+);
+注意一： 如果失败，返回 EGL_NO_SURFACE 

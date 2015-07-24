@@ -1,0 +1,73 @@
+DataLocator 
+分为输入和输出两种类型。
+表示数据 输入源，和输出位置
+
+DataLocator 类型：
+#define SL_DATALOCATOR_URI			((SLuint32) 0x00000001)
+#define SL_DATALOCATOR_ADDRESS		((SLuint32) 0x00000002)
+#define SL_DATALOCATOR_IODEVICE		((SLuint32) 0x00000003)
+#define SL_DATALOCATOR_OUTPUTMIX		((SLuint32) 0x00000004)
+#define SL_DATALOCATOR_RESERVED5		((SLuint32) 0x00000005)
+#define SL_DATALOCATOR_BUFFERQUEUE	((SLuint32) 0x00000006)
+#define SL_DATALOCATOR_MIDIBUFFERQUEUE	((SLuint32) 0x00000007)
+#define SL_DATALOCATOR_RESERVED8		((SLuint32) 0x00000008)
+
+typedef struct SLDataLocator_URI_ {
+	SLuint32 		locatorType;
+	SLchar *		URI;
+} SLDataLocator_URI;
+
+typedef struct SLDataLocator_Address_ {
+	SLuint32 	locatorType;
+	void 		*pAddress;
+	SLuint32	length;
+} SLDataLocator_Address;
+
+typedef struct SLDataLocator_IODevice_ {
+	SLuint32	locatorType;    SL_DATALOCATOR_IODEVICE
+	SLuint32	deviceType;     SL_IODEVICE_AUDIOINPUT 录音设备
+	SLuint32	deviceID;       SL_DEFAULTDEVICEID_AUDIOINPUT
+	SLObjectItf	device;         NULL
+} SLDataLocator_IODevice;
+
+typedef struct SLDataLocator_OutputMix {
+	SLuint32 		locatorType;
+	SLObjectItf		outputMix;
+} SLDataLocator_OutputMix;
+
+typedef struct SLDataLocator_BufferQueue {
+	SLuint32	locatorType;
+	SLuint32	numBuffers;
+} SLDataLocator_BufferQueue;
+
+typedef struct SLDataLocator_MIDIBufferQueue {
+	SLuint32	locatorType;
+	SLuint32	tpqn;
+	SLuint32	numBuffers;
+} SLDataLocator_MIDIBufferQueue;
+
+Android 扩展
+#define SL_DATALOCATOR_ANDROIDFD                ((SLuint32) 0x800007BC)
+#define SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE ((SLuint32) 0x800007BD)
+#define SL_DATALOCATOR_ANDROIDBUFFERQUEUE       ((SLuint32) 0x800007BE)
+
+/** File Descriptor-based data locator definition, locatorType must be SL_DATALOCATOR_ANDROIDFD */
+typedef struct SLDataLocator_AndroidFD_ {
+    SLuint32        locatorType;
+    SLint32         fd;
+    SLAint64        offset;
+    SLAint64        length;
+} SLDataLocator_AndroidFD;
+
+/** BufferQueue-based data locator definition where locatorType must be SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE*/
+typedef struct SLDataLocator_AndroidSimpleBufferQueue {
+	SLuint32	locatorType;
+	SLuint32	numBuffers;
+} SLDataLocator_AndroidSimpleBufferQueue;
+
+/** Android Buffer Queue-based data locator definition,
+ *  locatorType must be SL_DATALOCATOR_ANDROIDBUFFERQUEUE */
+typedef struct SLDataLocator_AndroidBufferQueue_ {
+    SLuint32    locatorType;
+    SLuint32    numBuffers;
+} SLDataLocator_AndroidBufferQueue;

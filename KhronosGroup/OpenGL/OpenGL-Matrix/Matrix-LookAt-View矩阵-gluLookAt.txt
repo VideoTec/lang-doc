@@ -1,0 +1,73 @@
+http://shiba.hpe.cn/jiaoyanzu/wuli/showArticle.aspx?articleId=506&classId=4
+在将3D世界绘制到屏幕之前，你需要相机的View和Projection矩阵
+
+这个方法需要三个参数：
+相机的Position, Target和Up向量。
+Position向量容易理解，它表示在3D空间中的哪个位置放置相机。然后，
+需要指定另一个点表示相机观察的目标
+Up向量 - 和旋转相机有关（指定相机顶部朝向）
+
+相机的Position和Target向量指向3D空间中的真实位置，
+Up向量表示相机向上方向。
+例如，一个相机位于点(300,0,0)观察点(200,0,0)。
+如果相机的Up向量只是简单地向上，只需指定(0,1,0)Up向量，
+这不是指在3D空间中的点，这个例子中这个3D点为(300,1,0)
+
+Matrix* Matrix::newLookAt(float eyeX, float eyeY, float eyeZ, float centerX,
+        float centerY, float centerZ, float upX, float upY, float upZ) {
+    Matrix* m = new Matrix();
+    if (m != NULL) {
+        // See the OpenGL GLUT documentation for gluLookAt for a description
+        // of the algorithm. We implement it in a straightforward way:
+
+        float fx = centerX - eyeX;
+        float fy = centerY - eyeY;
+        float fz = centerZ - eyeZ;
+
+        // Normalize f
+        float rlf = 1.0f / (float) sqrt(fx * fx + fy * fy + fz * fz);
+        fx *= rlf;
+        fy *= rlf;
+        fz *= rlf;
+
+        // compute s = f x up (x means "cross product")
+        float sx = fy * upZ - fz * upY;
+        float sy = fz * upX - fx * upZ;
+        float sz = fx * upY - fy * upX;
+
+        // and normalize s
+        float rls = 1.0f / (float) sqrt(sx * sx + sy * sy + sz * sz);
+        sx *= rls;
+        sy *= rls;
+        sz *= rls;
+
+        // compute u = s x f
+        float ux = sy * fz - sz * fy;
+        float uy = sz * fx - sx * fz;
+        float uz = sx * fy - sy * fx;
+
+        float* d = m->mData;
+        d[0] = sx;
+        d[1] = ux;
+        d[2] = -fx;
+        d[3] = 0.0f;
+
+        d[4] = sy;
+        d[5] = uy;
+        d[6] = -fy;
+        d[7] = 0.0f;
+
+        d[8] = sz;
+        d[9] = uz;
+        d[10] = -fz;
+        d[11] = 0.0f;
+
+        d[12] = 0.0f;
+        d[13] = 0.0f;
+        d[14] = 0.0f;
+        d[15] = 1.0f;
+
+        m->translate(-eyeX, -eyeY, -eyeZ);
+    }
+    return m;
+}

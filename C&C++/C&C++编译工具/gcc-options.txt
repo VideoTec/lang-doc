@@ -1,0 +1,20 @@
+gcc 链接器，编译器 参数
+--sysroot 
+--sysroot=dir: Use dir as the logical root directory for headers and libraries. 
+For example, if the compiler would normally search for headers in /usr/include and libraries in /usr/lib, 
+it will instead search dir/usr/include and dir/usr/lib
+
+-shared
+gcc -shared -Wl,-soname,libtest.so -o libtest.so *.o
+gcc -Wl,-shared -Wl,-soname,libtest.so -o libtest.so *.o
+
+To give a specific example: on i386 FreeBSD, 
+gcc -shared will link in object file crtendS.o, 
+while without -shared, it will link in crtend.o instead. 
+Thus, -shared and -Wl,-shared are not equivalent.
+
+gcc的-static选项可以使链接器执行静态链接。
+但简单地使用-static显得有些’暴力’，
+因为他会把命令行中-static后面的所有-l指明的库都静态链接，
+更主要的是，有些库可能并没有提供静态库（.a），而只提供了动态库（.so）。
+这样的话，使用-static就会造成链接错误

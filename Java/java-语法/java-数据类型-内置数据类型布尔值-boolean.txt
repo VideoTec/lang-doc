@@ -1,0 +1,4 @@
+Boolean[英][ˈbu:liən] [美][ˈbuliən]
+adj.布尔数学体系的
+
+ boolean 类型可以表示真或假。

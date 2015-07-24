@@ -1,0 +1,6 @@
+http://developer.android.com/reference/java/util/Collection.html
+
+implements Iterable<E>
+public interface java.util.Collection<E>
+
+Collection is the root of the collection hierarchy. It defines operations on data collections and the behavior that they will have in all implementations of Collections. All direct or indirect implementations of Collection should implement at least two constructors. One with no parameters which creates an empty collection and one with a parameter of type Collection. This second constructor can be used to create a collection of different type as the initial collection but with the same elements. Implementations of Collection cannot be forced to implement these two constructors but at least all implementations under java.util do. Methods that change the content of a collection throw an UnsupportedOperationException if the underlying collection does not support that operation, though it's not mandatory to throw such an Exception in cases where the requested operation would not change the collection. In these cases it's up to the implementation whether it throws an UnsupportedOperationException or not. Methods marked with (optional) can throw an UnsupportedOperationException if the underlying collection doesn't support that method.

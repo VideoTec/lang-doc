@@ -1,0 +1,18 @@
+http://developer.android.com/reference/java/lang/Thread.html
+
+------------------------------------------------
+public synchronized void start () 启动一个新的线程，在新线程里，运行 run 方法
+------------------------------------------------
+
+Starts the new Thread of execution. 
+The run() method of the receiver will be called by the receiver Thread itself (and not the Thread calling start()).
+
+Throws
+IllegalThreadStateException	- if this thread has already started.
+
+------------------------------------------------
+public void run () 会在调用这个函数的线程里运行
+------------------------------------------------
+
+Calls the run() method of the Runnable object the receiver holds. 
+If no Runnable is set, does nothing.

@@ -1,0 +1,15 @@
+http://www.zhihu.com/question/20362709
+
+为什么malloc时需要指定size，对应的free时不需要指定size？
+
+slightly[英][ˈslaɪtli] [美][ˈslaɪtli]
+adv.轻微地，轻轻地；细长地，苗条地；〈罕〉轻蔑地；粗
+
+adjacent[英][əˈdʒeɪsnt] [美][əˈdʒesənt]
+adj.邻近的，毗邻的；（时间上）紧接着的；相邻
+
+Q:How does free know how many bytes to free? 
+A:
+The malloc/free implementation remembers the size of each block as it is allocated, 
+so it is not necessary to remind it of the size when freeing. 
+(Typically, the size is stored adjacent to the allocated block, which is why things usually break badly if the bounds of the allocated block are even slightly overstepped; see also question 7.19.)

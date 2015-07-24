@@ -1,0 +1,2 @@
+参见
+https://www.opengl.org/wiki/Uniform_(GLSL)

@@ -1,0 +1,13 @@
+public final void close ()
+
+Closes an open channel. 
+If the channel is already closed then this method has no effect, 
+otherwise it closes the receiver via the implCloseChannel method.
+
+If an attempt is made to perform an operation on a closed channel then a ClosedChannelException is thrown.
+
+If multiple threads attempt to simultaneously close a channel, 
+then only one thread will run the closure code and the others will be blocked until the first one completes.
+
+Throws
+IOException	if a problem occurs while closing this channel.

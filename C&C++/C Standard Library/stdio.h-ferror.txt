@@ -1,0 +1,17 @@
+ferror 
+语法: 
+  #include <stdio.h>
+  int ferror( FILE *stream );
+
+ 
+
+ferror()函数检查stream(流)中的错误, 如果没发生错误返回0,否则返回非零. 如果发生错误, 使用perror()检测发生什么错误.
+
+
+perror 
+语法:   #include <stdio.h>
+  void perror( const char *str );
+
+ 
+
+perror()函数打印str(字符串)和一个相应的执行定义的错误消息到全局变量errno中. 

@@ -1,0 +1,90 @@
+------------------------------------
+MinGW / Base / binutils  
+binutils-2.24-1-mingw32-bin.tar.xz
+------------------------------------
+
+目录：bin
+nm.exe
+windres.exe
+strip.exe       需要下列 dll : libintl-8.dll libgcc_s_dw2-1.dll libiconv-2.dll
+c++filt.exe
+gprof.exe
+as.exe
+dllwrap.exe
+ld.exe
+ld.bfd.exe
+objdump.exe
+strings.exe
+dlltool.exe
+size.exe
+windmc.exe
+ar.exe
+readelf.exe
+objcopy.exe
+ranlib.exe
+elfedit.exe
+addr2line.exe
+
+目录：mingw/bin
+nm.exe
+strip.exe
+as.exe
+ld.exe
+ld.bfd.exe
+objdump.exe
+dlltool.exe
+ar.exe
+objcopy.exe
+ranlib.exe
+
+Home / MinGW / Base / gettext / gettext-0.18.3.2-1
+LibIntl: library for native language support
+libintl-0.18.3.2-1-mingw32-dll-8.tar.xz\libintl-0.18.3.2-1-mingw32-dll-8.tar\bin\libintl-8.dll
+
+Home / MinGW / Base / libiconv / libiconv-1.14-3
+LibIconv: convert between character encodings
+libiconv-1.14-3-mingw32-dll.tar.lzma\libiconv-1.14-3-mingw32-dll.tar\bin\libiconv-2.dll
+
+Home / MinGW / Base / gcc / Version4 / gcc-4.8.1-4
+gcc-core-4.8.1-4-mingw32-dll.tar.lzma\gcc-core-4.8.1-4-mingw32-dll.tar\bin\libgcc_s_dw2-1.dll
+
+------------------------------------
+Home / MinGW / Base / w32api
+w32api-4.0.3-1-mingw32-dev.tar
+------------------------------------
+包括 include lib 两个目录
+
+------------------------------------
+Home / MinGW / Base / mingwrt
+mingwrt-3.21-mingw32-dev.tar      include lib
+mingwrt-3.21-mingw32-dll.tar\bin\ mingwm10.dll
+------------------------------------
+
+------------------------------------
+Home / MinGW / Base / gcc / Version4 / gcc-4.8.1-4
+------------------------------------
+gcc-core-4.8.1-4-mingw32-bin.tar\bin\
+
+cc.exe
+cpp.exe
+gcc-ar.exe
+gcc-nm.exe
+gcc-ranlib.exe
+gcc.exe
+gcov.exe
+mingw32-cc.exe
+mingw32-gcc-4.8.1.exe
+mingw32-gcc-ar.exe
+mingw32-gcc-nm.exe
+mingw32-gcc-ranlib.exe
+mingw32-gcc.exe
+
+gcc-core-4.8.1-4-mingw32-dev.tar\lib\gcc\mingw32\4.8.1\include\
+gcc-core-4.8.1-4-mingw32-dev.tar\mingw32\lib\gcc\mingw32\4.8.1\include\
+
+gcc-core-4.8.1-4-mingw32-dll.tar.lzma\gcc-core-4.8.1-4-mingw32-dll.tar\bin\
+
+libgcc_s_dw2-1.dll
+libgomp-1.dll
+libquadmath-0.dll
+libssp-0.dll

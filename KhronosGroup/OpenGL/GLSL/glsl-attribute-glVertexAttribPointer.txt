@@ -1,0 +1,52 @@
+ before using glVertexAttribPointer to define per-vertex values to the attributes, 
+ you must enable the location of the desired attribute to accept dynamic values 
+ by using the glEnableVertexAttribArray
+ 
+ void glVertexAttribPointer(
+    GLuint index,
+ 	GLint size,     the number of components per attribute, must be 1, 2, 3, or 4
+ 	GLenum type,    GL_BYTE, GL_UNSIGNED_BYTE, GL_SHORT, GL_UNSIGNED_SHORT, GL_FIXED, or GL_FLOAT
+	
+ 	GLboolean normalized,   Specifies whether 
+	                        fixed-point data values should be normalized (GL_TRUE) or 
+	                        converted directly as fixed-point values     (GL_FALSE) 
+	                        when they are accessed.
+	                        normalized[英]['nɔ:məlaɪzd] [美]['nɔ:məlaɪzd] 
+
+ 	GLsizei stride,                Specifies the byte offset between consecutive generic vertex attributes. 
+	                               If stride is 0, the generic vertex attributes 
+	                               are understood to be tightly packed in the array. The initial value is 0.
+								   tightly[英][ˈtaɪtli] [美][ˈtaɪtlɪ] adv.紧紧地，坚固地，牢固地
+
+ 	const GLvoid * pointer  Specifies a pointer to the first component of the first generic vertex attribute in the array. 
+	                        The initial value is 0.
+							If a non-zero named buffer object is bound to the GL_ARRAY_BUFFER target (see glBindBuffer) 
+							while a generic vertex attribute array is specified, 
+							pointer is treated as a byte offset into the buffer object's data store. 
+							Also, the buffer object binding (GL_ARRAY_BUFFER_BINDING) is saved 
+							as generic vertex attribute array client-side state 
+							(GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING) for index index-第一个参数.
+	);
+
+解释 normalized 的意思： 归一化
+归一化
+就是要把你需要处理的数据经过处理后（通过某种算法）限制在你需要的一定范围内
+normalized indicates that values stored in an integer format are to be mapped to the range 
+[-1,1] (for signed values) or 
+[0,1] (for unsigned values) 
+when they are accessed and converted to floating point
+
+解释 stride [英][straɪd] [美][straɪd] n.大步，阔步；步幅；进展；一跨（的宽度）
+stride specifies the byte stride from one attribute to the next, 
+allowing vertices and attributes to be packed into a single array or stored in separate arrays
+
+// Assume which "vertexArray" variable is an array of vertices
+// composed by several sequences of 3 elements (X,Y,Z)
+// Something like {0.0,0.0,0.0, 1.0,2.0,1.0, -1.0,-2.0,-1.0, ...}
+float vertexArray = {0.0,0.0,0.0, 1.0,2.0,1.0, -1.0,-2.0,-1.0};
+glVertexAttribPointer(vertexLoc, 3, GL_FLOAT, GL_FALSE, 0, vertexArray);
+glDrawArrays(GL_TRIANGLES, 0, 3);
+
+glEnable(GL_DEPTH_TEST) 启动这个，也不能显示。
+
+为什么显示不出来？ glVertexAttribPointer 参数size改为2就可以显示出来

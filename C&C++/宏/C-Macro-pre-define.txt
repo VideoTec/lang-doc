@@ -1,0 +1,27 @@
+#define CHECK(condition)                                \
+    LOG_ALWAYS_FATAL_IF(                                \
+            !(condition),                               \
+            "%s",                                       \
+            __FILE__ ":" LITERAL_TO_STRING(__LINE__)    \
+            " CHECK(" #condition ") failed.")
+宏定义体中，可以有宏，
+改造下面的宏定义，类似这种写法：#define #if(xxx) ... #endif，能实现吗？
+#define REGISTER_MUXER(X, x)                                            \
+    {                                                                   \
+        extern AVOutputFormat ff_##x##_muxer;                           \
+        if (CONFIG_##X##_MUXER)                                         \
+            av_register_output_format(&ff_##x##_muxer);                 \
+    }
+
+ANSI标准说明了五个预定义的宏名。它们是： 
+__LINE__
+__FILE__
+__DATE__
+__TIME__ 
+__STDC__
+
+宏列表
+https://gcc.gnu.org/onlinedocs/cpp/Common-Predefined-Macros.html
+# ifdef __cplusplus
+
+__VA_ARGS__ 宏

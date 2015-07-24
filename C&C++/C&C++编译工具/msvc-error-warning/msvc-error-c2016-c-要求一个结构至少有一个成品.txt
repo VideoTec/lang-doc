@@ -1,0 +1,26 @@
+21:43 2015/6/29
+
+代码：
+#include "media_data_pool.h"
+#include "buffer_queue.h"           这里有定义 typedef struct BufferQueue BufferQueue;
+
+typedef struct MediaDataPool {
+  BufferQueue *queue;               这句错误
+  AVBufferPool *pool;
+} MediaDataPool;
+
+错误：
+media_data_pool.c
+media_data_pool.c(5) : error C2016: C 要求一个结构或联合至少有一个成员
+media_data_pool.c(5) : error C2061: 语法错误: 标识符“BufferQueue”
+media_data_pool.c(7) : error C2059: 语法错误:“}”
+make: *** [media_data_pool.o] Error 2
+
+错误原因是
+buffer_queue.h 的 head-file-define-gunard 是从 media_data_pool.h 复制过来的
+导致，
+#include "buffer_queue.h" 里的定义被忽略了。
+
+#ifndef MEDIA_DATA_POOL_H_  应该修改成 BUFFER_QUEUE_H_
+#define MEDIA_DATA_POOL_H_
+

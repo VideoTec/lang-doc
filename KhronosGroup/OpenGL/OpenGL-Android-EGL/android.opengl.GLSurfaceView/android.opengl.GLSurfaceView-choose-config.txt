@@ -1,0 +1,10 @@
+
+GLSurfaceView 是怎么选择 config 的？
+很复杂的
+
+setEGLContextClientVersion(2); // This is the important line
+等介的 NDK 代码是？
+EGL_RENDERABLE_TYPE EGL_OPENGL_ES2_BIT？
+或者
+EGLint attribs_context[] = {EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE};
+EGLContext context = eglCreateContext(display, config, EGL_NO_CONTEXT, attribs_context)

@@ -1,0 +1,61 @@
+Pi（大写Π，小写π，中文音译：拍），是第十六个希腊字母
+
+圆周率，定义为圆的周长与直径的比值
+
+钱大昕的《十驾斋养新录》卷第十七首条〈圆径周率〉引《隋书律历志》：“古之九数，圆周率三圆径率一，其术疏舛，自刘歆、张衡、刘徽、王蕃、皮延宗之徒，各设新率，未臻折衷。宋末南徐州从事史祖冲之更开密率，以圆径一亿为一丈，圆周盈数三（刻本作二，误）丈一尺四寸一分五釐九毫二秒七忽，朒数三丈一尺四寸一分五釐九毫二秒六忽，正数在盈朒二限之间，密率圆径一百一十三，圆周三百五十五，约率圆径七，周二十二。又设开差幂、开差立，兼以正圆参之，指要精密，算氏之最者也。”
+
+C:\Users\wangxiang\Downloads\OpenGL_ES_Programming_Guide_v1.0.2\Common\Source\esTransform.c
+#define PI 3.1415926535897932384626433832795f
+
+oid ESUTIL_API
+esRotate(ESMatrix *result, GLfloat angle, GLfloat x, GLfloat y, GLfloat z)
+{
+   GLfloat sinAngle, cosAngle;
+   GLfloat mag = sqrtf(x * x + y * y + z * z);
+      
+   sinAngle = sinf ( angle * PI / 180.0f );
+   cosAngle = cosf ( angle * PI / 180.0f );
+   if ( mag > 0.0f )
+   {
+      GLfloat xx, yy, zz, xy, yz, zx, xs, ys, zs;
+      GLfloat oneMinusCos;
+      ESMatrix rotMat;
+   
+      x /= mag;
+      y /= mag;
+      z /= mag;
+
+      xx = x * x;
+      yy = y * y;
+      zz = z * z;
+      xy = x * y;
+      yz = y * z;
+      zx = z * x;
+      xs = x * sinAngle;
+      ys = y * sinAngle;
+      zs = z * sinAngle;
+      oneMinusCos = 1.0f - cosAngle;
+
+      rotMat.m[0][0] = (oneMinusCos * xx) + cosAngle;
+      rotMat.m[0][1] = (oneMinusCos * xy) - zs;
+      rotMat.m[0][2] = (oneMinusCos * zx) + ys;
+      rotMat.m[0][3] = 0.0F; 
+
+      rotMat.m[1][0] = (oneMinusCos * xy) + zs;
+      rotMat.m[1][1] = (oneMinusCos * yy) + cosAngle;
+      rotMat.m[1][2] = (oneMinusCos * yz) - xs;
+      rotMat.m[1][3] = 0.0F;
+
+      rotMat.m[2][0] = (oneMinusCos * zx) - ys;
+      rotMat.m[2][1] = (oneMinusCos * yz) + xs;
+      rotMat.m[2][2] = (oneMinusCos * zz) + cosAngle;
+      rotMat.m[2][3] = 0.0F; 
+
+      rotMat.m[3][0] = 0.0F;
+      rotMat.m[3][1] = 0.0F;
+      rotMat.m[3][2] = 0.0F;
+      rotMat.m[3][3] = 1.0F;
+
+      esMatrixMultiply( result, &rotMat, result );
+   }
+}

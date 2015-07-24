@@ -1,0 +1,16 @@
+所有的JAVA集合都位于 java.util包中！
+JAVA集合只能存放引用类型的的数据，不能存放基本数据类型
+
+遍历map
+http://blog.csdn.net/tjcyjd/article/details/11111401
+for (Map.Entry<Integer, Integer> entry : map.entrySet())
+for (Integer key : map.keySet()) 
+for (Integer value : map.values()) 
+
+AbstractList<E>, 
+AbstractSequentialList<E>, 
+ArrayList<E>,                随机访问速度快
+CopyOnWriteArrayList<E>, 
+LinkedList<E>, 
+Stack<E>, 
+Vector<E>

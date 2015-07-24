@@ -1,0 +1,35 @@
+--------------------------------------------------------
+public Thread (Runnable runnable)
+--------------------------------------------------------
+
+Added in API level 1
+Constructs a new Thread with a Runnable object and a newly generated name. The new Thread will belong to the same ThreadGroup as the Thread calling this constructor.
+
+Parameters
+runnable    a Runnable whose method run will be executed by the new Thread
+
+--------------------------------------------------------
+public Thread (Runnable runnable, String threadName)
+--------------------------------------------------------
+
+Added in API level 1
+Constructs a new Thread with a Runnable object and name provided. The new Thread will belong to the same ThreadGroup as the Thread calling this constructor.
+
+Parameters
+runnable    a Runnable whose method run will be executed by the new Thread
+threadName    the name for the Thread being created
+
+--------------------------------------------------------
+示例代码：
+--------------------------------------------------------
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                Surface surface = getHolder().getSurface();
+                if(surface != null && surface.isValid()){            
+                    VideoConvert.getInstance(mContext).videoEffectPlayScene(surface, w, h, mRecycle);
+                }
+            }
+        }).start();

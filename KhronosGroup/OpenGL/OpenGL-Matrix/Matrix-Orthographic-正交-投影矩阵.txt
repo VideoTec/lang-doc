@@ -1,0 +1,69 @@
+orthographic[英][ˌɔ:θə'ɡræfɪk] [美][ˌɔ:θə'ɡræfɪk]
+adj.正字法的，拼字正确的；正射
+1. 直线的,直角的
+2. 正交
+3. 正交的
+4. 直角的
+5. 正射的
+
+perspective[英][pəˈspektɪv] [美][pərˈspektɪv] adj.（按照）透视画法的；透视的
+projection[英][prəˈdʒekʃn] [美][prəˈdʒɛkʃən] n.预测；规划，设计；[心]投射；突起物
+
+http://blog.csdn.net/zhongjling/article/details/8488844
+将三维坐标转换为平面坐标有两种投影方式：
+正交投影(Orthogonal Projection)和透视投影(Perspective Projection)
+
+http://blog.csdn.net/zxhoo/article/details/12650503
+OpenGL ES2学习笔记（10）-- Orthographic Projection
+
+/**
+     * Computes an orthographic projection matrix.
+     *
+     * @param m returns the result
+     * @param mOffset
+     * @param left
+     * @param right
+     * @param bottom
+     * @param top
+     * @param near
+     * @param far
+     */
+    public static void orthoM(float[] m, int mOffset,
+        float left, float right, float bottom, float top,
+        float near, float far) {
+        if (left == right) {
+            throw new IllegalArgumentException("left == right");
+        }
+        if (bottom == top) {
+            throw new IllegalArgumentException("bottom == top");
+        }
+        if (near == far) {
+            throw new IllegalArgumentException("near == far");
+        }
+
+        final float r_width  = 1.0f / (right - left);
+        final float r_height = 1.0f / (top - bottom);
+        final float r_depth  = 1.0f / (far - near);
+        final float x =  2.0f * (r_width);
+        final float y =  2.0f * (r_height);
+        final float z = -2.0f * (r_depth);
+        final float tx = -(right + left) * r_width;
+        final float ty = -(top + bottom) * r_height;
+        final float tz = -(far + near) * r_depth;
+        m[mOffset + 0] = x;
+        m[mOffset + 5] = y;
+        m[mOffset +10] = z;
+        m[mOffset +12] = tx;
+        m[mOffset +13] = ty;
+        m[mOffset +14] = tz;
+        m[mOffset +15] = 1.0f;
+        m[mOffset + 1] = 0.0f;
+        m[mOffset + 2] = 0.0f;
+        m[mOffset + 3] = 0.0f;
+        m[mOffset + 4] = 0.0f;
+        m[mOffset + 6] = 0.0f;
+        m[mOffset + 7] = 0.0f;
+        m[mOffset + 8] = 0.0f;
+        m[mOffset + 9] = 0.0f;
+        m[mOffset + 11] = 0.0f;
+    }

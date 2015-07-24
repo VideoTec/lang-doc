@@ -1,0 +1,13 @@
+void glGetActiveUniform(
+GLuint program,
+GLuint index,
+GLsizei bufSize,
+GLsizei *length,
+GLint *size,
+GLenum *type,
+GLchar *name
+);
+
+GLSL compilers and linkers try to be as efficient as possible. Therefore, they do their best to eliminate code that does not affect the stage outputs. Because of this, a uniform defined in a shader file does not have to be made available in the linked program. It is only available if that uniform is used by code that affects the stage output, and that the uniform itself can change the output of the stage.
+
+Therefore, a uniform that is exposed by a fully linked program is called an "active" uniform; any other uniform specified by the original shaders is inactive. Inactive uniforms cannot be used to do anything in a program.

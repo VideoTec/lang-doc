@@ -1,0 +1,51 @@
+文档
+
+-------------------------------------------------------------------------------------
+eglGetConfigs — return a list of all EGL frame buffer configurations for a display
+-------------------------------------------------------------------------------------
+C Specification
+EGLBoolean eglGetConfigs(	
+    EGLDisplay display,
+ 	EGLConfig * configs,
+ 	EGLint config_size,   是字节数，还是，数量？应该是数量
+ 	EGLint * num_config);
+ 
+-------------------------------------------------------------------------------------
+Parameters
+-------------------------------------------------------------------------------------
+display
+Specifies the EGL display connection.
+
+configs
+Returns a list of configs.
+
+config_size
+Specifies the size of the list of configs.
+
+num_config
+Returns the number of configs returned.
+
+-------------------------------------------------------------------------------------
+Description
+-------------------------------------------------------------------------------------
+eglGetConfigs returns a list of all EGL frame buffer configurations 
+that are available for the specified display. 
+The items in the list can be used in any EGL function that requires an EGL frame buffer configuration.
+
+configs does not return values, 
+if it is specified as NULL. 
+This is useful for querying just the number of all frame buffer configurations.
+
+Use eglGetConfigAttrib to retrieve individual attribute values of a frame buffer configuration.
+
+-------------------------------------------------------------------------------------
+Errors
+-------------------------------------------------------------------------------------
+EGL_FALSE is returned on failure, EGL_TRUE otherwise.
+configs and num_config are not modified when EGL_FALSE is returned.
+
+EGL_BAD_DISPLAY is generated if display is not an EGL display connection.
+
+EGL_NOT_INITIALIZED is generated if display has not been initialized.
+
+EGL_BAD_PARAMETER is generated if num_config is NULL.

@@ -1,0 +1,51 @@
+可能的原因：
+1. 是模拟器？
+2. AndroidManifest.xml 这个不是必须指定的
+   <uses-feature android:glEsVersion="0x00020000"/>
+   
+3. 这是必须指定的吗？应该指定吧
+   chooseconfig 时 EGL_RENDERABLE_TYPE EGL_OPENGL_ES2_BIT
+
+最终找到原因
+
+Thanks! This works for apps written with the NDK too. 
+In that case, the equivalent second step is to create an attribute list 
+with EGL_CONTEXT_CLIENT_VERSION set to 2 and then passed in to eglCreateContext().
+
+最终找到原因，创建 EGL 上下文件时没有指定正确的属性列表
+
+EGLint attribs_context[] = {EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE};
+EGLContext context = eglCreateContext(display, config, EGL_NO_CONTEXT, attribs_context)
+
+05-28 16:00:53.000: I/EglSample(8704): Initializing context
+05-28 16:00:53.020: D/libEGL(8704): loaded /system/lib/egl/libEGL_mali.so
+05-28 16:00:53.050: D/libEGL(8704): loaded /system/lib/egl/libGLESv1_CM_mali.so
+05-28 16:00:53.055: D/libEGL(8704): loaded /system/lib/egl/libGLESv2_mali.so
+05-28 16:00:53.080: D/(8704): Device driver API match
+05-28 16:00:53.080: D/(8704): Device driver API version: 10
+05-28 16:00:53.080: D/(8704): User space API version: 10 
+05-28 16:00:53.080: D/(8704): mali: REVISION=Linux-r2p4-02rel0 BUILD_DATE=Tue Oct 16 15:37:13 KST 2012 
+05-28 16:00:53.135: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: I/EglSample(8704): glGetAttribLocation("vPosition") = 43
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+05-28 16:00:53.140: E/libEGL(8704): called unimplemented OpenGL ES API
+
+发现下面 是未实现的 OpenGL ES API
+         glUseProgram(program);
+        GLint gvPositionHandle = glGetAttribLocation(program, "vPosition");
+        //glEnableVertexAttribArray(gvPositionHandle);
+        //glVertexAttribPointer(gvPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, gTriangleVertices);
+
+为什么 glGetAttribLocation 取出正确值呢？glGetAttribLocation("vPosition") = 43
+奇怪，即使，program 生成失败，这个值也能取来，还是43

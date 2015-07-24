@@ -1,0 +1,74 @@
+Dojo 专题
+http://www.ibm.com/developerworks/cn/web/wa-dojotoolkit/
+
+Dojo与jQuery综合比较分析
+最近Dojo和jQuery双双发布了最新的1.8版本，有着相同版本号的两个Javascript库也有许多核心的相同之处：相同的资源加载机制AMD、相同的选择器 引擎Sizzle等。作为业界知名的Javascript库，Dojo和jQuery在各自领域有着为数众多的拥护者。不过正所谓一把钥匙开一把锁，对一个项目来说肯定有个最适合它的工具库，用对了工具才能事半功倍。所以对项目经理或是技术总监来说，工程开始前的技术选型是关键一步，本文将对Dojo和 jQuery最新版本进行一个综合比较，重点在于区分两者的适用场景，而不涉及讨论孰优孰劣
+
+
+js 中 var 的作用
+var声明的变量被放置到全局变量（全局上下文环境）window、
+var所在的上下文环境如函数内部中，初始值为undefined
+
+非var声明的变量也只在代码执行到后才被创建，然后放置到全局变量（全局上下文环境）window
+
+Javascript上下文环境 （作用域）
+全局上下文环境：Window 
+
+函数上下文环境：
+在函数内部使用var声明的变量是本地变量，
+出了函数范围后会被垃圾回收。
+（闭包不会被垃圾回收） 
+即var声明的变量，
+在预执行期都会被放到相应的上下文环境中，
+然后在执行期，相应上下文环境中的变量会被赋值。 
+
+{}，for循环等不存在自己的上下文环境
+
+http://developer.51cto.com/art/201309/409794_all.htm
+JavaScript变量作用域之殇
+
+
+
+Initialization of functions and variables
+http://javascript.info/tutorial/initialization
+
+
+JavaScript声明全局变量三种方式的异同
+http://www.cnblogs.com/snandy/archive/2011/03/19/1988284.html
+
+
+JavaScript 图书
+JavaScript高级程序设计
+JavaScript权威指南
+javaScript语言精粹
+
+
+JavaScript Style
+https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+一些达成共识的JavaScript编码风格约定
+http://www.csdn.net/article/2013-07-11/2816196-JavaScript-code-style-guide
+
+http://javascript.crockford.com/code.html
+
+
+使用 JSLint 保证 JavaScript 代码质量
+检测语法错误：例如大括号“{}”的配对错误。
+变量定义规范：例如未定义变量的检测。
+代码格式规范：例如句末分号的缺失。
+蹩脚语言特性的使用检测：如 eval 和 with 的使用限制
+
+
+
+AngularJS
+http://zh.wikipedia.org/wiki/AngularJS
+
+AngularJS是一款开源 JavaScript函式库，由Google维护，用来协助单一页面应用程式运行的。它的目标是透过MVC模式 (MVC) 功能增强基于浏览器的应用，使开发和测试变得更加容易。
+函式库读取包含附加自定义（标签属性）的HTML， 遵从这些自定义属性中的指令，并将页面中的输入或输出与由JavaScript变量表示的模型绑定起来。这些JavaScript变量的值可以手工设置，或者从静态或动态JSON资源中获取
+
+
+
+
+
+
+
+nodejs html template

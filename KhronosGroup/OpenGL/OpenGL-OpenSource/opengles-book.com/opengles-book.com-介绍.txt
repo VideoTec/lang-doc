@@ -1,0 +1,34 @@
+一本书的官网
+
+《OpenGL® ES 3.0 Programming Guide》
+
+Welcome to the OpenGL® ES 3.0 Programming Guide Website
+
+This is the official website for the OpenGL® ES 3.0 Programming Guide. Here on this site you can find information on where to download all of the sample code from the book as well as links to the errata. 
+
+If you don't already own the book and are interested in purchasing it, you can purchase the book on Safari or Amazon.com.
+
+-----------------------------------------
+http://opengles-book.com/es2/
+-----------------------------------------
+Welcome to the OpenGL® ES 2.0 Programming Guide Website
+
+This is the official website for the OpenGL® ES 2.0 Programming Guide. Here on this site you can download all of the code examples and RenderMonkey workspaces from the book. We also maintain a list of errata. 
+
+-----------------------------------------
+https://code.google.com/p/opengles-book-samples/
+https://github.com/danginsburg/opengles-book-samples/
+-----------------------------------------
+This project has been moved to GitHub
+
+This project contains all of the source code to the example programs from the 《OpenGL ES 2.0 Programming Guide》.
+
+The sample code is available on the following platforms:
+
+Windows (Microsoft Visual Studio) using the AMD OpenGL ES 2.0 Emulator or PowerVR Khronos OpenGL ES 2.0 SDK
+iPhone
+WebGL (requires WebGL-enabled browser)
+Android 2.2
+Linux X11 (contributed by Jarkko Vatjus-Anttila)
+Blackberry Native SDK (contributed by Eduardo Pelegri-Llopart and Darryl Gough)
+Please see the Instructions wiki page for more information on how to install and build the sample code.

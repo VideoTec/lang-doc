@@ -1,0 +1,917 @@
+3D渲染
+早期的3D渲染，主要是使用CPU做的，显卡做的较少。后来，显卡GPU的处理能力越来越强，承担的3D渲染功能也越来越多，开始使用的是固定渲染管线，也就是说所有的渲染算法都是显卡内置的，我们只能组合使用这些算法。现在的显卡采用的都是可编程的渲染管线，也就是说我们可以编写自己的渲染算法，下载到显卡上去执行，替换固定渲染管线算法，灵活性大大提高
+
+D3D纹理视频渲染
+http://blog.csdn.net/dengzikun/article/details/5824874
+
+
+
+
+EGLContext 和 GL ES 怎么绑定在一起的？
+EGL 和 OpenGL ES API的联系
+
+通过解析OpenGL ES API函数库 libGLES_android.so来获取函数指针，进行调用
+
+通过线程局部存储机制（TLS）进行联系
+使用getGlThreadSpecific()获取线程局部存储中的数据
+
+EGL是用来管理绘图表面的（Drawing surfaces），并且提供了如下的机制
+ （1） 与本地窗口系统进行通信
+ （2） 查找绘图表面可用的类型和配置信息
+ （3） 创建绘图表面
+ （4） 同步OpenGL ES 2.0和其他的渲染API（Open VG、本地窗口系统的绘图命令等）
+ （5） 管理渲染资源，比如材质
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ OpenGL rendering context 
+ 1）每个线程都有独立的渲染上下文。
+2）渲染上下文件里都有些什么东西？
+       当前纹理，顶点坐标序列，
+	   
+	   
+	   
+	   
+	   
+	   glBindTexture glDrawArrays
+	   每次glDrawArrays 之前，需要重新指定，纹理，坐标，信息吗？
+
+gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
+gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
+gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, textureBuffer);
+gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, vertices.length / 3);
+
+
+
+
+
+
+
+
+
+
+
+glEnableClientState 使默认渲染流水线，时，有意义？
+glEnableClientState 的作用？
+
+GL_TEXTURE_COORD_ARRAY
+If enabled, the texture coordinate array is enabled 
+for writing and used during rendering 
+when glDrawArrays, or glDrawElements is called. See glTexCoordPointer.
+
+GL_VERTEX_ARRAY
+If enabled, the vertex array is enabled 
+for writing and used during rendering 
+when glDrawArrays, or glDrawElements is called. See glVertexPointer.
+
+glVertexPointer  OpenGL ES 1.1 
+
+
+
+
+
+
+
+
+
+
+
+
+
+OpenGL  和 OpenGL ES 区别
+没有double型数据类型，但加入了高性能的定点小数数据类型;
+
+没有glBegin/glEnd/glVertex，只能用glDrawArrays/glDraw......;
+
+没有实时将非压缩图片数据转成压缩贴图的功能，程序必须直接提供压缩好 的贴图;
+
+
+
+
+
+
+
+
+
+
+
+OpenGL_ES_1.x_和 OpenGL_ES_2.x 区别
+OpenGL_ES_1.x 为固定渲染管线（Fixed_Function）而设计
+
+OpenGL_ES_2.x 为可编程渲染管线（Programmable）而设计
+
+2.0就不再支持1.x里面的固定管线功能 了，也就是说2.x并不向下兼容1.x
+
+penGL ES 1.x 针对固定管线硬件的，OpenGL ES 2.x 针对可编程管线硬件。
+
+
+
+
+
+
+
+
+OpenGL ES 2.x / OpenGL ES 1.x 编程，区别
+OpenGL ES 1.x 只有Fix-Function Pipeline
+                               OpenGL ES 1.0 版本中，支持固定管线
+
+OpenGL ES 2.x 没有Fix-Function Pipeline
+                                 只有programmable pipeline
+                                  OpenGL ES 2.0 版本不再支持固定管线，只支持可编程管线
+
+固定管线                程序运行流程
+1）大量的开关 glEnable
+      gl.glEnable(GL10.GL_TEXTURE_2D);  使用纹理时这个是必须的（使用固定管道时）
+     gl.glEnable(GL10.GL_DEPTH_TEST); 
+     gl.glShadeModel(GL10.GL_SMOOTH);  默认值就是这个
+
+2）
+
+可编程管线           程序运行流程
+1）编写着色器
+2）加载，编译，链接着色器
+3）与着色器，程序的通信
+
+
+
+
+
+
+
+
+在使用OpenGL的过程中，要时刻记得，C/S，架构
+所有的GL，绘制等等命令，最终都要在GPU中运行。
+绘制所需要的参数，都要用某种方式，传递给GPU。
+
+
+
+
+
+
+顶点坐标数组，纹理坐标数组
+
+
+
+
+
+
+
+
+android opengl es 纹理单元，多个程序是共享的？应该不是
+每个纹理单元存储的数据：（这种说法对吗？肯定不对）
+1)纹理图像       存储在GPU显存中？称作纹理对象
+2)滤波参数       这个不确定，是对应纹理单元，还是纹理对象？
+    滤波参数，什么时候用？上传纹理图片时用？
+
+3)纹理映射方式 
+4)纹理矩阵堆栈
+ 5)纹理坐标生成模式 
+6)顶点数组(如果需要的话)
+
+纹理，在OpenGL中，可以理解为加载到显卡显存中的图片
+
+1）着色器程序，访问，纹理对象。 需要通过接口，纹理单元。
+2）上传图片数据到GPU，生成纹理对象。需要通过接口，纹理单元。
+
+纹理单元 与 纹理对象的关系：
+纹理单元，是访问纹理对象的接口。纹理对象，是存储在纹理内存中的颜色数据。
+
+Texture 类表示上载到渲染上下文的二维纹理
+
+
+
+
+
+
+
+
+
+
+texture coordinates 怎么理解？
+指定S和T方向重复环绕. 
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); 
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); 
+
+
+
+
+
+
+
+
+glEnable(GL_TEXTURE_2D); //Only use this if not using shaders.
+
+
+
+
+
+
+
+
+
+
+
+glTexParameterf 参数是绑定给谁了？纹理坐标，又是绑定给谁了？
+纹理单元，还是纹理对象？OpenGL is a state machine
+
+Get the id of the currently bound(bind的被动式) texture object?
+
+It doesn't really matter if glTexImage comes before or after glTexParameter of glTexEnv, it works either way.
+
+理解下面的概念：
+1. 什么是纹理对象？（texture）有单独的纹理内存
+2. 什么是纹理单元？（texture unit）
+
+
+最后证明，这个滤波器（Filtering），绑定到了，纹理对象。
+gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureObjects[1]);
+GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, mTestBmp2, 0);
+gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
+
+gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_NEAREST);
+
+gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureCoord);
+作用于所有纹理对象，且这个函数只用于，固定流水线。
+
+
+
+
+
+
+
+
+
+
+OpenGL glBlendFunc() 设置颜色混合 透明度叠加计算 
+
+
+
+
+
+
+
+
+OpenGL is a state machine怎么理解 ?
+
+
+
+
+
+gl_Position、gl_FragColor  “opengl 内建变量”
+gl_Position //用户自定义的，用户接受顶点着色器的运算输出结果
+
+
+gl_FragColor//系统内置变量，用于接收片段着色器的输出结果
+片元着色器示例：
+void main()  {      gl_FragColor =vec4(0.4,0.4,0.8,1.0);  }  
+
+
+
+
+
+
+
+
+
+
+
+glBindBuffer/glBufferData
+利用glBindBuffer和glBufferData把vertex,color等数据 copy到server端的内存
+
+
+
+
+
+
+
+
+
+每个顶点的纹理坐标
+顶点数据
+纹理坐标数据 
+
+之间的关系？
+
+
+
+
+
+
+
+
+
+shader程序里，不加换行符，也不会出错
+一行最多能有多少个字符？
+
+
+
+
+
+
+编译着色器程序，失败：called unimplemented OpenGL ES API
+没有设定，OpenGL ES 2.0 ，setEGLContextClientVersion(2);  
+
+初始化时，设置没有用。
+必须初始化完成后，再调用这个接口才能用。
+        	mFSurfaceView = (FSurfaceView)mRootView.findViewById(R.id.fsurfaceview);
+        	mFSurfaceView.setEGLContextClientVersion(2);
+        	mFSurfaceView.setRenderer(this);
+        	mFSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+			
+			
+			
+			
+			
+			
+			
+			
+			The sampler2D is bound to a texture unit
+			The sampler2D is bound to a texture unit. 
+The glUniform call binds it to texture unit zero. 
+
+The glActiveTexture call is only needed 
+if you are going to use multiple texture units
+ (because GL_TEXTURE0 is the default anyway).
+
+
+下面是片元着色器，代码示例：
+#version 120
+
+uniform sampler2D texture;
+varying vec2 texcoord;
+
+void main(void)
+{
+    gl_FragColor = texture2D(texture, texcoord);
+}
+
+
+
+
+
+
+
+
+
+
+OpenGL ES2.0 的三种变量类型（uniform，attribute和varying）
+uniform变量就像是C语言里面的常量（const ），它不能被shader程序修改。（shader只能用，不能改）
+
+attribute变量是只能在vertex shader中使用的变量。
+（不能在fragment shader中声明attribute变量，也不能被fragment shader中使用）
+一般用attribute变量来表示一些顶点的数据，如：顶点坐标，法线，纹理坐标，顶点颜色等
+
+varying变量是vertex和fragment shader之间做数据传递用的。一般vertex shader修改varying变量的值，然后fragment shader使用该varying变量的值。因此varying变量在vertex和fragment shader二者之间的声明必须是一致的。application不能使用此变量。
+
+
+在GL3.x中，废弃了attribute关键字（以及varying关键字），属性变量统一用in/out作为前置关键字，对每一个Shader stage来说，in表示该属性是作为输入的属性，out表示该属性是用于输出的属性
+
+
+
+
+
+
+
+
+
+
+
+
+
+precision of highp floats in GLSL ES 2.0
+highp - 16-bit, 
+floating point range:    -2^62 to 2^62, 
+integer range:                  -2^16 to 2^16
+
+mediump - 10 bit, 
+floating point range:   -2^14 to 2^14, 
+integer range:                 -2^10 to 2^10
+
+lowp - 8 bit, 
+floating point range:    -2 to 2, 
+integer range:                  -2^8 to 2^8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Textures with <format> and <internalFormat> values of DEPTH_COMPONENT
+    refer to a texture that contains depth component data.  <type> is used
+    to determine the number of bits used to specify depth texel values.  
+
+    A <type> value of UNSIGNED_SHORT refers to a 16-bit depth value.
+  
+    A <type> value of UNSIGNED_INT refers to a 32-bit depth value
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	shader stages 是什么意思？
+	When you call glGetUniformLocation​, it will return one location. 
+
+When you update the uniform with a call to glUniform​, the driver takes care of sending the value for each stage
+
+ (vertex shader, geometry shader, fragment shader).
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ opengl glsl 纹理(没有的事)
+ 每次重新绘时，都需要重新加载纹理图片？
+texSubImage2D 或者 glTexImage2D
+
+下面的代码会修改纹理单元中的，色彩数据？
+vec4 tmp = min(c1, c0); 
+gl_FragColor = mix(tmp, c2, c2.a); 
+
+
+
+
+
+
+
+
+
+
+
+
+GLSL完成YUV->RGB转换
+precision mediump float;
+uniform sampler2D SamplerY;
+uniform sampler2D SamplerU;
+uniform sampler2D SamplerV;
+varying highp vec2 coordinate;
+
+
+void main()
+{
+    mediump vec3 yuv;
+    lowp vec3 rgb;
+    
+    yuv.x = texture2D(SamplerY, coordinate).r;
+    
+    yuv.y = texture2D(SamplerU, coordinate).r - 0.5;
+    
+    yuv.z = texture2D(SamplerV, coordinate).r - 0.5;
+    
+    rgb = mat3(      1,       1,       1,
+               0, -.21482, 2.12798,
+               1.28033, -.38059,       0) * yuv;
+  
+    gl_FragColor = vec4(rgb, 1);
+	
+	
+	
+	
+	
+	
+	
+	
+GLES20.glPixelStorei(GLES20.GL_UNPACK_ALIGNMENT, 1);
+GLES20.glPixelStorei(GLES20.GL_UNPACK_ALIGNMENT, 1);
+在上传，YUV，分量的，纹理里，没有必要，设置这个参数。
+
+GL_LUMINANCE 是必须要设置的。
+ GL_LUMINANCE is a texture-format for grayscale images
+
+只需要指定正确的长宽就可以了
+GLES20.glTexSubImage2D(GLES20.GL_TEXTURE_2D, 0, 0, 0, width, height, GLES20.GL_LUMINANCE, GLES20.GL_UNSIGNED_BYTE, buffer);
+
+
+
+
+
+
+
+
+
+
+
+
+glTexSubImage2D 耗时？
+		long tm = System.currentTimeMillis();
+			GLES20.glTexSubImage2D(GLES20.GL_TEXTURE_2D, 0, 0, 0, width, height, GLES20.GL_LUMINANCE, GLES20.GL_UNSIGNED_BYTE, buffer);
+			Log.v(TAG, "time to upload texture: " + (System.currentTimeMillis() - tm));
+
+耗时很短，只有，1，2毫秒。
+
+怎么理解下面这句：
+You can't call glTexSubImage2D() and expect it to keep up with video frame rates. This is a very common mistake. glTexSubImage2D() and glTexImage2D() are too slow for video.
+
+You should be using the EGL Image extensions instead. There is an example of this for Android here:
+http://software.intel.com/en-us/articles/using-opengl-es-to-accelerate-apps-with-legacy-2d-guis
+
+
+
+
+
+
+
+
+
+glTexImage2D  glTexParameteri GL_TEXTURE_MAG_FILTER
+GL_TEXTURE_MAG_FILTER 默认值是：
+
+GL_TEXTURE_MIN_FILTER is GL_NEAREST_MIPMAP_LINEAR
+
+如果不使用mipmap 就必须这个参数明确指定为：
+GL_NEAREST 或者 GL_LINEAR
+
+这个参数是与，纹理对象，绑定的。
+
+		GLES20.glActiveTexture(mTextureUnits[index]);
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mTextureObjects[index]);
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
+		
+		
+		
+		
+		
+		
+		
+
+
+GLES20.glUseProgram(mGLProgId);
+GLES20.glUseProgram(mGLProgId);
+同一时间，可以有多个mGLProgId，
+使用这个函数，可以绑定使用那个程序
+
+
+
+
+
+
+
+
+
+glBindFramebuffer  与 glDrawArrays
+glBindFramebuffer  之后，渲染的结果，存到这个frame buffer object里。
+而这个，frame buffer object又绑定了一个纹理对象。
+这个纹理对象就保存了，这次渲染的结果（像素组）。
+
+GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
+这个零的意义是？
+
+int previousTexture = textureId;
+        for (int i = 0; i < mFilters.size() - 1; i++) {
+            GPUImageFilter filter = mFilters.get(i);
+            GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, mFrameBuffers[i]);
+            GLES20.glClearColor(0, 0, 0, 1);
+            filter.onDraw(previousTexture, mGLCubeBuffer,
+                    (i == 0 && mFilters.size() % 2 == 0) ? mGLTextureFlipBuffer : mGLTextureBuffer);
+            GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
+            previousTexture = mFrameBufferTextures[i];
+        }
+
+理解，下面这句话，
+纹理对象与纹理单元，彻底分开。
+纹理对象，有自己的存储空间
+纹理对象，有自己的参数配置
+
+
+
+
+
+
+
+
+
+
+
+
+
+glsl 常量的写法
+const highp vec3 W = vec3(0.2125, 0.7154, 0.0721);
+
+
+
+
+
+
+
+
+
+
+What is gl_Vertex.w
+if you specify a float X, the vtx attribute will be {X,0,0,1}
+if you specify a vec2, it'll be (X,Y,0,1}
+{X,Y,Z,1}
+{X,Y,Z,W}
+
+
+
+
+
+
+
+
+
+
+glsl 注释
+// Values from \"Graphics Shaders: Theory and Practice\" by Bailey and Cunningham
+
+/**/
+
+
+
+
+
+
+
+
+
+glsl reserved words list(保留关键字列表)
+vec
+input
+
+
+
+
+
+
+
+
+
+glsl mix 、dot  distance  smoothstep
+The OpenGL Shading Language defines a number of standard functions。
+BUILT-IN FUNCTIONS  GLSL 内建函数
+
+const highp vec3 W = vec3(0.2125, 0.7154, 0.0721); 
+float luminance = dot(inputColor.rgb, W);
+vec3 grayColor = vec3(luminance);
+
+
+float dot (genType x, genType y)
+向量x，y之间的点积
+向量的点乘和叉乘(转)
+u=(u1,u2,u3) v=(v1,v2,v3)
+点积公式：u * v = u1v1+u2v2+u3v33=lul*lvl*COS(U,V)
+叉积公式：u x v = { u2v3-v2u3 , u3v1-v3u1 , u1v2-u2v1 }
+
+genType smoothStep(genType edge0, genType edge1, genType x); 
+如果x <= edge0结果是0，
+如果x >= edge1结果为1，
+如果edge0 < x < edge1结果在0和1之间进行Hermite插值
+
+genType mix (genType x, genType y, genType a)
+genType mix (genType x, genType y, float a)
+返回线性混合的x和y，如：x*(1−a)+y*a
+
+genType floor (genType x)
+返回小于等于x的最大整数值
+
+genType ceil (genType x)
+返回大于等于x的最小整数值
+
+genType fract (genType x)
+返回x-floor(x)，即返回x的小数部分
+
+
+
+glsl dot  函数的功能
+mVertexShader
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+glsl mix 、dot  distance  smoothstep
+The OpenGL Shading Language defines a number of standard functions。
+BUILT-IN FUNCTIONS  GLSL 内建函数
+
+const highp vec3 W = vec3(0.2125, 0.7154, 0.0721); 
+float luminance = dot(inputColor.rgb, W);
+vec3 grayColor = vec3(luminance);
+
+
+float dot (genType x, genType y)
+向量x，y之间的点积
+向量的点乘和叉乘(转)
+u=(u1,u2,u3) v=(v1,v2,v3)
+点积公式：u * v = u1v1+u2v2+u3v33=lul*lvl*COS(U,V)
+叉积公式：u x v = { u2v3-v2u3 , u3v1-v3u1 , u1v2-u2v1 }
+
+genType smoothStep(genType edge0, genType edge1, genType x); 
+如果x <= edge0结果是0，
+如果x >= edge1结果为1，
+如果edge0 < x < edge1结果在0和1之间进行Hermite插值
+
+genType mix (genType x, genType y, genType a)
+genType mix (genType x, genType y, float a)
+返回线性混合的x和y，如：x*(1−a)+y*a
+
+genType floor (genType x)
+返回小于等于x的最大整数值
+
+genType ceil (genType x)
+返回大于等于x的最小整数值
+
+genType fract (genType x)
+返回x-floor(x)，即返回x的小数部分
+
+
+
+
+
+
+
+
+
+
+
+
+glsl bool uniform 
+You should use glUniform1i, just like with integers.
+I'd be quite surprised if any of the boolean types had different values than 1 and 0. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+glTexSubImage2D:531 GL_INVALID_OPERATION
+08-22 21:15:23.653: W/Adreno200-ES20(1055): <core_glTexSubImage2D:531>: GL_INVALID_OPERATION
+
+GLES20.glTexSubImage2D(GLES20.GL_TEXTURE_2D, 0, 0, 0, mWidth, mHeight, GLES20.GL_LUMINANCE, GLES20.GL_UNSIGNED_BYTE, mTextureImageBuffer);
+
+
+原因是下面，绑定的textureObject==0，造成的错误
+private void bindTextureObject(int textureUnitIndex, int textureObject) {
+		GLES20.glActiveTexture(mTextureUnitArray[textureUnitIndex]);
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureObject);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	GLSL if boolean != int
+	08-25 17:46:39.878: D/FShaderGroup(32182): ERROR: 0:12: '' : boolean expression expected 
+
+不能用int代替布尔值。
+
+
+
+
+
+
+
+
+
+
+
+
+GLES20.glGetUniformLocation(programID, mEnableUniformString);
+GLES20.glGetUniformLocation(programID, mEnableUniformString); 返回零，是什么意思？
+
+This function returns -1 if name does not correspond to an active uniform variable in program or if name starts with the reserved prefix "gl_"
+
+
+
+
+
+
+
+
+
+
+
+GL_LUMINANCE_ALPHA
+GL_RGBA
+
+GL_RGB
+
+GL_LUMINANCE_ALPHA    这个是两个字节一个象素，可用于UV
+
+GL_LUMINANCE / GL_ALPHA
+
+
+GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_LUMINANCE_ALPHA, mWidth / 2, mHeight / 2, 0, GLES20.GL_LUMINANCE_ALPHA, GLES20.GL_UNSIGNED_BYTE, null);
+
+GLES20.glTexSubImage2D(GLES20.GL_TEXTURE_2D, 0, 0, 0, mWidth / 2, mHeight / 2, GLES20.GL_LUMINANCE_ALPHA, GLES20.GL_UNSIGNED_BYTE, mTextureImageBuffer);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+glActiveTexture 关闭‘激活’怎么用？
+glActiveTexture 只是指定，当前操作（例如：glBindTexture, glTexture2D ...），对应的纹理单元。
+
+glActiveTexture does not activate texture-units. It merely selects which texture-unit you're currently modifying (yes, OpenGL's object state managing is horrible). You activate textures with glEnable(<texture-target>) and glDisable(<texture-target>). In your case, the target would be GL_TEXTURE_2D.
+So to answer your question: Select the texture-unit i by using glActiveTexture(GL_TEXTURE0+i) and then disable it with glDisable(GL_TEXTURE_2D).
+Note that all this is redundant with shaders - you can just not access the values there.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+功能函数：把图片，加载到指定的纹理名称，纹理单元上
+[self uploadTexture:GL_TEXTURE3 textureUnitID:3 textureName:@"curve" textureImageFile:@"earlyBirdCurves.png"];
+
+应该是，加载到，纹理对象上，
+
+绑定到某个纹理单元。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

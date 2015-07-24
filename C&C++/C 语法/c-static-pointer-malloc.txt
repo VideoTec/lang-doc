@@ -1,0 +1,17 @@
+http://stackoverflow.com/questions/16724801/how-to-initialize-static-pointer-with-malloc-in-c
+
+void f() {
+  static uint8_t *pcm_data = (uint8_t *)malloc(1024 * 2 * 2);
+}
+使用gcc，C代码中可以编译通过，c++中编译失败
+error: initializer element is not constant
+
+C can't do that. C++ can with static constructors.
+
+c 中的解决方法一：
+static int *p = NULL;
+if(!p) p = (int *)malloc(sizeof(int));
+
+c 中的解决方法二：
+malloc() is only used to allocate memory at runtime. Static variables are initialized at sompile time. You want:
+static int p[1];

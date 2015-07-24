@@ -1,0 +1,6 @@
+OpenMax分成三层：
+OpenMAX provides three layers of interfaces: application layer (AL), integration layer (IL) and development layer (DL)
+
+OpenMAX IL is the interface between media framework, (such as StageFright or MediaCodec API on Android, DirectShow on Windows, FFmpeg or Libav on Linux, or GStreamer for cross-platform), and a set of multimedia components (such as an audio or video codecs). It allows companies that build platforms (e.g. allowing an implementation of an MP3 player) to easily change components like MP3 decoders and Equalizer effects and buy components for their platform from different vendors.
+
+OpenMax是无授权费的，跨平台的应用程序接口API，通过使媒体加速组件能够在开发、集成和编程环节中实现跨多操作系统和处理器硬件平台，提供全面的流媒体编解码器和应用程序便携化。

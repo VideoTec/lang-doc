@@ -1,0 +1,46 @@
+void glLinkProgram(GLuint program);
+
+----------------------------------
+链接成功后：glUseProgram
+----------------------------------
+When a program object has been successfully linked, 
+the program object can be made part of current state by calling glUseProgram.
+
+----------------------------------
+链接成功后：uniform attribute 变量的关系
+----------------------------------
+As a result of a successful link operation, 
+all active user-defined uniform variables belonging to program will be initialized to 0, and 
+each of the program object's active uniform variables will be assigned a location that can be queried by calling glGetUniformLocation. 
+Also, any active user-defined attribute variables that have not been bound to a generic vertex attribute index will be bound to one at this time.
+
+----------------------------------
+判断 着色器 链接是否成功
+----------------------------------
+The status of the link operation will be stored as part of the program object's state. 
+This value will be set to 
+GL_TRUE if the program object was linked without errors and is ready for use, and 
+GL_FALSE otherwise. 
+It can be queried by calling glGetProgramiv with arguments program and GL_LINK_STATUS
+
+glGetProgramiv(name, GL_LINK_STATUS, &logLength);
+
+----------------------------------
+program-object 的 information log
+----------------------------------
+The information log can be retrieved by calling glGetProgramInfoLog
+
+glGetShaderiv(name, GL_INFO_LOG_LENGTH, &logLength);
+glGetShaderInfoLog(name, logLength, &logLength, log);
+
+Whether or not the link operation was successful, the program object's information log will be overwritten
+
+----------------------------------
+重新链接的问题
+----------------------------------
+如果 the program object currently in use （glUseProgram）
+relinked unsuccessfully, its link status will be set to GL_FALSE , 
+but the executables and associated state will remain part of the current state 
+until a subsequent call to glUseProgram removes it from use
+
+获取当前使用的 program 的名字(id)

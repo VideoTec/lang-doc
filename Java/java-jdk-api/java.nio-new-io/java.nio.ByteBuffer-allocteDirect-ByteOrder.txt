@@ -1,0 +1,4 @@
+默认是 big-endian order
+
+参见
+E:\doc\Computer software\Java\java-jni\java-jni-JNIEnv-nio-NewDirectByteBuffer-byte-order.txt

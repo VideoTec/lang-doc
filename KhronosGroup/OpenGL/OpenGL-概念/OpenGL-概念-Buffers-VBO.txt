@@ -1,0 +1,7 @@
+  glGenBuffers(1, &IndexVBOID);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexVBOID);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(ushort)*3, pindices, GL_STATIC_DRAW);
+  
+  glGenBuffers(1, VertexVBOID);
+  glBindBuffer(GL_ARRAY_BUFFER, VertexVBOID);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(MyVertex)*3, &pvertex[0].x, GL_STATIC_DRAW);

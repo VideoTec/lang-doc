@@ -1,0 +1,12 @@
+见 jni.h 头文件里的定义
+
+#if defined(__cplusplus)
+typedef _JNIEnv JNIEnv;
+typedef _JavaVM JavaVM;
+#else
+typedef const struct JNINativeInterface* JNIEnv;
+typedef const struct JNIInvokeInterface* JavaVM;
+#endif
+
+官方文档
+http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html

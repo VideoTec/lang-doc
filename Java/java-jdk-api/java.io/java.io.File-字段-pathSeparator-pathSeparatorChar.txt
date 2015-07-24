@@ -1,0 +1,15 @@
+----------------------------------------------
+public static final String pathSeparator
+----------------------------------------------
+
+Added in API level 1
+The system-dependent string used to separate components in search paths (":"). See pathSeparatorChar.
+
+----------------------------------------------
+public static final char pathSeparatorChar
+----------------------------------------------
+
+Added in API level 1
+The system-dependent character used to separate components in search paths (':'). This is used to split such things as the PATH environment variable and classpath system properties into lists of directories to be searched.
+
+This field is initialized from the system property "path.separator". Later changes to that property will have no effect on this field or this class.

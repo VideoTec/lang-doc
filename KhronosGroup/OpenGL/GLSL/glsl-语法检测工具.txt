@@ -1,0 +1,6 @@
+RenderMonkey - 这个软件是由 ATI 制作的，提供界面用以建立、编译和除错 GLSL 着色器，和 DirectX 着色器一样。仅能在 Windows 平台上执行。
+
+GLSLEditorSample - 在 Mac OS X 上，它是目前唯一可用的程式，其提供着色器的建立和编译，但不能除错。它是 cocoa 应用程序，仅能在 Mac OS X 上执行。
+
+Lumina - Lumina 是新的 GLSL 开发工具。其使用 QT 界面，可以跨平台
+https://www.opengl.org/discussion_boards/showthread.php/162818-Lumina-GLSL-IDE

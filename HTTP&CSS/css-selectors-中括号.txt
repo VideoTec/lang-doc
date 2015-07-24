@@ -1,0 +1,51 @@
+http://wulinghui.com/show-14-41-1.html
+
+option[value=""][disabled] {
+  display: none;
+}
+
+中括号中，是标签的属性值 或者 value 值
+
+如果您希望把包含标题（title）的所有元素变为红色，可以写作：
+*[title] {color:red;}
+
+与上面类似，可以只对有 href 属性的锚（a 元素）应用样式：
+a[href] {color:red;}
+
+还可以根据多个属性进行选择，只需将属性选择器链接在一起即可。
+例如，为了将同时有 href 和 title 属性的 HTML 超链接的文本设置为红色，可以这样写：
+a[href][title] {color:red;}
+
+可以采用一些创造性的方法使用这个特性。
+例如，可以对所有带有 alt 属性的图像应用样式，从而突出显示这些有效的图像：
+img[alt] {border: 5px solid red;}
+
+例如，假设希望将指向 Web 服务器上某个指定文档的超链接变成红色，可以这样写：
+a[href="http://www.wulinghui.com/about_us.asp"] {color: red;}
+
+与简单属性选择器类似，可以把多个属性-值选择器链接在一起来选择一个文档。
+a[href="http://www.wulinghui.com/"][title="WuLingHui"] {color: red;}
+这会把以下标记中的第一个超链接的文本变为红色，但是第二个或第三个链接不受影响：
+<a href="http://www.wulinghui.com/" title="WuLingHui">WuLingHui</a>
+<a href="http://www.wulinghui.com/css/" title="CSS">CSS</a>
+<a href="http://www.wulinghui.com/html/" title="HTML">HTML</a>
+
+同样地，XML 语言也可以利用这种方法来设置样式。
+下面我们再回到行星那个例子中。假设只希望选择 moons 属性值为 1 的那些 planet 元素：
+planet[moons="1"] {color: red;}
+上面的代码会把以下标记中的第二个元素变成红色，但第一个和第三个元素不受影响：
+<planet>Venus</planet>
+<planet moons="1">Earth</planet>
+<planet moons="2">Mars</planet>
+
+请注意，这种格式要求必须与属性值完全匹配。
+如果属性值包含用空格分隔的值列表，匹配就可能出问题。
+请考虑一下的标记片段：
+<p class="important warning">This paragraph is a very important warning.</p>
+如果写成 p[class="important"]，那么这个规则不能匹配示例标记。
+要根据具体属性值来选择该元素，必须这样写：
+p[class="important warning"] {color: red;}
+
+如果需要根据属性值中的词列表的某个词进行选择，则需要使用波浪号（~）。
+假设您想选择 class 属性中包含 important 的元素，可以用下面这个选择器做到这一点：
+p[class~="important"] {color: red;}

@@ -1,0 +1,8 @@
+和 bind 的相关API
+
+void glBindAttribLocation(GLuint program, GLuint index, const GLchar *name);
+void glBindTexture(GLenum target, GLuint texture);            //GL_TEXTURE_2D or GL_TEXTURE_CUBE_MAP.
+
+void glBindBuffer(GLenum target, GLuint buffer);              //GL_ARRAY_BUFFER or GL_ELEMENT_ARRAY_BUFFER
+void glBindFramebuffer(GLenum target, GLuint framebuffer);    //GL_FRAMEBUFFER
+void glBindRenderbuffer(GLenum target, GLuint renderbuffer);  //GL_RENDERBUFFER

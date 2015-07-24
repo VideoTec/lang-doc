@@ -1,0 +1,15 @@
+EGLAPI EGLImageKHR EGLAPIENTRY eglCreateImageKHR 
+(EGLDisplay dpy, EGLContext ctx, EGLenum target, EGLClientBuffer buffer, const EGLint *attrib_list);
+
+EGLAPI EGLBoolean EGLAPIENTRY eglDestroyImageKHR (EGLDisplay dpy, EGLImageKHR image);
+
+#ifndef EGL_ANDROID_image_native_buffer
+#define EGL_ANDROID_image_native_buffer 1
+struct ANativeWindowBuffer;
+#define EGL_NATIVE_BUFFER_ANDROID               0x3140  /* eglCreateImageKHR target */
+#endif
+
+问题，提高，向纹理写入数据，的性能
+http://stackoverflow.com/questions/25504188/is-it-possible-to-use-pixmaps-on-android-via-java-api-for-gles
+The best way to improve texture loading performance on Android 
+is to use the EGL image extensions you sited and EGL_NATIVE_BUFFER_ANDROID with native code

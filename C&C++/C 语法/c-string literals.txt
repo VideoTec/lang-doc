@@ -1,0 +1,9 @@
+literal[英][ˈlɪtərəl] [美][ˈlɪtərəl]
+adj.照字面的；原义的；逐字的；平实的，避免夸张
+n.[印]错排，文字上的错误
+
+string literals  字符串字面值
+
+例句：
+C99标准 6.7.8 Initialization 第4款：
+4 All the expressions in an initializer for an object that has static storage duration shall be constant expressions or string literals.

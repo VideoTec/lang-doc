@@ -1,0 +1,13 @@
+GLuint create_shader(GLenum type, const char *source);
+GLuint create_program(GLuint vertex_shader, GLuint fragment_shader);
+
+GLuint create_program_from_str(const char *vertex_shader_str,
+                               const char *fragment_shader_str) {
+  GLuint vertex_shader = 
+      create_shader(GL_VERTEX_SHADER, vertext_shader_str);
+
+  GLuint fragment_shader = 
+      create_shader(GL_FRAGMENT_SHADER, fragment_shader_str);
+
+  return create_program(vertex_shader, fragment_shader);
+}

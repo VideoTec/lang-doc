@@ -1,0 +1,16 @@
+王翔 14:28:37 
+CoreSDK\Android\jni\libpng\include\png.h
+王翔 14:28:43 
+这个文件是快捷方式吗？
+王翔 14:28:49 
+link libpng16/png.h
+王翔 14:29:00 
+里面是这个，我这编译不过
+王翔 14:29:23 
+jni/libpng/include/png.h:1:1: error: 'link' does not name a type
+ link libpng16/png.h
+ 
+ http://stackoverflow.com/questions/13015288/error-link-does-not-name-a-type
+ 
+ Whatever mechanism was used to extract the openssl source code did not understand the unix/linux link mechanism, 
+ causing it to erroneously extract symbolic links as files containing the text link <target of link>

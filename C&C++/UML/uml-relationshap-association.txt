@@ -1,0 +1,2 @@
+Association[美][əˌsoʊʃiˈeɪʃn] is basically a set of links that connects elements of an UML model. It also describes 
+how many objects are taking part in that relationship.

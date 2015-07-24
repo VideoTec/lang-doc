@@ -1,0 +1,96 @@
+java命令行，所在的路径
+C:\Windows\System32\java.exe
+C:\Program Files\Java\jre8\bin\java.exe
+C:\Program Files\Java\jdk1.8.0_05\bin\java.exe
+
+编译运行java程序的命令行
+java.exe
+javac.exe 编译工具 C:\Program Files\Java\jdk1.8.0_05\bin\javac.exe
+jar.exe   jar -cvf test.jar src   ---- jar文件其实是一个压缩包
+使用示例：
+运行：javac Test.java就会在当前目录下生成Test.class文件（可能用-d指定输出路径）
+运行：java Test 即可运行程序 
+请务必注意命令行的最后一项是 类名。它不是一个文件名，也不是 .java 或 .class。该类必须能够在类路径的某处找到
+
+生成class命令
+javac 
+-target 1.5   生成特定 VM 版本的类文件/java 的sdk的版本号
+-bootclasspath D:\android-sdk-windows\platforms\android-8\android.jar  覆盖引导类文件的位置
+               告诉Javac 不使用JDK下的，而是用Android的
+-d bin        指定存放生成的类文件的位置
+src\demo\project\*.java gen\demo\project\R.java
+
+-d 目录
+设置输出类文件的位置。
+如果某个类是一个包的组成部分，则 javac 将把该类文件放入反映包名的子目录中，必要时创建目录。
+例如，如果指定 -d c:\myclasses 并且该类名叫 com.mypackage.MyClass，
+那么类文件就叫作 c:\myclasses\com\mypackage\MyClass.class。
+若未指定 -d 选项，则 javac 将把类文件放到与源文件相同的目录中。
+注意： -d 选项指定的目录不会被自动添加到用户类路径中
+
+bootclasspath  告诉Javac 不使用JDK下的，而是用Android的
+根据指定的自举类集进行联编。
+和用户类路径一样，自举类路径项用分号 (;) 进行分隔，它们可以是目录、JAR 归档文件或 ZIP 归档文件
+缺省情况下，类是根据与 javac 一起发行的 JDK 自举类和扩展类来编译
+javac 也支持联编，在联编中，类是根据其它 Java平台实现的自举类和扩展类来进行编译的
+
+//Makefile
+target:
+    javac ./package1/A.java -d ../classes
+    javac ./package1/B.java -d ../classes
+    javac ./package2/C.java -d ../classes
+    javac ./main/Test.java  -d ../classes/main/ -classpath ../classes
+run:
+    java -classpath ../classes/main;../classes Test
+clean:
+    rm -rf ../classes/package1/*.class
+    rm -rf ../classes/package2/*.class
+    rm -rf ../classes/main/*.class
+
+主张源文件与class文件都有相同的目录结构
+没有显示写package的文件都是属于默认包
+
+类发现规则：class文件所在目录 = classpath + '\' + 包名中的'.'全变成'\'
+java类的包名就是路径名: class文件应该存储在对应的目录下否则会出错，编译没有这个限制，引用时不行
+文件系统的层次结构反映了 Java 包的层次结构，
+类路径则定义了文件系统中的哪个目录可以作为 Java 包层次结构的根 -classpath
+编译和运行时总是显式地指定类路径
+javac -d bin -sourcepath src -classpath C:\classes;E:\lib\junit.jar src\com\elharo\gui\MainFrame.java
+java -classpath C:\classes;E:\lib\junit.jar com.elharo.gui.MainFrame
+请务必注意命令行的最后一项是 类名。它不是一个文件名，也不是 .java 或 .class。该类必须能够在类路径的某处找到
+
+编译运行时的：类路径
+-classpath 指定
+当前路径
+CLASSPATH环境变量添加一次目录和 JAR 归档文件
+放在 jre\lib\ext 目录中的 JAR 归档文件
+放在 jre\lib\endorsed 目录中的 JAR 文件
+
+Java 类名和包名都不能包含空格, 但包含 Java 包目录或源文件的目录可以包含空格
+如果需要在路经中包括一个这样的目录，就必须在相关的命令行参数两端加上双引号
+
+源代码和文件名及路径的限制
+一个java源文件中，如果有public类（包括抽象类，下同）或public接口，那么就只能有一个public类或一个public接口，不能有多个public的类或接口，
+当然可以有多个包可见的类或接口，即默认访问权限修饰符， 即类名前没有访问权限修饰符。  
+public类或接口 与 包可见的类或接口在文件中的顺序可以随意的顺序，即public类或接口可以不在第一个的位置。
+java源文件名必须与该public类名或public接口名相同
+
+一个java源文件中，如果既没有public类，又没有public接口，那么java源文件名没有限制。
+只要符合文件名的命名规范就可以，可以不与文件中任一个类或接口同名。
+当然也可以与其中之一同名
+
+类和接口的命名不能冲突，即同一个包中的任何一个类名或接口名都是不同的。
+不同包，可以名字相同，因为通过包可以把它们区分开来
+
+JAVA源文件命名规则：
+1.一个.java文件只能有1个public class (暗示可以没有)
+2.如果有public class,那么文件名必须与修饰符为public的类名相同 (暗示,没有的话文件名可以随便起)
+
+源文件名必须与该公共类的名字完全一致，字母的大小写都必须一样。这是java语言的一个严格的规定，如果不遵守，在编译时就会出错
+d:\source\a.java:19: 错误: 类BB是公共的, 应在名为 BB.java 的文件中声明
+
+如果在一个源程序中有多个类定义，则在编译时将为每个类生成一个.class文件 --- 这是真的吗？真的
+
+makefile 和 java
+1. 没有内置的隐式规则用于JAVA。
+2. 类名和文件名要相同，一个文件应该只有一个类。

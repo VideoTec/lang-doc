@@ -1,0 +1,18 @@
+http://www.cnblogs.com/gnagwang/archive/2011/02/27/1966606.html
+
+synchronized 方法：通过在方法声明中加入 synchronized关键字来声明 synchronized 方法。如：  
+public synchronized void accessVal(int newVal);  
+
+synchronized 方法控制对类成员变量的访问：
+
+每个类实例对应一把锁，每个 synchronized 方法都必须获得调用该方法的类实例的锁方能执行，
+否则所属线程阻塞，方法一旦执行，就独占该锁，直到从该方法返回时才将锁释放，
+此后被阻塞的线程方能获得该锁，重新进入可执行状态。
+
+这种机制确保了同一时刻对于每一个类实例，
+其所有声明为 synchronized 的成员函数中至多只有一个处于可执行状态（因为至多只有一个能够获得该类实例对应的锁），
+从而有效避免了类成员变量的访问冲突（只要所有可能访问类成员变量的方法均被声明为 synchronized）。
+ 
+在 Java 中，不光是类实例，
+每一个类也对应一把锁，这样我们也可将类的静态成员函数声明为 synchronized ，
+以控制其对类的静态成员变量的访问。

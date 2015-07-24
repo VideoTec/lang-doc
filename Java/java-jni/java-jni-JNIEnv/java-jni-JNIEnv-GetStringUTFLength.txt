@@ -1,0 +1,6 @@
+JNIEXPORT void JNICALL Java_com_sea_1monster_video_jniinterface_VideoConvert_add_1user_1video
+    (JNIEnv *env, jclass clazz, jstring url)
+{
+    size_t length = env->GetStringUTFLength(url);
+
+问题是这个函数调用完后，需要做清理工作吗？

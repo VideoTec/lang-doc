@@ -1,0 +1,6 @@
+http://developer.android.com/reference/java/io/FileWriter.html
+
+java.lang.Object
+   ↳	java.io.Writer
+ 	   ↳	java.io.OutputStreamWriter
+ 	 	   ↳	java.io.FileWriter

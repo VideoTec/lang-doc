@@ -1,0 +1,27 @@
+void Set<type>Field(JNIEnv *env, jobject obj, jfieldID fieldID, NativeType value);
+
+SetObjectField()    jobject
+SetBooleanField()   jboolean
+SetByteField()      jbyte
+SetCharField()      jchar
+SetShortField()     jshort
+SetIntField()       jint
+SetLongField()      jlong
+SetFloatField()     jfloat
+SetDoubleField()    jdouble
+
+This family of accessor routines sets the value of an instance (nonstatic) field of an object. 
+The field to access is specified by a field ID obtained by calling GetFieldID().
+
+示例
+int media_source_get_frame(JNIEnv *env, jobject clazz, CMediaSource *src, jobject bmp, jbyteArray audio, jobject nb_sample) {
+            jclass integer_class;
+            jfieldID id_value;
+            integer_class = env->FindClass("java/lang/Integer");
+            id_value = env->GetFieldID(integer_class, "value", "I");
+            
+            ret = src->get_frame((uint8_t*)bmp_buffer, (uint8_t*)audio_buffer, nb);
+            env->SetIntField(nb_sample, id_value, nb);
+            
+            env->DeleteLocalRef(integer_class); //need delete?
+    }

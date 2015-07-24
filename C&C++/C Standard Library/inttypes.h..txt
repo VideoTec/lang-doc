@@ -1,0 +1,23 @@
+#include <inttype.h>
+
+/*
+ * 7.8.1 Macros for format specifiers
+ *
+ * Each of the following object-like macros expands to a string
+ * literal containing a conversion specifier, possibly modified by
+ * a prefix such as hh, h, l, or ll, suitable for use within the
+ * format argument of a formatted input/output function when
+ * converting the corresponding integer type.  These macro names
+ * have the general form of PRI (character string literals for the
+ * fprintf family) or SCN (character string literals for the fscanf
+ * family), followed by the conversion specifier, followed by a
+ * name corresponding to a similar typedef name.  For example,
+ * PRIdFAST32 can be used in a format string to print the value of
+ * an integer of type int_fast32_t.
+ */
+ 
+/* fprintf macros for signed integers */
+#define	PRId8			"d"		/* int8_t */
+#define	PRId16			"d"		/* int16_t */
+#define	PRId32			"d"		/* int32_t */
+#define	PRId64			"lld"		/* int64_t */

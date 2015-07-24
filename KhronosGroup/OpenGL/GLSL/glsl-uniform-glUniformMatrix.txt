@@ -1,0 +1,23 @@
+transpose[英][trænˈspəʊz] [美][trænˈspoʊz] 
+vt.<数>移项；使变位；<音>使变调；变换顺序
+vi.进行变换
+n.转置阵
+
+void glUniformMatrix2fv(
+    GLint location,
+ 	GLsizei count,          不是 matrix 数组，设置为 1
+	                        是 matrix 数组，设置为数量， array of matrices
+ 	GLboolean transpose,    Must be GL_FALSE
+ 	const GLfloat *value    Specifies a pointer to an array of count values 
+	                        that will be used to update the specified uniform variable
+	);
+ 
+void glUniformMatrix3fv(	GLint location,
+ 	GLsizei count,
+ 	GLboolean transpose,
+ 	const GLfloat *value);
+ 
+void glUniformMatrix4fv(	GLint location,
+ 	GLsizei count,
+ 	GLboolean transpose,
+ 	const GLfloat *value);

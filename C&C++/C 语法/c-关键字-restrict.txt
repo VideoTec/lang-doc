@@ -1,0 +1,42 @@
+restrict[英][rɪˈstrɪkt] [美][rɪˈstrɪkt]
+vt.限制，限定；约束，束缚
+
+volatile[英][ˈvɒlətaɪl] [美][ˈvɑ:lətl]
+adj.易变的，不稳定的；（液体或油）易挥发的；爆炸性的；快活的，轻快的
+
+http://www.blogjava.net/killme2008/archive/2007/08/04/134399.html
+C语言的5种存储类以及关键字 volatile、restrict
+
+volatile和restrict，两者都是为了方便编译器的优化
+
+volatile 告诉编译器 
+该变量除了可被程序修改以外还可能被其他代理修改，因此，
+当要求使用 volatile 声明的变量的值的时候，系统总是重新从它所在的内存读取数据，而不是使用寄存器中的缓存
+
+restrict是c99引入的，（受限指针）
+restrict是C99中定义的关键字，C++目前并未引入；在GCC可通过使用参数" -std=c99" 来开启对C99的支持
+它只可以用于限定指针，并表明指针是访问一个数据对象的唯一且初始的方式
+使用了关键字restric，编译器就可以放心地进行优化了。这个关键字据说来源于古老的FORTRAN
+
+关键字restrict只用于限定指针；
+该关键字用于告知编译器，
+所有修改该指针所指向内容的操作全部都是基于(base on)该指针的，即不存在其它进行修改操作的途径；
+这样的后果是帮助编译器进行更好的代码优化，生成更有效率的汇编代码
+
+优化示例：
+int foo (int* x, int* y)      这个有可能 x,y 指向同一直地址
+{
+*x = 0;
+*y = 1;
+return *x;
+}
+
+int f (int *restrict x, int *restrict y) 这个表明 指针 x 是修改 *x的唯一途径，因此可优化为  return 0;
+{
+*x = 0;
+*y = 1;
+return *x;
+}
+
+http://www.chinaunix.net/old_jh/23/950178.html
+C99中的新关键字restrict以及受限指针（restricted pointers）的历史渊源和使用方式

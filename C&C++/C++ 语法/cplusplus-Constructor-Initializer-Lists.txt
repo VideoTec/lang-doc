@@ -1,0 +1,5 @@
+构造函数，初始化列表
+Constructor initializer lists
+
+初始化列表，是定义的一部分，不能用于单纯的声明中
+You can only have member initializer lists in definitions of your constructors. It is a part of the definition.

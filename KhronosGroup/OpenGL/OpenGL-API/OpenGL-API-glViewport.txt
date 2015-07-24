@@ -1,0 +1,30 @@
+void glViewport(	
+    GLint x,
+ 	GLint y,
+ 	GLsizei width,
+ 	GLsizei height);
+
+播放视频的窗口，大小比例不用调整，只需要调整 glViewPort 来适应视频的长宽
+https://www.virag.si/2014/03/playing-video-with-opengl-on-android/
+private void adjustViewport()
+    {
+        float surfaceAspect = height / (float)width;
+        float videoAspect = videoHeight / (float)videoWidth;
+
+        if (surfaceAspect > videoAspect)
+        {
+            float heightRatio = height / (float)videoHeight;
+            int newWidth = (int)(width * heightRatio);
+            int xOffset = (newWidth - width) / 2;
+            GLES20.glViewport(-xOffset, 0, newWidth, height);
+        }
+        else
+        {
+            float widthRatio = width / (float)videoWidth;
+            int newHeight = (int)(height * widthRatio);
+            int yOffset = (newHeight - height) / 2;
+            GLES20.glViewport(0, -yOffset, width, newHeight);
+        }
+
+        adjustViewport = false;
+    }

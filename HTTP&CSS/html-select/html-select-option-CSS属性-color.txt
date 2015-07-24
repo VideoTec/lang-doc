@@ -1,0 +1,15 @@
+<style>
+select:required:invalid {
+  color: gray;
+}
+option {
+  color: black;  如果不指定，会继承 select 的（编辑框） color 值
+}
+</style>
+<div>
+<select required>
+  <option value="" selected >Select something...  如果 value="0" 就成valid的了，对
+  <option value="1">One
+  <option value="2">Two
+</select>
+</div>

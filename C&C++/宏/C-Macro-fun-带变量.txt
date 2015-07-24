@@ -1,0 +1,11 @@
+示例：
+
+#define CHECK_FAIL(condition, err_code, err_msg) \
+  if(condition) {                                \
+    ret = err_code;                              \
+    printf("%s: %d\n", err_msg, err_code);       \
+    goto fail;                                   \
+  }
+
+使用示例
+CHECK_FAIL(!source, -1, "open source failed")  注意最后不需要加逗号

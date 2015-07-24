@@ -1,0 +1,40 @@
+void opensl_player_destroy(OpenSLPlayer **player) {
+  OpenSLPlayer *p = *player;
+  if(p) {
+    LOGI("destroy opensl player for file:%s", p->file_name);
+    opensl_player_stop(p);
+    _destroy_slobject(&p->play_obj);
+    free(p);
+    p = 0;  //理解这里的错误
+  }
+}
+
+理解这里的错误，对照，avformat_close_input(AVFormatContext **s)
+
+void avformat_close_input(AVFormatContext **ps)
+{
+    AVFormatContext *s;
+    AVIOContext *pb;
+
+    if (!ps || !*ps)
+        return;
+
+    s  = *ps;
+    pb = s->pb;
+
+    if ((s->iformat && strcmp(s->iformat->name, "image2") && s->iformat->flags & AVFMT_NOFILE) ||
+        (s->flags & AVFMT_FLAG_CUSTOM_IO))
+        pb = NULL;
+
+    flush_packet_queue(s);
+
+    if (s->iformat)
+        if (s->iformat->read_close)
+            s->iformat->read_close(s);
+
+    avformat_free_context(s);
+
+    *ps = NULL;
+
+    avio_close(pb);
+}

@@ -1,0 +1,52 @@
+EGLBoolean eglChooseConfig(
+    EGLDisplay display,
+ 	EGLint const * attrib_list,    The list is terminated with EGL_NONE
+ 	EGLConfig * configs,           返回配置参数
+	                               如果这个值为 NULL 返回符合条件的 EGLConfig 的数量
+ 	EGLint config_size,            指定 configs 数组大小
+ 	EGLint * num_config);          返回的 EGLint * 的数量
+
+8. 理解下面的所有 attribute        
+ EGLint attribs_config [] =
+        {
+            EGL_RED_SIZE, 5,
+            EGL_GREEN_SIZE, 6,
+            EGL_BLUE_SIZE, 5,
+            EGL_ALPHA_SIZE, 0,
+            EGL_DEPTH_SIZE, 16,
+            EGL_STENCIL_SIZE, 0,
+            EGL_SAMPLE_BUFFERS, EGL_TRUE,
+            EGL_SAMPLES, 2,
+            EGL_SURFACE_TYPE, EGL_PBUFFER_BIT,
+            EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+            EGL_NONE,
+        };
+    EGLint attribs_config_nv [] =
+    {
+        EGL_RED_SIZE, 5,
+        EGL_GREEN_SIZE, 6,
+        EGL_BLUE_SIZE, 5,
+        EGL_ALPHA_SIZE, 0,
+        EGL_DEPTH_SIZE, 16,
+        EGL_STENCIL_SIZE, 0,
+        EGL_COVERAGE_BUFFERS_NV, EGL_TRUE,
+        EGL_COVERAGE_SAMPLES_NV, 2,
+        EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+        EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+        EGL_NONE,
+    };
+
+必须检测 EGL_SURFACE_TYPE 的能力
+EGL_CONFORMANT
+EGL_RENDERABLE_TYPE
+
+  const EGLint confAttr[] = {
+            EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,    // very important!
+            EGL_SURFACE_TYPE, EGL_PBUFFER_BIT,          // we will create a pixelbuffer surface
+            EGL_RED_SIZE,   8,
+            EGL_GREEN_SIZE, 8,
+            EGL_BLUE_SIZE,  8,
+            EGL_ALPHA_SIZE, 8,     // if you need the alpha channel
+            EGL_DEPTH_SIZE, 16,    // if you need the depth buffer
+            EGL_NONE
+    };

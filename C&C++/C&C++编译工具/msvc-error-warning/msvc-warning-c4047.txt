@@ -1,0 +1,22 @@
+media_data_pool_test.c(21) : warning C4047: “函数”:“void *(__cdecl *)(void *)”与“void (__cdecl *)(void *)”的间接级别不同
+media_data_pool_test.c(21) : warning C4022: “pthread_create”: 指针与实参 3 不匹配
+
+https://msdn.microsoft.com/en-us/library/3t92260h.aspx
+'operator' : 'identifier1' differs in levels of indirection from 'identifier2'
+A pointer can point to a variable (one level of indirection), 
+to another pointer that points to a variable (two levels of indirection), and so on.
+
+代码：
+void read_thread(void *arg) {
+}
+
+pthread_create(&r_thread, NULL, read_thread, NULL);
+
+函数声明
+int pthread_create(
+pthread_t              *restrict thread,
+const pthread_attr_t   *restrict attr,            可以为空
+void                   *(*start_routine)(void*), 
+void                   *restrict arg);
+
+原因是，start_routine，返回值是 void *

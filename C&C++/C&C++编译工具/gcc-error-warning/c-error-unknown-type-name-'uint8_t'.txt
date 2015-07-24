@@ -1,0 +1,5 @@
+需要什么头文件？ 需要 stdint.h
+
+jni/fv_audio_decoder.h:12:37: error: unknown type name 'uint8_t'
+
+Try including stdint.h or inttypes.h.

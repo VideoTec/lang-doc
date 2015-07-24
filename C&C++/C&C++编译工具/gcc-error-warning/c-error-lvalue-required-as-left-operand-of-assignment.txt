@@ -1,0 +1,26 @@
+代码：
+int create_fv_audio_mix(const char *file1, const char *file2) {
+  int ret = 0;
+  LOGI("create mix: file1(%s), file2(%s)", file1, file2);
+  close_fv_audio_mix();
+  if(strlen(file1) != 0 && 
+     _file_exists(file1) == 0 &&
+     ret = open_audio_file(&g_audio_file_1, file1)) {                          出错行
+    LOGE("failed to open file: %s, error-msg: %s", file1, av_err2str(ret));
+    return ret;
+  }
+  if(0 != strlen(file2) && 
+     0 == _file_exists(file2) &&
+     ret = open_audio_file(&g_audio_file_2, file2)) {                          出错行
+    LOGE("failed to open file: %s, error-msg: %s", file2, av_err2str(ret));
+    return ret;
+  }
+  return 0;
+}
+
+错误：
+jni/fv_audio_mix.c:24:10: error: lvalue required as left operand of assignment
+jni/fv_audio_mix.c:30:10: error: lvalue required as left operand of assignment
+
+解决方法：加括号
+(ret = open_audio_file(&g_audio_file_1, file1))

@@ -1,0 +1,23 @@
+each enabled array 怎么理解？可用的 array？在那？怎么设置的？
+
+void glDrawArrays(
+GLenum mode,         GL_POINTS, GL_LINE_STRIP, GL_LINE_LOOP, GL_LINES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, and GL_TRIANGLES
+GLint first,         Specifies the starting index in the enabled arrays
+GLsizei count        Specifies the number of indices to be rendered.
+);
+
+use glVertexAttribPointer to prespecify separate arrays of 
+vertices,         顶点数组
+normals, and      法线数组
+colors and        颜色数组
+use them to construct a sequence of primitives with a single call to glDrawArrays.
+
+sequential[英][sɪˈkwenʃl] [美][sɪˈkwɛnʃəl] adj.按次序的，相继的，构成连续镜头的；时序；序贯
+sequence[英][ˈsi:kwəns] [美][ˈsikwəns, -ˌkwɛns] n.[数]数列，序列；顺序；连续；片断插曲
+
+When glDrawArrays is called, 
+it uses count sequential elements from each enabled array 
+to construct a sequence of geometric primitives, 
+beginning with element first. 
+mode specifies what kind of primitives are constructed and 
+how the array elements construct those primitives.

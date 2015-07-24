@@ -1,0 +1,26 @@
+列表
+
+-------------------------------------------------------------------------------------
+EGL_BIND_TO_TEXTURE_RGB - EGL_DONT_CARE, EGL_TRUE, or EGL_FALSE
+-------------------------------------------------------------------------------------
+Must be followed by EGL_DONT_CARE, EGL_TRUE, or EGL_FALSE. 
+If EGL_TRUE is specified, 
+then only frame buffer configurations that 
+support binding of color buffers to an OpenGL ES RGB texture will be considered. 
+Currently only frame buffer configurations that support pbuffers allow this. 
+The default value is EGL_DONT_CARE.
+-------------------------------------------------------------------------------------
+EGL_BIND_TO_TEXTURE_RGBA - EGL_DONT_CARE, EGL_TRUE, or EGL_FALSE
+-------------------------------------------------------------------------------------
+Must be followed by one of EGL_DONT_CARE, EGL_TRUE, or EGL_FALSE. 
+If EGL_TRUE is specified, 
+then only frame buffer configurations that 
+support binding of color buffers to an OpenGL ES RGBA texture will be considered. 
+Currently only frame buffer configurations that support pbuffers allow this. 
+The default value is EGL_DONT_CARE.
+-------------------------------------------------------------------------------------
+EGL_NATIVE_RENDERABLE - EGL_DONT_CARE, EGL_TRUE, or EGL_FALSE
+-------------------------------------------------------------------------------------
+Must be followed by EGL_DONT_CARE, EGL_TRUE, or EGL_FALSE. 
+If EGL_TRUE is specified, then only frame buffer configurations that allow native rendering into the surface will be considered. 
+The default value is EGL_DONT_CARE.

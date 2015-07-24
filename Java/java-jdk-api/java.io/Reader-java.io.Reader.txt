@@ -1,0 +1,28 @@
+http://developer.android.com/reference/java/io/Reader.html
+
+
+java.lang.Object
+   ↳	java.io.Reader
+
+Known Direct Subclasses
+BufferedReader, 
+CharArrayReader, 
+FilterReader, 
+InputStreamReader, 
+PipedReader, 
+StringReader
+
+Known Indirect Subclasses
+FileReader, 
+LineNumberReader, 
+PushbackReader
+
+----------------------------------
+说明
+----------------------------------
+
+The base class for all readers. A reader is a means of reading data from a source in a character-wise manner. Some readers also support marking a position in the input and returning to this position later.
+
+This abstract class does not provide a fully working implementation, so it needs to be subclassed, and at least the read(char[], int, int) and close() methods needs to be overridden. Overriding some of the non-abstract methods is also often advised, since it might result in higher efficiency.
+
+Many specialized readers for purposes like reading from a file already exist in this package.

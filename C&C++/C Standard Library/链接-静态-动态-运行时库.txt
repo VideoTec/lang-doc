@@ -1,0 +1,26 @@
+gcc 编译时不需要特别 option
+gcc 链接时 -static 会避免链接动态库，但并非强制
+
+----------------------------------------------------------
+
+VC 和运行时库相关的编译选项：/MDd（小写d，是debug意思）
+/ML Single Threaded 单线程版本
+
+/MT是 "multithread, static version ” 意思是多线程静态的版本
+编译器把 LIBCMT.lib 安置到OBJ文件中, 让链接器使用LIBCMT.lib 处理外部符号
+
+/MD是 "multithread- and DLL-specific version” ，意思是多线程DLL版本
+编译器把 MSVCRT.lib 安置到OBJ文件中, 
+
+使用静态运行时库的缺点：
+/MT和/MTd表示采用多线程CRT库的静态lib版本。该选项会在编译时将运行时库以静态lib的形式完全嵌入。
+该选项生成的可执行文件运行时不需要运行时库dll的参加，会获得轻微的性能提升，
+但最终生成的二进制代码因链入庞大的运行时库实现而变得非常臃肿。
+当某项目以静态链接库的形式嵌入到多个项目，则可能造成运行时库的内存管理有多份，
+最终将导致致命的“Invalid Address specified to RtlValidateHeap”问题。
+另外托管C++和CLI中不再支持/MT和/MTd选项
+
+使用动态运行时库的好处：
+当多项目以MD方式运作时，其内部会采用同一个堆，内存管理将被简化，跨模块内存管理问题也能得到缓解。
+
+VC 和运行时库相关的链接选项：

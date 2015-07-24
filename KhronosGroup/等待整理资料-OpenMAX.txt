@@ -1,0 +1,1 @@
+Android 4.0 and later exposes OpenMAX AL as part of its NDK (Native Development Kit)

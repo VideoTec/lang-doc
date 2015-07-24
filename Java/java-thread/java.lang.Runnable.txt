@@ -1,0 +1,20 @@
+http://developer.android.com/reference/java/lang/Runnable.html
+
+Represents a command that can be executed. Often used to run code in a different Thread.
+
+很简单的一个接口
+public interface Runnable {
+    public void run();
+}
+
+派生类
+
+AnimationDrawable, 
+CookieSyncManager, 
+ForkJoinWorkerThread, 
+FutureTask<V>, 
+HandlerThread, 
+RefQueueWorker, 
+RenderScript.RSErrorHandler, RenderScript.RSMessageHandler, 
+RunnableFuture<V>, RunnableScheduledFuture<V>, 
+Thread, TimerTask

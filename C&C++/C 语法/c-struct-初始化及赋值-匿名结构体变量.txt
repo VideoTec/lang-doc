@@ -1,0 +1,5 @@
+引用自 E:\libav\doc\examples\output.c
+ost->st->time_base = (AVRational){ 1, STREAM_FRAME_RATE };
+
+第一：结构体可以直接赋值
+第二：（匿名结构体变量）临时变量的写法

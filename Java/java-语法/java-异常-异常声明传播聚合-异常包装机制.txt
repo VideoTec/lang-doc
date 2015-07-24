@@ -1,0 +1,23 @@
+异常声明传播聚合在实际应用程序中很少发生。开发人员时常使用异常包装机制来优化。如下：
+
+public void readNumberFromUrl(String url)  
+throws ApplicationException {  
+    try{  
+        String data = readDataFromUrl(url);  
+        long number = convertData(data);  
+    } catch (BadUrlException e){  
+        throw new ApplicationException(e);  
+    } catch (BadNumberException e){  
+        throw new ApplicationException(e);  
+    }  
+}  
+
+readNumberFromUrl()方法只需要声明抛出ApplicationException即可。
+BadUrlException和BadNumberException被捕获并包装进一个更通用的ApplicationException中。
+通过异常包装就可以避免异常声明聚合
+
+http://blog.csdn.net/kingzone_2008/article/details/8535287
+这种处理方式：
+我的个人观点是，如果你只是包装异常但并不提供更多信息，那为什么要包装它呢？
+try-catch块就成了多余的代码，没有做任何有意义的事。
+只需将ApplicationException，BadUrlException和BadNumberException定义为unchecked异常

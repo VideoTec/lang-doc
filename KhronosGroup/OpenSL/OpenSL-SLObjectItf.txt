@@ -1,0 +1,4 @@
+/* Forward declaration for the object interface */
+struct SLObjectItf_;
+
+typedef const struct SLObjectItf_ * const * SLObjectItf; 为什么是指针的指针？为了模拟接口的概念

@@ -1,0 +1,47 @@
+
+使用 glReadPixels 读取渲染后的数据
+
+glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+
+http://www.cnblogs.com/leon032/archive/2012/10/18/2729590.html
+OpenGL ES2 的Off-Screen实现
+
+如果需要让你显示在窗口中，如调用eglCreateWindowSurface；若off-screen，则eglCreatePbufferSurface
+
+https://www.khronos.org/message_boards/showthread.php/5089-Read-the-PBuffer-%28glReadPixels-too-Slow-%29
+critical[英][ˈkrɪtɪkl] [美][ˈkrɪtɪkəl] adj.批评的，爱挑剔的；关键的；严重的；极重要的
+
+Generally glReadPixels() is slow and should really 
+only be used when doing screencapture at which point performance is non critical.
+
+The main cause for this loss of performance is due to synchronisation: 
+the glReadPixels() call forces synchronisation between the CPU and the Graphics Core 
+thus serialising them and resulting in lost CPU and Graphics Core performance. 
+At which point it does not matter 
+that much if you access only a single pixel or copy the whole buffer, 
+you lost most of the performance with the synchronisation.
+
+For most applications which access the render target 
+there is usually some other way to achieve the same result 
+without having to read the rendertarget. 
+Could you explain in more detail why you are trying to 
+acccess the rendered surface 45 times per second using glReadPixels ?
+
+慢的原因：需要 CPU-GPU 同步，CPU需要等待GPU渲染完，GPU需要等待CPU读取完
+解决方法：使用多个 pbuffer
+One thing you could try is to have multiple pbuffers, 
+and while you render to one you read from another that was previously rendered to. 
+That way you give the graphics core more time to finish rendering a certain frame 
+before you try reading it. 
+The number of pbuffers you need 
+depends on the amount of command buffering the OpenGL ES implementation does. 
+3 or 4 might be a good number to start from.
+
+解决方法二：pixmap (需要 egl-frame-buffer-config 的 EGL_SURFACE_TYPE 支持 EGL_PIXMAP_BIT)
+            eglCreatePixmapSurface - 从位图创建 Surface
+There are only two ways to get the contents of a surface: 
+glReadPixels and, 
+if the surface is a pixmap, whatever way of access the native 2D graphics system provides. 
+However, both methods have the same problem of synchronisation.
+
+the good way was to render into a Pixmap with eglCreatePixmapSurface method and then read easily its pixels

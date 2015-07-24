@@ -1,0 +1,10 @@
+/*
+ * Class:     com_sea_monster_video_jniinterface_VideoConvert
+ * Method:    register
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_sea_1monster_video_jniinterface_VideoConvert_register
+  (JNIEnv *, jclass);
+
+com.sea_monster.video.jniinterface包 VideoConvert类 register方法
+注意，包名，类名，方法名中 包含下划线的情况: _1

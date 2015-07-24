@@ -1,0 +1,48 @@
+http://stackoverflow.com/questions/8374646/what-is-a-static-interface-in-java
+http://stackoverflow.com/questions/71625/why-would-a-static-inner-interface-be-used-in-java 这里更好的解释了作用
+
+modifier[英][ˈmɒdɪfaɪə(r)] [美][ˈmɑ:dɪfaɪə(r)] 修饰符
+distinction[英][dɪˈstɪŋkʃn] [美][dɪˈstɪŋkʃən] n.区别；荣誉；特质；卓越
+redundant[英][rɪˈdʌndənt] [美][rɪˈdʌndənt] adj.多余的，累赘的；（因人员过剩）被解雇的，失业的；重沓；衍
+clutter[英][ˈklʌtə(r)] [美][ˈklʌtɚ] n.杂乱；混乱；喧嚣
+simulate[英][ˈsɪmjuleɪt] [美][ˈsɪmjəˌlet] 冒充
+
+The static modifier is only allowed on a nested classes or interfaces. 
+In your example Entry is nested inside the Map interface.
+
+For interfaces, the static modifier is actually optional. 
+The distinction makes no sense for interfaces since they contain no code that could access the outer this anyway.
+
+---------------------------
+
+I have just found a static inner interface in our code-base.
+
+class Foo {
+    public static interface Bar {
+        /* snip */
+    }
+    /* snip */
+}
+I have never seen this before. The original developer is out of reach. Therefore I have to ask SO:
+
+What are the semantics behind a static interface? What would change, if I remove the static? Why would anyone do this?
+
+The static keyword in the above example is redundant (a nested interface is automatically "static") and can be removed with no effect on semantics; I would recommend it be removed. The same goes for "public" on interface methods and "public final" on interface fields - the modifiers are redundant and just add clutter to the source code.
+
+Either way, the developer is simply declaring an interface named Foo.Bar. There is no further association with the enclosing class, except that code which cannot access Foo will not be able to access Foo.Bar either. (From source code - bytecode or reflection can access Foo.Bar even if Foo is package-private!)
+
+It is acceptable style to create a nested interface this way if you expect it to be used only from the outer class, so that you do not create a new top-level name. For example:
+
+public class Foo {
+    public interface Bar {
+        void callback();
+    }
+    public static void registerCallback(Bar bar) {...}
+}
+// ...elsewhere...
+Foo.registerCallback(new Foo.Bar() {
+    public void callback() {...}
+});
+
+可以直接去掉，只是为了 明确的声明一个 inner interface，由外部类来实现
+The question has been answered, but one good reason to use an inner interface is if its function is directly related to the class it is in. A good example of this is a Listener. If you had a class Foo and you wanted other classes to be able to listen for events on it, you could declare an interface named FooListener, which is ok, but it would probably be more clear to declare an inner interface and have those other classes implement Foo.Listener (an inner class Foo.Event isn't bad along with this).

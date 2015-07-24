@@ -1,0 +1,7 @@
+JAVA 中加载 动态的代码
+
+public class HelloWorld {
+    static {
+        System.load("helloworld");  libhelloworld.so  21:53 2015/5/22 真是大错特错，应该是 loadLibrary
+    }
+}

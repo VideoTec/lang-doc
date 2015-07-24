@@ -1,0 +1,5 @@
+vs2015.preview_ult_CHS.iso
+
+安装：
+1，虚拟光驱
+2，需要安装 IE10

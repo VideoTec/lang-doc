@@ -1,0 +1,31 @@
+There is no default float precision qualifier for fragment shaders in OpenGL ES. 
+A precision qualifier is required to use any floating pointer variable - 
+it doesn't matter if it's a uniform, varying, or just a local variable. 
+
+There is a default precision for vertex shaders, 
+so you don't need to add any qualifiers there.
+
+In OpenGL the precision qualifier is not required, 
+which is why the example you're pointing to does not include them.
+
+Try adding this to the top of your shader and you should be fine:
+
+precision mediump float;
+
+示例：
+
+const char *vertex_shader_string = " \
+      uniform mat4 u_mvpMatrix; \
+      attribute vec4 a_vertex; \
+      attribute vec4 a_color; \
+      varying vec4 fr_color; \
+      void main() { \
+        gl_Position = u_mvpMatrix * a_vertex; \
+        fr_color = a_color; \
+      }";
+ const char *fragment_shader_string = " \
+       precision mediump float; \             如果不指定精度，就不会输出颜色
+       varying vec4 fr_color; \
+       void main() { \
+         gl_FragColor = fr_color; \
+       }";

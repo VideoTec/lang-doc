@@ -1,0 +1,27 @@
+19:40 2015/6/3
+
+  GLfloat triangle_vertices[] = {
+    -1, 1, 0,
+    -1, 0, 0,
+    0, 1, 0
+  };
+  
+  glDrawArrays(GL_TRIANGLES, 0, 3); 画不出来
+  glDrawArrays(GL_LINES, 0, 3);     可以画出来
+  
+  最后找到原因是
+  glEnable(GL_CULL_FACE);
+  glFrontFace(GL_CW);          顺时针方向为正面，怎么理解？
+  glCullFace(GL_BACK);
+  
+  glCullFace：如果mode的值为GL_FRONT_AND_BACK，那么多边形将不会被绘制到屏幕上，但其他图元如点和线还是会绘制到屏幕上的
+  
+  修改方法一： glFrontFace(GL_CCW)
+  修改方法二： 取消启用 GL_CULL_FACE
+  修改方法三： 修改 triangle_vertices 中坐标顺序
+				GLfloat triangle_vertices[] = {
+					-1, 1, 0,
+					0, 1, 0,
+					-1, 0, 0
+				};
+  修改方法四： 旋转三角形，就可看到另一面了

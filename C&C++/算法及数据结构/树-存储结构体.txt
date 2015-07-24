@@ -1,0 +1,13 @@
+/* 树节点的定义 */
+#define MAX_TREE_SIZE 100
+typedef struct
+{
+  TElemType data;
+  int parent; /* 父节点位置域 */ 存储其父节点在 nodes 中的位置
+} PTNode;
+
+typedef struct
+{
+  PTNode nodes[MAX_TREE_SIZE];  存储有所有结点，排序问题？从上到下，从左到右，递归发现
+  int n; /* 节点数 */
+} PTree;

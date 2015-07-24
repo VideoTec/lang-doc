@@ -1,0 +1,21 @@
+10:06 2015/5/28
+
+#ifndef _JNI_UTIL_H_
+
+#if defined(DEBUG)
+
+这两种判断，什么区别吗？
+http://stackoverflow.com/questions/1714245/difference-between-if-definedwin32-and-ifdefwin32
+
+第一点： If you use #ifdef syntax, remove the brackets. 
+         bracket[英][ˈbrækɪt] [美][ˈbrækɪt] 括弧
+第二点： #ifdef can only use a single condition   只能有一个条件
+         #if defined(NAME) can do compound conditionals 可以判断多个条件
+
+#if defined(WIN32) && !defined(UNIX)
+/* Do windows stuff */
+#elif defined(UNIX) && !defined(WIN32)
+/* Do linux stuff */
+#else
+/* Error, both can't be defined or undefined same time */
+#endif

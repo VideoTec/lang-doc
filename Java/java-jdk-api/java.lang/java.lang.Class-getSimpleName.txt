@@ -1,0 +1,7 @@
+public String getSimpleName ()
+
+Added in API level 1
+Returns the simple name of the class represented by this Class as defined in the source code. If there is no name (that is, the class is anonymous) then an empty string is returned. If the receiver is an array then the name of the underlying type with square braces appended (for example "Integer[]") is returned.
+
+Returns
+the simple name of the class represented by this Class.

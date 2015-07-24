@@ -1,0 +1,19 @@
+Java Development Kit（JDK）是太阳微系统针对Java开发人员发布的免费软件开发工具包
+（SDK，Software development kit）。
+自从Java推出以来，JDK已经成为使用最广泛的Java SDK。
+
+作为Java语言的SDK，普通用户并不需要安装JDK来运行Java程序，而只需要安装JRE（Java Runtime Environment）。
+而程序开发者必须安装JDK来编译、调试程序
+
+----------------------------------------
+JDK包 的组成
+----------------------------------------
+第一部分：
+JDK包含了一批用于Java开发的组件
+
+第二部分：
+JDK中还包括完整的JRE（Java Runtime Environment），Java运行环境，也被称为private runtime。
+包括了用于产品环境的各种库类，如基础类库rt.jar，以及给开发人员使用的补充库，如国际化与本地化的类库、IDL库等等
+
+第三部分
+JDK中还包括各种样例程序，用以展示Java API中的各部分

@@ -1,0 +1,13 @@
+Java EE，Java平台企业版（Java Platform Enterprise Edition），
+是Sun公司为企业级应用推出的标准平台。
+
+Java平台共分为三个主要版本Java EE、Java SE和Java ME
+
+JDK是Java development toolkit,相当于是Java的库函数，是编译，运行java程序的工具包。
+
+J2EE是Java 2 enterprise edition是Java的一种企业版用于企业级的应用服务开发
+J2SE是Java 2 standard edition是Java的标准版,用于标准的应用开发
+J2ME是Java 2 Micro Edition是Java的微型版,常用于手机上的开发
+J2EE,J2SE,J2ME是java针对不同的的使用来提供不同的服务，也就是提供不同类型的类库。
+针对企业网应用的J2EE（Java 2 Enterprise Edition）、针对普通PC应用的J2SE（Java 2 Standard Edition）和
+针对嵌入式设备及消费类电器的J2ME（Java 2 Micro Edition）三个版本

@@ -1,0 +1,33 @@
+Selector允许单线程处理多个 Channel。
+如果你的应用打开了多个连接（通道），但每个连接的流量都很低，使用Selector就会很方便
+
+要使用Selector，得向Selector注册Channel，然后调用它的select()方法。
+这个方法会一直阻塞到某个注册的通道有事件就绪。
+一旦这个方法返回，线程就可以处理这些事件，事件的例子有如新连接进来，数据接收等
+
+http://ifeve.com/selectors/
+打开一个Selector，注册一个通道注册到这个Selector上(通道的初始化过程略去),
+然后持续监控这个Selector的四种事件（接受，连接，读，写）是否就绪
+
+Selector selector = Selector.open();
+channel.configureBlocking(false);    非阻塞模式
+SelectionKey key = channel.register(selector, SelectionKey.OP_READ);
+while(true) {
+  int readyChannels = selector.select();        这里会阻塞住，直到 OP_READ
+  if(readyChannels == 0) continue;
+  Set selectedKeys = selector.selectedKeys();
+  Iterator keyIterator = selectedKeys.iterator();
+  while(keyIterator.hasNext()) {
+    SelectionKey key = keyIterator.next();
+    if(key.isAcceptable()) {
+        // a connection was accepted by a ServerSocketChannel.
+    } else if (key.isConnectable()) {
+        // a connection was established with a remote server.
+    } else if (key.isReadable()) {
+        // a channel is ready for reading
+    } else if (key.isWritable()) {
+        // a channel is ready for writing
+    }
+    keyIterator.remove();
+  }
+}

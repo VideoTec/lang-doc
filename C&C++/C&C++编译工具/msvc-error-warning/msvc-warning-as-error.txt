@@ -1,0 +1,7 @@
+http://stackoverflow.com/questions/4750880/can-i-treat-a-specific-warning-as-an-error
+
+This should do the trick: #pragma warning (error: 4715).
+Or the /we4715 command line option - for which I cannot seem to find any documentation.
+
+参考
+E:\doc\Computer software\C&C++\C&C++编译工具\msvc-error-warning\msvc-warning-c4013.txt

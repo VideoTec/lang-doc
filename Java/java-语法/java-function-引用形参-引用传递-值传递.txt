@@ -1,0 +1,16 @@
+17:00 2015/6/12
+
+引用形式参数：
+
+在函数中，引用形参 和 引用实参，指向同一个对象
+在函数中，修改引用形参，指向别的对象，不会影响实参。
+
+http://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value
+
+Java is always pass-by-value.
+The difficult thing to understand is that Java passes objects as references and those references are passed by value.
+
+The Java Spec says that everything in Java is pass-by-value. 
+There is no such thing as "pass-by-reference" in Java
+
+Java 只有值传递

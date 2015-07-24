@@ -1,0 +1,465 @@
+java 字符编码问题
+当我们从文件中读数据时，最好使用InputStream方式，然后采用String(byte[] bytes, String encoding)指明文件的编码方式。不要使用Reader方式，因为Reader方式会自动根据jdk指明的编码方式把文件内容转换成unicode编码
+
+/** 
+* Java中的main()方法详解 
+*/ 
+public class HelloWorld { 
+    public static void main(String args[]) { 
+        System.out.println("Hello World!"); 
+    } 
+}
+
+下面两个写法都不对
+public void static void main
+public void static main
+
+java FloatBuffer用法
+import java.nio.FloatBuffer;
+
+private FloatBuffer vertexBuffer;	// buffer holding the vertices
+	private float vertices[] = {
+			-1.0f, -1.0f,  -1.0f,		// V1 - bottom left
+			-1.0f,  1.0f,  0.0f,		// V2 - top left
+			 1.0f, -1.0f,  -1.0f,		// V3 - bottom right
+			 1.0f,  1.0f,  1.0f			// V4 - top right
+	};
+
+// a float has 4 bytes so we allocate for each coordinate 4 bytes
+		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(vertices.length * 4);
+		byteBuffer.order(ByteOrder.nativeOrder());
+		
+		// allocates the memory from the byte buffer
+		vertexBuffer = byteBuffer.asFloatBuffer();
+		
+		// fill the vertexBuffer with the vertices
+		vertexBuffer.put(vertices);
+		
+		// set the cursor position to the beginning of the buffer
+		vertexBuffer.position(0);
+
+
+简单写法
+mGLCubeBuffer = ByteBuffer.allocateDirect(CUBE.length * 4)
+                .order(ByteOrder.nativeOrder())
+                .asFloatBuffer();
+
+mGLCubeBuffer.put(CUBE).position(0);
+
+
+
+
+
+
+
+
+java 数组参数，匿名变量
+fb.put(new float[]{-1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 0.0f});
+
+if (something)
+{
+    Object o = new Object(); 
+} // you leave the block, the reference deleted, later on the garbage collector will delete he object itself.
+
+
+
+
+
+
+
+
+java.nio buffer
+注意一：Buffer及其子类都不是线程安全的
+
+注意二：写完后，？注意读写位置都到当位置？，position(0)，
+position
+读/写操作的当前下标。
+当使用buffer的相对位置进行读/写操作时，
+读/写会从这个下标进行，并在操作完成后，buffer会更新下标的值。
+
+注意三：表示位置的概念
+0 <= mark <= position <= limit <= capacity
+
+第一步分配：
+要想获得一个Buffer对象首先要进行分配。
+ 每一个Buffer类都有一个allocate方法。
+
+第二步写：
+put方法有很多版本，允许你以不同的方式把数据写入到Buffer中
+
+第三步读：
+flip方法将Buffer从写模式切换到读模式。
+调用flip()方法会将position设回0，并将limit设置成之前position的值
+
+get方法有很多版本，允许你以不同的方式从Buffer中读取数据
+
+
+
+
+
+
+
+
+
+
+
+java new 
+方法一：
+if (something)
+{
+    Object o = new Object(); 
+} 
+// you leave the block, the reference deleted, 
+//later on the garbage collector will delete he object itself.
+
+方法二：
+Object a = new Object();
+a = null; 
+// after that, there is no reference to the object and 
+//it will be deleted by garbage collector
+
+
+
+
+
+
+
+
+
+java 数组成员变量的定义方法
+	private float texture[] = {    		
+			// Mapping coordinates for the vertices
+			0.0f, 1.0f,		// top left		(V2)
+			0.0f, 0.0f,		// bottom left	(V1)
+			1.0f, 1.0f,		// top right	(V4)
+			1.0f, 0.0f		// bottom right	(V3)
+	};
+	
+	/** The texture pointer */
+	private int[] textures = new int[1];
+
+          private int[] mVertexObjects //这个怎么理解？
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  java的线程同步
+		  java 的 Object对象，提供了，同步机制。
+	
+注意，必须，赋值，否则为空对象。
+private String mLockBMP = "";
+private String mLockShader = "";
+
+
+
+
+
+
+
+
+
+
+
+
+Java 的 I/O 操作类在包 java.io
+Java 的 I/O 操作类在包 java.io 下，大概有将近 80 个类，但是这些类大概可以分成四组，分别是：
+基于字节操作的 I/O 接口：InputStream 和 OutputStream
+
+基于字符操作的 I/O 接口：Writer 和 Reader
+
+基于磁盘操作的 I/O 接口：File
+
+基于网络操作的 I/O 接口：Socket
+
+
+
+
+
+
+
+
+
+import android.graphics.YuvImage;
+public YuvImage(byte[] yuv, int format, int width, int height, int[] strides) {
+        if (format != ImageFormat.NV21 &&
+                format != ImageFormat.YUY2) {
+            throw new IllegalArgumentException(
+                    "only support ImageFormat.NV21 " +
+                    "and ImageFormat.YUY2 for now");
+        }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		从JDK 1.4起，NIO API作为一个基于缓冲区，并能提供非阻塞（non-blocking）IO操作的API被引入
+		在JDK 1.4以前，Java的IO操作集中在Java.io这个包中，是基于流的阻塞（blocking）API。对于大多数应用来说，这样的API使用很方便，然而，一些对性能要求较高的应用，尤其是服务端应用，往往需要一个更为有效的方式来处理IO。从JDK 1.4起，NIO API作为一个基于缓冲区，并能提供非阻塞（non-blocking）IO操作的API被引入。本专题将对其进行深入的介绍。
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		java ByteBuffer 概念
+		capacity
+
+the limit of this buffer
+limit
+
+Marks the current position, so that the position may return to this point
+mark
+
+position
+the value of this buffer's current position.
+
+
+
+
+
+
+
+
+
+在Java中当我们要对数据进行更底层的操作时，通常是操作数据的字节（byte）形式，这时常常会用到ByteBuffer这样一个类。ByteBuffer提供了两种静态实例方式
+这与Java的内存使用机制有关。第一种分配方式产生的内存开销是在JVM中的，而第二种的分配方式产生的开销在JVM之外，以就是系统级的内存分配。当Java程序接收到外部传来的数据时，首先是被系统内存所获取，然后在由系统内存复制拷贝到JVM内存中供Java程序使用。所以在第二种分配方式中，可以省去复制这一步操作，效率上会有所提高。但是系统级内存的分配比起JVM内存的分配要耗时得多，所以并不是任何时候allocateDirect的操作效率都是最高的
+
+
+
+
+
+
+
+
+
+
+
+
+
+allocateDirect(int capacity) 
+public static ByteBuffer allocate(int capacity)  
+public static ByteBuffer allocateDirect(int capacity)  
+
+注意这两个是静态函数，用于创建，缓存对象。
+
+
+
+
+
+
+
+
+
+
+
+
+java direct byte buffer  , read file 
+
+
+
+
+ByteBuffer, 置零的方法，注意这里是direct byte buffer
+mOverlayImage.put(new byte[mWidth * mHeight * 4]);
+
+
+
+
+
+
+
+
+
+
+
+java 创建 List变量
+mShaderList = new List<FShader>();
+
+Cannot instantiate the type List<FShader>
+
+List is an interface. Interfaces cannot be instantiated. Only concrete types can be instantiated. You probably want to use an ArrayList, which is an implementation of the List interface.
+
+List<Product> products = new ArrayList<Product>();
+
+
+
+
+
+
+
+
+
+
+
+
+Map<Integer, String> map = new HashMap<Integer, String>();
+Map<Integer, String> map = new HashMap<Integer, String>();
+
+
+map 里不能有基本数据类型：
+private Map<int, String> mTimeImageMap = new Map<int, String>();
+
+泛型的声明必须是一个类,int是基本数据类型而不是一个类,这里应该用int的封装类Integer做声明,也就是Map<Integer,Integer> ,另外等号右边Map是一个接口不能直接实例化,应该用其实现类比如HashMap<Integer,Integer>()
+
+“集合框架”提供两种常规的Map实现：HashMap和TreeMap (TreeMap实现SortedMap接口)。在Map 中插入、删除和定位元素，HashMap 是最好的选择。但如果您要按自然顺序或自定义顺序遍历键，那么TreeMap会更好。使用HashMap要求添加的键类明确定义了hashCode()和equals()的实现。 
+
+比较Java原生的 3种Map的效率。
+1.  TreeMap
+2.  HashMap
+3.  ConcurrentSkipListMap
+
+便利方法一：
+for (Map.Entry<String, String> entry : map.entrySet())
+{
+    System.out.println(entry.getKey() + "/" + entry.getValue());
+}
+
+便利方法二：
+Iterator entries = myMap.entrySet().iterator();
+while (entries.hasNext()) {
+  Entry thisEntry = (Entry) entries.next(); 
+第一次调用Iterator的next()方法时，它返回序列的第一个元素
+  Object key = thisEntry.getKey();
+  Object value = thisEntry.getValue();
+  // ...
+}
+
+Iterator overlayIter = mOverlayMap.entrySet().iterator();
+警告：Iterator is a raw type.
+修改成下面的样子，就没有警告了：（private Map<Integer, String> mOverlayMap）
+Iterator<Map.Entry<Integer, String>> overlayIter = mOverlayMap.entrySet().iterator();
+
+同样的道理，看下面的例子：
+Entry overlay = overlayIter.next();
+需要修改成下面的样子
+Entry<Integer, String> overlay = overlayIter.next();
+
+
+mOverlayArray = new Entry<Integer, String>[nb_images];
+Cannot create a generic array of Map.Entry<Integer,String>
+
+
+
+
+
+
+                          }  
+
+
+
+
+
+
+
+
+
+java list map set
+java中的泛型的概念？
+
+List<String> list = new ArrayList<>();  这个怎么理解？
+List<Entry<String,Foo>> randAccess = 
+                    new ArrayList<Entry<String,Foo>>(foos.entrySet());
+					
+					
+					
+					
+					
+					
+					
+					
+					java iterator how to use?
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					map postion
+					根据postion获取map元素的想法，是有问题的。
+
+I'd just like to point out that the offsets (positions) of the entries in a map (of any kind) are not stable. Each time an entry is added or removed, the offsets of the remaining entriesmay change. For a HashMap or LinkedHashMap, you've no way of knowing which entry's offsets will change. Indeed for a regular HashMap, a single insertion can apparently "randomize" the entry offsets.
+The instability of the offsets and the fact that finding entry at a given offset is expensive for all standard map implementations are the reasons why the Map interface does not provide a get(int offset)method. It should also be a hint that it is not a good idea for an algorithm to need to do this sort of thing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cannot instantiate the type Map.Entry<Integer,String>
+Cannot instantiate the type Map.Entry<Integer,String>
+下面这句会出错：
+mOverlayArray.add(new Entry<Integer, String>(time, imagePath));
+
+修改成
+mOverlayArray.add(new AbstractMap.SimpleEntry<Integer, String>(time, imagePath));
+
+使用下面这个类：
+Class AbstractMap.SimpleEntry<K,V>
+new AbstractMap.SimpleEntry<String, Integer>("exmpleString", 42);
+
+AbstractMap有Map的一些主要方法的实现。
+通过AbstractMap，可以降低实现Map功能的难度。
+同时AbstractMap还定义了两个Map.Entry的实现SimpleEntry和SimpleImmutableEntry。
+其中SimpleEntry的value可以变，不是线程安全的，SimpleImmutableEntry的value不可变，当调用setValue()方法是，会抛出一个异常，是线程安全的。
+
+
+
+
+
+
+
+
+
+java byte array 
+java byte array 移动
+比如：byte[] abc = new byte[100];
+怎么获得，50，后的数组，
+
+类似下面的c代码：
+char abc[100] = {0};
+abc + 49;  这个就是一个代码50后的数组。
+
+
+
+
+
+
+
+
+
+Reading a binary file into a single byte array in JAVA
+InputStream in; //assuming already present
+byte[] data = new byte[in.available()];
+in.read(data);//now data is filled with the whole content of the InputStream object

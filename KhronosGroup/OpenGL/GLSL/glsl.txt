@@ -1,0 +1,28 @@
+http://zh.wikipedia.org/wiki/GLSL
+
+GLSL - OpenGL Shading Language 也称作 GLslang，
+是一个以C语言为基础的高阶着色语言。
+它是由 OpenGL ARB 所建立，
+提供开发者对绘图管线更多的直接控制，而无需使用汇编语言或硬件规格语言
+
+类似于 C语言，GLSL 支援循环和分支，
+包括 if、else、if/else、for、do-while、break、continue 等
+
+GLSL 着色器本身只是简单的字串集，
+这些字串集会传送到硬件厂商的驱动程式，
+并从程式内部的 OpenGL API 进入点编译。
+着色器可从程式内部或读入纯文字档来即时建立，但必须以字串形式传送到驱动程式。
+
+GLSL 着色器可以事先建立和测试，现有以下 GLSL 开发工具：
+
+RenderMonkey - 这个软件是由 ATI 制作的，提供界面用以建立、编译和除错 GLSL 着色器，和 DirectX 着色器一样。仅能在 Windows 平台上执行。
+GLSLEditorSample - 在 Mac OS X 上，它是目前唯一可用的程式，其提供着色器的建立和编译，但不能除错。它是 cocoa 应用程序，仅能在 Mac OS X 上执行。
+Lumina - Lumina 是新的 GLSL 开发工具。其使用 QT 界面，可以跨平台。
+
+http://deciia.wang/2014/12/06/GLSLlearning1/
+
+变量区分大小写，
+必须以一个字母或下划线开始，
+其只包含字母、下划线与数字，
+用户定义的变量不能以gl开始，连续下划线“_”也被保留，
+使用时会跳出错误，可能会在将来使用而不能作为变量

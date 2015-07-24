@@ -1,0 +1,70 @@
+要对一个 "OpenGL 对象" 进行任何的操作，你必须先要对它进行绑定
+
+纹理：
+
+void glGenTextures(GLsizei n, GLuint * textures)
+void glBindTexture(GLenum target, GLuint texture);
+void glDeleteTextures(GLsizei n, const GLuint * textures);
+void glTexImage2D(
+    GLenum target,            GL_TEXTURE_2D
+ 	GLint level,              Level 0 is the base image level
+ 	GLint internalformat,     GL_ALPHA, GL_LUMINANCE, GL_LUMINANCE_ALPHA, GL_RGB, GL_RGBA
+ 	GLsizei width,            Specifies the width of the texture image
+ 	GLsizei height,
+ 	GLint border,             Specifies the width of the border. Must be 0
+ 	GLenum format,
+ 	GLenum type,
+ 	const GLvoid * data);
+void glTexSubImage2D(
+    GLenum target,
+ 	GLint level,
+ 	GLint xoffset,           Specifies a texel offset in the x direction within the texture array
+ 	GLint yoffset,
+ 	GLsizei width,
+ 	GLsizei height,
+ 	GLenum format,
+ 	GLenum type,
+ 	const GLvoid * data);
+
+
+FBO: FrameBuffer Object:
+FBO的主要作用就是改变当前 "帧缓存" 的输出路径，除了自身之外，它并不分配内存。
+默认情况下，显卡的图像数据是输出到 "帧缓存" 和 "深度缓存" 中去的，
+"帧缓存" 的数据会直接显示到显示器上
+绑定FBO后：渲染结果，会输出到这个 FBO。
+Frame Buffer Object(FBO)扩展，被推荐用于: 把数据渲染到纹理对像
+PBO,在没有FBO之前,就是用来它做离屏渲染的
+
+void glGenFramebuffers(GLsizei n, GLuint * framebuffers);
+void glBindFramebuffer(GLenum target, GLuint framebuffer); //The symbolic constant must be GL_FRAMEBUFFER
+void glDeleteFramebuffers(GLsizei n, const GLuint * framebuffers);
+void glFramebufferTexture2D(
+	GLenum target,
+ 	GLenum attachment,
+ 	GLenum textarget,
+ 	GLuint texture,
+ 	GLint level);
+
+
+Renderbuffer object:
+void glGenRenderbuffers(GLsizei n, GLuint * renderbuffers);
+void glBindRenderbuffer(GLenum target, GLuint renderbuffer);
+void glDeleteRenderbuffers(GLsizei n, const GLuint * renderbuffers);
+void glFramebufferRenderbuffer(
+    GLenum target,
+ 	GLenum attachment,
+ 	GLenum renderbuffertarget,
+ 	GLuint renderbuffer);
+
+VBO: 顶点缓冲对像
+直接把顶点数据放置到显卡中的高速缓存，极大提高了绘制速度
+VBO的应用就是在显卡中分配一个显存空间，然后一次性把所有的顶点数据发送到这块显存中保存起来，
+当我们要刷新3D场景的时候，我们就不需要每次都把上百万个顶点从CPU传送到GPU了，只要直接从VBO对像中读取就行了
+shader脚本里的attribute类型的变量：
+void glVertexAttribPointer(
+    GLuint index,  Specifies the index of the generic vertex attribute to be modified
+ 	GLint size,    Must be 1, 2, 3, or 4. The initial value is 4. 每个顶点的 变量个数？
+ 	GLenum type,   GL_BYTE, GL_UNSIGNED_BYTE, GL_SHORT, GL_UNSIGNED_SHORT, GL_FIXED, or GL_FLOAT are accepted. The initial value is GL_FLOAT
+ 	GLboolean normalized,  表明，数据中的，数据格式。归一化处理
+ 	GLsizei stride, 顶点数据的步长，如果为0表示，顶点数据：tightly packed in the array
+ 	const GLvoid * pointer);

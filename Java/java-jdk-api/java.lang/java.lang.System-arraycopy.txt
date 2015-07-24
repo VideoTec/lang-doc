@@ -1,0 +1,18 @@
+java.lang.System
+
+static void arraycopy(Object src, int srcPos, Object dst, int dstPos, int length)
+Copies length elements from the array src, starting at offset srcPos, into the array dst, starting at offset dstPos.
+
+public static void arraycopy (Object src, int srcPos, Object dst, int dstPos, int length)
+
+Added in API level 1
+Copies length elements from the array src, starting at offset srcPos, into the array dst, starting at offset dstPos.
+
+The source and destination arrays can be the same array, in which case copying is performed as if the source elements are first copied into a temporary array and then into the destination array.
+
+Parameters
+src         the source array to copy the content.
+srcPos      the starting index of the content in src.
+dst         the destination array to copy the data into.
+dstPos      the starting index for the copied content in dst.
+length      the number of elements to be copied.

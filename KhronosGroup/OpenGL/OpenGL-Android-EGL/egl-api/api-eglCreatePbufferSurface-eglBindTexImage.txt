@@ -1,0 +1,24 @@
+问题
+https://www.khronos.org/message_boards/showthread.php/5289-Writing-to-a-pbuffer
+
+The idea was to use the pbuffer 
+as a texture, 
+not as a render target. 
+So you don't need the eglMakeCurrent call.
+
+// create pbuffer
+EGLint attribs[] = {
+  EGL_WIDTH, width,
+  EGL_HEIGHT, height,
+  EGL_TEXTURE_FORMAT, EGL_TEXTURE_RGB,
+  EGL_TEXTURE_TARGET, EGL_TEXTURE_2D,
+  EGL_NONE
+};
+pbuffer = eglCreatePbufferSurface(eglDisplay, eglConfig, attribs);
+ 
+// upload data to pbuffer
+glBindTexture(GL_TEXTURE_2D, 0);
+eglBindTexImage(eglDisplay, pbuffer, EGL_BACK_BUFFER);
+glTexImage2D(...); 
+ 
+// render using pbuffer as texture

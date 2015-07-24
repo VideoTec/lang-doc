@@ -1,0 +1,18 @@
+nested[英][nestɪd] [美][nestɪd] adj.嵌套的
+nest[英][nest] [美][nɛst] vt.筑巢；嵌套
+
+http://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
+
+Nested classes are divided into two categories: static and non-static. 
+Nested classes that are declared static are called static nested classes. 
+Non-static nested classes               are called inner classes.
+
+class OuterClass {
+    ...
+    static class StaticNestedClass {
+        ...
+    }
+    class InnerClass {
+        ...
+    }
+}

@@ -1,0 +1,96 @@
+E:\doc\Computer software\Android平台\android-sdk\android.media\android.media.AudioRecord\android_media_AudioRecord.cpp
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+static JNINativeMethod gMethods[] = {
+    // name,               signature,  funcPtr
+    {"native_start",         "(II)I",    (void *)android_media_AudioRecord_start},
+    {"native_stop",          "()V",    (void *)android_media_AudioRecord_stop},
+    {"native_setup",         "(Ljava/lang/Object;Ljava/lang/Object;IIII[I)I",
+                                       (void *)android_media_AudioRecord_setup},
+    {"native_finalize",      "()V",    (void *)android_media_AudioRecord_finalize},
+    {"native_release",       "()V",    (void *)android_media_AudioRecord_release},
+    {"native_read_in_byte_array",
+                             "([BII)I", (void *)android_media_AudioRecord_readInByteArray},
+    {"native_read_in_short_array",
+                             "([SII)I", (void *)android_media_AudioRecord_readInShortArray},
+    {"native_read_in_direct_buffer","(Ljava/lang/Object;I)I",
+                                       (void *)android_media_AudioRecord_readInDirectBuffer},
+    {"native_set_marker_pos","(I)I",   (void *)android_media_AudioRecord_set_marker_pos},
+    {"native_get_marker_pos","()I",    (void *)android_media_AudioRecord_get_marker_pos},
+    {"native_set_pos_update_period",
+                             "(I)I",   (void *)android_media_AudioRecord_set_pos_update_period},
+    {"native_get_pos_update_period",
+                             "()I",    (void *)android_media_AudioRecord_get_pos_update_period},
+    {"native_get_min_buff_size",
+                             "(III)I",   (void *)android_media_AudioRecord_get_min_buff_size},
+};
+
+// field names found in android/media/AudioRecord.java
+#define JAVA_POSTEVENT_CALLBACK_NAME  "postEventFromNative"
+#define JAVA_NATIVERECORDERINJAVAOBJ_FIELD_NAME  "mNativeRecorderInJavaObj"
+#define JAVA_NATIVECALLBACKINFO_FIELD_NAME       "mNativeCallbackCookie"
+
+// ----------------------------------------------------------------------------
+int register_android_media_AudioRecord(JNIEnv *env)
+{
+    javaAudioRecordFields.postNativeEventInJava = NULL;
+    javaAudioRecordFields.nativeRecorderInJavaObj = NULL;
+    javaAudioRecordFields.nativeCallbackCookie = NULL;
+
+
+    // Get the AudioRecord class
+    jclass audioRecordClass = env->FindClass(kClassPathName);
+    if (audioRecordClass == NULL) {
+        ALOGE("Can't find %s", kClassPathName);
+        return -1;
+    }
+    // Get the postEvent method
+    javaAudioRecordFields.postNativeEventInJava = env->GetStaticMethodID(
+            audioRecordClass,
+            JAVA_POSTEVENT_CALLBACK_NAME, "(Ljava/lang/Object;IIILjava/lang/Object;)V");
+    if (javaAudioRecordFields.postNativeEventInJava == NULL) {
+        ALOGE("Can't find AudioRecord.%s", JAVA_POSTEVENT_CALLBACK_NAME);
+        return -1;
+    }
+
+    // Get the variables
+    //    mNativeRecorderInJavaObj
+    javaAudioRecordFields.nativeRecorderInJavaObj =
+        env->GetFieldID(audioRecordClass,
+                        JAVA_NATIVERECORDERINJAVAOBJ_FIELD_NAME, "J");
+    if (javaAudioRecordFields.nativeRecorderInJavaObj == NULL) {
+        ALOGE("Can't find AudioRecord.%s", JAVA_NATIVERECORDERINJAVAOBJ_FIELD_NAME);
+        return -1;
+    }
+    //     mNativeCallbackCookie
+    javaAudioRecordFields.nativeCallbackCookie = env->GetFieldID(
+            audioRecordClass,
+            JAVA_NATIVECALLBACKINFO_FIELD_NAME, "J");
+    if (javaAudioRecordFields.nativeCallbackCookie == NULL) {
+        ALOGE("Can't find AudioRecord.%s", JAVA_NATIVECALLBACKINFO_FIELD_NAME);
+        return -1;
+    }
+
+    // Get the AudioAttributes class and fields
+    jclass audioAttrClass = env->FindClass(kAudioAttributesClassPathName);
+    if (audioAttrClass == NULL) {
+        ALOGE("Can't find %s", kAudioAttributesClassPathName);
+        return -1;
+    }
+    jclass audioAttributesClassRef = (jclass)env->NewGlobalRef(audioAttrClass);
+    javaAudioAttrFields.fieldRecSource = env->GetFieldID(audioAttributesClassRef, "mSource", "I");
+    javaAudioAttrFields.fieldFlags = env->GetFieldID(audioAttributesClassRef, "mFlags", "I");
+    javaAudioAttrFields.fieldFormattedTags =
+            env->GetFieldID(audioAttributesClassRef, "mFormattedTags", "Ljava/lang/String;");
+    env->DeleteGlobalRef(audioAttributesClassRef);
+    if (javaAudioAttrFields.fieldRecSource == NULL
+            || javaAudioAttrFields.fieldFlags == NULL
+            || javaAudioAttrFields.fieldFormattedTags == NULL) {
+        ALOGE("Can't initialize AudioAttributes fields");
+        return -1;
+    }
+
+    return AndroidRuntime::registerNativeMethods(env,
+            kClassPathName, gMethods, NELEM(gMethods));
+}

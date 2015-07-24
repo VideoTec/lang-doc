@@ -1,0 +1,11 @@
+GL_DEPTH_TEST
+If enabled, do depth comparisons and update the depth buffer. 
+Note that even if the depth buffer exists and the depth mask is non-zero, 
+the depth buffer is not updated if the depth test is disabled. 
+
+See glDepthFunc and glDepthRangef.
+
+
+http://zh.wikipedia.org/wiki/%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2
+深度缓冲
+深度缓冲是在三维图形中处理图像深度坐标的过程，这个过程通常在硬件中完成

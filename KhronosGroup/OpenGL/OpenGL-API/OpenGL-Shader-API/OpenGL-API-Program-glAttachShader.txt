@@ -1,0 +1,6 @@
+
+GLvoid glAttachShader(GLuint program, GLuint shader)
+
+In the glAttachShader you don’t have any parameter to identify if the shader is a
+Vertex or Fragment one. You remember the shaders names/ids are one single list,
+right

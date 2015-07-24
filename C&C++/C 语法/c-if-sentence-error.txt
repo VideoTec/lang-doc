@@ -1,0 +1,5 @@
+http://stackoverflow.com/questions/17584123/how-to-declare-a-variable-in-the-brackets-of-if-statement
+[美][brækəts] 括号
+if(int b = 0) {
+}
+error: expected expression before 'int

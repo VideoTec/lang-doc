@@ -1,0 +1,16 @@
+
+java.lang.Object
+   ↳	java.nio.Buffer
+ 	   ↳	java.nio.ByteBuffer
+
+参考文档
+http://developer.android.com/reference/java/nio/ByteBuffer.html
+A buffer for bytes.
+
+A byte buffer can be created in either one of the following ways:
+Allocate a new byte array and create a buffer based on it;
+Allocate a memory block and create a direct buffer based on it;
+Wrap an existing byte array to create a new buffer.
+
+参考文档
+http://docs.oracle.com/javase/7/docs/api/java/nio/ByteBuffer.html

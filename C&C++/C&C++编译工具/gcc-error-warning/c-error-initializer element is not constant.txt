@@ -1,0 +1,134 @@
+15:17 2015/6/3
+
+
+GLfloat color1[] = { 255,   0,   0 };
+GLfloat color2[] = {   0, 255,   0 };
+GLfloat color3[] = {   0,   0, 255 };
+GLfloat color4[] = { 255, 255,   0 };
+GLfloat color5[] = {   0, 255, 255 };
+GLfloat color6[] = { 255, 255, 255 };
+
+GLfloat g_cube_colors[] = {  初始化全局变量，不能使用变量
+  color1[0], color1[1], color1[2],
+  color1[0], color1[1], color1[2],
+  color1[0], color1[1], color1[2],
+  color1[0], color1[1], color1[2],
+  color1[0], color1[1], color1[2],
+  color1[0], color1[1], color1[2],
+
+  color2[0], color2[1], color2[2],
+  color2[0], color2[1], color2[2],
+  color2[0], color2[1], color2[2],
+  color2[0], color2[1], color2[2],
+  color2[0], color2[1], color2[2],
+  color2[0], color2[1], color2[2],
+
+  color3[0], color3[1], color3[2],
+  color3[0], color3[1], color3[2],
+  color3[0], color3[1], color3[2],
+  color3[0], color3[1], color3[2],
+  color3[0], color3[1], color3[2],
+  color3[0], color3[1], color3[2],
+
+  color4[0], color4[1], color4[2],
+  color4[0], color4[1], color4[2],
+  color4[0], color4[1], color4[2],
+  color4[0], color4[1], color4[2],
+  color4[0], color4[1], color4[2],
+  color4[0], color4[1], color4[2],
+
+  color5[0], color5[1], color5[2],
+  color5[0], color5[1], color5[2],
+  color5[0], color5[1], color5[2],
+  color5[0], color5[1], color5[2],
+  color5[0], color5[1], color5[2],
+  color5[0], color5[1], color5[2],
+
+  color6[0], color6[1], color6[2],
+  color6[0], color6[1], color6[2],
+  color6[0], color6[1], color6[2],
+  color6[0], color6[1], color6[2],
+  color6[0], color6[1], color6[2],
+  color6[0], color6[1], color6[2],
+};
+
+错误提示
+ni/cube_vertex.c:89:3: error: (near initialization for 'g_cube_colors[21]')
+ni/cube_vertex.c:89:3: error: initializer element is not constant
+ni/cube_vertex.c:89:3: error: (near initialization for 'g_cube_colors[22]')
+ni/cube_vertex.c:89:3: error: initializer element is not constant
+ni/cube_vertex.c:89:3: error: (near initialization for 'g_cube_colors[23]')
+ni/cube_vertex.c:90:3: error: initializer element is not constant
+  color2[0], color2[1], color2[2],
+
+参考
+http://blog.csdn.net/jiqiren007/article/details/6213778
+//test.c 
+int a = 1; 
+int b = a;          需要用常量初始化 b 
+int main(void) 
+{ 
+  .... 
+} 
+
+//test.c 
+int main(void) 
+{ 
+    int a = 1; 
+    static int b = a;  需要用常量初始化 b 
+}
+c语言中全局变量和static变量的初始化需要指定一个常量，不能是一个非常量的表达式；而在c++中是可以的
+在操作c和c++全局变量时，只能对其采用初始化的方式，而不能采用赋值的方式
+
+http://bbs.chinaunix.net/thread-1275329-1-1.html
+
+struct T{
+        char *name;
+        int *id;
+};
+
+int a;
+int *p=&a;
+
+struct T t1 = {
+        "fuck",
+        p       &a是没问题的
+};
+
+int main()
+{
+        printf("asshole\n");
+}
+
+t4.c:13: error: initializer element is not constant
+t4.c:13: error: (near initialization for `t1.id')
+
+全局变量初始化的顺序的问题
+全局变量的初始化在同一个编译单元是保证顺序的，但是不同编译单元的全局变量，谁先被初始化是不确定的
+不是这个原因 - C有问题的原因在于, 你在定义t1的时候, 此时p的值未知. 如果放到main()中定义就可以了。
+
+很简单, 在全局空间定义struct T t1; 然后再写一个初始化函数对t1进行赋值
+
+结构体的{}形式的初始化表达式只能是常量表达式，不能是变量（你的p是变量），所以不能通过编译
+C中全局变量的初始化表达式必须是常量表达式
+
+答案就在标准里：
+
+C99标准 6.7.8 Initialization 第4款：
+4 All the expressions in an initializer for an object that has static storage duration shall be constant expressions or string literals. 字符串字面值
+
+关于 static storage duration:
+C99 6.2.4 Storage durations of objects 第3款：
+3 An object whose identifier is declared with external or internal linkage, or with the
+storage-class specifier static has static storage duration. Its lifetime is the entire
+execution of the program and its stored value is initialized only once, prior to program startup.
+
+关于复杂类型 （比如struct）：
+C99 6.5.2.5 Compound literals 第7款：
+7 All the semantic rules and constraints for initializer lists in 6.7.8 are applicable to
+compound literals.
+
+也就是就说做为全局变量，在编译之后就要确定它的地址，
+如果这个全局变量是个结构体的话，那么结构体里面的各个成员的具体值也要确定了。
+因为全局变量是存储在静态区，而只有常量表达式才可以前期确定值，而不是具体运行时确定值。
+这么说g++之所以可以编译通过，那是它的链接器有优化，做了后期绑定

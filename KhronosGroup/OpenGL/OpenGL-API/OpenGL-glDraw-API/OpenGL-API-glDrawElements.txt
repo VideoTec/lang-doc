@@ -1,0 +1,17 @@
+void glDrawElements(
+GLenum mode,               
+  GL_POINTS, GL_LINE_STRIP, GL_LINE_LOOP, 
+  GL_LINES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, and
+  GL_TRIANGLES
+
+GLsizei count,             Specifies the number of elements to be rendered
+
+GLenum type,               Specifies the type of the values in indices
+                           Must be GL_UNSIGNED_BYTE or GL_UNSIGNED_SHORT.
+
+const GLvoid * indices     Specifies a pointer to the location where the indices are stored.
+                           indices [英]['ɪndɪsi:z]  [美]['ɪndɪsiz]  index的复数
+						   vertices 英 ['vɜːtɪsiːz] 美 ['vɝtə,siz]
+);
+
+glDrawElements(GL_TRIANGLES, 64, GL_UNSIGNED_SHORT, void0); 

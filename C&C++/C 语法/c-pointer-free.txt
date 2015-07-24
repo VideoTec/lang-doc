@@ -1,0 +1,17 @@
+下面的错误代码
+
+void opensl_player_destroy(OpenSLPlayer **player) {
+  OpenSLPlayer *p = *player;
+  if(p) {
+    LOGI("destroy opensl player for file:%s", p->file_name);
+    opensl_player_stop(p);
+    //_destroy_slobject(&p->play_obj);
+    free(p);
+    p = 0;
+  }
+}
+
+分析下这里的 free(p) 为什么会出错，不应该出错，造成这里出错的原因，是分配的时候不正确
+OpenSLPlayer *player_tmp = malloc(sizeof(player_tmp));  这里的有个明显的错误，造成下面的问题。
+错误是：sizeof(player_tmp) 是指针的大小，应该写成
+OpenSLPlayer *player_tmp = malloc(sizeof(*player_tmp));

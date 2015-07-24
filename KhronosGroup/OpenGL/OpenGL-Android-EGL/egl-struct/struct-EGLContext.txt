@@ -1,0 +1,10 @@
+EGLContext - EGL rendering context
+
+创建和销毁
+EGLAPI EGLContext EGLAPIENTRY eglCreateContext(EGLDisplay dpy, EGLConfig config, EGLContext share_context, const EGLint *attrib_list);
+EGLBoolean eglDestroyContext(EGLDisplay display, EGLContext context);
+
+其它接口
+EGLAPI EGLBoolean EGLAPIENTRY eglMakeCurrent(EGLDisplay dpy, EGLSurface draw, EGLSurface read, EGLContext ctx);
+EGLAPI EGLContext EGLAPIENTRY eglGetCurrentContext(void);
+EGLAPI EGLBoolean EGLAPIENTRY eglQueryContext(EGLDisplay dpy, EGLContext ctx, EGLint attribute, EGLint *value);

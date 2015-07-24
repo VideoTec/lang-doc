@@ -1,0 +1,38 @@
+#include <stdio.h>
+int feof( FILE *stream );
+
+函数feof()在到达给出的文件流的文件尾时返回一个非零值
+
+----------------------------
+fopen r/rb 文件结束符的区别 substitute  SOFT EOF
+----------------------------
+in text mode, it inserts a special character 26(1a) at the end of the file as a mark. 
+
+In CP/M, 86-DOS, MS-DOS, PC DOS, DR-DOS and their various derivatives, 
+character 26 was also used to indicate the end of a character stream, 
+and thereby used to terminate user input in an interactive command line window 
+(and as such, often used to finish console input redirection, e.g. as instigated by COPY CON: TYPEDTXT.TXT)
+
+it is often termed a "soft" EOF, 
+as it does not necessarily represent the physical end of the file but more a marker that 
+"there is no useful data beyond this point". 
+
+Many file format standards (e.g. PNG or GIF) include character 26 in their headers to perform precisely this function. 
+Some modern text file formats (e.g. CSV-1203[5]) still recommend a trailing EOF character to be inserted as the last character in the file
+
+Some programming languages (e.g. VisualBasic) will not read past SOFT EOF when using the built-in text file reading primitives (INPUT, LINE INPUT etc.) and 
+alternate methods must be adopted e.g. opening as BINARY or using the File System Object to progress beyond it.
+
+-------------------
+文本结束符 substitute 
+-------------------
+CTRL+Z is interpreted as an end-of-file character on input
+Control+Z is a control character in ASCII code. It is commonly used as a substitute (SUB) character.
+It is also used to signal an end-of-file on some operating systems.
+
+ASCII and Unicode representation of "substitute":
+Octal code: 32
+Decimal code: 26
+Hexadecimal code: 1A, U+001A
+Mnemonic symbol: SUB
+Binary value: 11010

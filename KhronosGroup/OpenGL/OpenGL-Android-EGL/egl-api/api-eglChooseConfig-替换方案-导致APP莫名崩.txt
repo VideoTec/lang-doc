@@ -1,0 +1,6 @@
+E:\doc\Computer software\KhronosGroup\OpenGL\OpenGL-Android-EGL\android-ndk-egl-在主线程里初始化会有问题.txt
+
+10:45 2015/6/4
+最后基本确定，导致APP崩的原因：
+是由于自定义的 choose config 选出的，config，有问题。
+怎么才能选出正确的 config ? 没有找到正确的方法，还是用 eglChooseConfig

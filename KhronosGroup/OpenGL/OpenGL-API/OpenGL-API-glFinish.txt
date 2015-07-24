@@ -1,0 +1,5 @@
+文档
+https://www.khronos.org/opengles/sdk/docs/man/xhtml/glFinish.xml
+
+void glFinish(void);
+block until all GL execution is complete

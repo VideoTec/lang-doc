@@ -1,0 +1,6 @@
+15:03 2015/5/28
+
+原因是：没有调用 eglSwapBuffers
+            if (!eglSwapBuffers(_display, _surface)) {
+                LOG_ERROR("eglSwapBuffers() returned error %d", eglGetError());
+            }

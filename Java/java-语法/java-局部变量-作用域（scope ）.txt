@@ -1,0 +1,2 @@
+http://yacare.iteye.com/blog/1905461
+程序块被包括在一对大括号中。一个程序块定义了一个作用域（scope ）

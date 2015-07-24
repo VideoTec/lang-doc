@@ -1,0 +1,57 @@
+文档
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglBindAPI.xhtml
+
+EGLBoolean eglBindAPI(	EGLenum api);
+Set the current rendering API
+
+success = eglBindAPI(EGL_OPENGL_ES_API);
+
+Specifies the client API to bind, one of EGL_OPENGL_API, EGL_OPENGL_ES_API, or EGL_OPENVG_API.
+
+/* BindAPI/QueryAPI targets */
+#define EGL_OPENGL_ES_API		0x30A0
+#define EGL_OPENVG_API			0x30A1
+#define EGL_OPENGL_API			0x30A2
+
+------------------------
+返回值
+------------------------
+EGL_FALSE is returned on failure.
+
+EGL_BAD_PARAMETER 
+is generated if api is not one of the accepted tokens, or 
+if the specified client API is not supported by the EGL implementation.
+
+------------------------
+Description
+------------------------
+eglBindAPI defines the current rendering API for EGL in the thread it is called from. 
+The current rendering API is one of the client rendering APIs supported by the EGL implementation, and 
+affects the behavior of other EGL commands including 
+
+会影响下列 API
+
+eglCreateContext, 
+eglGetCurrentContext, 
+eglGetCurrentDisplay, 
+eglGetCurrentSurface, 
+eglMakeCurrent, 
+eglWaitClient, and 
+eglWaitNative.
+
+If api is EGL_OPENGL_API, the current rendering API is set to the OpenGL API.
+
+If api is EGL_OPENGL_ES_API, the current rendering API is set to the OpenGL ES API.
+
+If api is EGL_OPENVG_API, the current rendering API is set to the OpenVG API.
+
+If an error occurs, the current rendering API is unchanged.
+
+------------------------
+Notes
+------------------------
+eglBindAPI and the corresponding EGL_OPENGL_ES_API and EGL_OPENVG_API api parameters are supported only if the EGL version is 1.2 or greater. The EGL_OPENGL_API parameter is supported only if the EGL version is 1.4 or greater.
+
+The initial value of the current rendering API is EGL_OPENGL_ES_API unless OpenGL ES is not supported by an implementation, in which case the initial value is EGL_NONE (however, EGL_NONE is not a valid api parameter to eglBindAPI).
+
+The current rendering API can be queried by calling eglQueryAPI.

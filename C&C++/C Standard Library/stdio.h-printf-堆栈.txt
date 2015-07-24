@@ -1,0 +1,61 @@
+http://stackoverflow.com/questions/2424528/printf-of-a-size-t-variable-with-lld-ld-and-d-type-identifiers
+
+#include <stdio.h>
+int main() {
+    size_t temp;
+    temp = 100;
+
+    printf("lld=%lld, ld=%ld, u=%u\n", temp, temp, temp);
+lld=429496729700, ld=100, u=7993461
+
+    printf("ld=%ld, u=%u, lld=%lld\n", temp, temp, temp);
+ld=100, u=100, lld=34331653576851556
+
+    return 0;
+}
+
+第一种情况
+What you pass     Stack     What printf() uses
+-------------     -----     ------------------
+                 +-----+
+100              | 100 | \
+                 +-----+  = 64-bit value for %lld.
+100              | 100 | /
+                 +-----+
+100              | 100 |    32-bit value for %ld.
+                 +-----+
+                 | ?   |    32-bit value for %u (could be anything).
+                 +-----+
+
+第二种情况
+What you pass     Stack     What printf() uses
+-------------     -----     ------------------
+                 +-----+
+100              | 100 |    32-bit value for %ld.
+                 +-----+
+100              | 100 |    32-bit value for %u.
+                 +-----+
+100              | 100 | \
+                 +-----+  = 64-bit value for %lld (could be anything).
+                 | ?   | /
+                 +-----+
+
+http://www.cnblogs.com/seven7seven/p/3622119.html
+printf计算参数是从右到左压栈的（a++和++a的压栈的区别）
+
+http://blog.csdn.net/kzzhr/article/details/8482657
+x=1;   printf("%d %d\n",x,x++);
+x=1;   printf("%d %d\n",x++,x);
+x=1;   printf("%d %d %d\n",x,x++,x);
+x=1;   printf("%d %d %d %d\n",x,++x,x++,x);
+
+2 1
+1 2
+2 1 2
+3 3 1 3
+
+printf，压栈顺序为从右往左，也就是说从右往左的计算
+
+对于a++的结果，是有ebp寻址函数栈空间来记录中间结果的，在最后
+               给printf压栈的时候，再从栈中把中间结果取出来；而
+对于++a的结果，则直接压寄存器变量，寄存器经过了所有的自增操作

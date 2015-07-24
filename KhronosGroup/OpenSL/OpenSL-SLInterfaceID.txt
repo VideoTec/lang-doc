@@ -1,0 +1,266 @@
+
+/** Interface ID defined as a UUID */
+typedef const struct SLInterfaceID_ {
+    SLuint32 time_low;
+    SLuint16 time_mid;
+    SLuint16 time_hi_and_version;
+    SLuint16 clock_seq;
+    SLuint8  node[6];
+} * SLInterfaceID;
+
+SL_IID_NULL
+SL_IID_OBJECT
+SL_IID_AUDIOIODEVICECAPABILITIES
+SL_IID_LED
+SL_IID_VIBRA
+SL_IID_METADATAEXTRACTION
+SL_IID_METADATATRAVERSAL
+SL_IID_DYNAMICSOURCE
+SL_IID_OUTPUTMIX
+SL_IID_PLAY
+SL_IID_PREFETCHSTATUS
+SL_IID_PLAYBACKRATE
+SL_IID_SEEK
+SL_IID_RECORD
+SL_IID_VOLUME
+SL_IID_BUFFERQUEUE              SL_IID_ANDROIDSIMPLEBUFFERQUEUE
+SL_IID_PRESETREVERB
+SL_IID_ENVIRONMENTALREVERB
+SL_IID_EFFECTSEND
+SL_IID_3DGROUPING
+SL_IID_3DCOMMIT
+SL_IID_3DLOCATION
+SL_IID_3DDOPPLER
+SL_IID_3DSOURCE
+SL_IID_3DMACROSCOPIC
+SL_IID_MUTESOLO
+SL_IID_DYNAMICINTERFACEMANAGEMENT
+SL_IID_MIDIMESSAGE
+SL_IID_MIDIMUTESOLO
+SL_IID_MIDITEMPO
+SL_IID_MIDITIME
+SL_IID_AUDIODECODERCAPABILITIES
+SL_IID_AUDIOENCODERCAPABILITIES
+SL_IID_AUDIOENCODER
+SL_IID_BASSBOOST
+SL_IID_PITCH
+SL_IID_RATEPITCH
+SL_IID_VIRTUALIZER
+SL_IID_VISUALIZATION
+SL_IID_ENGINE
+SL_IID_ENGINECAPABILITIES
+SL_IID_THREADSYNC
+
+Android extension 扩展 OpenSLES_Android.h
+SL_IID_ANDROIDEFFECT                Android Effect interface
+SL_IID_ANDROIDEFFECTSEND            Android Effect Send interface
+SL_IID_ANDROIDEFFECTCAPABILITIES    Android Effect Capabilities interface
+SL_IID_ANDROIDCONFIGURATION         Android Configuration interface 
+SL_IID_ANDROIDSIMPLEBUFFERQUEUE     Android Simple Buffer Queue Interface
+SL_IID_ANDROIDBUFFERQUEUESOURCE     Android Buffer Queue Interface
+
+//详细说明
+extern SL_API const SLInterfaceID SL_IID_NULL;
+/*---------------------------------------------------------------------------*/
+/* Standard Object Interface                                                 */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_OBJECT;
+
+extern SL_API const SLInterfaceID SL_IID_AUDIOIODEVICECAPABILITIES;
+
+/*---------------------------------------------------------------------------*/
+/* LED Array interface                                                       */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_LED;
+
+/*---------------------------------------------------------------------------*/
+/* Vibra interface                                                           */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_VIBRA;
+
+/*---------------------------------------------------------------------------*/
+/* Meta data extraction related types and interface                          */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_METADATAEXTRACTION;
+
+/*---------------------------------------------------------------------------*/
+/* Meta data traversal related types and interface                          */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_METADATATRAVERSAL;
+
+/*---------------------------------------------------------------------------*/
+/* Dynamic Source types and interface                                        */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_DYNAMICSOURCE;
+
+/*---------------------------------------------------------------------------*/
+/* Output Mix interface                                                      */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_OUTPUTMIX;
+
+/*---------------------------------------------------------------------------*/
+/* Playback interface                                                        */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_PLAY;
+
+/*---------------------------------------------------------------------------*/
+/* Prefetch status interface                                                 */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_PREFETCHSTATUS;
+
+/*---------------------------------------------------------------------------*/
+/* Playback Rate interface                                                   */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_PLAYBACKRATE;
+
+/*---------------------------------------------------------------------------*/
+/* Seek Interface                                                            */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_SEEK;
+
+/*---------------------------------------------------------------------------*/
+/* Standard Recording Interface                                              */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_RECORD;
+
+/*---------------------------------------------------------------------------*/
+/* Equalizer interface                                                       */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_VOLUME;
+
+/*---------------------------------------------------------------------------*/
+/* Buffer Queue Interface                                                    */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_BUFFERQUEUE;
+
+/*---------------------------------------------------------------------------*/
+/* PresetReverb                                                              */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_PRESETREVERB;
+
+/*---------------------------------------------------------------------------*/
+/* EnvironmentalReverb                                                       */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_ENVIRONMENTALREVERB;
+
+/*---------------------------------------------------------------------------*/
+/* Effects Send Interface                                                    */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_EFFECTSEND;
+
+/*---------------------------------------------------------------------------*/
+/* 3D Grouping Interface                                                     */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_3DGROUPING;
+
+/*---------------------------------------------------------------------------*/
+/* 3D Commit Interface                                                       */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_3DCOMMIT;
+
+/*---------------------------------------------------------------------------*/
+/* 3D Location Interface                                                     */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_3DLOCATION;
+
+/*---------------------------------------------------------------------------*/
+/* 3D Doppler Interface                                                      */
+/*---------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_3DDOPPLER;
+
+/*---------------------------------------------------------------------------*/
+/* 3D Source Interface and associated defines                                */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_3DSOURCE;
+
+/*---------------------------------------------------------------------------*/
+/* 3D Macroscopic Interface                                                  */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_3DMACROSCOPIC;
+
+/*---------------------------------------------------------------------------*/
+/* Mute Solo Interface                                                       */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_MUTESOLO;
+
+/*---------------------------------------------------------------------------*/
+/* Dynamic Interface Management Interface and associated types and macros    */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_DYNAMICINTERFACEMANAGEMENT;
+
+/*---------------------------------------------------------------------------*/
+/* Midi Message Interface and associated types                               */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_MIDIMESSAGE;
+
+/*---------------------------------------------------------------------------*/
+/* Midi Mute Solo interface                                                  */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_MIDIMUTESOLO;
+
+/*---------------------------------------------------------------------------*/
+/* Midi Tempo interface                                                      */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_MIDITEMPO;
+
+/*---------------------------------------------------------------------------*/
+/* Midi Time interface                                                       */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_MIDITIME;
+
+/*---------------------------------------------------------------------------*/
+/* Audio Decoder Capabilities Interface                                      */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_AUDIODECODERCAPABILITIES;
+
+/*---------------------------------------------------------------------------*/
+/* Audio Encoder Capabilities Interface                                      */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_AUDIOENCODERCAPABILITIES;
+
+/*---------------------------------------------------------------------------*/
+/* Audio Encoder Interface                                                   */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_AUDIOENCODER;
+
+/*---------------------------------------------------------------------------*/
+/* Bass Boost Interface                                                      */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_BASSBOOST;
+
+/*---------------------------------------------------------------------------*/
+/* Pitch Interface                                                           */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_PITCH;
+
+/*---------------------------------------------------------------------------*/
+/* Rate Pitch Interface                                                      */
+/* RatePitchItf is an interface for controlling the rate a sound is played   */
+/* back. A change in rate will cause a change in pitch.                      */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_RATEPITCH;
+
+/*---------------------------------------------------------------------------*/
+/* Virtualizer Interface                                                      */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_VIRTUALIZER;
+
+/*---------------------------------------------------------------------------*/
+/* Visualization Interface                                                   */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_VISUALIZATION;
+
+/*---------------------------------------------------------------------------*/
+/* Engine Interface                                                          */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_ENGINE;
+
+/*---------------------------------------------------------------------------*/
+/* Engine Capabilities Interface                                             */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_ENGINECAPABILITIES;
+
+/*---------------------------------------------------------------------------*/
+/* Thread Sync Interface                                                     */
+/* --------------------------------------------------------------------------*/
+extern SL_API const SLInterfaceID SL_IID_THREADSYNC;

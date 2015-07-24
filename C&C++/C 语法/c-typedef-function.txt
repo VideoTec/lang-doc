@@ -1,0 +1,24 @@
+定义类型
+typedef void JVMInvokeCB();
+
+typedef void AVRuntimeErrorCB();
+
+typedef void CroppingProcessCB(float percentage);
+
+typedef void EncodingProcessCB(float percentage);
+
+typedef void AudioRenderCB(uint8_t *data[AV_NUM_DATA_POINTERS], int buffer_size, double stamp);
+
+
+使用类型
+void register_attach_thread_callback(JVMInvokeCB *cb);
+
+void register_detach_thread_callback(JVMInvokeCB *cb);
+
+void register_runtime_error_callback(AVRuntimeErrorCB *cb);
+
+void register_cropping_process_callback(CroppingProcessCB *cb);
+
+void register_encoding_process_callback(EncodingProcessCB *cb);
+
+void register_audio_render_callback(AudioRenderCB *cb);

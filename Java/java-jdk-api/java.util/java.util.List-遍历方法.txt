@@ -1,0 +1,20 @@
+for(Iterator<A>    it    =    list.iterator();    it.hasNext();    )    {   
+       ....   
+}
+这种方式在循环执行过程中会进行数据锁定,性能稍差,
+同时,如果你想在遍历过程中去掉某个元素,只能调用it.remove方法,
+不能使用list.remove方法,    否则一定出并发访问的错误
+
+for(A    a    :    list)    {   
+       .....   
+}   
+内部调用第一种,换汤不换药,这种循环方式还有其他限制, 不建议使用它
+
+for(int    i=0;    i<list.size();    i++)    {   
+   A    a    =    list.get(i);   
+   ...   
+}   
+内部不锁定,    效率最高,    但是当写多线程时要考虑并发操作的问题!
+
+http://pda158.iteye.com/blog/2158898
+Java list三种遍历方法性能比较

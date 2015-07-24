@@ -1,0 +1,35 @@
+Function Declarations and Definitions 格式化
+
+ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) {
+  DoSomething();
+  ...
+}
+
+ReturnType ClassName::ReallyLongFunctionName(Type par_name1, Type par_name2,
+                                             Type par_name3) {
+  DoSomething();
+  ...
+}
+
+ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
+    Type par_name1,  // 4 space indent
+    Type par_name2,
+    Type par_name3) {
+  DoSomething();  // 2 space indent
+  ...
+}
+
+Some points to note:
+
+If you cannot fit the return type and the function name on a single line, break between them.
+If you break after the return type of a function declaration or definition, do not indent.
+The open parenthesis is always on the same line as the function name.
+There is never a space between the function name and the open parenthesis.
+There is never a space between the parentheses and the parameters.
+The open curly brace is always at the end of the same line as the last parameter.
+The close curly brace is either on the last line by itself or (if other style rules permit) on the same line as the open curly brace.
+There should be a space between the close parenthesis and the open curly brace.
+All parameters should be named, with identical names in the declaration and implementation.
+All parameters should be aligned if possible.
+Default indentation is 2 spaces.
+Wrapped parameters have a 4 space indent.

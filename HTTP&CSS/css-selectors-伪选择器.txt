@@ -1,0 +1,4 @@
+pseudo[英]['sju:dəʊ] [美]['su:doʊ]
+adj.假的，虚伪的
+
+pseudo-selectors

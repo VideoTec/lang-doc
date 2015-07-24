@@ -1,0 +1,80 @@
+11:00 2015/5/14
+
+overflow[英][ˌəʊvəˈfləʊ] [美][ˌoʊvərˈfloʊ]
+vt.& vi.溢出，淹没；挤满，充满；洋溢；资源过剩
+
+代码：
+codec->dts 的定义 time_r dts;
+codec->dts = time_r(HUGE_VALL, 1);
+
+问题出在 HUGE_VALL 上
+E:\android\ndk\platforms\android-21\arch-arm\usr\include\math.h
+INFINITY, NAN, HUGE_VAL, HUGE_VALF, HUGE_VALL - floating-point constants
+参考
+http://linux.die.net/man/3/huge_vall
+#define _ISOC99_SOURCE      /* See feature_test_macros(7) */
+#include <math.h>
+INFINITY
+NAN
+HUGE_VAL
+HUGE_VALF
+HUGE_VALL
+The macros 
+HUGE_VAL, HUGE_VALF, HUGE_VALL expand to constants of types 
+double, float and long double, respectively, 
+that represent a large positive value, possibly plus infinity.
+
+定义
+namespace decoder
+{
+    class time_r
+    {
+        
+    private:
+        
+    public:
+        
+        int64_t value;
+        
+        int64_t scale;
+        
+        /*
+         */
+        
+        time_r();
+                
+        time_r(int64_t value, int64_t scale);
+        
+        time_r operator + (time_r time);
+        time_r operator - (time_r time);
+        
+        bool operator > (time_r time);
+        bool operator < (time_r time);
+        
+        bool operator != (time_r time);
+        bool operator == (time_r time);
+        
+        bool operator >= (time_r time);
+        bool operator <= (time_r time);
+    };
+}
+
+参考
+http://www.cnblogs.com/kalo1111/p/3279543.html
+overflow in implicit constant conversion。
+
+这个错误就是：常量转换溢出。
+C语言中char, int, float, double,unsigned char, unsigned int 等数值有极限范围，
+当它们之间（隐式）转换时，可能因 数值极限 而超界 溢出。
+有的编译器会报告这一类型的错误，并不是所有编译器都会报告。
+
+警告信息
+
+cc1plus.exe: warning: command line option '-std=c11' is valid for C/ObjC but not for C++
+jni/video_codec.cpp: In static member function 'static void* decoder::video_codec::decode(void*)':
+jni/video_codec.cpp:146:49: warning: overflow in implicit constant conversion [-Woverflow]
+                 codec->dts = time_r(HUGE_VALL, 1);
+                                                 ^
+jni/video_codec.cpp:188:73: warning: overflow in implicit constant conversion [-Woverflow]
+         if (codec->tts < codec->dts || codec->dts == time_r(HUGE_VALL, 1))
+                                                                         ^

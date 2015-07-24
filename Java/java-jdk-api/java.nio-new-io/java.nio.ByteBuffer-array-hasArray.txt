@@ -1,0 +1,36 @@
+public final byte[] array ()
+
+Returns the byte array which this buffer is based on, if there is one.
+
+Returns
+the byte array which this buffer is based on.
+
+Throws
+ReadOnlyBufferException	if this buffer is based on a read-only array.
+UnsupportedOperationException	if this buffer is not based on an array.
+
+使用注意：
+https://worldmodscode.wordpress.com/2012/12/14/the-java-bytebuffer-a-crash-course/
+correspond[英][ˌkɒrəˈspɒnd] [美][ˌkɔ:rəˈspɑ:nd] vi.符合，一致；相应；通信
+subtle[英][ˈsʌtl] [美][ˈsʌtl] adj.微妙的；敏感的；狡猾的；巧妙的
+
+The array() method will only work for a byte buffer backed by a byte array (which can be tested with hasArray()) and 
+should generally only be used if you know exactly what you are doing. 
+
+A common mistake is to use array() to “convert” a ByteBuffer into a byte array. 
+Not only does this only work for byte array backed buffers, 
+but it is easily a source of bugs because depending on how the buffer was created, 
+the beginning of the returned array may or may not correspond to the beginning of the ByteBuffer. 
+
+The result tends to be a subtle bug where the behavior of code differs 
+depending on implementation details of the byte buffer and the code that created it.
+
+array() is usually the wrong method to use
+
+Generally, don’t use array() casually. In order for it to be used correctly you either have to know for a fact that the byte buffer is array backed, or you have to test it with hasArray() and have two separate code paths for either case. Additionally, when you use it, you must use arrayOffset() in order to determine what the zeroth position of the ByteBuffer corresponds to in the byte array.
+
+In typical application code, you would not use array() unless you really know what you are doing and you specifically need it. That said, there are cases where it’s useful. For example, supposing you were implementing a ByteBuffer version of UnsignedBytes.compare() (again, from Guava) – you may wish to optimize the case where either or both of the arguments are array backed, to avoid unnecessary copying and frequent calls to the buffers. For such a generic and potentially heavily used method, such an optimization would make sense.
+
+14:43 2015/6/12
+问题，没有明确， position, limit 等是否会影响这个方法？不会影响
+

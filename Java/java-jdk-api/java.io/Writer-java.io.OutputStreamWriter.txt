@@ -1,0 +1,5 @@
+http://developer.android.com/reference/java/io/OutputStreamWriter.html
+
+java.lang.Object
+   ↳	java.io.Writer
+ 	   ↳	java.io.OutputStreamWriter

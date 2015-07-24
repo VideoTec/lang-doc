@@ -1,0 +1,14 @@
+GLES20.glVertexAttribPointer(mGLAttribPosition, 2, GLES20.GL_FLOAT, false, 0, cubeBuffer); //上传vertex array
+GLES20.glEnableVertexAttribArray(mGLAttribPosition); //什么作用？
+GLES20.glDisableVertexAttribArray(mGLAttribPosition); //什么作用？
+
+
+(着色程序)链接前调用glBindAttribLocation来设定atribute变量的位置值
+其一，当然是编码量减少了，
+其二，也避免了去Get某个attribute的location带来的开销，
+
+其三，最重要的是，它重定义了OpenGL和GLSL之间attribute变量属性的依赖。
+过去我们的OpenGL端必须首先要知道GLSL端某个attribute的名字，
+才能设置/获得其位置值，
+如今两者只需要location对应起来就可以完成绘制时顶点属性流的传递了。
+不再需要在ShaderProgram的compile和link之间插入代码也更方便于其模块化

@@ -1,0 +1,2 @@
+File --> Import --> File System 
+在选择好要导入的文件夹和要将其导入到eclipse里的文件夹就ok了

@@ -1,0 +1,13 @@
+assign[英][əˈsaɪn] [美][əˈsaɪn] 赋值
+vt.分派，选派，分配；归于，归属；[法律] 把（财产，权利、利息）从一人转让给另一人；把…编制
+
+Can you assign one instance of a struct to another, like so:
+
+struct Test t1;
+struct Test t2;
+t2 = t1;
+I have seen it work for simple structures, bu does it work for complex structures?
+How does the compiler know how to copy data items depending on their type, i.e. differentiating between an int and string?
+
+
+Yes if the structure is of the same type. Think it as a memory copy.

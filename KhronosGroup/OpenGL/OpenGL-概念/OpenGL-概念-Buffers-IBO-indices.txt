@@ -1,0 +1,10 @@
+http://www.opengl-tutorial.org/zh-hans/%E4%B8%AD%E7%BA%A7%E6%95%99%E7%A8%8B/%E7%AC%AC%E4%B9%9D%E8%AF%BE%EF%BC%9Avbo%E7%B4%A2%E5%BC%95/
+
+VBO索引
+
+Buffer Object 分两类： VBO 和 IBO
+
+glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, indices);
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);    IBO
+        glBindBuffer(GL_ARRAY_BUFFER, 0);            VBO

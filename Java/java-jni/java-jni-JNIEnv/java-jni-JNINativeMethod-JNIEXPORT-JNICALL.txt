@@ -1,0 +1,40 @@
+声明时写了， extern "C", 实现可以不用再写了
+Since your header file already wraps function prototype with extern "C", 
+you don't required to do the same when writing implementation.
+
+下面两个呢，只用声明时写吗？
+JNIEXPORT ？
+JNICALL ？
+根据 JNI_OnLoad 的写法，也可以不写了 见:jni.h中JNI_OnLoad的声明
+
+//C++ code
+extern "C"
+JNIEXPORT void JNICALL Java_ClassName_MethodName
+  (JNIEnv *env, jobject obj, jstring javaString)
+{
+    //Get the native string from javaString
+    const char *nativeString = env->GetStringUTFChars(javaString, 0);
+ 
+    //Do something with the nativeString
+ 
+    //DON'T FORGET THIS LINE!!!
+    env->ReleaseStringUTFChars(javaString, nativeString);
+}
+
+/*C code*/
+JNIEXPORT void JNICALL Java_ClassName_MethodName
+  (JNIEnv *env, jobject obj, jstring javaString)
+{
+    /*Get the native string from javaString*/
+    const char *nativeString = (*env)->GetStringUTFChars(env, javaString, 0);
+ 
+    /*Do something with the nativeString*/
+ 
+    /*DON'T FORGET THIS LINE!!!*/
+    (*env)->ReleaseStringUTFChars(env, javaString, nativeString);
+}
+
+JNIEXPORT is used to make native functions appear in the dynamic table of the built binary (*.so file). 
+They can be set to "hidden" or "default" (more info here). 
+If these functions are not in the dynamic table, 
+JNI will not be able to find the functions to call them so the RegisterNatives call will fail at runtime.

@@ -1,0 +1,22 @@
+用ByteBuffer.allocateDirect() 接口分配两个等长的内存空间（addr1和addr2），
+在JNI中使用GetDirectBufferAddress接口获得两个内存空间的地址
+
+.java
+ByteBuffer bf = ByteBuffer.allocateDirect(10);
+ByteBuffer rbf = ByteBuffer.allocateDirect(10);
+
+.c
+jbyte* sbufp=(*env)->GetDirectBufferAddress(env,sbuf);
+jbyte* rbufp=(*env)->GetDirectBufferAddress(env,rbuf);
+
+The NIO-related entry points allow native code to access java.nio direct buffers. 
+The contents of a direct buffer can, potentially, reside in native memory outside of the ordinary garbage-collected heap. 
+For information about direct buffers, please see New I/O APIs and the specification of the java.nio.ByteBuffer class.
+
+-------------------------
+注意缓存的字节序
+-------------------------
+java.nio.ByteOrder.LITTLE_ENDIAN
+java.nio.ByteOrder.BIG_ENDIAN
+
+jni-NewDirectByteBuffer always has order ByteOrder.BIG_ENDIAN

@@ -1,0 +1,135 @@
+OpenAL   audio-gain-volume.jpg
+
+以实际 OpenAL 函数组成的核心
+ALC API，ALC 用于管理表现内容、资源使用情况，并将跨平台风格封在其中
+
+#import <OpenAl/al.h>
+#import <OpenAl/alc.h>
+#include <AudioToolbox/AudioToolbox.h>
+
+static ALCdevice *openALDevice;
+static ALCcontext *openALContext;
+
+openALDevice = alcOpenDevice(NULL);        
+openALContext = alcCreateContext(openALDevice, NULL);
+alcMakeContextCurrent(openALContext);
+
+alGenSources(1, &sourceID); //sourceID是无符号整型
+alGenBuffers(1, &outputBuffer); //outputBuffer也是一个整型
+
+这里会复制数据
+alBufferData(outputBuffer, AL_FORMAT_STEREO16, audioData, bytesRead,44100)
+
+alSourcef(sourceID, AL_PITCH, 1.0f);   // 调节音调
+Frequency Shift by Pitch
+Audio Pitch & Shift【更改音频音轨的音调】
+
+alSourcef(sourceID, AL_GAIN, 1.0f);  // 调节增益
+一个标量振幅乘法器（ a scalar amplitude multiplier）
+增益主要应用于放大电路中
+5倍的增益，即是指系统令电压或功率增加了5倍
+ 
+
+alSourcei(sourceID, AL_BUFFER, outputBuffer); 
+会分配内在吗？应该不会
+这个函数，必须在alBufferData调用后，才能生效
+
+alSourceQueueBuffers(outSourceID, 1, &bufferID);
+
+alSourcei(outSourceID, AL_LOOPING, AL_FALSE);  是否循环播放
+
+alSourcef(outSourceID, AL_SOURCE_TYPE, AL_STREAMING);
+AL_UNDETERMINED, AL_STATIC und AL_STREAMING
+只读属性？
+
+alGetSourcei(outSourceID, AL_SOURCE_STATE, &stateVaue); 获取播放状态
+alGetSourcei(outSourceID, AL_BUFFERS_PROCESSED, &processed);
+alGetSourcei(outSourceID, AL_BUFFERS_QUEUED, &queued);
+
+    while(processed--)
+    {
+        ALuint buff;
+        alSourceUnqueueBuffers(outSourceID, 1, &buff);
+        alDeleteBuffers(1, &buff);
+    }
+
+alSourceQueueBuffers(outSourceID, 1, &bufferID);  创建了个音频队列
+
+alSourcePlay(sourceID);    不会阻塞程序，
+调用play的时候没有判断是否在播放状态就去调用了，结果source又重新开始播放，一直卡那
+不会阻塞，启动单独线程线程，会，在另一线程里播放声音。
+
+https://github.com/OhNo789/
+
+https://github.com/OhNo789/SimpleMetronome.git
+
+Yes, the code which wraps your call to alSourcePlay is blocking so wants to be in its own thread since OpenAL has its own event loop to buffer up and render sound into the audio device(s).
+Typically you want a separate thread to make available your source media and another thread for your OpenAL logic. This is in addition to your UI thread if any.
+
+
+alSourceQueueBuffers创建了个音频队列，怎么删除创建的buffer呢
+我分开来释放的，是没有问题的，你试试： 
+ALint processed = 0; 
+alGetSourcei(sound , AL_BUFFERS_PROCESSED ,&processed); 
+ 
+while(processed--) 
+{ 
+  Aluint buffer = 0; 
+  alSourceUnqueueBuffers(sound ,1 & buffer); 
+  alDeleteBuffers(1 , &buffer); 
+} 
+ 
+ALint  queued = 0; 
+alGetSourcei(sound , AL_BUFFERS_QUEUED , &queued); 
+ 
+while(queued--) 
+{ 
+  ALuint buffer =0; 
+  alSourceUnqueueBuffers(sound ,1 ,& buffer); 
+  alDeleteBuffers(1 , &buffer); 
+}
+
+In OpenAL, you must queue sound buffers, one after the other. 
+You really only need 2 sound buffers then, and you just continuously call alSourceQueueBuffers and alSourceUnqueueBuffers.
+
+
+
+死循环里，不断检测，填充新的声音数据。
+    ALuint FBufferID[2];
+
+    alGenBuffers( 2, &FBufferID[0] );  生成两个BUFFER
+
+    StreamBuffer( FBufferID[0], BUFFER_SIZE );  先填充两个BUFFER
+    StreamBuffer( FBufferID[1], BUFFER_SIZE );
+
+alSourceQueueBuffers( FSourceID, 2, &FBufferID[0] );
+
+    while(true)
+    {
+        // Check how much data is processed in OpenAL's internal queue
+        ALint Processed;
+        alGetSourcei( FSourceID, AL_BUFFERS_PROCESSED, &Processed );
+       // Query the number of buffers that have been played by a given source.
+
+        // add more buffers while we need them
+        while ( Processed-- )
+        {
+            Luint BufID;
+
+            alSourceUnqueueBuffers( SourceID, 1, &BufID );
+
+            StreamBuffer(BufID);
+
+            alSourceQueueBuffers( SourceID, 1, &BufID );
+The application can queue up one or multiple buffer names using alSourceQueueBuffers
+        }
+    }
+
+
+ ALint value;
+    alGetSourcei(outSourceID,AL_SOURCE_STATE,&value);
+//    NSLog(@"%x",value);
+    if (value != AL_PLAYING)
+    {
+        alSourcePlay(outSourceID);
+    }

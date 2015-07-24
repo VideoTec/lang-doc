@@ -1,0 +1,21 @@
+glReadPixels — read a block of pixels from the frame buffer
+
+void glReadPixels(
+GLint x,
+GLint y,
+GLsizei width,
+GLsizei height,
+GLenum format,
+GLenum type,
+GLvoid * data);
+
+---------------------------------------
+可以读取窗口中的，一个像素的深度信息，怎么读出来的？
+---------------------------------------
+参考：
+http://stackoverflow.com/questions/16768090/depth-buffer-got-by-glreadpixels-is-always-1
+glEnable(GL_DEPTH_TEST);
+..
+glReadPixels(x, viewport[3] - y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, z);
+However according to the GLES sources, you cant use glReadPixels function to get depth values. 
+It only provides color buffer infos. so I couldnt get a depth infos out of it.

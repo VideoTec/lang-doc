@@ -1,0 +1,93 @@
+名称：
+The double-number-sign ##
+the token-paste ('##') Token-Pasting Operator (##)
+It permits separate tokens to be joined into a single token and therefore cannot be the first or last token in the macro definition
+
+stringizing ('#')                    preprocessing operators
+
+用法示例一：
+#define REGISTER_MUXER(X, x)                                            \
+    {                                                                   \
+        extern AVOutputFormat ff_##x##_muxer;                           \
+        if (CONFIG_##X##_MUXER)                                         \
+            av_register_output_format(&ff_##x##_muxer);                 \
+    }
+
+用法
+REGISTER_MUXER   (A64,              a64);
+
+用法示例二：
+Windows: Using ## for generic unicode or multi byte strings
+
+Windows uses something like the following:
+
+#ifdef  _UNICODE
+    #define _T(x)      L ## x  //注意：前后的空格都会去掉
+#else
+    #define _T(x) x
+#endif
+
+
+用#把宏参数变为一个字符串,用##把两个宏参数贴合在一起。
+
+#define STR(s)     #s
+#define CONS(a,b)  int(a##e##b)
+printf(STR(vck));           // 输出字符串”vck”
+printf(”%d\n”, CONS(2,3));  // 2e3 输出:2000
+
+自定义 宏
+#define REG_JNI(name, class_name) \
+  extern JNINativeMethod g_##name##_methods[]; \
+  extern const int g_##name##_methods_num; \
+  jclass java_##name##_clazz = (*env)->FindClass(env, class_name); \
+  if(java_##name##_clazz) { \
+    if((*env)->RegisterNatives(env, java_##name##_clazz, g_##name##_methods, g_##name##_methods_num)) { \
+      LOGE("register natives failed for class: %s", class_name); \
+    } else { \
+      LOGE("register natives success for class: %s", class_name); \
+    } \
+  } else { \
+    LOGE("cannt find java class: &s", class_name); \
+  }
+
+用法：
+REG_JNI(opensl, "com/example/opensltest/FOpenSL");
+
+下面错误的写法
+#define REG_JNI(name, class_name) \
+  extern JNINativeMethod g_##name##_methods; \
+  extern const int g_##name##_methods_num; \
+  jclass ##name##_clazz = (*env)->FindClass(env, class_name); \  
+                             错误：REG_JNI(opensl, "com/example/opensltest/FOpenSL");
+							 错误：这里会被扩展为 jclassopensl_class
+							 原因：cannot be the first or last token in the macro definition
+  if(##name##_clazz) { \
+    if(!(*env)->RegisterNatives(env, #name##_clazz, g_##name##_methods, g_##name##_num)) { \
+    } \
+  } else { \
+    LOGI("cannt find java class: &s", class_name); \
+  }
+
+用法示例三：
+#define PCMDEF(name_, long_name_, ext, codec)               \
+static const AVClass name_ ## _demuxer_class = {            \
+    .class_name = #name_ " demuxer",                        \
+    .item_name  = av_default_item_name,                     \
+    .option     = pcm_options,                              \
+    .version    = LIBAVUTIL_VERSION_INT,                    \
+};                                                          \
+AVInputFormat ff_pcm_ ## name_ ## _demuxer = {              \
+    .name           = #name_,                               \
+    .long_name      = NULL_IF_CONFIG_SMALL(long_name_),     \
+    .priv_data_size = sizeof(PCMAudioDemuxerContext),       \
+    .read_header    = pcm_read_header,                      \
+    .read_packet    = pcm_read_packet,                      \
+    .read_seek      = ff_pcm_read_seek,                     \
+    .flags          = AVFMT_GENERIC_INDEX,                  \
+    .extensions     = ext,                                  \
+    .raw_codec_id   = codec,                                \
+    .priv_class     = &name_ ## _demuxer_class,             \
+};
+
+PCMDEF(f64be, "PCM 64-bit floating-point big-endian",
+       NULL, AV_CODEC_ID_PCM_F64BE)                    应该是 ff_pcm_f64be_demuxer

@@ -1,0 +1,32 @@
+http://stackoverflow.com/questions/37538/how-do-i-determine-the-size-of-my-array-in-c
+
+int a[17];
+int n = sizeof(a) / sizeof(int);
+
+int a[17];
+int n = sizeof(a) / sizeof(a[0]);
+
+#define NELEMS(x)  (sizeof(x) / sizeof(x[0]))
+
+int a[17];
+int n = NELEMS(a);
+
+array-type is implicitly[美][ɪmˈplɪsɪtlɪ]含蓄地 converted into pointer type when you pass it in to a function.
+
+So,
+
+void PrintSize(int p_someArray[10]){
+printf("%zu\n", sizeof(p_someArray));
+}
+and
+
+void PrintSize(int *p_someArray){
+printf("%zu\n", sizeof(p_someArray));
+}
+are equivalent. So what you get is the value of sizeof(int*)
+
+http://stackoverflow.com/questions/3071890/external-delaration-for-an-array
+定义 extern JNINativeMethod g_fopensl_jnicls_methods[]
+sizeof(g_fopensl_jnicls_methods); 出下面的编译错误
+error: invalid application of 'sizeof' to incomplete type 'JNINativeMethod []
+解决方法，增加个 extern cont int g_array_size 变量，在 g_fopensl_jnicls_methods 定义的地方，初始化。

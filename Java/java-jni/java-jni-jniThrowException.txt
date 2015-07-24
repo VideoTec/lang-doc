@@ -1,0 +1,52 @@
+Ê¾Àý£º
+/frameworks/base/media/jni/android_media_MediaPlayer.cpp
+
+static void
+android_media_MediaPlayer_setDataSourceAndHeaders(
+        JNIEnv *env, jobject thiz, jobject httpServiceBinderObj, jstring path,
+        jobjectArray keys, jobjectArray values) {
+
+    sp<MediaPlayer> mp = getMediaPlayer(env, thiz);
+    if (mp == NULL ) {
+        jniThrowException(env, "java/lang/IllegalStateException", NULL);
+        return;
+    }
+
+    if (path == NULL) {
+        jniThrowException(env, "java/lang/IllegalArgumentException", NULL);
+        return;
+    }
+
+    const char *tmp = env->GetStringUTFChars(path, NULL);
+    if (tmp == NULL) {  // Out of memory
+        return;
+    }
+    ALOGV("setDataSource: path %s", tmp);
+
+    String8 pathStr(tmp);
+    env->ReleaseStringUTFChars(path, tmp);
+    tmp = NULL;
+
+    // We build a KeyedVector out of the key and val arrays
+    KeyedVector<String8, String8> headersVector;
+    if (!ConvertKeyValueArraysToKeyedVector(
+            env, keys, values, &headersVector)) {
+        return;
+    }
+
+    sp<IMediaHTTPService> httpService;
+    if (httpServiceBinderObj != NULL) {
+        sp<IBinder> binder = ibinderForJavaObject(env, httpServiceBinderObj);
+        httpService = interface_cast<IMediaHTTPService>(binder);
+    }
+
+    status_t opStatus =
+        mp->setDataSource(
+                httpService,
+                pathStr,
+                headersVector.size() > 0? &headersVector : NULL);
+
+    process_media_player_call(
+            env, thiz, opStatus, "java/io/IOException",
+            "setDataSource failed." );
+}

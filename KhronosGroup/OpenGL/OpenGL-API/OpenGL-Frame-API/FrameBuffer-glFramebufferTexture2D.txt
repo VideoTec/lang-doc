@@ -1,0 +1,24 @@
+
+        glGenFramebuffers(1, &render_textures[index].output_frame_buffer);
+        glBindFramebuffer(GL_FRAMEBUFFER, render_textures[index].output_frame_buffer);
+        
+        glGenTextures(1, &render_textures[index].output_texture);
+        glBindTexture(GL_TEXTURE_2D, render_textures[index].output_texture);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 
+		             render_textures[index].width, render_textures[index].height, 
+					 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+        
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, render_textures[index].output_texture, 0);
+        
+        glGenRenderbuffers(1, &render_textures[index].output_depth_buffer);
+        glBindRenderbuffer(GL_RENDERBUFFER, render_textures[index].output_depth_buffer);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, render_textures[index].width, render_textures[index].height);
+        
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, 
+		                          GL_DEPTH_ATTACHMENT, 
+								  GL_RENDERBUFFER, 
+								  render_textures[index].output_depth_buffer);

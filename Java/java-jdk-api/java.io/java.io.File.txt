@@ -1,0 +1,11 @@
+参考
+file:///E:/android-sdk-windows/docs/reference/java/io/File.html
+
+Class Overview
+An "abstract" representation of a file system entity identified by a pathname. The pathname may be absolute (relative to the root directory of the file system) or relative to the current directory in which the program is running.
+
+The actual file referenced by a File may or may not exist. It may also, despite the name File, be a directory or other non-regular file.
+
+This class provides limited functionality for getting/setting file permissions, file type, and last modified time.
+
+On Android strings are converted to UTF-8 byte sequences when sending filenames to the operating system, and byte sequences returned by the operating system (from the various list methods) are converted to strings by decoding them as UTF-8 byte sequences.

@@ -1,0 +1,4 @@
+http://docs.oracle.com/javase/7/docs/api/java/util/List.html
+
+int	indexOf(Object o)
+Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.

@@ -1,0 +1,25 @@
+http://blog.csdn.net/whqet/article/details/43449045#required和optional
+
+:valid和:invalid
+
+这两个伪类针对具有type的input表单而立，
+比如有一个type=email的表单，
+当它的值不是有效的邮箱格式时触发:invalid伪类，
+值为有效的邮箱格式时触发:valid伪类
+
+input:invalid{
+  border: 1px solid tomato;
+}
+input:valid~ label::after {
+  content: "耶，一个邮箱！";
+}
+input:invalid ~ label::after {
+  content: "枣糕，邮箱邮箱，是邮箱吗？";
+}
+
+https://css-tricks.com/almanac/selectors/i/invalid/
+:invalid can be “chained” with other pseudo-selectors: 
+like 
+:focus to only validate when the user is typing, 
+:before or :after to generate icons or text to provide more user feedback, or 
+attribute selectors like input[value=""] to only validate input fields containing content.

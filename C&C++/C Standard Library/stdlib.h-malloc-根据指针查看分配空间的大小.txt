@@ -1,0 +1,17 @@
+determine size of dynamically allocated memory in c？
+No, the C runtime library does not provide such a function.
+
+https://msdn.microsoft.com/en-us/library/z2s077bc(VS.80).aspx
+
+Returns the size of a memory block allocated in the heap.
+size_t _msize(void *memblock);  Pointer to the memory block.
+
+_msize returns the size (in bytes) as an unsigned integer
+
+http://stackoverflow.com/questions/1281686/determine-size-of-dynamically-allocated-memory-in-c
+There is no standard way to find this information. 
+However, some implementations provide functions like msize to do this. 
+
+For example:
+_msize on Windows
+malloc_size on MacOS

@@ -1,0 +1,21 @@
+16:10 2015/7/13
+
+LOGI("start tm: %d", time(NULL));
+
+./media_data_writer_test.c:59:3: warning: format '%d' expects argument of type 'int', but argument 4 has type 'time_t' [-Wformat=]
+   LOGI("start tm: %d", time(NULL));
+   ^
+./media_data_writer_test.c:69:3: warning: format '%d' expects argument of type 'int', but argument 4 has type 'time_t' [-Wformat=]
+   LOGI("end tm: %d", time(NULL));
+   ^
+
+需要修改成
+LOGI("start tm: %ld", time(NULL));
+
+查找 time_t 类型定义
+E:\android\ndk\platforms\android-3\arch-arm\usr\include\sys\types.h
+typedef __kernel_timer_t	timer_t;
+
+E:\android\ndk\platforms\android-3\arch-arm\usr\include\asm\posix_types.h
+typedef int __kernel_timer_t;
+很奇怪，为什么 ld 就不出警告了？

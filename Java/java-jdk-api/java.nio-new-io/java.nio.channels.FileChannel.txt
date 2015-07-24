@@ -1,0 +1,24 @@
+http://developer.android.com/reference/java/nio/channels/FileChannel.html
+
+An abstract channel type for interaction with a platform file.
+
+A FileChannel defines the methods for reading, writing, memory mapping, and manipulating the logical state of a platform file. This type does not have a method for opening files, since this behavior has been delegated to the FileInputStream, FileOutputStream and RandomAccessFile types.
+
+FileChannels created from a FileInputStream or a RandomAccessFile created in mode "r", are read-only. FileChannels created from a FileOutputStream are write-only. FileChannels created from a RandomAccessFile created in mode "rw" are read/write. FileChannels created from a RandomAccessFile that was opened in append-mode will also be in append-mode -- meaning that each write will be proceeded by a seek to the end of file.
+
+FileChannels have a virtual pointer into the file which is referred to as a file position. The position can be manipulated by moving it within the file, and the current position can be queried.
+
+FileChannels also have an associated size. The size of the file is the number of bytes that it currently contains. The size can be manipulated by adding more bytes to the end of the file (which increases the size) or truncating the file (which decreases the size). The current size can also be queried.
+
+FileChannels have operations beyond the simple read, write, and close. They can also:
+
+request that cached data be forced onto the disk,
+lock ranges of bytes associated with the file,
+transfer data directly to another channel in a manner that has the potential to be optimized by the platform,
+memory-mapping files into NIO buffers to provide efficient manipulation of file data,
+read and write to the file at absolute byte offsets in a fashion that does not modify the current position.
+FileChannels are thread-safe. Only one operation involving manipulation of the file position may be executed at the same time. Subsequent calls to such operations will block, and one of those blocked will be freed to continue when the first operation has completed. There is no ordered queue or fairness applied to the blocked threads.
+
+It is undefined whether operations that do not manipulate the file position will also block when there are any other operations in-flight.
+
+The logical view of the underlying file is consistent across all FileChannels and I/O streams opened on the same file by the same VM. Therefore, modifications performed via a channel will be visible to the stream and vice versa; this includes modifications to the file position, content, size, etc.

@@ -1,0 +1,37 @@
+创建 shader对象：create a shader object
+GLuint glCreateShader(GLenum shaderType) 返回非零值 - 空shader-obj的引用值
+shaderType: Must be either GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
+glCreateShader creates an empty shader object and returns a non-zero value by which it can be referenced
+the OpenGL names/ids reserved to the shaders are one single list. 
+For example, if you 
+generate a VSH which has the name/id 1 this number will never be used again
+if you now create a FSH, the new name/id will probably be 2 and so on
+
+替换 shdaer对象的源码：replace the source code in a shader object
+void glShaderSource(GLuint shader, GLsizei count, const GLchar * const *string, const GLint *length);
+If length is NULL, each string is assumed to be null terminated
+The source code strings are not scanned or parsed at this time; 
+they are simply copied into the specified shader object.
+Once the shader has been compiled, 
+you can’t change the source code anymore using the glShaderSource
+
+编译 shader对象：compile a shader object
+void glCompileShader(GLuint shader);
+
+返回 shader对象的参数：return a parameter from a shader object
+void glGetShaderiv(GLuint shader, GLenum pname, GLint *params);
+GL_SHADER_TYPE
+GL_DELETE_STATUS
+GL_COMPILE_STATUS         GL_TRUE / GL_FALSE
+GL_INFO_LOG_LENGTH
+GL_SHADER_SOURCE_LENGTH
+
+返回 shader对象的消息日志：return the information log for a shader object
+void glGetShaderInfoLog(GLuint shader, GLsizei maxLength, GLsizei *length, GLchar *infoLog);
+编译错误，但是这个着色的，错误日志，返回为空。
+https://code.google.com/p/android/issues/detail?id=9953
+glGetShaderiv always returns a log info length of 0, even if there is an error in a shader program
+这个问题和手机相关？
+
+删除 shader对象：delete a shader object
+void glDeleteShader(GLuint shader);

@@ -1,0 +1,29 @@
+15:24 2015/4/23
+问题：
+crop_video.h / crop_video.c
+int crop_video(const char *des_filename, const char *src_filename,
+               int width, int height, int left, int top,
+               void(*process_cb)(float));
+
+现在 jniconvert.cpp 里调用
+void cropping_process_callback_jvm(float percentage)
+{
+    jfloat per = percentage;
+    
+    java_env.jenv_cropping->CallStaticVoidMethod(java_env.jclazz_cropping, java_env.method_cropping, per);
+}
+
+    int r = crop_video(o_file, i_file,
+                       width, height,
+                       offset_left, offset_top, cropping_process_callback_jvm);
+
+参考：
+http://www.fmddlmyy.cn/text12.html
+C++函数的调用方式 和 C函数的调用方式 有没有不同？
+                参数传递顺序   谁负责清理参数占用的堆栈
+__pascal        从左到右       调用者
+__stdcall       从右到左       被调函数
+__cdecl         从右到左       调用者
+在Windows上，__cdecl是C/C++程序的缺省函数调用约定
+
+函数指针，能定义函数调用方式吗？

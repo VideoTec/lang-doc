@@ -1,0 +1,1 @@
+This is generally useful when there are circular dependencies between several static libraries. Note that when used to build a shared library, this will force all object files from your whole static libraries to be added to the final binary. This is not true when generating executables though

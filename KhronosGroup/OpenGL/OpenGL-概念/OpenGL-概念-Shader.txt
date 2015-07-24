@@ -1,0 +1,53 @@
+VSH - Vertex Shader
+VSH will be processed per-vertex, if your 3D object has 8 vertices, so the vertex shader will be processed 8 times. 
+The VSH is responsible[rɪˈspɑ:nsəbl]负有责任的 by determine the final position of a vertex.
+
+FSH - Fragment Shader
+FSH will be processed in each visible fragment of your objects, 
+remember that FSH is processed before the "Fragment Operations" in the graphics pipeline, 
+so the OpenGL doesn't knows yet what object is in front of others, 
+I mean, even the fragments behind the others will be processed. 
+The FSH is responsible[rɪˈspɑ:nsəbl]负有责任的 by define the final color of a fragment.
+
+You can reuse a compiled shader into multiple Program Objects
+
+着色器变量中的限制符：
+Storage qualifiers
+Layout qualifiers
+Precision qualifiers  highp​, mediump​, and lowp​  They can apply to any floating-point type (vector or matrix), or any integer type
+Precise qualifiers    没有说明
+Memory qualifiers     coherent volatile restrict readonly writeonly
+Invariance[美][ɪn'verɪrns]恒定性 qualifiers
+
+限定符的顺序：Qualifier order
+invariant-qualifier interpolation-qualifier layout-qualifier other-storage-qualifier precision-qualifier
+
+已经移除的限定符：Removed qualifiers
+The following qualifiers are deprecated as of GLSL 1.30 (OpenGL 3.0) and removed from GLSL 1.40 and above
+The Attribute​ qualifier is effectively equivalent to an input qualifier in vertex shaders. It cannot be used in any other shader stage. It cannot be used in interface blocks.
+The varying​ qualifier is equivalent to the input of a fragment shader or the output of a vertex shader. It cannot be used in any other shader stages. It cannot be used in interface blocks.
+
+着色器中的变量的 storage qualifier：
+A uniform is a global GLSL variable declared with the "uniform" storage qualifier[ˈkwɑ:lɪfaɪə(r)]限定符.
+
+Attribute 等价于：VSH的输入限定符
+OpenGL3.0之前（或者说，固定管道被严重BS之前），
+我们可以很舒心地使用gl_Vertex, gl_MultiTexcoord[], gl_Normal这类
+内置的attribute变量来指涉传入shader里的传统的顶点属性
+这种变量需要在GPU里的Shader的存储空间中有固定的位置（地址）
+在链接shaderProgram（见上文）之前，这个位置是未确定的，
+因此我们可以在这个shaderProgram调用glLinkProgram之前，
+为这个attribute变量指定一个位置（用无符号值表示）：glBindAttribLocation
+如果shader里有attribute变量，且我们没有为它绑定一个位置（见1上文），那么shaderProgram在链接后，会自动为它分配一个位置。
+我们可以在任何需要的时候获取（查询）这个位置：glGetAttribLocation，就不必局限于在shaderProgram的创建和链接之间去绑定了
+By default, any implementation of OpenGL's programmable pipeline must supports at least 8 Attribute
+
+Varyings 等价于：FSH输入限定符，VSH输出限定符
+varying变量主要用于在Shader Stage间进行传递，注意的是在光栅化(Rasterization)的时候，这些变量也会跟着一起被光栅插值
+其实要让GLSL中某个作为顶点属性的varying变量不被光栅化，
+只要在它前面加一个flat关键字就可以了。这样它就像上述的那样，到达Fragmen Shader的图元上所有像素的该varying值都是相同的值
+By default, any implementation of OpenGL's programmable pipeline must to support at least 8 Varyings.
+
+The VSH supports at least 128 Uniforms, but the FSH supports at least 16 Uniforms.
+A very common usage to uniforms is the samplers, you remember sampler data types,
+

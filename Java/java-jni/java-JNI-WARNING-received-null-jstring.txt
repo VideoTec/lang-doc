@@ -1,0 +1,4 @@
+JNI WARNING: received null jstring
+解决办法：
+调用GetStringUTFChars( )函数时，
+先判断下传入的jstring类型的变量是不是null，是就不用调用该函数，不是就可以放心的使用

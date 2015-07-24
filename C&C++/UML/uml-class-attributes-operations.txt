@@ -1,0 +1,19 @@
+Association is basically a set of links that connects elements of an UML model. It also describes 
+how many objects are taking part in that relationship. 
+
+attributes 示例 一
++ name : String          public
+# roll : Integer         protected
+- section: String        private
+
+attributes 示例 二
+name
+author: Person(0,*)
+publisher
+RRP: Money(0,1)
+
+operations 示例
++ Disaplay()
+- Add()
+- Edit()
+# Delete

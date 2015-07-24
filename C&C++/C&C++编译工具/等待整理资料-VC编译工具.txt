@@ -1,0 +1,398 @@
+计划列表：
+2014.10.14 【计划】《VS2013集成YASM方法》1. 安装 2. 使用 3. 获取CPUID例子
+vc-build-asm-item-type.png
+
+2014.10.15 【计划】《VS2013构建64位程序》
+                   《微软SDL( Security Development Lifecycle)》
+
+Visual Studio Ultimate 系统要求
+系统要求
+支持的操作系统
+Windows 8.1（x86 和 x64）
+Windows 8（x86 和 x64）
+Windows 7 SP1（x86 和 x64） 使用驱动精灵下载WIN7 SP1包
+Windows Server 2012 R2 (x64)
+Windows Server 2012 (x64)
+Windows Server 2008 R2 SP1 (x64)
+
+
+TypeLib IDL HeadFile
+midl.exe 工具的用法
+1. 从typelib里获取IDL文件。
+2. 从IDL文件生成头文件。
+
+
+Windows SDK与DirectX SDK已经集成到VS2012里了
+对于64位win8系统中默认安装的VS2012，Windows与DirectX的头文件默认是在
+“C:\Program Files (x86)\Windows Kits\8.0\Include”目录中。
+其中有三个子目录——
+shared：非托管（um）与WinRT程序公用的头文件。
+um：        非托管程序专用的头文件。
+WinRT：WinRT程序专用的头文件。
+
+　　传统的Windows SDK程序是非托管的，头文件大多在um子目录中
+
+对于64位win8系统中默认安装的VS2012，Windows与DirectX的库文件默认是在
+“C:\Program Files (x86)\Windows Kits\8.0\Lib\win8\um”
+目录中。其中有三个子目录——
+arm：ARM体系的库文件。
+x64：x86体系的64位库文件。
+x86：x86体系的32位库文件。
+
+　　因托管程序（如WinRT）的库是以.Net程序集的方式管理的。所以这里只有非托管程序的“um”子目录
+
+
+对于64位win8系统中默认安装的VS2012，工具程序默认是在
+“C:\Program Files (x86)\Windows Kits\8.0\bin”目录中。
+其中有三个子目录——
+arm：ARM体系的工具程序。
+x64：x86体系的64位工具程序。
+x86：x86体系的32位工具程序
+
+
+
+
+
+
+
+VC Debug, pdb, /debug 
+There are several different debug flags you can use with the Visual Studio C++ compiler. They are:
+(none)Create no debugging informationFaster compilation times
+/Z7 Produce full-symbolic debugging information in the .obj files using CodeView format
+/Zi Produce full-symbolic debugging information in a .pdb file for the target using Program Database format.
+Enables support for minimal rebuilds (/Gm) which can reduce the time needed for recompilation.
+/ZI Produce debugging information like /Zi except with support for Edit-and-Continue
+链接标志：The /DEBUG option creates debugging information for the .exe file or DLL.
+(注意：/analyze-  后面跟的中划线的意思：禁用的意思)
+编译选项：
+/Yu"stdafx.h" 
+/GS 
+Control Stack Checking Calls
+/analyze- 
+/W3 
+/ZI 
+/Gm Enable Minimal Rebuild(启用最小重新构建)
+
+/Od  禁止优化  LIBAV（/o2） 改成这个会，链接失败。(LNK2019)
+          失败的原因，if(0)，会被优化掉，如果不优化，就会链接不到，未编译的符号。
+
+/sdl 
+Enable Additional Security Checks
+/WX-  将警告视为错误
+/RTC1 
+/Gd 
+
+四种调用约定
+/Gd(__cdecl 调用约定), 
+/Gr( __fastcall 调用约定), 
+/Gv( __vectorcall), 
+/Gz (__stdcall 调用约定)
+
+/Oy-  
+框架指针省略（Frame Pointer Omission）（FPO）
+The /Ox (Full Optimization) and /O1, /O2 (Minimize Size, Maximize Speed) options imply /Oy. 
+Specifying /Oy– after the /Ox, /O1, or /O2 option disables /Oy, whether it is explicit or implied.
+
+/MTd 链接LIBCMTD.LIB
+/EHsc 
+
+/nologo  not display the startup banner (不要显示公司标识)
+                   不添加这个，会把编译命令行，输出来
+                   取消启动版权标记，output窗口中会显示下面信息：
+用于 x86 的 Microsoft (R) C/C++ 优化编译器 18.00.21005.1 版版权所有(C) Microsoft Corporation。  保留所有权利。
+
+/Zc:forScope 强制FOR循环范围中的合规性
+/Zc:wchar_t 
+
+/fp:precise 
+/fp (Specify Floating-Point Behavior).
+
+/errorReport:prompt 
+/Fd"Debug\vc120.pdb" 
+/Fa"Debug\" 
+/Fo"Debug\" 
+/Fp"Debug\TestVClass.pch" 
+
+/O2 (Maximize Speed)
+/Og 全局优化（已经废弃）：
+         1）  Named Return Value optimization
+        2） Loop optimization
+        3）Automatic register allocation
+        4）Local and global common subexpression elimination
+/Oi   intrinsic（内建函数）
+/Ot    (Favor Fast Code) maximizes the speed of EXEs and DLLs
+/Oy 
+/Ob2 (0, 1, 2 三种标准选择，扩展，内联函数)
+/Gs    Controls stack probes.
+/GF   Enables string pooling.
+
+/Gy   Enables function-level linking. (分隔链接器函数)
+The /Gy switch is also very useful. 
+It generates a separate COMDAT for each function, 
+giving the linker more flexibility 
+when it comes to removing unreferenced COMDATs and COMDAT folding. 
+The only downside to using /Gy is that it can have a minor effect on build time. Therefore, it is generally recommended to use it. 
+
+/O1 (Minimize Size)
+/Og 
+/Os (Favor Small Code) minimizes the size of EXEs and DLLs
+/Oy 
+/Ob2 
+/Gs 
+/GF
+/Gy
+
+链接选项：
+/OUT:"I:\VideoBaseClass\TestVClass\Debug\TestVClass.exe" 
+/MANIFEST      生成清单
+/NXCOMPAT   数据执行保护
+/PDB:"I:\VideoBaseClass\TestVClass\Debug\TestVClass.pdb" 
+
+/DYNAMICBASE  随机基址
+VC2010默认开启，从Visual Studio® 2005 SP1 起增加了该设置的支持
+
+/DEBUG                  生成调度信息
+/MACHINE:X86  目标计算机
+/INCREMENTAL 启用增量链接
+
+/PGD:"I:\VideoBaseClass\TestVClass\Debug\TestVClass.pgd" 
+Specifies the name of the .pgd file that will be used to 
+hold information about the running program.
+按配置优化数据库
+
+/SUBSYSTEM:CONSOLE  子系统
+
+/MANIFESTUAC:"level='asInvoker' uiAccess='false'"
+启用用户账户控制（UAC） 
+level='asInvoker'      UAC执行级别
+uiAccess='false'        UAC 绕过UI保护
+
+/ManifestFile:"Debug\TestVClass.exe.intermediate.manifest" /ERRORREPORT:PROMPT  错误报告，提示方式：立即提示
+
+/NOLOGO 
+The /NOLOGO option prevents display of the copyright message and version number.
+this information is sent by the linker to the Output window. 
+
+/LIBPATH:"C:\msys\1.0\local\lib" 
+
+/TLBID:1 
+Specify Resource ID for TypeLib（TypeLib资源ID）
+
+"kernel32.lib" "user32.lib" "gdi32.lib" "winspool.lib" "comdlg32.lib" "advapi32.lib" "shell32.lib" "ole32.lib" "oleaut32.lib" "uuid.lib" "odbc32.lib" "odbccp32.lib" 
+
+
+
+
+
+msvc-excluded-from-build.png，指定文件，不参与构建。
+
+
+
+
+
+
+微软SDL( Security Development Lifecycle)流程，是一种专注于软件开发安全保障的流程，为了实现保证最终的用户安全，在软件开发各阶段中引入安全和隐私问题
+
+
+SDL检查是什么意思？
+/sdl
+/sdl- 否
+error C4996: 'fileno': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _fileno. See online help for details
+在#include<stdio.h>前面加上#define  _CRT_SECURE_NO_WARNINGS就可以不报错
+1）VS2013没有解决，还是把，fileno改为，_fileno   
+2）不用改，但是要把 /sdl-  设置SDL检查为否，就可以了
+
+
+error C4996: 'fileno': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _fileno. See online help for details
+在#include<stdio.h>前面加上#define  _CRT_SECURE_NO_WARNINGS就可以不报错
+VS2013没有解决，还是把，fileno改为，_fileno
+
+
+
+
+
+vc编译参数
+警告等级
+/W0 - /W4 /Wall
+
+
+
+VC与YASM的集成
+http://blog.csdn.net/lee353086/article/details/6068590
+
+VC2013中使用yasm汇编器
+
+下载：http://www.tortall.net/projects/yasm/releases/vsyasm-1.3.0-win32.zip
+使用方法：https://www.tortall.net/projects/yasm/manual/html/vsyasm.html
+
+第一步：复制vsyasm.exe
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin
+
+第二步：复制vsyasm.xml, vsyasm.props and vsyasm.targets
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\BuildCustomizations
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\BuildCustomizations
+或者
+three files    should be added into the project directory
+或者
+
+第三步：vc-build-dependencies-build-customizations.png 设置，自定义编译。
+
+*** Building with YASM ***
+
+In order to build x264 using msvc you must first download and install YASM.
+YASM is required to compile all x264 assembly files.
+
+1) Download yasm for Visual Studio from here:
+http://yasm.tortall.net/Download.html
+
+Currently only up to VS2010 is supported on the web page so just download that.
+
+2) Follow the instructions found within the downloaded archive for installing YASM
+    Note: With newer version of VS the BuildCustomization path should be the version specific to the VS version you are using.
+        so for instance the path for Visual Studio 2013 is:
+        C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\BuildCustomizations
+        
+3) Currently there is a bug in Visual Studio 2013 so in order to make the build customizations work you must edit a file
+    a) Open vsyasm.props that you just extracted
+    b) Replace the 1 occurrence of [Input] with "%(FullPath)"  (make sure to include the "s)
+
+4) In order to use version 1.3.0 of vsyasm you will also have to fix a error in the distributed build customizations
+    a) Open vsyasm.props that you just extracted
+    b) Replace the 1 occurrence of $(Platform) with win$(PlatformArchitecture)
+    
+5) ???
+
+6) Profit
+
+
+
+三个同名的源文件，造成，编译时，只编译一个
+1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of cabac.c will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are ..\..\common\cabac.c, ..\..\encoder\cabac.c.
+1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of macroblock.c will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are ..\..\common\macroblock.c, ..\..\encoder\macroblock.c.
+1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of set.c will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are ..\..\common\set.c, ..\..\encoder\set.c.
+1>Debug\cabac.obj : warning LNK4042: object specified more than once; extras ignored
+1>Debug\macroblock.obj : warning LNK4042: object specified more than once; extras ignored
+1>Debug\set.obj : warning LNK4042: object specified more than once; extras ignored
+
+解决方法：指定，encoder，里的源文件的，输出OBJ文件名称：$(IntDir)\macroblockEnc.obj
+
+
+8. 忽略不必要的警告
+   warning C4244: 'function' : conversion from 'uint64_t' to 'uint32_t', possible loss of data
+   warning C4996: 'fileno': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _fileno. See online help for details.
+   warning C4305: '=' : truncation from 'double' to 'float'
+   warning C4018: '<' : signed/unsigned mismatch
+   
+#pragma warning (disable: 4244)将忽略warning C4244
+configuration properties --> c/c++ --> advanced
+disable specific warnings栏填入警告的编号，sprintf好像是4996。
+如果要屏蔽多个警告，就把它们编号用逗号分隔 msvc-disable-specific-warnings.png
+   
+   
+   uint8_t (*bs)[8][4] = h->mb.cache.deblock_strength;
+VS2013编译错误：error C2063: 'uint8_t' : not a function
+
+
+	char(*tt)[4];  //添加一个无意义的句子，就好了，奇怪，和下面那个问题是一个。
+	uint8_t(*bs)[8][4] = h->mb.cache.deblock_strength;
+	
+
+	
+	
+	
+        if( previous_nal_size )
+            memcpy( buf, h0->nal_buffer, previous_nal_size );   加｛｝，使后面的代码，成为单独的块
+
+        intptr_t delta = buf - h0->nal_buffer;
+		
+encoder.c(1886): error C2275: 'intptr_t' : illegal use of this type as an expression
+
+When you name your source files *.c, MSVC assumes it's compiling C, which means C89. All block-local variables need to be declared at the beginning of your functions.
+
+Workarounds include:
+
+declaring/initializing all local variables at the beginning of a code block (directly after an opening brace {)
+rename the source files to *.cpp or equivalent and compile as C++.
+upgrading to VS 2013, which relaxes this restriction.
+
+vc 编辑器，空格与TAB的显示与隐藏，TAB设置成2个空格
+ctr + r + w 显示与隐藏 空格和TAB符号
+tools -> options -> Text Editor -> c++ -> tabs 设置，TAB格式
+查找TAB的方法
+查找、替换对话框的，选项里，选中，Use Regular Expressions。然后再查找内容里，填写，\t。就可查找tab字符了。
+
+vc编译器，命令行
+cl 
+-I. -I. 
+-D_ISOC99_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_WIN32_WINNT=0x0502 
+-Dstrtod=avpriv_strtod -Dsnprintf=avpriv_snprintf -D_snprintf=avpriv_snprintf -Dvsnprintf=avpriv_vsnprintf 
+-DHAVE_AV_CONFIG_H 
+-nologo 
+-D_USE_MATH_DEFINES -D_CRT_SECURE_NO_WARNINGS 
+-Dinline=__inline -FIstdlib.h -Dstrtoll=_strtoi64    
+-W4 -wd4244 -wd4127 -wd4018 -wd4389 -wd4146 -wd4057 -wd4204 -wd4706 -wd4305 -wd4152 -wd4324 -we4013 -wd4100 -wd4214 -wd4273 
+-O2     -c -Folibavutil/x86/lls_init.o libavutil/x86/lls_init.c
+
+cl 
+-I. -I. 
+-D_ISOC99_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_WIN32_WINNT=0x0502 
+-Dstrtod=avpriv_strtod -Dsnprintf=avpriv_snprintf -D_snprintf=avpriv_snprintf -Dvsnprintf=avpriv_vsnprintf 
+-nologo 
+-D_USE_MATH_DEFINES -D_CRT_SECURE_NO_WARNINGS 
+-Dinline=__inline -FIstdlib.h -Dstrtoll=_strtoi64    
+-W4 -wd4244 -wd4127 -wd4018 -wd4389 -wd4146 -wd4057 -wd4204 -wd4706 -wd4305 -wd4152 -wd4324 -we4013 -wd4100 -wd4214 -wd4273 
+-O2     -c -Fotools/probetest.o tools/probetest.c
+
+问题，这里链接的那个运行库呢？动态的还是静态的？静态运行时库，/MT libcpmt.lib
+与标准程序库有关的编译选项: /ML、/MLd、/MT、/MTd、/MD、/MDd
+这些选项告诉编译器应用程序想使用什么版本的C标准程序库
+Note:
+LIBCP.LIB and LIBCPD.LIB (via the old /ML and /MLd options) have been removed. 
+Use LIBCPMT.LIB and LIBCPMTD.LIB instead via the /MT and /MTd options
+怎么把这个链接信息传递给，链接器？
+cl编译出的目标文件中会有一个专门的区域(关心这个区域到底在文件中什么地方的朋友可以参考COFF和PE文件格式)存放一些指导链接器如何工作的信息，
+其中有一种就叫缺省库(default library)，
+这些信息指定了一个或多个库文件名，告诉链接器在扫描的时候也把它们加入到输入文件列表中(当然顺序位于在命令行中被指定的输入文件之后）
+可以通过查看，obj，文件，看这个目标文件需要链接的运行时库。
+
+dumpbin /DIRECTIVES my.lib 可以查看静态库链接的，运行时库，类型  -defaultlib:XXXX
+
+Standard C++ Library	Characteristics													Option	Preprocessor directives	
+LIBCPMT.LIB				Multithreaded, static link										/MT		_MT	
+MSVCPRT.LIB				Multithreaded, dynamic link (import library for MSVCP110.dll)	/MD		_MT, _DLL	
+LIBCPMTD.LIB			Multithreaded, static link										/MTd	_DEBUG, _MT	
+MSVCPRTD.LIB			Multithreaded, dynamic link (import library for MSVCP110D.DLL)	/MDd	_DEBUG, _MT, _DLL	
+
+
+vc，lib，打包静态库
+lib -nologo -out:libavutil/libavutil.a libavutil/../compat/msvcrt/snprintf.o libavutil/../compat/strtod.o libavutil/adler32.o libavutil/aes.o libavutil/atomic.o libavutil/audio_fifo.o libavutil/avstring.o libavutil/base64.o libavutil/blowfish.o libavutil/buffer.o libavutil/channel_layout.o libavutil/cpu.o libavutil/crc.o libavutil/des.o libavutil/dict.o libavutil/display.o libavutil/downmix_info.o libavutil/error.o libavutil/eval.o libavutil/fifo.o libavutil/file.o libavutil/file_open.o libavutil/float_dsp.o libavutil/frame.o libavutil/hmac.o libavutil/imgutils.o libavutil/intmath.o libavutil/lfg.o libavutil/lls.o libavutil/log.o libavutil/log2_tab.o libavutil/mathematics.o libavutil/md5.o libavutil/mem.o libavutil/opt.o libavutil/parseutils.o libavutil/pixdesc.o libavutil/random_seed.o libavutil/rational.o libavutil/rc4.o libavutil/samplefmt.o libavutil/sha.o libavutil/stereo3d.o libavutil/time.o libavutil/tree.o libavutil/utils.o libavutil/x86/cpu.o libavutil/x86/cpuid.o libavutil/x86/emms.o libavutil/x86/float_dsp.o libavutil/x86/float_dsp_init.o libavutil/x86/lls.o libavutil/x86/lls_init.o libavutil/xtea.o
+
+vc, link，链接exe文件
+link 
+-libpath:libavcodec 
+-libpath:libavdevice 
+-libpath:libavfilter 
+-libpath:libavformat 
+-libpath:libavresample 
+-libpath:libavutil 
+-libpath:libswscale 
+-nologo  
+-out:libavutil/cpu-test.exe 
+libavutil/cpu-test.o libavutil/libavutil.a  psapi.lib advapi32.lib shell32.lib
+注意：指定库文件的搜索路径，路径格式
+link -libpath:c:/libav/lib -nologo -out:$@.exe $^ libavformat.a libavcodec.a libavutil.a
+
+
+CL编译错误
+$ cl -c hello.o hello.c
+Microsoft (R) C/C++ Optimizing Compiler Version 18.00.21005.1 for x86
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+cl : Command line warning D9024 : unrecognized source file type 'hello.o', object file assumed
+cl : Command line warning D9027 : source file 'hello.o' ignored
+
+warning D9027
+cl /c /Fo output.obj input.c
+Because there is a space between /Fo and output.obj, CL.exe takes output.obj as the name of the input file.
+To fix the problem, remove the space
+cl /c /Fooutput.obj input.c

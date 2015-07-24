@@ -1,0 +1,16 @@
+Microsoft (R) C/C++ Optimizing Compiler Version 18.00.21005.
+
+注意下面的代码：
+  ptr = strrchr(response_buffer, '\n');
+  if (ptr - response_buffer != (len - 1)) {
+    return 0;
+  }
+  const char *last_line_ptr = response_buffer;
+如果if语句，不加大括号，后面的声明语句，会出错。
+
+In C89 and earlier, all block-scope variable declarations must come before any statements. 
+C99 changed this rule, so that declarations and statements may be intermixed as in C++.
+
+Unfortunately, Microsoft has chosen not to support C99 in Visual Studio and has no plans to AFAIK.
+参考：http://stackoverflow.com/questions/705502/why-does-microsofts-c-compiler-want-the-variables-at-the-beginning-of-the-funct
+it appears that cl.exe does NOT support C99, which is incredible. It's been almost 10 years! 

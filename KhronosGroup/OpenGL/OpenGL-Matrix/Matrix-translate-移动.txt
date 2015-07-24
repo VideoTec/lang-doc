@@ -1,0 +1,20 @@
+void Matrix::translate(float x, float y, float z) {
+    Matrix* m = newTranslate(x, y, z);
+    Matrix* temp = new Matrix(*this);
+    if (m != NULL && temp != NULL) {
+        multiply(*temp, *m);
+    }
+    delete m;
+    delete temp;
+}
+
+Matrix* Matrix::newTranslate(float x, float y, float z) {
+    Matrix* m = new Matrix();
+    if (m != NULL) {
+        float* d = m->mData;
+        d[12] = x;
+        d[13] = y;
+        d[14] = z;
+    }
+    return m;
+}

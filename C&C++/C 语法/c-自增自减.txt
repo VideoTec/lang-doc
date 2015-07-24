@@ -1,0 +1,26 @@
+第一个例子
+
+void fun(int i) {
+  printf("%d", i);
+}
+
+int v = 0;
+fun(v++);  //printf > 0
+
+---------------------------------------
+Increment Operator 、C decrement operator
+---------------------------------------
+http://www.c4learn.com/c-programming/c-decrement-operator/
+
+A. Pre Decrement Operator
+Pre-decrement operator is used to decrement the value of variable before using in the expression. In the Pre-decrement value is first decremented and then used inside the expression.
+
+b = --var;
+Suppose the value of variable var is 10 then we can say that value of variable ‘var’ is firstly decremented then updated value will be used in the expression.
+
+B. Post Decrement Operator
+Post-decrement operator is used to decrement the value of variable immediatly after executing expression completely in which post decrement is used. In the Post-decrement old value is first used in a expression and then old value will be decrement by 1.
+
+b = var--;
+
+Value of variable ‘var’ is 5. Same value will be used in expression and after execution of expression new value will be 4.

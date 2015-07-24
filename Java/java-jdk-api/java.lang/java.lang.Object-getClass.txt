@@ -1,0 +1,12 @@
+public final Class<?> getClass ()
+
+Added in API level 1
+Returns the unique instance of Class that represents this object's class. Note that getClass() is a special case in that it actually returns Class where Foo is the erasure of the type of the expression getClass() was called upon.
+
+As an example, the following code actually compiles, although one might think it shouldn't:
+
+List l = new ArrayList();
+Class c = l.getClass();
+
+Returns
+this object's Class instance.

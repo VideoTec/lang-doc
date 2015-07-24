@@ -1,0 +1,41 @@
+http://developer.android.com/reference/java/lang/Thread.html
+
+Java内任何对象都能成为锁(Lock)
+Java内任何对象都都能成为条件队列(Condition queue)  对象里的wait(), notify()和notifyAll()
+
+Java锁定该对象的方法
+所有对象都自动含有单一的锁。
+JVM负责跟踪对象被加锁的次数。如果一个对象被解锁，其计数变为0
+JDK1.5之前，实现同步主要是使用synchronized
+JDK1.5中新增了java.util.concurrent包及其两个子包locks和atomic，其中子包locks中定义了系列关于锁的抽象的类
+synchronized是托管给JVM执行的，而lock是java写的控制锁的代码
+synchronized和lock的用法区别 http://my.oschina.net/softwarechina/blog/170859
+
+synchronized关键字
+JAVA的进程同步是通过synchronized()来实现的
+1. 在方法上加synchronized关键字
+2. synchronized同步代码块
+
+Thread.sleep()与Object.wait()二者都可以暂停当前线程，释放CPU控制权，
+主要的区别在于Object.wait()在释放CPU同时，释放了对象锁的控制
+
+GPUImage 里的一段代码：
+
+mRenderer.runOnDraw(new Runnable() {
+
+    @Override
+    public void run() {
+        synchronized(mFilter) {
+            mFilter.destroy();
+            mFilter.notify();           这里的notify
+        }
+    }
+});
+synchronized(mFilter) {
+    requestRender();
+    try {
+        mFilter.wait();                 这里的wait
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+}

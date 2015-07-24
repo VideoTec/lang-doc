@@ -1,0 +1,95 @@
+
+gcc .d .o file
+*.o  objects file
+*.d  dependencies file(生成.o 文件，所依赖的所有源文件，头文件列表)
+示例：
+libavcodec/iirfilter.o: libavcodec/iirfilter.c libavcodec/iirfilter.h \
+ libavcodec/avcodec.h libavutil/samplefmt.h libavutil/avutil.h \
+ libavutil/error.h libavutil/version.h libavutil/macros.h \
+ libavutil/attributes.h libavutil/attributes.h libavutil/avutil.h \
+ libavutil/buffer.h libavutil/cpu.h libavutil/dict.h libavutil/frame.h \
+ libavutil/buffer.h libavutil/dict.h libavutil/rational.h \
+ libavutil/samplefmt.h libavutil/log.h libavutil/pixfmt.h \
+ libavutil/avconfig.h libavutil/old_pix_fmts.h libavutil/rational.h \
+ libavcodec/version.h libavutil/version.h libavutil/mem.h \
+ libavutil/common.h config.h libavutil/intmath.h libavutil/arm/intmath.h \
+ libavutil/common.h libavutil/mem.h libavutil/internal.h libavutil/libm.h \
+ libavutil/intfloat.h
+ 
+ For static library file libmath.a use -lmath:
+ gcc -static myfile.c -lmath -o myfile
+ 
+ For shared library file libmath.so use -lmath:
+ gcc myfile.c -lmath -o myfile
+ How to statically link to the CRT with GCC?
+ Just use the linker option -static
+ 
+查看可执行文件依赖的动态库 
+edd@ron:/tmp$ ldd helloworld.static
+        not a dynamic executable
+edd@ron:/tmp$ ldd helloworld.dyn
+        linux-gate.so.1 =>  (0xb7efc000)
+        libc.so.6 => /lib/i686/cmov/libc.so.6 (0xb7d83000)
+        /lib/ld-linux.so.2 (0xb7efd000)
+ 
+ 
+ gcc 静态库的生成
+ Static libraries are simply a collection of ordinary object files; conventionally, static libraries end with the ``.a'' suffix. This collection is created using the ar (archiver) program.
+
+ar rcs my_library.a file1.o file2.o
+
+
+
+GCC fomit-frame-pointer
+事实上gcc的所有级别的优化（-O, -O2, -O3等）都会打开-fomit-frame-pointer，
+该选项的功能是函数调用时不保存frame指针，在ARM上就是fp，
+故我们无法按照APCS中的约定来回溯调用栈。
+
+但是GDB中仍然可以使用bt命令看到调用栈，为什么？
+得知GDB v6之后都是支持DWARF2的，
+也就意味着它可以不依赖fp来回溯调用栈
+（详见http://gcc.gnu.org/ml/gcc/2003-10/msg00322.html）。
+
+看来想在代码中动态显示调用栈而又不希望使用GDB的朋友，
+只能在编译时关掉-fomit-frame-pointer了
+
+框架指针省略（Frame Pointer Omission）（FPO）
+FPO是一种优化，它压缩或者省略了在栈上为该函数创建框架指针的过程。这个选项加速了函数调用，因为不需要建立和移除框架指针（ESP，EBP）了。同时，它还解放出了一个寄存器，用来存储使用频率较高的变量。只在IntelCPU的架构上才有这种优化。
+
+
+
+
+Makefile 通用选项
+CFLAGS (or CXXFLAGS for C++) are for the compiler
+
+CPPFLAGS  is used by the preprocessor 
+
+举例：
+CPPFLAGS=-I/usr/include   （C/C++ 都用）
+CFLAGS=-std=c99                      （只传给C编译器）
+CXXFLAGS=-Weffc++               （只传给C++编译器）
+
+%.o:%.c
+    $(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
+	
+	
+	
+	inline __inline VC vs GCC
+	inline __inline
+	
+	
+	Intrinsic—使用SSE、AVX指令集
+	Intrinsic—使用SSE、AVX指令集
+VC、GCC等编译器相继支持了Intrinsic函数，使我们可以摆脱汇编，利用C语言来调用SIMD指令集，大大提高了易读性和可维护。而且移植性也有提高，能在同一编译器上实现32位与64位的平滑过渡
+
+
+dump && pdi msvc
+
+
+
+
+
+
+
+gcc -Os
+原来-Os相当于-O2.5。是使用了所有-O2的优化选项，但又不缩减代码尺寸的方法

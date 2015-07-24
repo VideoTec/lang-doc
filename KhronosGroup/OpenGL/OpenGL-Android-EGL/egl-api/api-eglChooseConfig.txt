@@ -1,0 +1,578 @@
+文档
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglChooseConfig.xhtml
+
+-------------------------------------------------------------------------------------
+eglChooseConfig — return a list of EGL frame buffer configurations that match specified attributes
+-------------------------------------------------------------------------------------
+
+typedef void *EGLConfig;
+
+C Specification
+EGLBoolean eglChooseConfig(
+    EGLDisplay display,
+ 	EGLint const * attrib_list,    The list is terminated with EGL_NONE
+ 	EGLConfig * configs,           返回配置参数
+	                               如果这个值为 NULL 返回符合条件的 EGLConfig 的数量
+ 	EGLint config_size,            指定 configs 数组大小
+ 	EGLint * num_config);          返回的 EGLint * 的数量
+	
+参考
+-------------------------------------------------------------------------------------
+http://directx.com/2014/06/egl-understanding-eglchooseconfig-then-ignoring-it/
+-------------------------------------------------------------------------------------
+What you are actually choosing is the format of the “Surface” 
+(EGL terminology for the Render Target (aka destination buffer) where the output will be rendered).
+
+Or you can ignore eglChooseConfig entirely and do you own sorting and selection. 
+In this case you’d just call eglGetConfigs to get all the number of TOTAL configurations 
+(for THAT eglDisplay – yes turtles all the way down)
+
+You look at what you are rendering and make a decision – 
+for example, I need to render to 
+a 8bit/8bit/8bit RGB color buffer, with 
+a 16-bit depth buffer, and 
+a 32-bit stencil buffer.
+
+    // Get Display Type
+    EGLDisplay eglDisplay = eglGetDisplay( EGL_DEFAULT_DISPLAY );
+    eglInitialize( eglDisplay, NULL, NULL);
+ 
+    // typical high-quality attrib list
+    EGLint defaultAttribList[] = {
+    // 32 bit color
+    EGL_RED_SIZE, 8,
+    EGL_GREEN_SIZE, 8,
+    EGL_BLUE_SIZE, 8,
+    // at least 24 bit depth
+    EGL_DEPTH_SIZE, 24,
+    EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+    // want opengl-es 2.x conformant CONTEXT
+    EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT, 
+    EGL_NONE
+    };
+ 
+    EGLint numConfigs;
+    EGLConfig config;
+ 
+    peril[英][ˈperəl] [美][ˈpɛrəl] vt.置…于危险中；危及  n.危险；冒险
+    // DO THIS AT YOUR OWN PERIL!
+    eglChooseConfig(eglDisplay, defaultAttribList,
+                   &config, 1, &numConfigs)
+
+-------------------------------------------------------------------------------------
+http://malideveloper.arm.com/cn/develop-for-mali/sample-code/selecting-the-correct-eglconfig/
+-------------------------------------------------------------------------------------
+EGL 使用 EGLConfig 抽象来实现跨平台移植 
+
+为了创建 EGLSurface，有必要提供 EGLConfig
+
+请求一个值为 5 的  EGL_RED_SIZE、一个值为 6 的  EGL_GREEN_SIZE，以及一个值为 5 的  EGL_BLUE_SIZE 。
+颜色通道深度是视为最小值的属性，因此兼容 EGLConfig 的列表将包含所有 16 位颜色深度，以及更多颜色的深度，
+如  EGL_RED_SIZE 等于 8、  EGL_GREEN_SIZE 等于 8，以及  EGL_BLUE_SIZE 等于 8。
+由于找到了多个匹配的 EGLConfig，驱动程序将对它们进行排序。 
+颜色通道深度属性的排序行为意味着颜色数较高的 EGLConfig 将排在前列。 
+因此，尽管请求了 16 位显示，列表中的第一个 EGLConfig 实际上是 24/32 位显示
+
+EGLConfig 选择不当可能会降低性能或导致运行时错误。 
+例如，在颜色深度/格式不匹配时，
+GPU 可能必须要渲染至离屏临时缓冲区（需要额外内存），
+接着 CPU 必须将各个像素从选定的格式转换为实际需要的格式，并且最终拷贝至实际目的地（过程中消耗许多 CPU 周期）
+
+应检查返回的 EGLConfig 的相关属性
+/* The EGLConfig we will eventually use.
+* Set to NULL to detect the case where no suitable config. Is found
+*/
+EGLConfig chosenConfig = NULL;
+ 
+/* Look at each EGLConfig */
+for (int ii=0; ii<numberConfigs; ii++) 
+{
+	EGLBoolean success;
+	EGLint red, green, blue;
+	/* Read the relevent attributes of the EGLConfig */
+	success = eglGetConfigAttrib(display, matchingConfigs[ii],
+	EGL_RED_SIZE, &red);
+	success &= eglGetConfigAttrib(display, matchingConfigs[ii],
+	EGL_BLUE_SIZE, &blue);
+	success &= eglGetConfigAttrib(display, matchingConfigs[ii],
+	EGL_GREEN_SIZE, &green);
+ 
+	/* Check that no error occurred and the attributes match */
+	if ( success == EGL_TRUE) && (red==5) && (green==6) && (blue==5) ) 
+	{
+		chosenConfig=match[ii];
+		break;
+	}
+}
+ 
+if (chosenConfig == NULL) 
+{
+	/* An error */
+}
+ 
+free(matchingConfigs);
+
+-------------------------------------------------------------------------------------
+Parameters
+-------------------------------------------------------------------------------------
+
+display
+Specifies the EGL display connection.
+
+attrib_list
+Specifies attributes required to match by configs.
+
+configs
+Returns an array of frame buffer configurations.
+
+config_size
+Specifies the size of the array of frame buffer configurations.
+
+num_config
+Returns the number of frame buffer configurations returned.
+
+-------------------------------------------------------------------------------------
+Description
+-------------------------------------------------------------------------------------
+eglChooseConfig returns in configs a list of all EGL frame buffer configurations 
+that match the attributes specified in attrib_list. 
+The returned EGLConfigs can be used in any EGL function that requires an EGL frame buffer configuration.
+
+If configs is not NULL, 
+up to config_size configs will be returned in the array pointed to by configs. 
+The number of configs actually returned will be returned in *num_config.
+
+If configs is NULL, 
+no configs will be returned in configs. 
+Instead, the total number of configs matching attrib_list will be returned in *num_config. 
+In this case config_size is ignored. 
+This form of eglChooseConfig is used to determine the number of matching frame buffer configurations, 
+followed by allocating an array of EGLConfig 
+to pass into another call to eglChooseConfig with all other parameters unchanged.
+
+All attributes in attrib_list, 
+including boolean attributes, are immediately followed by the corresponding desired value. 
+The list is terminated with EGL_NONE. 
+If an attribute is not specified in attrib_list 
+then the default value (see below) is used (and the attribute is said to be specified implicitly). 
+For example, if EGL_DEPTH_SIZE is not specified then it is assumed to be zero. 
+For some attributes, 
+the default is EGL_DONT_CARE meaning that any value is OK for this attribute, 
+so the attribute will not be checked.
+
+manner[英][ˈmænə(r)] [美][ˈmænɚ] n.方式，方法，做法；态度，样子
+criteria[英][kraɪ'tɪərɪə] [美][kraɪˈtɪrɪə] n.（批评、判断等的）标准，准则( criterion的名词复数 )；(criterion的复数)
+criterion[英][kraɪˈtɪəriən] [美][kraɪˈtɪriən] n.（批评、判断等的）标准，准则；规范
+
+Attributes are matched in an attribute-specific manner. 
+Some of the attributes, such as EGL_LEVEL, must match the specified value exactly. 
+Others, such as, EGL_RED_SIZE must meet or exceed the specified minimum values. 
+If more than one EGL frame buffer configuration matching all attributes is found, 
+then a list of configurations, sorted according to the ``best'' match criteria, is returned. 
+The match criteria for each attribute and the exact sorting order is defined below.
+
+For the bitmask attributes EGL_CONFORMANT, EGL_RENDERABLE_TYPE, and EGL_SURFACE_TYPE, 
+only the nonzero bits of the mask are considered when matching. 
+Any bits that are zero in the specified bitmask attribute value 
+may be either zero or one in the resulting config's attribute value.
+
+所有 Attributes 说明
+Attributes which may appear in attrib_list, and their descriptions and allowed values, are:
+
+EGL_ALPHA_MASK_SIZE
+Must be followed by a nonnegative integer that indicates the desired alpha mask buffer size, in bits. 
+The smallest alpha mask buffers of at least the specified size are preferred. 
+The default value is zero.
+The alpha mask buffer is used only by OpenGL and OpenGL ES client APIs.
+
+EGL_ALPHA_SIZE
+Must be followed by a nonnegative integer that indicates the desired size of the alpha component of the color buffer, in bits. 
+If this value is zero, color buffers with the smallest alpha component size are preferred. 
+Otherwise, color buffers with the largest alpha component of at least the specified size are preferred. 
+The default value is zero.
+
+EGL_BIND_TO_TEXTURE_RGB
+Must be followed by EGL_DONT_CARE, EGL_TRUE, or EGL_FALSE. 
+If EGL_TRUE is specified, 
+then only frame buffer configurations that support binding of color buffers to an OpenGL ES RGB texture will be considered. 
+Currently only frame buffer configurations that support pbuffers allow this. 
+The default value is EGL_DONT_CARE.
+
+EGL_BIND_TO_TEXTURE_RGBA
+Must be followed by one of EGL_DONT_CARE, EGL_TRUE, or EGL_FALSE. 
+If EGL_TRUE is specified, 
+then only frame buffer configurations that support binding of color buffers to an OpenGL ES RGBA texture will be considered. 
+Currently only frame buffer configurations that support pbuffers allow this. 
+The default value is EGL_DONT_CARE.
+
+EGL_BLUE_SIZE
+Must be followed by a nonnegative integer that indicates the desired size of the blue component of the color buffer, in bits. 
+If this value is zero, color buffers with the smallest blue component size are preferred. 
+Otherwise, color buffers with the largest blue component of at least the specified size are preferred. 
+The default value is zero.
+
+EGL_BUFFER_SIZE
+Must be followed by a nonnegative integer that indicates the desired color buffer size, in bits. 
+The smallest color buffers of at least the specified size are preferred. 
+The default value is zero.
+
+The color buffer size is the sum of EGL_RED_SIZE, EGL_GREEN_SIZE, EGL_BLUE_SIZE, and EGL_ALPHA_SIZE, 
+and does not include any padding bits which may be present in the pixel format. 
+It is usually preferable to specify desired sizes for these color components individually.
+
+EGL_COLOR_BUFFER_TYPE
+Must be followed by one of EGL_RGB_BUFFER or EGL_LUMINANCE_BUFFER.
+
+EGL_RGB_BUFFER 
+indicates an RGB color buffer; 
+in this case, attributes EGL_RED_SIZE, EGL_GREEN_SIZE and EGL_BLUE_SIZE must be non-zero, and 
+EGL_LUMINANCE_SIZE must be zero.
+
+EGL_LUMINANCE_BUFFER 
+indicates a luminance color buffer. 
+In this case EGL_RED_SIZE, EGL_GREEN_SIZE, EGL_BLUE_SIZE must be zero, and EGL_LUMINANCE_SIZE must be non-zero.
+
+For both RGB and luminance color buffers, EGL_ALPHA_SIZE may be zero or non-zero.
+
+EGL_CONFIG_CAVEAT
+Must be followed by EGL_DONT_CARE, EGL_NONE, EGL_SLOW_CONFIG, or EGL_NON_CONFORMANT_CONFIG.
+
+If EGL_DONT_CARE is specified, then configs are not matched for this attribute. The default value is EGL_DONT_CARE.
+
+If EGL_NONE is specified, 
+then configs are matched for this attribute, 
+but only configs with no caveats (neither EGL_SLOW_CONFIG or EGL_NON_CONFORMANT_CONFIG) will be considered.
+
+If EGL_SLOW_CONFIG is specified, 
+then only slow configs configurations will be considered. 
+The meaning of``slow'' is implementation-dependent, but typically indicates a non-hardware-accelerated (software) implementation.
+
+If EGL_NON_CONFORMANT_CONFIG is specified, 
+then only configs supporting non-conformant OpenGL ES contexts will be considered.
+
+If the EGL version is 1.3 or later, 
+caveat EGL_NON_CONFORMANT_CONFIG is obsolete, 
+since the same information can be specified via the EGL_CONFORMANT attribute on a per-client-API basis, not just for OpenGL ES.
+
+EGL_CONFIG_ID
+Must be followed by a valid integer ID that indicates the desired EGL frame buffer configuration. 
+When a EGL_CONFIG_ID is specified, all other attributes are ignored. 
+The default value is EGL_DONT_CARE.
+The meaning of config IDs is implementation-dependent. 
+They are used only to uniquely identify different frame buffer configurations.
+
+EGL_CONFORMANT
+Must be followed by a bitmask 
+indicating which types of client API contexts created with respect to the frame buffer 
+configuration config must pass the required conformance tests for that API. 
+
+Mask bits include:
+EGL_OPENGL_BIT     Config supports creating OpenGL contexts.
+EGL_OPENGL_ES_BIT  Config supports creating OpenGL ES 1.0 and/or 1.1 contexts.
+EGL_OPENGL_ES2_BIT Config supports creating OpenGL ES 2.0 contexts.
+EGL_OPENVG_BIT     Config supports creating OpenVG contexts.
+
+For example, 
+if the bitmask is set to EGL_OPENGL_ES_BIT, 
+only frame buffer configurations that support creating conformant OpenGL ES contexts will match. 
+The default value is zero.
+
+Most EGLConfigs should be conformant for all supported client APIs, 
+and it is rarely desirable to select a nonconformant config. 
+Conformance requirements limit the number of non-conformant configs that an implementation can define.
+
+EGL_DEPTH_SIZE
+Must be followed by a nonnegative integer that indicates the desired depth buffer size, in bits. 
+The smallest depth buffers of at least the specified size is preferred. 
+If the desired size is zero, frame buffer configurations with no depth buffer are preferred. 
+The default value is zero.
+The depth buffer is used only by OpenGL and OpenGL ES client APIs.
+
+EGL_GREEN_SIZE
+Must be followed by a nonnegative integer that indicates the desired size of the green component of the color buffer, in bits. 
+If this value is zero, color buffers with the smallest green component size are preferred. 
+Otherwise, color buffers with the largest green component of at least the specified size are preferred. 
+The default value is zero.
+
+EGL_LEVEL
+Must be followed by an integer buffer level specification. 
+This specification is honored exactly. 
+Buffer level zero corresponds to the default frame buffer of the display. 
+Buffer level one is the first overlay frame buffer, level two the second overlay frame buffer, and so on. 
+Negative buffer levels correspond to underlay frame buffers. The default value is zero.
+Most imlementations do not support overlay or underlay planes (buffer levels other than zero).
+
+EGL_LUMINANCE_SIZE
+Must be followed by a nonnegative integer that indicates the desired size of the luminance component of the color buffer, in bits. 
+If this value is zero, color buffers with the smallest luminance component size are preferred. 
+Otherwise, color buffers with the largest luminance component of at least the specified size are preferred. 
+The default value is zero.
+
+EGL_MATCH_NATIVE_PIXMAP
+Must be followed by the handle of a valid native pixmap, cast to EGLint, or EGL_NONE. 
+If the value is not EGL_NONE, 
+only configs which support creating pixmap surfaces with this pixmap using eglCreatePixmapSurface will match this attribute. 
+If the value is EGL_NONE, then configs are not matched for this attribute. 
+The default value is EGL_NONE.
+
+EGL_MATCH_NATIVE_PIXMAP 
+was introduced due to the difficulty of determining an EGLConfig 
+compatibile with a native pixmap using only color component sizes.
+
+EGL_NATIVE_RENDERABLE
+Must be followed by EGL_DONT_CARE, EGL_TRUE, or EGL_FALSE. 
+If EGL_TRUE is specified, then only frame buffer configurations that allow native rendering into the surface will be considered. 
+The default value is EGL_DONT_CARE.
+
+EGL_MAX_SWAP_INTERVAL
+Must be followed by a integer that indicates the maximum value that can be passed to eglSwapInterval. 
+The default value is EGL_DONT_CARE.
+
+EGL_MIN_SWAP_INTERVAL
+Must be followed by a integer that indicates the minimum value that can be passed to eglSwapInterval. 
+The default value is EGL_DONT_CARE.
+
+EGL_RED_SIZE
+Must be followed by a nonnegative integer that indicates the desired size of the red component of the color buffer, in bits. 
+If this value is zero, color buffers with the smallest red component size are preferred. 
+Otherwise, color buffers with the largest red component of at least the specified size are preferred.
+The default value is zero.
+
+EGL_SAMPLE_BUFFERS
+Must be followed by the minimum acceptable number of multisample buffers. 
+Configurations with the smallest number of multisample buffers that meet or exceed this minimum number are preferred. 
+Currently operation with more than one multisample buffer is undefined, so only values of zero or one will produce a match. 
+The default value is zero.
+
+EGL_SAMPLES
+Must be followed by the minimum number of samples required in multisample buffers. 
+Configurations with the smallest number of samples that meet or exceed the specified minimum number are preferred. 
+Note that it is possible for color samples in the multisample buffer to have fewer bits than colors in the main color buffers. 
+However, multisampled colors maintain at least as much color resolution in aggregate as the main color buffers.
+
+EGL_STENCIL_SIZE
+Must be followed by a nonnegative integer that indicates the desired stencil buffer size, in bits. 
+The smallest stencil buffers of at least the specified size are preferred. 
+If the desired size is zero, 
+frame buffer configurations with no stencil buffer are preferred. 
+The default value is zero.
+The stencil buffer is used only by OpenGL and OpenGL ES client APIs.
+
+EGL_RENDERABLE_TYPE
+Must be followed by a bitmask indicating which types of client API contexts the frame buffer configuration must support creating with eglCreateContext). 
+Mask bits are the same as for attribute EGL_CONFORMANT. 
+The default value is EGL_OPENGL_ES_BIT.
+
+EGL_SURFACE_TYPE
+Must be followed by a bitmask indicating which EGL surface types and capabilities the frame buffer configuration must support. 
+Mask bits include:
+
+EGL_MULTISAMPLE_RESOLVE_BOX_BIT  Config allows specifying box filtered multisample resolve behavior with eglSurfaceAttrib.
+EGL_PBUFFER_BIT                  Config supports creating pixel buffer surfaces.
+EGL_PIXMAP_BIT                   Config supports creating pixmap surfaces.
+EGL_SWAP_BEHAVIOR_PRESERVED_BIT  Config allows setting swap behavior for color buffers with eglSurfaceAttrib.
+EGL_VG_ALPHA_FORMAT_PRE_BIT      Config allows specifying OpenVG rendering with premultiplied alpha values at surface creation time  
+                                 (see eglCreatePbufferSurface, eglCreatePixmapSurface, and eglCreateWindowSurface).
+EGL_VG_COLORSPACE_LINEAR_BIT     Config allows specifying OpenVG rendering in a linear colorspace at surface creation time 
+                                 (see eglCreatePbufferSurface, eglCreatePixmapSurface, and eglCreateWindowSurface).
+EGL_WINDOW_BIT                   Config supports creating window surfaces.
+
+For example, 
+if the bitmask is set to EGL_WINDOW_BIT | EGL_PIXMAP_BIT, 
+only frame buffer configurations that support both windows and pixmaps will be considered. 
+The default value is EGL_WINDOW_BIT.
+
+EGL_TRANSPARENT_TYPE
+Must be followed by one of EGL_NONE or EGL_TRANSPARENT_RGB. 
+If EGL_NONE is specified, then only opaque frame buffer configurations will be considered. 
+If EGL_TRANSPARENT_RGB is specified, then only transparent frame buffer configurations will be considered. 
+The default value is EGL_NONE.
+Most implementations support only opaque frame buffer configurations.
+
+EGL_TRANSPARENT_RED_VALUE
+Must be followed by an integer value indicating the transparent red value. 
+The value must be between zero and the maximum color buffer value for red. 
+Only frame buffer configurations that use the specified transparent red value will be considered. 
+The default value is EGL_DONT_CARE.
+This attribute is ignored unless EGL_TRANSPARENT_TYPE is included in attrib_list and specified as EGL_TRANSPARENT_RGB.
+
+EGL_TRANSPARENT_GREEN_VALUE
+Must be followed by an integer value indicating the transparent green value. 
+The value must be between zero and the maximum color buffer value for green. 
+Only frame buffer configurations that use the specified transparent green value will be considered. 
+The default value is EGL_DONT_CARE.
+This attribute is ignored unless EGL_TRANSPARENT_TYPE is included in attrib_list and specified as EGL_TRANSPARENT_RGB.
+
+EGL_TRANSPARENT_BLUE_VALUE
+Must be followed by an integer value indicating the transparent blue value. 
+The value must be between zero and the maximum color buffer value for blue. 
+Only frame buffer configurations that use the specified transparent blue value will be considered. 
+The default value is EGL_DONT_CARE.
+This attribute is ignored unless EGL_TRANSPARENT_TYPE is included in attrib_list and specified as EGL_TRANSPARENT_RGB.
+
+-------------------------------------------------------------------------------------
+the ``best'' match criteria 返回多个 EGLConfig 时的排序规则
+-------------------------------------------------------------------------------------
+When more than one EGL frame buffer configuration matches the specified attributes, 
+a list of matching configurations is returned. 
+The list is sorted according to the following precedence rules, 
+which are applied in ascending order 
+(i.e., configurations that are considered equal by a lower numbered rule are sorted by the higher numbered rule):
+
+Special: by EGL_CONFIG_CAVEAT, where the precedence is EGL_NONE, EGL_SLOW_CONFIG, and EGL_NON_CONFORMANT_CONFIG.
+Special: by EGL_COLOR_BUFFER_TYPE, where the precedence is EGL_RGB_BUFFER, EGL_LUMINANCE_BUFFER.
+Special: by larger total number of color bits 
+         (for an RGB color buffer, this is the sum of EGL_RED_SIZE, EGL_GREEN_SIZE, EGL_BLUE_SIZE, and EGL_ALPHA_SIZE; 
+		 for a luminance color buffer, the sum of EGL_LUMINANCE_SIZE and EGL_ALPHA_SIZE). 
+		 If the requested number of bits in attrib_list is 0 or EGL_DONT_CARE for a particular color component, 
+		 then the number of bits for that component is not considered.
+         This sort rule places configs with deeper color buffers 
+		 before configs with shallower color buffers, 
+		 which may be counterintuitive. [英][kaʊntərɪn'tju:ɪtɪv] [美][ˌkaʊntərɪn'tju:ɪtɪv] adj.违反直觉的
+
+4. Smaller EGL_BUFFER_SIZE.
+5. Smaller EGL_SAMPLE_BUFFERS.
+6. Smaller EGL_SAMPLES.
+7. Smaller EGL_DEPTH_SIZE.
+8. Smaller EGL_STENCIL_SIZE.
+9. Smaller EGL_ALPHA_MASK_SIZE.
+
+10. Special: 
+EGL_NATIVE_VISUAL_TYPE (the actual sort order is implementation-defined, depending on the meaning of native visual types).
+
+11. Smaller EGL_CONFIG_ID (this is always the last sorting rule, and guarantees a unique ordering).
+
+EGLConfigs are not sorted with respect to the attributes 
+EGL_BIND_TO_TEXTURE_RGB, 
+EGL_BIND_TO_TEXTURE_RGBA, 
+EGL_CONFORMANT, 
+EGL_LEVEL, 
+EGL_NATIVE_RENDERABLE, 
+EGL_MAX_SWAP_INTERVAL, 
+EGL_MIN_SWAP_INTERVAL, 
+EGL_RENDERABLE_TYPE, 
+EGL_SURFACE_TYPE, 
+EGL_TRANSPARENT_TYPE, 
+EGL_TRANSPARENT_RED_VALUE, 
+EGL_TRANSPARENT_GREEN_VALUE, and 
+EGL_TRANSPARENT_BLUE_VALUE.
+
+-------------------------------------------------------------------------------------
+Examples
+-------------------------------------------------------------------------------------
+stencil[英][ˈstensl] [美][ˈstɛnsəl] n.蜡纸；模板；用模板印出的文字或图案
+
+The following example specifies a frame buffer configuration in the normal frame buffer (not an overlay or underlay). 
+The returned frame buffer configuration supports a color buffer with 
+at least 4 bits each of red, green and blue, and possibly no alpha bits. 
+The code shown in the example may or may not have a depth buffer, or a stencil buffer.
+
+EGLint const attrib_list[] = {
+        EGL_RED_SIZE, 4,
+        EGL_GREEN_SIZE, 4,
+        EGL_BLUE_SIZE, 4,
+        EGL_NONE
+};
+
+-------------------------------------------------------------------------------------
+Notes
+-------------------------------------------------------------------------------------
+
+EGL_RENDERABLE_TYPE bit EGL_OPENGL_BIT, and 
+EGL_SURFACE_TYPE bits EGL_MULTISAMPLE_RESOLVE_BOX_BIT and 
+EGL_SWAP_BEHAVIOR_PRESERVED_BIT 
+are supported only if the EGL version is 1.4 or greater.
+
+EGL_CONFORMANT, 
+EGL_MATCH_NATIVE_PIXMAP, 
+EGL_RENDERABLE_TYPE bit EGL_OPENGL_ES2_BIT, and 
+EGL_SURFACE_TYPE bits EGL_VG_ALPHA_FORMAT_PRE_BIT and 
+EGL_VG_COLORSPACE_LINEAR_BIT 
+are supported only if the EGL version is 1.3 or greater.
+
+EGL_ALPHA_MASK_SIZE, 
+EGL_COLOR_BUFFER_TYPE, 
+EGL_LUMINANCE_SIZE, 
+EGL_RENDERABLE_TYPE, and 
+EGL_RENDERABLE_TYPE bits EGL_OPENGL_ES_BIT and 
+EGL_OPENVG_BIT 
+are supported only if the EGL version is 1.2 or greater.
+
+luminance[英][ˈlu:mɪnəns] [美][ˈlumənəns] n.亮度；发光度
+If OpenGL or OpenGL ES rendering is supported for a luminance color buffer, 
+it is treated as RGB rendering with the value of 
+GL_RED_BITS equal to EGL_LUMINANCE_SIZE and the values of 
+GL_GREEN_BITS and GL_BLUE_BITS equal to zero. 
+The red component of fragments is written to the luminance channel of the color buffer 
+while the green and blue components are discarded.
+
+eglGetConfigs and eglGetConfigAttrib can be used to implement selection algorithms other than 
+the generic one implemented by eglChooseConfig. 
+第一步：Call 
+eglGetConfigs to retrieve all the frame buffer configurations, or alternatively, 
+all the frame buffer configurations with a particular set of attributes. 
+第二步：Next call 
+eglGetConfigAttrib to retrieve additional attributes for the frame buffer configurations and 
+then select between them.
+
+discouraged[英][dɪs'kʌrɪdʒd] [美][dɪsˈkə:ɪdʒd] 消极
+proscribed v.正式宣布（某事物）有危险或被禁止
+EGL implementors are strongly discouraged, but not proscribed, 
+from changing the selection algorithm used by eglChooseConfig. 
+Therefore, selections may change from release to release of the client-side library.
+
+--------------------------
+Errors
+--------------------------
+EGL_FALSE is returned on failure, EGL_TRUE otherwise. configs and num_config are not modified when EGL_FALSE is returned.
+EGL_BAD_DISPLAY is generated if display is not an EGL display connection.
+EGL_BAD_ATTRIBUTE is generated if attribute_list contains an invalid frame buffer configuration attribute or 
+                  an attribute value that is unrecognized or out of range.
+EGL_NOT_INITIALIZED is generated if display has not been initialized.
+EGL_BAD_PARAMETER is generated if num_config is NULL.
+
+--------------------------
+实例
+--------------------------
+EGLint attribs_config_nv [] =
+    {
+        EGL_RED_SIZE, 5,
+        EGL_GREEN_SIZE, 6,
+        EGL_BLUE_SIZE, 5,
+        EGL_ALPHA_SIZE, 0,
+        EGL_DEPTH_SIZE, 16,
+        EGL_STENCIL_SIZE, 0,
+        EGL_COVERAGE_BUFFERS_NV, EGL_TRUE,
+        EGL_COVERAGE_SAMPLES_NV, 2,
+        EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+        EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+        EGL_NONE,
+    };
+
+EGLint attribs_config [] =
+        {
+            EGL_RED_SIZE, 5,
+            EGL_GREEN_SIZE, 6,
+            EGL_BLUE_SIZE, 5,
+            EGL_ALPHA_SIZE, 0,
+            EGL_DEPTH_SIZE, 16,
+            EGL_STENCIL_SIZE, 0,
+            EGL_SAMPLE_BUFFERS, EGL_TRUE,
+            EGL_SAMPLES, 2,
+            EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+            EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+            EGL_NONE,
+        };
+
+          EGLint attribs_config_no_multisample [] =
+            {
+                EGL_RED_SIZE, 5,
+                EGL_GREEN_SIZE, 6,
+                EGL_BLUE_SIZE, 5,
+                EGL_ALPHA_SIZE, 0,
+                EGL_DEPTH_SIZE, 16,
+                EGL_STENCIL_SIZE, 0,
+                EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+                EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+                EGL_NONE,
+            };

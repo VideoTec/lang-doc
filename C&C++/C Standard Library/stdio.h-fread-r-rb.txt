@@ -1,0 +1,62 @@
+FILE *fopen(const char *fname, const char *mode);
+
+mode 里面的 二进制读写的意义是什么？
+rb 和 r
+wb 和 w
+
+对于两特殊字符的处理方式 
+换行符，
+SOFT EOF
+
+----------------------------------------------------------------------
+因为没有正确正确，fopen 的打开模式 r/rb 的区别，造成了下面的错误
+----------------------------------------------------------------------
+
+int main() {
+  uint8_t buf[1024] = {0};
+  FILE *f = fopen("E:\\WinApp\\libav-test\\fog.mp4", "r");
+  _fseeki64(f, 44, SEEK_SET);
+  printf("read 371, return : %d\n", fread(buf, 1, 371, f));
+  printf("read 372, return : %d\n", fread(buf, 1, 372, f));
+  printf("read 371, return : %d\n", fread(buf, 1, 371, f));
+  printf("read 372, return : %d\n", fread(buf, 1, 372, f));
+  printf("read 371, return : %d\n", fread(buf, 1, 371, f));  
+  //read data: 87, size: 371
+  //读到这里时，文件结束了，原因是，fopen 的模式是 r
+  //碰到了字符 '\0x1a' SOFT EOF
+  fclose(f);
+  return 0;
+}
+
+----------------------------------------------------------------------
+这个问题，可转化为 文本I/O 和 二进制I/O 的区别
+What's the difference between text and binary I/O ？
+----------------------------------------------------------------------
+
+Text Mode
+Text mode translations[træns'leɪʃnz] 转变；转化
+文本模式下，会对字符进行转化。有些不可打印的字符会被忽略掉
+文本模式下的，结束符，有特殊的处理
+in text mode, it inserts a special character 26(1a) at the end of the file as a mark. 
+so when it encounters this special character in the file, it assumes it as the EOF and will stop looking ahead. 
+but there is no such thing with binary mode. 
+this is another reason why read-write mode should be taken care of
+
+Binary Mode
+fseek and ftell do use pure byte offsets
+The bytes of the file won't be encoded when you read them
+
+----------------------
+测试代码，文件模式下的 "Text mode translations"，window平台,
+----------------------
+char *buf = "hello word\n";
+
+//这个文件写入的行结束符 会转化成平台相关的 window下是 crlf
+FILE *fw = fopen("d:\\fw.t", "w");
+fwrite(buf, 1, strlen(buf), fw);
+fcose(fw);
+
+//这个文件写入的行结束符就是 lf
+FILE *fwb = fopen("d:\\fw.t", "wb");
+fwrite(buf, 1, strlen(buf), fwb);
+fcose(fwb);

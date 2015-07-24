@@ -1,0 +1,54 @@
+void glGenBuffers(GLsizei n, GLuint * buffers);
+void glGenFramebuffers(GLsizei n, GLuint * framebuffers);
+void glGenRenderbuffers(GLsizei n, GLuint * renderbuffers);
+
+void glBindBuffer(GLenum target, GLuint buffer);              //GL_ARRAY_BUFFER or GL_ELEMENT_ARRAY_BUFFER
+void glBindFramebuffer(GLenum target, GLuint framebuffer);    //GL_FRAMEBUFFER
+void glBindRenderbuffer(GLenum target, GLuint renderbuffer);  //GL_RENDERBUFFER
+
+
+---------------------------------------------------------------
+attach a renderbuffer object to a framebuffer object
+---------------------------------------------------------------
+attachment[英][əˈtætʃmənt] [美][əˈtætʃmənt] n.（用电子邮件发送的）附件，附属物；依恋，依附；扣押财产<法>逮捕，扣押（人，财产）
+void glFramebufferRenderbuffer(
+GLenum target,                         
+GLenum attachment,
+GLenum renderbuffertarget,             
+GLuint renderbuffer);
+
+---------------------------------------------------------------
+attach a texture image to a framebuffer object
+---------------------------------------------------------------
+void glFramebufferTexture2D(
+GLenum target,               GL_FRAMEBUFFER
+GLenum attachment,
+GLenum textarget,            GL_TEXTURE_2D in most cases
+GLuint texture,              通过设置零，可以 detached
+GLint level);                the mipmap level of the texture to be attached.
+FBO itself does not have any image storage(buffer) in it. 
+
+A FBO has multiple color attachment points (GL_COLOR_ATTACHMENT0, ..., GL_COLOR_ATTACHMENTn), 
+GL_COLOR_ATTACHMENT0, ..., GL_COLOR_ATTACHMENTn
+GL_DEPTH_ATTACHMENT, and 
+GL_STENCIL_ATTACHMENT
+
+---------------------------------------------------------------
+create and initialize a renderbuffer object's data store
+---------------------------------------------------------------
+void glRenderbufferStorage(
+GLenum target,
+GLenum internalformat,
+GLsizei width,
+GLsizei height);
+
+When a renderbuffer object is created, 
+it does not have any data storage, 
+so we have to allocate a memory space for it. 
+This can be done by using glRenderbufferStorage().
+
+stencil[英][ˈstensl] [美][ˈstɛnsəl] 蜡纸；模板；
+internalformat:
+color-renderable (GL_RGB, GL_RGBA, etc.), 
+depth-renderable (GL_DEPTH_COMPONENT), or 
+stencil-renderable formats (GL_STENCIL_INDEX).

@@ -1,0 +1,28 @@
+http://velep.com/archives/581.html
+C99 引入了对参数个数可变的函数式宏的正式支持。
+在宏 “原型” 的末尾加上符号 … (就像在参数可变的函数定义中), 
+宏定义中的伪宏 __VA_ARGS__ 就会在调用是 替换成可变参数
+
+应用示例
+#define  LOG_TAG    "JNILog"
+#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+
+/**
+ * av_dlog macros
+ * Useful to print debug messages that shouldn't get compiled in normally.
+ */
+
+#ifdef DEBUG
+#    define av_dlog(pctx, ...) av_log(pctx, AV_LOG_DEBUG, __VA_ARGS__)
+#else
+#    define av_dlog(pctx, ...) do { if (0) av_log(pctx, AV_LOG_DEBUG, __VA_ARGS__); } while (0)
+#endif
+
+概念解释
+C99 之前 可变参数表还是只能应用在真正的函数中，不能使用在宏中
+C99 允许你可以定义可变参数宏(variadic macros)，这样你就可以使用拥有可以变化的参数表的宏
+
+变参数宏就像下面这个样子:
+#define debug(...) printf(__VA_ARGS__)
+省略号代表一个可以变化的参数表。使用保留名 __VA_ARGS__ 把参数传递给宏。当宏的调用展开时，实际的参数就传递给 printf()了

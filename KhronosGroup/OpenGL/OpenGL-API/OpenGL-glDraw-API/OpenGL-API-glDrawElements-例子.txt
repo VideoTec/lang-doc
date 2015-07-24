@@ -1,0 +1,9 @@
+https://www3.ntu.edu.sg/home/ehchua/programming/android/Android_3D.html
+
+   private float[] vertices = {  // Vertices of the triangle
+       0.0f,  1.0f, 0.0f, // 0. top
+      -1.0f, -1.0f, 0.0f, // 1. left-bottom
+       1.0f, -1.0f, 0.0f  // 2. right-bottom
+   };
+   private byte[] indices = { 0, 1, 2 }; // Indices to above vertices (in CCW)
+   gl.glDrawElements(GL10.GL_TRIANGLES, indices.length, GL10.GL_UNSIGNED_BYTE, indexBuffer);

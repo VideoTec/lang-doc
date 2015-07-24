@@ -1,0 +1,2 @@
+        int width = metrics.widthPixels > metrics.heightPixels ? 
+                    metrics.widthPixels : metrics.heightPixels;

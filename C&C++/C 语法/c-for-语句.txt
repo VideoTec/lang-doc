@@ -1,0 +1,40 @@
+2015.4.22 处理 yuv420p 数据时的循环语句
+
+for(int src_line = top / 2, des_line = 0; des_line < height / 2; src_line++, des_line++)
+
+示例代码：
+
+int crop_yuv420p(AVFrame *des, AVFrame *src,
+                 int width, int height, int left, int top) {
+  int ret = 0;
+/*
+  printf("%p:%p:%p - %d:%d:%d\n", des->data[0], des->data[1], des->data[2],
+         des->linesize[0], des->linesize[1], des->linesize[2]);
+  printf("%p:%p:%p - %d:%d:%d\n", src->data[0], src->data[1], src->data[2],
+         src->linesize[0], src->linesize[1], src->linesize[2]);
+*/
+
+  for(int src_line = top / 2, des_line = 0; des_line < height / 2; src_line++, des_line++) {
+    int y_src_line = src_line * 2;
+    int y_des_line = des_line * 2;
+
+    char *src_y = src->data[0] + src->linesize[0] * y_src_line + left;
+    char *des_y = des->data[0] + des->linesize[0] * y_des_line;
+    memcpy(des_y, src_y, width);
+
+    y_src_line++;
+    y_des_line++;
+    src_y = src->data[0] + src->linesize[0] * y_src_line + left;
+    des_y = des->data[0] + des->linesize[0] * y_des_line;
+    memcpy(des_y, src_y, width);
+    
+    char *src_u = src->data[1] + src->linesize[1] * src_line + left / 2;
+    char *des_u = des->data[1] + des->linesize[1] * des_line;
+    memcpy(des_u, src_u, width / 2);
+    
+    char *src_v = src->data[2] + src->linesize[2] * src_line + left / 2;
+    char *des_v = des->data[2] + des->linesize[2] * des_line;
+    memcpy(des_v, src_v, width / 2);
+  }
+  return ret;
+}

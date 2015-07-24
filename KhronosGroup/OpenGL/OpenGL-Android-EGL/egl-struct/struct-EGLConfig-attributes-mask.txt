@@ -1,0 +1,63 @@
+列表
+
+
+
+-------------------------------------------------------------------------------------
+EGL_RENDERABLE_TYPE - bitmask
+-------------------------------------------------------------------------------------
+Must be followed by a bitmask indicating 
+which types of client API contexts the frame buffer configuration must support creating with eglCreateContext). 
+Mask bits are the same as for attribute EGL_CONFORMANT. 
+The default value is EGL_OPENGL_ES_BIT.
+
+Mask bits include:
+EGL_OPENGL_BIT     Config supports creating OpenGL contexts.
+EGL_OPENGL_ES_BIT  Config supports creating OpenGL ES 1.0 and/or 1.1 contexts.
+EGL_OPENGL_ES2_BIT Config supports creating OpenGL ES 2.0 contexts.
+EGL_OPENVG_BIT     Config supports creating OpenVG contexts.
+
+-------------------------------------------------------------------------------------
+EGL_SURFACE_TYPE - bitmask
+-------------------------------------------------------------------------------------
+Must be followed by a bitmask indicating which EGL surface types and capabilities the frame buffer configuration must support. 
+Mask bits include:
+
+EGL_MULTISAMPLE_RESOLVE_BOX_BIT  Config allows specifying box filtered multisample resolve behavior with eglSurfaceAttrib.
+EGL_PBUFFER_BIT                  Config supports creating pixel buffer surfaces.
+EGL_PIXMAP_BIT                   Config supports creating pixmap surfaces.
+EGL_SWAP_BEHAVIOR_PRESERVED_BIT  Config allows setting swap behavior for color buffers with eglSurfaceAttrib.
+EGL_VG_ALPHA_FORMAT_PRE_BIT      Config allows specifying OpenVG rendering with premultiplied alpha values at surface creation time  
+                                 (see eglCreatePbufferSurface, eglCreatePixmapSurface, and eglCreateWindowSurface).
+EGL_VG_COLORSPACE_LINEAR_BIT     Config allows specifying OpenVG rendering in a linear colorspace at surface creation time 
+                                 (see eglCreatePbufferSurface, eglCreatePixmapSurface, and eglCreateWindowSurface).
+EGL_WINDOW_BIT                   Config supports creating window surfaces.
+
+For example, 
+if the bitmask is set to EGL_WINDOW_BIT | EGL_PIXMAP_BIT, 
+only frame buffer configurations that support both windows and pixmaps will be considered. 
+
+The default value is EGL_WINDOW_BIT.
+
+-------------------------------------------------------------------------------------
+EGL_CONFORMANT bitmask
+-------------------------------------------------------------------------------------
+Must be followed by a bitmask 
+indicating which types of client API contexts created with respect to the frame buffer 
+configuration config must pass the required conformance tests for that API. 
+
+conformance[英][kən'fɔ:məns] [美][kən'fɔ:məns] n.顺应，一致
+
+Mask bits include:
+EGL_OPENGL_BIT     Config supports creating OpenGL contexts.
+EGL_OPENGL_ES_BIT  Config supports creating OpenGL ES 1.0 and/or 1.1 contexts.
+EGL_OPENGL_ES2_BIT Config supports creating OpenGL ES 2.0 contexts.
+EGL_OPENVG_BIT     Config supports creating OpenVG contexts.
+
+For example, 
+if the bitmask is set to EGL_OPENGL_ES_BIT, 
+only frame buffer configurations that support creating conformant OpenGL ES contexts will match. 
+The default value is zero.
+
+Most EGLConfigs should be conformant for all supported client APIs, 
+and it is rarely desirable to select a nonconformant config. 
+Conformance requirements limit the number of non-conformant configs that an implementation can define.

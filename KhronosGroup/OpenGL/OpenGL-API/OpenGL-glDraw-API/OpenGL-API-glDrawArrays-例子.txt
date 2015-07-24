@@ -1,0 +1,6 @@
+  float vertexArray1[] = {0.0,0.0,0.0, 1.0,2.0,1.0, -1.0,-2.0,-1.0};       这个什么者绘制不出来
+  float vertexArray2[] = {0.0f, 0.5f, 0.0f,
+                         -0.5f, -0.5f, 0.0f,
+                         0.5f, -0.5f, 0.0f};                               这个可以绘制出一个三形
+  glVertexAttribPointer(vertexLoc, 3, GL_FLOAT, GL_FALSE, 0, vertexArray2);
+  glDrawArrays(GL_TRIANGLES, 0, 3);

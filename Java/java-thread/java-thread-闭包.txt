@@ -1,0 +1,49 @@
+示例
+
+错误：
+Multiple markers at this line
+	- Cannot refer to a non-final variable h inside an inner class defined in a different method
+	- Cannot refer to a non-final variable w inside an inner class defined in a different method
+	- The method videoEffectPlayScene(Surface, int, int, boolean) in the type VideoConvert is not 
+	 applicable for the arguments (Surface, boolean)
+
+    public void playVideo(int w, int h){
+    	VideoConvert.getInstance(mContext).videoEffectDestroyScene();
+    	try{
+    		Thread.sleep(100);
+    	}catch(InterruptedException e){
+    		e.printStackTrace();
+    	}
+    	
+    	new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				Surface surface = getHolder().getSurface();
+		    	if(surface != null && surface.isValid()){		    
+		    		VideoConvert.getInstance(mContext).videoEffectPlayScene(surface, w, h, mRecycle);
+		    	}
+			}
+		}).start();
+    }
+
+作用
+closure[英][ˈkləʊʒə(r)] [美][ˈkloʊʒə(r)]
+n.（永久的）停业，关闭；结束；[电]闭合；[数]闭包
+
+No, this is absolutely not thread-safe. 
+Just because you've got it in a final variable, that means that both threads will see the same reference, 
+which is fine - but it doesn't make the object any more thread-safe.
+
+In this case, the variable must be final to be used inside the anonymous Runnable implmentation.
+This is because that object will exist when the variable has already gone out of scope and has thus disappeared. 
+The object gets a copy of the variable. 
+In order to hide this, the variable must be final 
+so that nobody can expect changes in one copy to be visible to the other.
+
+最完善的解释：
+http://stackoverflow.com/questions/4732544/why-are-only-final-variables-accessible-in-anonymous-class
+
+解决方法一：使用成员变量, 如 mRecycle
+解决方法二：定义 final int w, h 局部变量，或者把 形参，添加 final 修饰 

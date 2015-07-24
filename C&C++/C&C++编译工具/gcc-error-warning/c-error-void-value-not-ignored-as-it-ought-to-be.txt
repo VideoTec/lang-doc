@@ -1,0 +1,16 @@
+20:21 2015/4/24
+这个错误应该是提示 没有返回值
+
+但是我碰到的情况是
+
+int iscaler_destroy(IScaler **s) {
+  if(s) {
+    if(*s) {
+      if((*s)->sws_ctx)
+        sws_freeContext((*s)->sws_ctx);
+      free(*s)
+      *s = NULL;       这一行报错
+    }
+  }
+  return 0;
+}

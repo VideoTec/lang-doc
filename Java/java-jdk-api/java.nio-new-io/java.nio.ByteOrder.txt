@@ -1,0 +1,35 @@
+http://developer.android.com/reference/java/nio/ByteOrder.html
+
+Defines byte order constants
+
+用法：
+http://stackoverflow.com/questions/29745584/using-getdirectbufferaddress-from-jni
+by default java.nio.ByteBuffer is actually using BIG_ENDIAN notation.
+image_info_bb = java.nio.ByteBuffer.allocateDirect( 5 * 4 );
+image_info_bb.order( java.nio.ByteOrder.LITTLE_ENDIAN );
+
+--------------------------------
+Fields
+--------------------------------
+
+public static final ByteOrder BIG_ENDIAN
+This constant represents big endian.
+
+public static final ByteOrder LITTLE_ENDIAN
+This constant represents little endian.
+
+--------------------------------
+Public Methods
+--------------------------------
+
+public static ByteOrder nativeOrder ()
+Returns the current platform byte order.
+Returns
+the byte order object, which is either LITTLE_ENDIAN or BIG_ENDIAN.
+
+
+public String toString ()
+Returns a string that describes this object.
+Returns
+"BIG_ENDIAN" for ByteOrder.BIG_ENDIAN objects, 
+"LITTLE_ENDIAN" for ByteOrder.LITTLE_ENDIAN objects

@@ -1,0 +1,39 @@
+GLSurfaceView.java 代码中的相关注释
+
+android.view.SurfaceHolder.Callback 
+surfaceChanged(SurfaceHolder holder, int format, int width, int height)
+事件发生后，需要重新 初始化 EGL
+
+参看
+E:\doc\Computer software\KhronosGroup\OpenGL\OpenGL-Android-EGL\android-ndk-egl-glViewport-有必要设置吗.txt
+
+        /**
+         * Called when the surface changed size.
+         * <p>
+         * Called after the surface is created and whenever
+         * the OpenGL ES surface size changes.
+         * <p>
+         * Typically you will set your viewport here. If your camera
+         * is fixed then you could also set your projection matrix here:
+         * <pre class="prettyprint">
+         * void onSurfaceChanged(GL10 gl, int width, int height) {
+         *     gl.glViewport(0, 0, width, height);  eglMakeCurrent 会把 viewport 设置成和显示屏幕大小一致
+         *     // for a fixed camera, set the projection too
+         *     float ratio = (float) width / height;
+         *     gl.glMatrixMode(GL10.GL_PROJECTION);
+         *     gl.glLoadIdentity();
+         *     gl.glFrustumf(-ratio, ratio, -1, 1, 1, 10);
+         * }
+         * </pre>
+         * @param gl the GL interface. Use <code>instanceof</code> to
+         * test if the interface supports GL11 or higher interfaces.
+         * @param width
+         * @param height
+         */
+        void onSurfaceChanged(GL10 gl, int width, int height);
+
+
+public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
+   mGLThread.onWindowResize(w, h);  会引发上面的 onSurfaceChanged 事件
+}
+

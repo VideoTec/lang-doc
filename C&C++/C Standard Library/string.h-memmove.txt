@@ -1,0 +1,8 @@
+memmove
+语法:
+
+  #include <string.h>
+  void *memmove( void *to, const void *from, size_t count );
+ 
+
+功能: 与mencpy相同，不同的是当to 和 from 重叠，函数正常仍能工作。

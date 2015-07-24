@@ -1,0 +1,26 @@
+select option 的 SELECTED attribute 
+selected [CI]
+When set, this boolean attribute specifies that this option is pre-selected.
+
+selected 是个布尔属性，两种写法
+<option selected="selected">Ham Burger</option>
+<option selected>Ham Burger</option>
+
+http://stackoverflow.com/questions/7089584/html-why-boolean-attributes-do-not-have-boolean-value
+If you're writing HTML rather than XHTML, you can just write selected.
+http://www.w3.org/TR/html4/intro/sgmltut.html#h-3.3.4.2
+In HTML, boolean attributes may appear in minimized form -- 
+the attribute's value appears alone in the element's start tag.
+
+http://www.w3.org/TR/html401/interact/forms.html#h-17.6.1
+关于 option selected 的文档
+
+Zero or more choices may be pre-selected for the user. User agents should determine which choices are pre-selected as follows:
+
+If no OPTION element has the selected attribute set, user agent behavior for choosing which option is initially selected is undefined. Note. Since existing implementations handle this case differently, the current specification differs from RFC 1866 ([RFC1866] section 8.1.3), which states:
+The initial state has the first option selected, unless a SELECTED attribute is present on any of the <OPTION> elements.
+Since user agent behavior differs, authors should ensure that each menu includes a default pre-selected OPTION.
+
+If one OPTION element has the selected attribute set, it should be pre-selected.
+If the SELECT element has the multiple attribute set and more than one OPTION element has the selected attribute set, they should all be pre-selected.
+It is considered an error if more than one OPTION element has the selected attribute set and the SELECT element does not have the multiple attribute set. User agents may vary in how they handle this error, but should not pre-select more than one choice.

@@ -1,0 +1,18 @@
+public static void setOneVideo(Context context, String path) {
+    int duration = 1000 * 10;
+    MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+    try {
+      retriever.setDataSource(path);
+      String duration_str = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+      duration = Integer.valueOf(duration_str);
+      
+    } catch (IllegalArgumentException ex) {
+      ex.printStackTrace();
+      
+    } catch (RuntimeException ex) {
+      ex.printStackTrace();
+      
+    } finally {
+      retriever.release();
+    }
+  }

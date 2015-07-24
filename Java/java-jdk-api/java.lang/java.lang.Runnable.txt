@@ -1,0 +1,22 @@
+http://developer.android.com/reference/java/lang/Runnable.html
+
+java.lang.Runnable 接口
+
+Known Indirect Subclasses
+AnimationDrawable, 
+CookieSyncManager, 
+ForkJoinWorkerThread, 
+FutureTask<V>, HandlerThread, 
+RefQueueWorker, RenderScript.RSErrorHandler, 
+RenderScript.RSMessageHandler, RunnableFuture<V>, 
+RunnableScheduledFuture<V>, 
+Thread, TimerTask
+
+-------------------------------
+只有一个方法：
+-------------------------------
+
+public abstract void run ()
+
+Added in API level 1
+Starts executing the active part of the class' code. This method is called when a thread is started that has been created with a class which implements Runnable.

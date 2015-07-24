@@ -1,0 +1,18 @@
+void	void	Can represent any data type
+float	float	The range depends on the precision.
+bool	unsigned char	0 to 1
+int	char/short/int	The range depends on the precision.
+vec2	-	Array of 2 float. {x, y}, {r, g}, {s, t}
+vec3	-	Array of 3 float. {x, y, z}, {r, g, b}, {s, t, r}
+vec4	-	Array of 4 float. {x, y, z, w}, {r, g, b, a}, {s, t, r, q}
+bvec2	-	Array of 2 bool. {x, y}, {r, g}, {s, t}
+bvec3	-	Array of 3 bool. {x, y, z}, {r, g, b}, {s, t, r}
+bvec4	-	Array of 4 bool. {x, y, z, w}, {r, g, b, a}, {s, t, r, q}
+ivec2	-	Array of 2 int. {x, y}, {r, g}, {s, t}
+ivec3	-	Array of 3 int. {x, y, z}, {r, g, b}, {s, t, r}
+ivec4	-	Array of 4 int. {x, y, z, w}, {r, g, b, a}, {s, t, r, q}
+mat2	-	Array of 4 float. Represent a matrix of 2x2.
+mat3	-	Array of 9 float. Represent a matrix of 3x3.
+mat4	-	Array of 16 float. Represent a matrix of 4x4.
+sampler2D	-	Special type to access a 2D texture
+samplerCube	-	Special type to access a Cube texture (3D texture)

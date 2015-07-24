@@ -1,0 +1,58 @@
+Map 接口
+Java 核心类中有很多预定义的 Map 类
+Android上使用SparseArray来代替HashMap来提高性能
+
+这些方法检索有关 Map 内容的信息但不更改 Map 内容
+get(Object key)	返回与指定键关联的值
+containsKey(Object key)	如果 Map 包含指定键的映射，则返回 true
+containsValue(Object value)	如果此 Map 将一个或多个键映射到指定值，则返回 true
+isEmpty()	如果 Map 不包含键-值映射，则返回 true
+size()	返回 Map 中的键-值映射的数目
+
+Object put(Object key, Object value): 将互相关联的一个关键字与一个值放入该映像。
+如果该关键字已经存在，那么与此关键字相关的新值将取代旧值。
+方法返回关键字的旧值，如果没有旧值 即：关键字原先并不存在，则返回null 
+
+Object remove(Object key): 从映像中删除与key相关的映射 
+void putAll(Map t): 将来自特定映像的所有元素添加给该映像
+void clear(): 从映像中删除所有映射
+
+Object get(Object key): 
+获得与关键字key相关的值，并且返回与关键字key相关的对象，
+如果没有在该映像中找到该关键字，则返回null 
+
+boolean containsKey(Object key): 判断映像中是否存在关键字key
+boolean containsValue(Object value): 判断映像中是否存在值value 
+int size(): 返回当前映像中映射的数量 
+boolean isEmpty() ：判断映像中是否有任何映射 
+
+Set keySet(): 返回映像中所有关键字的视图集 
+Collection values():返回映像中所有值的视图集
+
+Set entrySet(): 返回Map.Entry对象的视图集，即映像中的关键字/值对
+返回一个实现Map.Entry接口的对象集合
+
+通用 Map，用于在应用程序中管理映射，通常在 java.util 程序包中实现
+HashMap
+Hashtable
+Properties
+LinkedHashMap
+IdentityHashMap
+TreeMap
+WeakHashMap
+ConcurrentHashMap
+
+专用 Map，您通常不必亲自创建此类 Map，而是通过某些其他类对其进行访问
+java.util.jar.Attributes
+javax.print.attribute.standard.PrinterStateReasons
+java.security.Provider
+java.awt.RenderingHints
+javax.swing.UIDefaults
+
+一个用于帮助实现您自己的 Map 类的抽象类
+AbstractMap
+
+java map 用法：
+java Map<key,values> Map<int,int> map=new Map<int,int>();这样做为什么会出错
+1）泛型的声明必须是一个类,int是基本数据类型而不是一个类,这里应该用int的封装类Integer做声明,也就是Map<Integer,Integer> 
+2）Map是一个接口不能直接实例化,应该用其实现类。比如：HashMap<Integer,Integer>()

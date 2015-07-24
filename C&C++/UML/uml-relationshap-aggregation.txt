@@ -1,0 +1,16 @@
+aggregation[英][ˌæɡrɪ'ɡeɪʃn] [美][ˌæɡrɪˈɡeʃən] 聚集；集成；集结；聚集体
+
+实线 加 空菱形 指向结合体
+
+如何判断两个对象（类）之间是聚合关系？
+An aggregation or composition indicates that a whole is made of (physically composed of) its parts.  
+
+A good heuristic test for whether a relationship is a composition relationship is to ask: 
+‘if the part moves, can one deduce that the whole moves with it in normal circumstances?’.  
+
+For example, the relationship ‘is the managing director of’ between People and Companies is not a composition 
+because if the MD goes on holiday to the Alps, the company does not.  
+On the other hand, if his legs go the Alps then the MD probably goes too 
+(unless he has seriously upset some unscrupulous business rivals). 
+
+在 c++ 使用引用成员变量，从语法来保证，聚合关系，引用必须在构造时指定。

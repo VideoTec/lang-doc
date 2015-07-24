@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>车商贷--车商专用贷款产品</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+<style>
+* { padding:0; margin:0;}
+body { font-size:14px;}
+.header {text-align:center;}
+.header img {width:50%; max-width:326px;margin:20px auto;}
+.formdiv {text-align:center;}
+.namediv, .teldiv, .seldiv { width:240px; margin:0 auto; height:44px; padding-left:40px; border-bottom:1px solid #e3e3e2; margin-bottom:10px;
+	background-image: url(jc-sprite.png);
+	background-repeat: no-repeat;
+	background-size:28px;
+	
+}
+.namediv {background-position: 7px -5px;}
+.teldiv {background-position: 7px -60px;}
+.seldiv {background-position: 7px -113px;}
+.formdiv input, .seldiv select {line-height:44px; height:44px; width:230px; padding-left:10px; /*text-align:center;*/outline:none; border:0; }
+input::-webkit-input-placeholder { 
+color: #999; 
+-webkit-transition: color.5s; 
+} 
+input:focus::-webkit-input-placeholder, input:hover::-webkit-input-placeholder { 
+color: #e3e3e2; 
+-webkit-transition: color.5s; 
+} 
+.seldiv select {
+	padding-left:0;
+	appearance:none;/*样式清除*/
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	background: url(jc-arrow.png) no-repeat scroll right center transparent;/*在选择框的最右侧中间显示小箭头图片*/
+	background-size:28px;
+}
+select::-ms-expand { display: none;}
+.btn {
+	margin:20px auto;
+	background-color:#2691d3;
+	border:0;
+	border-radius:25px;
+	width:45%;
+	padding:10px 15px;
+	color:#fff;
+	font-size:20px;
+}
+.footer p { color:#808080; text-align:left; margin:5px 10px; line-height:24px; font-size:12px;}
+
+</style>
+</head>
+
+<body>
+<div class="header">
+	<img src="../images/jclogo.png">
+</div>
+<div class="formdiv">
+	<div class="namediv"><input type="text" class="name" placeholder="姓名"></div>
+    <div class="teldiv"><input type="text" class="tel" placeholder="手机号"></div>
+    <div class="seldiv">
+        <select placeholder="服务类型">
+		    <option value="0" >服务类型</option>
+            <option value ="1" selected>上门检测</option>  
+            <option value ="2" disabled>专家陪买</option>
+        </select> 
+    </div>
+    <button class="btn">申请贷款</button>
+</div>
+<div class="footer">
+	<p>检测服务：帮助检测一辆车，价格500元</p>
+	<p>陪买服务：全天陪买，检测车辆数目不限，而且第二天半价，全价800元</p>
+	<p>服务城市：大同，北京，其他城市以后开放</p>
+</div>
+
+
+</body>
+</html>

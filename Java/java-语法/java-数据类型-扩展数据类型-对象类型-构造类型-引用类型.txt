@@ -1,0 +1,4 @@
+https://zh.wikibooks.org/zh/Java/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B
+
+http://www.programgo.com/article/1388481769/;jsessionid=7E4D519156E3FCD4A771003DAB3AEEA0
+在Java中，所有非内置类型的类型，称为对象类型，或非内置类型，或构造类型；

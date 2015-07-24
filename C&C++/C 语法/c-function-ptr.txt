@@ -1,0 +1,74 @@
+
+-----------------------------------------
+函数指针定义
+-----------------------------------------
+定义一个指向函数的指针用如下的形式，以上面的test()为例：
+    int (*fp)(int a);//这里就定义了一个指向函数(这个函数的参数仅仅为一个int类型)的指针
+    一般定义方式:
+    data_types (*func_pointer)( data_types arg1, data_types arg2, ...,data_types argn);
+    函数指针不能绝对不能指向不同类型，或者是带不同形参的函数，这点尤其注意.
+    在定义函数指针的时候我们很容易犯如下的错误:
+    int *fp(int a);//这里是错误的，因为按照结合性和优先级来看就是先和()结合，然后变成了一个返回整形指针的函数了，而不是函数指针.
+	
+	int main(int argc,char* argv[])
+    {
+            void* a[3];
+            a[0]=(void *)t1;
+            a[1]=(void *)t2;
+            a[2]=(void *)t3;
+            printf("t1=0x%x\n",*t1);
+            cout<<"比较t1()的内存地址和数组a[0]所存储的地址是否一致"<<t1<<"|"<<a[0]<<endl;
+    //      cout<<a[0]();//错误!指针数组是不能利用数组下标操作调用函数的
+            typedef void (*fp)();//自定义一个函数指针类型
+            fp b[]={t1,t2,t3}; //利用自定义类型fp把b[]定义趁一个指向函数的指针数组
+            b[0]();//现在利用指向函数的指针数组进行下标操作就可以进行函数的间接调用了;
+            cin.get();
+            return 0;
+    }
+
+-----------------------------------------
+函数指针类型的形式参数
+-----------------------------------------
+double ans(double a,double b,double(*pt)(double x))
+{
+	int i,n;
+	double step,sum=0;
+	n=(b/a)*10000;
+	step=(float)((b-a)/n);
+	for(i=1;i<=n;i++)
+	{
+		sum+=step*pt(a);
+		a+=step;
+	}
+	return sum;
+}
+
+-----------------------------------------
+函数指针类型的结构体字段
+-----------------------------------------
+typedef struct xxx {
+     /**
+     * Initialize codec static data, called from avcodec_register().
+     */
+    void (*init_static_data)(struct AVCodec *codec);
+
+    int (*init)(AVCodecContext *);
+} xxx;
+
+-----------------------------------------
+函数指针类型，函数指针变量
+-----------------------------------------
+void MyFun(int x);    
+void (*FunP)(int );    //申明一个用以指向同样参数，返回值函数的指针变量。
+                       //FunP 是一个函数指针变量
+int main(int argc, char* argv[])
+{
+   MyFun(10);     //这里是调用MyFun(10);函数
+   FunP=MyFun;  //将MyFun函数的地址赋给FunP变量
+   FunP(20);    //这是通过函数指针变量来调用MyFun函数的。
+
+      return 0;
+}
+
+typedef void (*FunType)(int );   //这样只是定义一个函数指针类型
+FunType FunP;                    //然后用FunType类型来申明全局FunP变量

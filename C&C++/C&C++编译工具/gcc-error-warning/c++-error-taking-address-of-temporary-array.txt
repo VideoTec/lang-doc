@@ -1,0 +1,66 @@
+jni/include/libavutil/error.h:120:95: error: taking address of temporary array
+     av_make_error_string((char[AV_ERROR_MAX_STRING_SIZE]){0}, AV_ERROR_MAX_STRING_SIZE, errnum)
+
+出错的原因是调用了：av_err2str
+http://ffmpeg.org/pipermail/libav-user/2013-January/003440.html 参考链接
+static inline char *av_make_error_string(char *errbuf, size_t errbuf_size, int errnum)
+{
+    av_strerror(errnum, errbuf, errbuf_size);
+    return errbuf;
+}
+
+#define av_err2str(errnum) \
+    av_make_error_string((char[AV_ERROR_MAX_STRING_SIZE]){0}, AV_ERROR_MAX_STRING_SIZE, errnum)
+
+------------------------------
+别的示例代码：
+------------------------------
+#include <stdio.h>
+
+void fn(int arr[])
+{
+  for (int j = 0; j < 5; ++j)
+    printf("%d: %d\n", j, arr[j]);
+}
+
+int main()
+{
+  fn((int[]) { 41, 42, 43, 44, 45 } );
+  return 0;
+}
+
+g++ -c t.cc
+t.cc: In function ‘int main()’:
+t.cc:11:37: error: taking address of temporary array
+   fn((int[]) { 41, 42, 43, 44, 45 } );
+
+------------------------------
+http://stackoverflow.com/questions/15458883/using-array-init-list-as-temporary-in-c11
+------------------------------
+#include <iostream>
+#include <cstring>
+using namespace std;
+int main()
+{ char t[]={1,2,3,0};
+  1> if (strcmp((char[]){1,2,3,0},t)==0)  //error
+  2> if (strcmp((const char[]){1,2,3,0},t)==0) //correct 加上 const 就可以编译过
+    cout << "equal\n";
+  else 
+    cout << "different\n";
+}
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+void f(char* p)
+{ for (int i=0; p[i]!=0; i++) 
+    cout << int(p[i]) << " ";
+  cout << endl;
+}
+
+int main() {
+  1> f((char[]){1,2,3,0}); // error
+  2> f((const char[]){1,2,3,0}); //error  "invalid conversion from 'const char*' to 'char*' [-fpermissive]"
+  3> f((char*)(const char[]){1,2,3,0}); // correct
+}

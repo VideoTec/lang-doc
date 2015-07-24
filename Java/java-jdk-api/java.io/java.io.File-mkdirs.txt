@@ -1,0 +1,12 @@
+		File root_dir = new File("/sdcard/VideoRecordDemo/videoeffects/filter/1/materials/");
+		if(!root_dir.exists()) {
+			root_dir.mkdirs();
+		}
+		root_dir = new File("/sdcard/VideoRecordDemo/videoeffects/filter/3/materials/");
+		if(!root_dir.exists()) {
+			root_dir.mkdirs();
+		}
+		root_dir = new File("/sdcard/VideoRecordDemo/videoeffects/font/1/materials/");
+		if(!root_dir.exists()) {
+			root_dir.mkdirs();
+		}

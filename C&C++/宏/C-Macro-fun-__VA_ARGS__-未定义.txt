@@ -1,0 +1,4 @@
+10:54 2015/4/23 __VAR_ARGS__ 写成了 __VA_ARGS__
+
+#define LOGI(...) printf(__VAR_ARGS__);
+#define LOGE(...) printf(__VAR_ARGS__);

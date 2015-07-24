@@ -1,0 +1,14 @@
+// Enables the following attributes to use dynamic values.
+glEnableVertexAttribArray(vertexLoc);  
+glEnableVertexAttribArray(textureLoc);
+
+// Disables the vertices attributes.
+glDisableVertexAttribArray(vertexLoc);  
+glDisableVertexAttribArray(textureLoc);
+
+enable and disable features in OpenGL are expansive tasks, 
+so you could want enable the dynamic values to the attributes once, 
+maybe in time you get its location
+
+annoying[英][əˈnɔɪɪŋ] [美][əˈnɔɪɪŋ] adj.讨厌的；恼人的
+The annoying thing here is the constant value is the default behavior to the shaders, if you want to use dynamic values to attributes you will need to temporarily enable this feature. Dynamic values will be set as per-vertex. You must to use the following functions to enable and disable the dynamic values behavior:

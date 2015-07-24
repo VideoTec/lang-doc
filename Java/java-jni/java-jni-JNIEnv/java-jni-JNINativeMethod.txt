@@ -1,0 +1,20 @@
+http://blog.csdn.net/bigapple88/article/details/6756204
+
+Andoird 中使用了一种不同传统Java JNI的方式来定义其native的函数。
+其中很重要的区别是Andorid使用了一种Java 和 C 函数的映射表数组，并在其中描述了函数的参数和返回值。
+这个数组的类型是JNINativeMethod，定义如下：
+typedef struct {
+const char* name;
+const char* signature;
+void* fnPtr;
+} JNINativeMethod;
+第一个变量name是Java中函数的名字。
+第二个变量signature，用字符串是描述了函数的参数和返回值
+第三个变量fnPtr是函数指针，指向C函数。
+其中比较难以理解的是第二个参数，例如
+"()V"
+"(II)V"
+"(Ljava/lang/String;Ljava/lang/String;)V"
+实际上这些字符是与函数的参数类型一一对应的。
+"()" 中的字符表示参数，后面的则代表返回值。例如"()V" 就表示void Func();
+"(II)V" 表示 void Func(int, int);

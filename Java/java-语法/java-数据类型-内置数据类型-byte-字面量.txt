@@ -1,0 +1,22 @@
+声明函数
+static public MDataWriter open(
+			String file, int width, int height, byte with_audio, byte with_video)
+
+调用，编译不过
+MDataWriter.open("/sdcard/out.mp4", 480, 480, 1, 0);
+
+The method open(String, int, int, byte, byte) in the type MDataWriter is not applicable for the arguments (String, int, int, int, int)
+
+注意一： byte a = 1; 这样写没错误
+
+解决方法：
+http://stackoverflow.com/questions/7369493/integer-to-byte-casting-in-java
+myObject.testByte((byte) 5);
+
+原因：
+coercion[英][kəʊˈɜ:ʃn] [美][koʊˈɜ:rʒn] 
+n.强迫；高压政治；强制；威压
+
+the 5 is created by default as an int, and not automatically coerced
+Hard-coded initializer values are somewhat special in Java - 
+they're assumed to have a coercion to the type of the variable you're initializing

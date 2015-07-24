@@ -1,0 +1,6 @@
+http://stackoverflow.com/questions/18197936/how-to-draw-a-sphere-in-opengl-es-2-correctly
+glDrawArrays is used when you deal directly with a stream of vertices, and 
+glDrawElements is used when you use an index buffer, 
+which adds an extra layer of indirection and lets you reference vertices by an index number.
+
+http://www.learnopengles.com/android-lesson-eight-an-introduction-to-index-buffer-objects-ibos/

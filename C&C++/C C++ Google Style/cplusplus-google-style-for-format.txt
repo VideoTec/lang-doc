@@ -1,0 +1,49 @@
+for 语句太长了，怎么写？ google-style 未定义
+
+for(int src_line = top / 2, des_line = 0; des_line < height / 2; src_line++, des_line++)
+ 
+------------------------------------------
+Loops and Switch Statements 文档
+------------------------------------------
+
+Switch statements may use braces for blocks. 
+Annotate non-trivial fall-through between cases. 
+Braces are optional for single-statement loops. 
+Empty loop bodies should use {} or continue.
+
+case blocks in switch statements can have curly braces or not, depending on your preference. 
+If you do include curly braces they should be placed as shown below.
+
+If not conditional on an enumerated value, 
+switch statements should always have a default case (in the case of an enumerated value, 
+the compiler will warn you if any values are not handled). If the default case should never execute, simply assert:
+
+switch (var) {
+  case 0: {  // 2 space indent
+    ...      // 4 space indent
+    break;
+  }
+  case 1: {
+    ...
+    break;
+  }
+  default: {
+    assert(false);
+  }
+}
+Braces are optional for single-statement loops.
+
+for (int i = 0; i < kSomeNumber; ++i)
+  printf("I love you\n");
+
+for (int i = 0; i < kSomeNumber; ++i) {
+  printf("I take it back\n");
+}
+Empty loop bodies should use {} or continue, but not a single semicolon.
+
+while (condition) {
+  // Repeat test until it returns false.
+}
+for (int i = 0; i < kSomeNumber; ++i) {}  // Good - empty body.
+while (condition) continue;  // Good - continue indicates no logic.
+while (condition);  // Bad - looks like part of do/while loop.

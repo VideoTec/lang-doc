@@ -1,0 +1,88 @@
+修改符的顺序
+public static final int GL_UNSIGNED_SHORT                          = 0x1403;
+
+static 
+使用对象：类、方法、字段、初始化函数 
+介绍：
+成为static的内部类是一个顶级类，它和包含类的成员是不相关的。
+
+静态方法是类方法
+是被指向到所属的类而不是类的实例。
+
+静态字段是类字段，
+无论该字段所在的类创建了多少实例，
+该字段只存在一个实例被指向到所属的类而不是类的实例。
+
+初始化函数是在装载类时执行的，而不是在创建实例时执行的。
+
+final 
+使用对象：类、方法、字段、变量 
+介绍：
+被定义成final的类不允许出现子类，不能被覆盖（不应用于动态查询），
+字段值 不允许被 修改。
+
+abstract 
+使用对象：类、接口、方法 
+介绍：
+类中包括没有实现的方法，不能被实例化。
+
+如果是一个abstract方法，则方法体为空，该方法的实现在子类中被定义，
+并且包含一个abstract方法的类必须是一个abstract类 
+
+在方法参数前面加final关键字就是为了防止数据在方法体中被修改
+第一种情况，修饰基本类型（非引用类型）。这时参数的值在方法体内是不能被修改的，即不能被重新赋值
+第二种情况，修饰引用类型。这时参数变量所引用的对象是不能被改变的。作为引用的拷贝，参数在方法体里面不能再引用新的对象
+
+对于静态变量在内存中只有一个拷贝（节省内存），
+JVM只为静态分配一次内存，在加载类的过程中完成静态变量的内存分配，可用类名直接访问（方便），当然也可以通过对象来访问
+
+Java静态变量初始化顺序浅谈
+Java静态变量初始化遵循以下规则:
+静态变量会按照声明的顺序先依次声明并设置为该类型的默认值，但不赋值为初始化的值。
+声明完毕后,再按声明的顺序依次设置为初始化的值，如果没有初始化的值就跳过
+public class Test
+{
+    public static Test1 t = new Test1();
+    public static int a = 0;
+    public static int b;
+    public static void main(String[] arg)
+    {
+        System.out.println(Test.a);
+        System.out.println(Test.b);
+    }
+}
+class Test1
+{
+    public Test1()
+    {
+        Test.a++;
+        Test.b++;
+    }
+}
+OK, 或许你已经猜到下面了结果了,那么你还是熟悉Java的。
+
+0 1
+
+public class Client {  
+     public static  int i=1;  
+     static{  
+         i=100;  
+     }
+	 
+     public static void main(String[] args) {  
+          System.out.println(i);  
+    }  
+} 
+
+public class Client {  
+     static{  
+         i=100;  
+     }  
+     public static  int i=1;
+	 
+     public static void main(String[] args) {  
+          System.out.println(i);  
+     }  
+} 
+上面两段代码，输出结果不一样。
+Java通用的开发规范“变量先声明后使用”是一个良好的编码风格

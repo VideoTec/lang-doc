@@ -1,0 +1,16 @@
+
+const char *vertex_shader_string = " \
+      uniform mat4 u_mvpMatrix; \
+      attribute vec4 a_vertex; \
+      attribute vec4 a_color; \
+      varying vec4 fr_color; \
+      void main() { \
+        gl_Position = u_mvpMatrix * a_vertex; \
+        fr_color = a_color; \
+      }";
+ const char *fragment_shader_string = " \
+       precision mediump float; \             如果不指定精度，就不会输出颜色
+       varying vec4 fr_color; \
+       void main() { \
+         gl_FragColor = fr_color; \
+       }";

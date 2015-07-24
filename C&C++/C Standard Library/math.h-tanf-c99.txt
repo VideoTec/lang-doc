@@ -1,0 +1,33 @@
+include <math.h>
+
+Function: double tan (double x)
+Function: float tanf (float x)
+Function: long double tanl (long double x)
+
+正切的符号为tan，源于英文tangent。该符号最早由数学家T.芬克所采用
+tangent[英][ˈtændʒənt] [美][ˈtændʒənt] 
+n.<数>正切；突然转移话题；突兀的转向；（铁路或道路的）直线区间
+adj.<数>正切的；相切的；切线的；离题的
+
+切线 - A tangent is a line that touches the edge of a curve or circle at one point, but does not cross it.
+
+常见的三角函数包括正弦函数（sin）、余弦函数（cos）和正切函数（tan或者tg）
+正切（Tangent，tan，也作tg）是三角函数的一种。
+它的值域是整个实数集，定义域是整个{x|x≠kπ+π/2，k∈Z}。
+它是周期函数，其最小正周期为π。
+正切函数是奇函数
+
+在直角三角形中，一个锐角的正切定义为它的对边与邻边的比值
+
+示例：
+H:\doc\Computer software\KhronosGroup\OpenGL\GLSL\glsl-uniform-glUniformMatrix-perspective.txt
+void ESUTIL_API 
+esPerspective(ESMatrix *result, float fovy, float aspect, float nearZ, float farZ)
+{
+   GLfloat frustumW, frustumH;
+   
+   frustumH = tanf( fovy / 360.0f * PI ) * nearZ;
+   frustumW = frustumH * aspect;
+
+   esFrustum( result, -frustumW, frustumW, -frustumH, frustumH, nearZ, farZ );
+}

@@ -1,0 +1,10 @@
+http://blog.csdn.net/shuaihj/article/details/7230780
+glDepthFunc(GLenum func)
+func:指定“目标像素与当前像素在z方向上值大小比较”的函数
+该函数只有启用“深度测试”时才有效，
+参考glEnable(GL_DEPTH_TEST)和glDisable(GL_DEPTH_TEST)
+
+
+http://zh.wikipedia.org/wiki/%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2
+深度缓冲
+深度缓冲是在三维图形中处理图像深度坐标的过程，这个过程通常在硬件中完成

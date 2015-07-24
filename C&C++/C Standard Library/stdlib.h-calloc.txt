@@ -1,0 +1,12 @@
+calloc 
+语法: 
+
+ 
+  #include <stdlib.h>
+  void *calloc( size_t num, size_t size );
+ 
+
+功能： 函数返回一个指向num 数组空间，每一数组元素的大小为size。如果错误发生返回NULL。 
+
+相关主题:
+free(), malloc(), and realloc(). 

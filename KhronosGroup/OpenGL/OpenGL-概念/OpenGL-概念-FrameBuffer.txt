@@ -1,0 +1,31 @@
+渲染最终结果，会到这个缓存
+
+The final rendering destination of the OpenGL pipeline is called [the] framebuffer.
+
+
+---------------------------------------------------------------
+default framebuffer 、 application-created framebuffer
+---------------------------------------------------------------
+This default framebuffer is called window-system-provided framebuffer.
+
+可以通过 glGenFramebuffers 创建，用户定义 framebuffer
+application-created framebuffer in order to distinguish from the default window-system-provided framebuffer
+
+---------------------------------------------------------------
+可以 BIND 不同的 framebuffer
+---------------------------------------------------------------
+void glBindFramebuffer(GLenum target, GLuint framebuffer);    //GL_FRAMEBUFFER
+
+---------------------------------------------------------------
+“渲染到纹理” 和 “离屏渲染”
+---------------------------------------------------------------
+There are two types of framebuffer-attachable images; texture images and renderbuffer images. 
+If an image of a texture object is attached to a framebuffer, OpenGL performs "render to texture". And 
+if an image of a renderbuffer object is attached to a framebuffer, then OpenGL performs "offscreen rendering".
+
+---------------------------------------------------------------
+A FBO attachment points 附加点 
+---------------------------------------------------------------
+color attachment points (GL_COLOR_ATTACHMENT0, ..., GL_COLOR_ATTACHMENTn),  至少有一个
+GL_DEPTH_ATTACHMENT, and 
+GL_STENCIL_ATTACHMENT

@@ -1,0 +1,24 @@
+memcmp
+语法:
+
+ 
+
+
+  #include <string.h>
+  int memcmp( const void *buffer1, const void *buffer2, size_t count );
+ 
+
+功能：函数比较buffer1 和 buffer2的前count 个字符。返回值如下:
+
+Value 
+ 解释 
+ 
+less than 0 
+ buffer1 is less than buffer2 
+ 
+equal to 0 
+ buffer1 is equal to buffer2 
+ 
+greater than 0 
+ buffer1 is greater than buffer2 
+ 

@@ -1,0 +1,32 @@
+l - 乘号左边的值   列数
+r - 乘号右边的值   行数
+
+矩阵乘法不满足交换律
+一个m行n列的矩阵与一个n行p列的矩阵可以相乘，得到的结果是一个m行p列的矩阵，
+其中的第i行第j列位置上的数为第一个矩阵第i行上的n个数与第二个矩阵第j列上的n个数对应相乘后所得的n个乘积之和
+
+void Matrix::multiply(const Matrix& l, const Matrix& r) {
+    float const* const lhs = l.mData;
+    float const* const rhs = r.mData;
+    for (int i = 0; i < 4; i++) {
+        const int i4 = i * 4;
+        float x = 0;
+        float y = 0;
+        float z = 0;
+        float w = 0;
+
+        for (int j = 0; j < 4; j++) {
+            const int j4 = j * 4;
+            const float e = rhs[i4 + j];
+            x += lhs[j4 + 0] * e;
+            y += lhs[j4 + 1] * e;
+            z += lhs[j4 + 2] * e;
+            w += lhs[j4 + 3] * e;
+        }
+
+        mData[i4 + 0] = x;
+        mData[i4 + 1] = y;
+        mData[i4 + 2] = z;
+        mData[i4 + 3] = w;
+    }
+}

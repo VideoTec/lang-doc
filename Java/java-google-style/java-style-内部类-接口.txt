@@ -1,0 +1,27 @@
+位置？
+所有的仅有方法之后
+所有的私有方法之前
+
+写法：
+    //---------------------------------------------------------
+    // Interface definitions
+    //--------------------
+    /**
+     * Interface definition for a callback to be invoked when an AudioRecord has
+     * reached a notification marker set by {@link AudioRecord#setNotificationMarkerPosition(int)}
+     * or for periodic updates on the progress of the record head, as set by
+     * {@link AudioRecord#setPositionNotificationPeriod(int)}.
+     */
+    public interface OnRecordPositionUpdateListener  {
+        /**
+         * Called on the listener to notify it that the previously set marker has been reached
+         * by the recording head.
+         */
+        void onMarkerReached(AudioRecord recorder);
+
+        /**
+         * Called on the listener to periodically notify it that the record head has reached
+         * a multiple of the notification period.
+         */
+        void onPeriodicNotification(AudioRecord recorder);
+    }

@@ -1,0 +1,47 @@
+声明时写了， extern "C", 实现可以不用再写了
+Since your header file already wraps function prototype with extern "C", 
+you don't required to do the same when writing implementation.
+
+file1.c
+extern const int g_opensl_methods_num;
+extern JNINativeMethod g_opensl_methods[];
+
+file2.cpp
+const int g_opensl_methods_num = sizeof(g_opensl_methods) / sizeof(g_opensl_methods[0]);  
+JNINativeMethod g_opensl_methods[] = {
+    {"initOpenSL", "(Ljava/lang/String;)V", (void *)initOpenSL},
+    {"destroyOpenSL", "()V", (void *)destroyOpenSL}
+};
+
+链接时，说 file1.o 打不到，是因为 c++ 的 Name mangling，需要告诉编译器，用C方式输出符号名称
+error: undefined reference to 'g_opensl_methods_num'
+
+修改一：依然链接失败
+extern "C" {
+const int g_opensl_methods_num = sizeof(g_opensl_methods) / sizeof(g_opensl_methods[0]); 
+}
+修改二：成功
+extern "C" const int g_opensl_methods_num = sizeof(g_opensl_methods) / sizeof(g_opensl_methods[0]); 
+
+这两种 extern "C" 用法的区别，没有有找到
+
+理解：
+1. extern "C"表明了一种编译规约，其中extern是关键字属性，“C”表征了编译器链接规范
+   C语言中不支持extern "C"声明，在.c文件中包含了extern "C"时会出现编译语法错误
+   所以有了下面的头文件写法
+#ifndef _JNI_ENTRY_H_
+#define _JNI_ENTRY_H_
+
+#include "jni_util.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void register_natives();
+
+#ifdef _cplusplus
+} /* extern "C" */
+#endif
+
+#endif /* _JNI_ENTRY_H_ */

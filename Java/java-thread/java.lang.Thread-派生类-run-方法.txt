@@ -1,0 +1,51 @@
+public void run ()
+
+Added in API level 1
+Calls the run() method of the Runnable object the receiver holds. If no Runnable is set, does nothing.
+
+注意：Thread 实现了 Runnable 接口
+public class Thread implements Runnable {
+    public void run() {
+        if (target != null) {
+            target.run();
+        }
+    }
+}
+
+示例
+    class ReadLooperThread extends Thread {
+
+        @Override
+        public void run() {
+            try {
+                mStopReadSingal = false;
+                mAudioRecord.startRecording();
+                mEventHandler.sendEmptyMessage(EVENT_START_READ);
+
+                while(true) {
+                    mAudioRecord.read(mPCMBuffer, mBufferSize);
+
+                    if(mReaderHandler != null)
+                        mReaderHandler.onProcessPCMBuffer(mPCMBuffer);
+
+                    if(mStopReadSingal)
+                        break;
+                }
+
+            } catch (IllegalArgumentException ex) {
+                ex.printStackTrace();
+                mEventHandler.sendEmptyMessage(EVENT_ERROR_ON_READ);
+
+            } catch (RuntimeException ex) {
+                mEventHandler.sendEmptyMessage(EVENT_ERROR_ON_READ);
+
+            } finally {
+                if(mAudioRecord != null)
+                    mAudioRecord.stop();
+
+                mEventHandler.sendEmptyMessage(EVENT_STOP_READ);
+                Log.v(TAG, "read looper thread end...");
+            }
+        }
+
+    }

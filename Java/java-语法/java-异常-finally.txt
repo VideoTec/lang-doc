@@ -1,0 +1,16 @@
+1. 语法，try {} finally {}
+2. 什么时候不执行？
+ try 语句块中执行了 System.exit (0) 语句，终止了 Java 虚拟机的运行
+ 当一个线程在执行 try 语句块或者 catch 语句块时被打断（interrupted）或者被终止（killed），与其相对应的 finally 语句块可能不会执行
+ 就是在线程运行 try 语句块或者 catch 语句块时，突然死机或者断电，finally 语句块肯定不会执行了
+
+3. 语义
+void t() {
+try {
+  if(xx)
+     return; 返回前会执行 finally里的语句
+ 
+ } finally {
+     printf();
+ }
+}

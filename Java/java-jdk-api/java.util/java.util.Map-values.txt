@@ -1,0 +1,22 @@
+public abstract Collection<V> values ()
+
+Added in API level 1
+Returns a Collection of the values contained in this Map. The Collection is backed by this Map so changes to one are reflected by the other. The Collection supports remove(Object), removeAll(Collection), retainAll(Collection), and clear() operations, and it does not support add(E) or addAll(Collection) operations.
+
+This method returns a Collection which is the subclass of AbstractCollection. The iterator() method of this subclass returns a "wrapper object" over the iterator of this Map's entrySet(). The size() method wraps this Map's size() method and the contains(Object) method wraps this Map's containsValue(Object) method.
+
+The collection is created when this method is called at first time and returned in response to all subsequent calls. This method may return different Collection when multiple calls to this method, since it has no synchronization performed.
+
+Returns
+a collection of the values contained in this map.
+
+-----------------------------------
+用法
+-----------------------------------
+private static Map<Class<? extends BaseFragment>, BaseFragment> fragments = 
+         new HashMap<Class<? extends BaseFragment>, BaseFragment>();
+private static Map<Integer, BaseFragment> viewsContainer = new HashMap<Integer, BaseFragment>();
+
+		fragments.remove(fragment.getClass());
+		// 与fragments同步
+		viewsContainer.values().retainAll(fragments.values());

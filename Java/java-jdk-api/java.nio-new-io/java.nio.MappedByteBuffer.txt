@@ -1,0 +1,5 @@
+MappedByteBuffer is a special kind of direct byte buffer which maps a region of file to memory.
+
+MappedByteBuffer can be created by calling FileChannel.map. Once created, the mapping between the byte buffer and the file region remains valid until the byte buffer is garbage collected.
+
+All or part of a MappedByteBuffer's content may change or become inaccessible at any time, since the mapped file region can be modified by another thread or process at any time. If this happens, the behavior of the MappedByteBuffer is undefined.

@@ -1,0 +1,85 @@
+讲了两个概念
+顶点数组    VA-generic vertex attribute arrays (enable and disable)
+顶点缓存    VBO-Vertex Buffer Object
+
+void glVertexAttribPointer(
+GLuint index, 为顶点数据（如顶点，颜色，法线，纹理或点精灵大小）在着色器程序中的槽位；
+GLint size,   指定每一种数据的组成大小，比如顶点由 x, y, z 3个组成部分，纹理由 u, v 2个组成部分；
+GLenum type,  表示每一个组成部分的数据格式；
+GLboolean normalized,
+GLsizei stride,
+const GLvoid * pointer);
+
+glVertexAttribPointer has two modes of operation. 
+If there's no VBO bound, it takes a pointer to the data as the last argument. 
+If there's a VBO bound the last argument is instead an integer offset into the buffer. 
+
+If a non-zero named buffer object is bound to the GL_ARRAY_BUFFER target (see glBindBuffer) 
+while a generic vertex attribute array is specified, 
+pointer is treated as a byte offset into the buffer object's data store. 
+Also, the buffer object binding (GL_ARRAY_BUFFER_BINDING) is saved as 
+generic vertex attribute array client-side state (GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING) for index index.
+
+void glVertexAttribPointer (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid* ptr);
+参数 index ：为顶点数据（如顶点，颜色，法线，纹理或点精灵大小）在着色器程序中的槽位；
+参数 size ：指定每一种数据的组成大小，比如顶点由 x, y, z 3个组成部分，纹理由 u, v 2个组成部分；
+参数 type ：表示每一个组成部分的数据格式；
+
+参数 normalized ： 
+表示当数据为法线数据时，是否需要将法线规范化为单位长度，
+对于其他顶点数据设置为 GL_FALSE 即可。
+如果法线向量已经为单位长度设置为 GL_FALSE 即可，这样可免去不必要的计算，提升效率；
+
+stride ： 
+表示上一个数据到下一个数据之间的间隔（同样是以字节为单位），
+OpenGL ES根据该间隔来从由多个顶点数据混合而成的数据块中跳跃地读取相应的顶点数据；
+
+ptr ：
+如果没有使用 VBO，它指向 CPU 内存中的顶点数据数组；
+如果使用 VBO 绑定到 GL_ARRAY_BUFFER ，那么它表示该种类型顶点数据在顶点缓存中的起始偏移量。
+
+启用和禁用 generic vertex attribute arrays
+void glEnableVertexAttribArray(GLuint index); 
+void glDisableVertexAttribArray(GLuint index);
+To enable and disable a generic vertex attribute array, call glEnableVertexAttribArray and glDisableVertexAttribArray.
+默认情况下，顶点数组是禁用的。
+By default, all client-side capabilities are disabled, including all generic vertex attribute arrays。
+glVertexAttribPointer is typically implemented on the client-side. 意思是：数组不在显存在内存中？
+
+解释 client-side 是什么意思？
+解释 generic vertex attribute arrays 是什么意思？
+https://www.opengl.org/wiki/Client-Side_Vertex_Arrays
+Before VBOs, there were plain old vertex arrays. 
+This means that your vertices and vertex attributes and indices are in RAM.
+Of course, this doesn't give the best performance since every time you want GL to draw, 
+the driver has to upload the vertices to the GPU
+http://www.cnblogs.com/kesalin/archive/2012/12/20/vbo.html
+代码直接从 CPU 主存中传递顶点数据到 GPU 中去进行运算与渲染
+vertices 和 indices 都是在主存中分配的内存空间，当需要进行渲染时，
+这些数据便通过 glDrawElements 或 glDrawArrays 从 CPU 主存中拷贝到 GPU 中去进行运算与渲染
+
+解释 VBO (Vertex Buffer object)，即顶点缓存
+它直接在 GPU 中开辟一个缓存区域来存储顶点数据，因为它是用来缓存储顶点数据，因此被称之为顶点缓存。
+我们只会在初始化缓冲区，以及在顶点数据有变化时才需要对该缓冲区进行写操作。
+使用顶点缓存能够大大较少了CPU-GPU 之间的数据拷贝开销，因此显著地提升了程序运行的效率
+
+顶点缓存对象 API
+VBO为顶点缓冲区对象，用于存储顶点坐标/顶点uv/顶点法线/顶点颜色
+
+glGenBuffers	创建顶点缓存对象
+glBindBuffer	将顶点缓存对象设置为
+                当前数组缓存对象(array buffer object) GL_ARRAY_BUFFER   //坐标，颜色 等
+                当前元素缓存对象(element buffer object) GL_ELEMENT_ARRAY_BUFFER  //索引坐标
+glBufferData	为顶点缓存对象申请内存空间，并进行初始化(视传入的参数而定)
+glBufferSubData	初始化或更新顶点缓存对象
+glDeleteBuffers	删除顶点缓存对象
+
+建立顶点索引，用GL_ELEMENT_ARRAY_BUFFER下的 glDrawElements 绘制
+使用顶点缓存
+void glDrawElements (GLenum mode, GLsizei count, GLenum type, const GLvoid* indices);
+参数 mode ：表示描绘的图元类型，如：GL_TRIANGLES，GL_LINES，GL_POINTS；
+参数 count ： 表示索引数据的个数；
+参数 type ： 表示索引数据的格式，必须是无符号整形值；
+indices ：
+如果没有使用 VBO，它指向 CPU 内存中的索引数据数组；
+如果使用 VBO 绑定到 GL_ELEMENT_ARRAY_BUFFER ，那么它表示索引数据在 VBO 中的偏移量

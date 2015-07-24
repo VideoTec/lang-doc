@@ -1,0 +1,4 @@
+getDouble ...
+
+注意一：
+这些接口受 ByteOrder 的影响。

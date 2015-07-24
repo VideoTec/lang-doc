@@ -1,0 +1,45 @@
+10:35 2015/6/8
+
+public static int copyAssetFile(String filename, Context context,
+			String getAbsolutePath, boolean rewrite) {
+
+		AssetManager assetManager = context.getAssets();
+		InputStream in = null;
+		OutputStream out = null;
+		try {
+			in = assetManager.open(filename);
+			String newFileName = getAbsolutePath + filename;
+			// 有同名文件需要删除，file生成不区分文件名大小写，所以必须删除
+			File outFile = new File(newFileName);
+			if (outFile != null && outFile.exists()) {
+				if(rewrite) {
+				   outFile.delete();
+				} else {
+				   return 0;  这里返回，后面的 out = new FileOutputStream(newFileName); 还执行吗？
+				}
+			}
+
+			out = new FileOutputStream(newFileName);
+			byte[] buffer = new byte[1024];
+			int read;
+			while ((read = in.read(buffer)) != -1) {
+				out.write(buffer, 0, read);
+			}
+			out.flush();
+			out.close();
+			out = null;
+
+		} catch (Exception e) {
+			return -1;
+		} finally {
+			try {
+				in.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			in = null;			
+		}
+
+		return 0;
+	}

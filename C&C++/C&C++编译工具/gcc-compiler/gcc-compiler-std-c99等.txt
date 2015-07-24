@@ -1,0 +1,9 @@
+示例：
+LOCAL_CPPFLAGS := -std=gnu++11 
+
+-std=gnu++11 这是什么意思？ 参考：  -std=c++11
+http://stackoverflow.com/questions/10613126/what-are-the-differences-between-std-c11-and-std-gnu11
+What are the differences between -std=c++11 and -std=gnu++11?
+-std=gnu++11 表示： the gnu extentions violating the standard are enabled or not
+
+-std=c99

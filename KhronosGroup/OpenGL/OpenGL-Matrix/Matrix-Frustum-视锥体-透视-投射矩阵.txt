@@ -1,0 +1,66 @@
+视锥体（frustum）
+视锥体（view frustum）
+frustum[英]['frʌstəm] [美]['frʌstəm]  截头锥体 视锥体
+projection[英][prəˈdʒekʃn] [美][prəˈdʒɛkʃən] n.预测；规划，设计；[心]投射；突起物
+Projection Window 投影窗口
+Projection Window就是我们的屏幕位置
+perspective[英][pəˈspektɪv] [美][pərˈspektɪv] adj.（按照）透视画法的；透视的
+
+Defines a projection matrix in terms of six clip planes
+
+http://blog.csdn.net/zhongjling/article/details/8488844
+将三维坐标转换为平面坐标有两种投影方式：
+正交投影(Orthogonal Projection)和透视投影(Perspective Projection)
+
+透视投影和正交投影最大的区别就是透视投影具有远近感
+
+https://en.wikipedia.org/wiki/Viewing_frustum
+In 3D computer graphics, the view frustum[1] (also called viewing frustum[2]) 
+is the region of space in the modeled world that may appear on the screen; 
+it is the field of view of the notional camera
+
+在三维计算机图形学中，视体（英语：viewing frustum）又称视景体、视锥，是三维世界中在屏幕上可见的区域，即虚拟摄像机的视野。[1]
+
+该区域的实际形状依所模拟的摄像机镜头而定，但顾名思义，其常见的形状是方平截头体。
+将四棱锥截为平截头体的两个平面称作近平面 和远平面。
+如果某个物体到摄像机的距离比近平面近或比远平面远，那么这个物体不会被显示。
+
+视体剔除（英语：Viewing frustum culling）
+指将完全处于视体外的物体移出渲染流程的过程。
+为了加速剔除过程，通常使用物体的包围体而不是物体本身来进行位置比较。
+
+通常，可以通过视野角度、纵横比，以及近平面和远平面到摄像机的距离来描述一个视体
+
+http://blog.csdn.net/kenden23/article/details/20400331
+什么是透视图投射矩阵 perspective projective matrix？
+空间物体的坐标乘以投射矩阵，那么就可以把空间的物体投射到屏幕上
+
+http://shiba.hpe.cn/jiaoyanzu/wuli/showArticle.aspx?articleId=506&classId=4
+在将3D世界绘制到屏幕之前，你需要相机的View和Projection矩阵
+
+近裁平面（near(front) clipping plane）
+远裁平面（far(back) clipping plane）
+两者之间，是 view frustum
+近裁平面和远裁平面间的距离最好小于几百，如果显卡的深度缓冲小于16-bit，这个距离应该更小
+
+https://msdn.microsoft.com/en-us/library/ff634570.aspx
+What Is a View Frustum?
+A view frustum is defined 
+by a field of view (fov), and 
+by the distances of the front and back clipping planes, which are specified in z-coordinates. 
+Set up a perspective fov using the CreatePerspectiveFieldOfView method.
+
+http://uec.unity3d.com/learning/document?file=/Manual/UnderstandingFrustum.html
+了解视锥体
+视锥体 (frustum) 指看起来类似于金字塔的立方体形状，切去顶部，顶部与底部平行。
+这是一个透视相机可以看到和渲染的区域形状
+近裁剪面和远裁剪面与相机的 XY 平面平行，都与中心线有一定距离。
+比近裁剪面更靠近相机的任何物体和比远裁剪面更远的物体都不会被渲染
+图像偏离线夹角与两个裁剪面定义一个截棱锥，即视锥体
+
+http://www.linuxgraphics.cn/opengl/opengl_view_frustum_culling.html
+本文介绍了视锥裁剪技术，并给出了 OpenGL 实现
+
+视锥体（frustum），是指场景中摄像机的可见的一个锥体范围。
+它有上、下、左、右、近、远，共6个面组成。在视锥体内的景物可见，反之则不可见。
+为提高性能，只对其中与视锥体有交集的对象进行绘制

@@ -1,0 +1,37 @@
+11:13 2015/5/7
+向 const 参数 传递非 const 变量，为什么警告？
+
+[armeabi-v7a] Compile thumb  : convert <= audio_resampler.c
+jni/ff_codec/audio_resampler.c: In function 'aresampler_in':
+jni/ff_codec/audio_resampler.c:96:10: warning: passing argument 4 of 'swr_convert' from incompatible pointer type
+   size = swr_convert(r->swr, out, free_size, in, framesize);
+          ^
+In file included from jni/ff_codec/ffmpeg_util.h:9:0,
+                 from jni/ff_codec/audio_resampler.h:4,
+                 from jni/ff_codec/audio_resampler.c:1:
+jni/../armeabi-v7a/ffmpeg/include/libswresample/swresample.h:309:5: 
+note: expected 'const uint8_t **' but argument is of type 'uint8_t **'
+ int swr_convert(struct SwrContext *s, uint8_t **out, int out_count,
+     ^
+
+参考：
+http://stackoverflow.com/questions/12992407/warning-when-passing-non-const-parameter-to-a-function-that-expects-const-parame
+http://stackoverflow.com/questions/78125/why-cant-i-convert-char-to-a-const-char-const-in-c
+http://c-faq.com/ansi/constmismatch.html 解释
+Why can't I pass a char ** to a function which expects a const char **?
+You can use a pointer-to-T (for any type T) where a pointer-to-const-T is expected. 
+However, the rule (an explicit exception) which permits slight mismatches in qualified pointer types is not applied recursively, 
+but only at the top level. 
+(const char ** is pointer-to-pointer-to-const-char, and the exception therefore does not apply.)
+
+下面的代码会产生一个，错误
+const char c = 'x';		/* 1 */
+char *p1;			/* 2 */
+const char **p2 = &p1;		/* 3 */  这里会有警告， p2 的 const 保证会被突破
+*p2 = &c;			/* 4 */
+*p1 = 'X';			/* 5 */  会改变
+Assigning a char ** to a const char ** (as in line 3, and in the original question) is not immediately dangerous. 
+But it sets up a situation in which p2's promise--that the ultimately-pointed-to value won't be modified--cannot be kept.
+
+解决方案：
+强制类型转换解决这个警告

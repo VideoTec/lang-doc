@@ -1,0 +1,32 @@
+Renderbuffer Object
+In addition, renderbuffer object is newly introduced for offscreen rendering. 
+It allows to render a scene directly to a renderbuffer object, instead of rendering to a texture object. 
+Renderbuffer is simply a data storage object containing a single image of a renderable internal format. 
+
+corresponding[英][ˌkɒrəˈspɒndɪŋ] [美][ˌkɔ:rəˈspɑ:ndɪŋ] adj.相当的，对应的；通信的；符合的，符合。。；一致的
+It is used to store OpenGL logical buffers that do not have corresponding texture format, 
+such as stencil or depth buffer.
+
+“渲染到纹理” 和 “离屏渲染”
+There are two types of framebuffer-attachable images; texture images and renderbuffer images. 
+If an image of a texture object is attached to a framebuffer, OpenGL performs "render to texture". And 
+if an image of a renderbuffer object is attached to a framebuffer, then OpenGL performs "offscreen rendering".
+
+http://stackoverflow.com/questions/2213030/whats-the-concept-of-and-differences-between-framebuffer-and-renderbuffer-in
+https://www.opengl.org/wiki/Renderbuffer_Object
+Now each buffer attached to a Frame Buffer can be a Render Buffer or a texture.
+
+The Render Buffer is an actual buffer (an array of bytes, or integers, or pixels). 
+The Render Buffer stores pixel values in native format, so it's optimized for offscreen rendering. 
+In other words, drawing to a Render Buffer can be much faster than drawing to a texture. 
+The drawback is that pixels uses a native, implementation-dependent format, 
+so that reading from a Render Buffer is much harder than reading from a texture. 
+Nevertheless, once a Render Buffer has been painted, one can copy its content directly to screen (or to other Render Buffer, I guess), 
+very quickly using pixel transfer operations. 
+This means that a Render Buffer can be used to efficiently implement the double buffer pattern that you mentioned.
+
+Render Buffers are a relatively new concept. 
+Before them, a Frame Buffer was used to render to a texture, which can be slower because a texture uses a standard format. 
+It is still possible to render to a texture, 
+and that's quite useful when one needs to perform multiple passes over each pixel to build a scene, 
+or to draw a scene on a surface of another scene!

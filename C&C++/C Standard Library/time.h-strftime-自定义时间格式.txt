@@ -1,0 +1,129 @@
+ #include <time.h>
+ size_t strftime( char *str, size_t maxsize, const char *fmt, struct tm *time );
+ 
+
+功能：
+函数按照参数fmt所设定格式将time类型的参数格式化为日期时间信息，然后存储在字符串str中（至多maxsize 个字符）。
+用于设定时间不同类型的代码为：
+
+%a
+ 星期的缩略形式
+ 
+%A
+ 星期的完整形式
+ 
+%b
+ 月份的缩略形式
+ 
+%B
+ 月份的完整形式
+ 
+%c
+ 月份的缩略形式
+ 
+%d
+ 月中的第几天(1-31) 会自动补零的
+ 
+%H
+ 小时, 24小时格式 (0-23) 会自动补零的
+ 
+%I
+ 小时, 12小时格式  (1-12) 会自动补零的
+ 
+%j
+ 年中的第几天(1-366)
+ 
+%m
+ 月份 (1-12). Note: 某些版本的Microsoft Visual C++ 可能使用取值范围0-11. 会自动补零的
+ 
+%M
+ 分钟(0-59) 会自动补零的
+ 
+%p
+ 本地时间的上午或下午（AM or PM）
+ 
+%S
+ 秒钟(0-59) 会自动补零的
+ 
+%U
+ 年中的第几周，星期天是一周的第一天
+ 
+%w
+ 星期几的数字表示(0-6, 星期天=0)
+ 
+%W
+ 一年中的第几周，星期天是一周的第一天
+ 
+%x
+ 标准日期字符串
+ 
+%X
+ 标准时间字符串
+ 
+%y
+ 年(0-99)
+ 
+%Y
+ 用CCYY表示的年（如：2004）
+ 
+%Z
+ 时区名
+ 
+%%
+ 百分号
+ 
+
+函数strftime()返回值为处理结果字符串str中字符的个数，如果发生错误返回零。
+
+
+--------------------------------
+格式化当前时间的方法
+--------------------------------
+time_t time( time_t *time ); 
+
+功能： 函数返回当前时间，如果发生错误返回零。如果给定参数time ，那么当前时间存储到参数time中。
+
+#include <time.h>
+struct tm *localtime( const time_t *time ); 
+
+功能：函数返回本地日历时间。警告！ 
+Watch out.
+This function returns a variable that is statically located, and therefore overwritten each time this function is called. 
+If you want to save the return value of this function, you should manually save it elsewhere. 
+Of course, when you save it elsewhere, you should make sure to actually copy the value(s) of this variable to another location. 
+If the return value is a struct, you should make a new struct, then copy over the members of the struct.
+
+/* localtime example */
+#include <stdio.h>      /* puts, printf */
+#include <time.h>       /* time_t, struct tm, time, localtime */
+
+int main ()
+{
+  time_t rawtime;
+  struct tm * timeinfo;
+
+  time (&rawtime);
+  timeinfo = localtime (&rawtime);
+  printf ("Current local time and date: %s", asctime(timeinfo));
+
+  return 0;
+}
+
+--------------------------------
+例子
+--------------------------------
+int main() {
+  char tmp[256] = {0};
+  time_t rawtime;
+  time(&rawtime);
+  strftime(tmp, 256, "%Y%m%d%H%M%S", localtime(&rawtime));
+  printf("%s\n", tmp);
+  return 0;
+}
+
+--------------------------------
+常用格式
+--------------------------------
+YYYYMMDDHHMMSS  %Y%m%d%H%M%S  
+
+问题：1月 怎么显示为 01月？会自动补零的

@@ -1,0 +1,16 @@
+inheritance [美][ɪnˈhɛrɪtəns] n.继承；遗传；遗产
+http://en.wikipedia.org/wiki/Virtual_inheritance
+
+举例来说：假如类A和类B各自从类X派生（非虚继承且假设类X包含一些数据成员），且类C同时多继承自类A和B，那么C的对象就会拥有两套X的实例数据（可分别独立访问，一般要用适当的消歧义限定符）。但是如果类A与B各自虚继承了类X，那么C的对象就只包含一套类X的实例数据
+
+这一特性在多重继承应用中非常有用，可以使得虚基类对于由它直接或间接派生的类来说，拥有一个共同的基类对象实例。避免由于带有歧义的组合而产生的问题（如“菱形继承问题”）。其原理是，间接派生类（C）穿透了其父类（上面例子中的A与B），实质上直接继承了虚基类X
+
+一个类如果不希望被继承，类似于Java中的具有finally性质的类，这在C++中可以用虚继承来实现
+template<typename T> class MakeFinally{
+   private:
+       MakeFinally(){};//只有MakeFinally的友类才可以构造MakeFinally
+       ~MakeFinally(){};
+   friend T;
+};
+class MyClass:public virtual  MakeFinally<MyClass>{};//MyClass是不可派生类
+                                                     //由于虚继承，所以MyClass子类要直接负责构造MakeFinally类

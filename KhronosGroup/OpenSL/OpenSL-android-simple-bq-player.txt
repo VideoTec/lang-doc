@@ -1,0 +1,17 @@
+SLDataSink 对应的 format 不能为空
+  static SLDataSink audio_sink_simple_bq = {0};
+  static SLDataLocator_AndroidSimpleBufferQueue locator_simple_bq = {SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE, 2};
+  audio_sink_simple_bq.pLocator = &locator_simple_bq;
+  audio_sink_simple_bq.pFormat = NULL; 不能为空
+
+  return &audio_sink_simple_bq;
+
+  定义PCM格式
+  static SLDataFormat_PCM audio_sink_pcm_fmt;
+  audio_sink_pcm_fmt.formatType = SL_DATAFORMAT_PCM;
+  audio_sink_pcm_fmt.numChannels = 1;
+  audio_sink_pcm_fmt.samplesPerSec = 44100 * 1000; //mHz
+  audio_sink_pcm_fmt.bitsPerSample = SL_PCMSAMPLEFORMAT_FIXED_16;
+  audio_sink_pcm_fmt.containerSize = 16;
+  audio_sink_pcm_fmt.channelMask = SL_SPEAKER_FRONT_CENTER;
+  audio_sink_pcm_fmt.endianness = SL_BYTEORDER_LITTLEENDIAN;

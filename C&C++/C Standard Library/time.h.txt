@@ -1,0 +1,2 @@
+http://www.cnblogs.com/wiseman/archive/2005/10/24/260576.html
+C/C++中的日期和时间 TIME_T与STRUCT TM转换

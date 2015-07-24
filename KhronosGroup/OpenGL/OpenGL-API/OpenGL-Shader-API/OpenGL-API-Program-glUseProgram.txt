@@ -1,0 +1,27 @@
+install a program object as part of current rendering state
+
+GLvoid glUseProgram(GLuint program)
+
+After calling the function above, every subsequent call to glDraw* functions will
+use the program which is currently in use. 
+
+As any other glBind* function, 
+the name/id 0 is reserved to OpenGL and 
+if you call glUseProgram(0) this will unbind any current program
+
+------------------------------------------
+glUseProgram(0) 之后 出现未定义的行为
+------------------------------------------
+the current rendering state refers to an invalid program object, and 
+the results of vertex and fragment shader execution due to any glDrawArrays or glDrawElements commands are undefined.
+
+------------------------------------------
+While a program object is in use
+------------------------------------------
+While a program object is in use, 
+applications are free to 
+modify attached shader objects, 
+compile attached shader objects, a
+ttach shader objects, and 
+detach or delete shader objects. 
+None of these operations will affect the executables that are part of the current state.

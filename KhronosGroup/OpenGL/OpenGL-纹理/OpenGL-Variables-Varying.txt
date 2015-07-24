@@ -1,0 +1,45 @@
+varying[英]['veərɪŋ] [美]['veərɪŋ] v.变化( vary的现在分词 )
+Varying
+
+Varying variables provide an interface between Vertex and Fragment Shader. 
+
+Vertex Shaders compute values per vertex and 
+fragment shaders compute values per fragment. 
+
+If you define a varying variable in a vertex shader, 
+its value will be interpolated (perspective-correct) over the primitive being rendered and 
+you can access the interpolated value in the fragment shader.
+
+Varying can be used only with the data types float, vec2, vec3, vec4, mat2, mat3, mat4. (arrays of them too.)
+
+---------------------------------------
+varying 变量示例
+---------------------------------------
+    public static final String NO_FILTER_VERTEX_SHADER = "" +  顶点着色器，计算每个顶点的坐标 gl_Position
+            "attribute vec4 position;\n" +
+            "attribute vec4 inputTextureCoordinate;\n" +
+            " \n" +
+            "varying vec2 textureCoordinate;\n" +
+varying[英]['veərɪŋ] [美]['veərɪŋ] v.变化( vary的现在分词 )
+varying变量是vertex和fragment shader之间做数据传递用的
+一般vertex shader修改varying变量的值，然后fragment shader使用该varying变量的值
+因此varying变量在vertex和fragment shader二者之间的声明必须是一致的
+Varying (Interpolated) 在光栅化时，会进行插值计算
+the texture coordinate is passed down to the fragment shader as varying variable.
+            " \n" +
+            "void main()\n" +
+            "{\n" +
+            "    gl_Position = position;\n" +                          每个顶点计算一次：光栅化时 处理 gl_Position
+            "    textureCoordinate = inputTextureCoordinate.xy;\n" +   每个顶点计算一次：光栅化时 处理 textureCoordinate
+当这些数据经过光栅化时，会插值
+When this data goes through the rasterization step, the data is linearly interpolated 
+            "}";
+    public static final String NO_FILTER_FRAGMENT_SHADER = "" +  片元着色器，计算每个顶点的颜色 gl_FragColor
+            "varying highp vec2 textureCoordinate;\n" +
+            " \n" +
+            "uniform sampler2D inputImageTexture;\n" +
+            " \n" +
+            "void main()\n" +
+            "{\n" +
+            "     gl_FragColor = texture2D(inputImageTexture, textureCoordinate);\n" +
+            "}";

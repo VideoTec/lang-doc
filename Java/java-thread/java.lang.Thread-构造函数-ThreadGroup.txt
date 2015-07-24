@@ -1,0 +1,75 @@
+public Thread (ThreadGroup group, Runnable runnable)
+public Thread (ThreadGroup group, String threadName)
+public Thread (ThreadGroup group, Runnable runnable, String threadName)
+public Thread (ThreadGroup group, Runnable runnable, String threadName, long stackSize)
+
+--------------------------------------------------------
+public Thread (ThreadGroup group, Runnable runnable)
+--------------------------------------------------------
+
+Added in API level 1
+Constructs a new Thread with a Runnable object and a newly generated name. The new Thread will belong to the ThreadGroup passed as parameter.
+
+Parameters
+group	ThreadGroup to which the new Thread will belong
+runnable	a Runnable whose method run will be executed by the new Thread
+
+Throws
+IllegalThreadStateException	if group.destroy() has already been done
+
+See Also
+ThreadGroup
+Runnable
+
+--------------------------------------------------------
+public Thread (ThreadGroup group, Runnable runnable, String threadName)
+--------------------------------------------------------
+
+Added in API level 1
+Constructs a new Thread with a Runnable object, the given name and belonging to the ThreadGroup passed as parameter.
+
+Parameters
+group	ThreadGroup to which the new Thread will belong
+runnable	a Runnable whose method run will be executed by the new Thread
+threadName	the name for the Thread being created
+
+Throws
+IllegalThreadStateException	if group.destroy() has already been done
+
+See Also
+ThreadGroup
+Runnable
+
+--------------------------------------------------------
+public Thread (ThreadGroup group, String threadName)
+--------------------------------------------------------
+
+Added in API level 1
+Constructs a new Thread with no Runnable object, the given name and belonging to the ThreadGroup passed as parameter.
+
+Parameters
+group	ThreadGroup to which the new Thread will belong
+threadName	the name for the Thread being created
+
+Throws
+IllegalThreadStateException	if group.destroy() has already been done
+
+See Also
+ThreadGroup
+Runnable
+
+--------------------------------------------------------
+public Thread (ThreadGroup group, Runnable runnable, String threadName, long stackSize)
+--------------------------------------------------------
+
+Added in API level 1
+Constructs a new Thread with a Runnable object, the given name and belonging to the ThreadGroup passed as parameter.
+
+Parameters
+group	ThreadGroup to which the new Thread will belong
+runnable	a Runnable whose method run will be executed by the new Thread
+threadName	the name for the Thread being created
+stackSize	a stack size for the new Thread. This has a highly platform-dependent interpretation. It may even be ignored completely.
+
+Throws
+IllegalThreadStateException	if group.destroy() has already been don

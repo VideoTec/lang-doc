@@ -1,0 +1,64 @@
+
+Name
+
+glBufferData — create and initialize a buffer object's data store
+
+C Specification
+
+void glBufferData(
+GLenum target,
+GLsizeiptr size,          size in bytes
+const GLvoid * data,
+GLenum usage
+);
+ 
+Parameters
+
+target
+Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER or GL_ELEMENT_ARRAY_BUFFER.
+
+size
+Specifies the size in bytes of the buffer object's new data store.
+
+data
+Specifies a pointer to data that will be copied into the data store for initialization, or NULL if no data is to be copied.
+
+usage
+Specifies the expected usage pattern of the data store. The symbolic constant must be GL_STREAM_DRAW, GL_STATIC_DRAW, or GL_DYNAMIC_DRAW.
+
+Description
+
+glBufferData creates a new data store for the buffer object currently bound to target. Any pre-existing data store is deleted. The new data store is created with the specified size in bytes and usage. If data is not NULL, the data store is initialized with data from this pointer.
+
+usage is a hint to the GL implementation as to how a buffer object's data store will be accessed. This enables the GL implementation to make more intelligent decisions that may significantly impact buffer object performance. It does not, however, constrain the actual usage of the data store. usage can be broken down into two parts: first, the frequency of access (modification and usage), and second, the nature of that access. The frequency of access may be one of these:
+
+STREAM
+The data store contents will be modified once and used at most a few times.
+
+STATIC
+The data store contents will be modified once and used many times.
+
+DYNAMIC
+The data store contents will be modified repeatedly and used many times.
+
+The nature of access must be:
+
+DRAW
+The data store contents are modified by the application, and used as the source for GL drawing and image specification commands.
+
+Notes
+
+If data is NULL, a data store of the specified size is still created, but its contents remain uninitialized and thus undefined.
+
+Clients must align data elements consistent with the requirements of the client platform, with an additional base-level requirement that an offset within a buffer to a datum comprising N be a multiple of N.
+
+-------------------------------------
+例子
+-------------------------------------
+        glGenBuffers(1, &object->ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, object->ibo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, object->vertex * sizeof(GLushort), object->vertex_indice, GL_STATIC_DRAW);
+        
+        glGenBuffers(1, &object->vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, object->vbo);
+        glBufferData(GL_ARRAY_BUFFER, object->vertex * 6 * sizeof(GLfloat), object->vertex_source, GL_STATIC_DRAW);

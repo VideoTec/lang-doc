@@ -1,0 +1,6 @@
+sampler1D – 用来存取一维纹理的句柄（handle）（或：操作，作名词解。）
+sampler2D – 用来存取二维纹理的句柄
+sampler3D – 用来存取三维纹理的句柄
+samplerCube – 用来存取立方映射纹理的句柄
+sampler1Dshadow – 用来存取一维深度纹理的句柄
+sampler2Dshadow – 用来存取二维深度纹理的句柄

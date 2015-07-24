@@ -1,0 +1,23 @@
+----------------------------------------------
+public String substring (int start)
+----------------------------------------------
+
+Added in API level 1
+Returns a string containing a suffix of this string starting at start. The returned string shares this string's backing array.
+
+Throws
+IndexOutOfBoundsException	if start < 0 or start > length().
+
+
+----------------------------------------------
+public String substring (int start, int end)
+----------------------------------------------
+
+Added in API level 1
+Returns a string containing the given subsequence of this string. The returned string shares this string's backing array.
+
+Parameters
+start	the start offset.
+end	the end+1 offset.
+Throws
+IndexOutOfBoundsException	if start < 0, start > end or end > length().

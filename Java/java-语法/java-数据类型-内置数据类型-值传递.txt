@@ -1,0 +1,22 @@
+public class Test {
+    public static void main(String[] args){
+        StringBuffer buffer = new StringBuffer();
+        for(String s : args){
+            strcat(buffer, s);
+        }
+        System.out.println(buffer.toString());
+ 
+        int x = 10;
+        increaseOne(x);
+        System.out.println(x);
+    }
+ 
+    public void strcat(StringBuffer sb, String s){       扩展类型，是引用传递
+        sb.append(s);
+    }
+ 
+    // 错误示例
+    public void increaseOne(int x){                      基本类型，是值传递
+        x++;
+    }
+}

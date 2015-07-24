@@ -1,0 +1,5 @@
+标准里面有 strerror
+
+没有 strerror_r
+
+strerror_r[80]	POSIX 1, GNU	a variant of strerror that is thread-safe. GNU version is incompatible with POSIX one.

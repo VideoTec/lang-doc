@@ -1,0 +1,26 @@
+https://zh.wikibooks.org/zh/Java/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B
+
+http://www.w3cschool.cc/java/java-basic-datatypes.html
+
+引用类型变量由类的构造函数创建，可以使用它们访问所引用的对象。
+这些变量在声明时被指定为一个特定的类型，比如Employee、Pubby等。变量一旦声明后，类型就不能被改变了。
+
+对象、数组都是引用数据类型。
+
+所有引用类型的默认值都是null。
+
+一个引用变量可以用来引用与任何与之兼容的类型。
+
+例子：Animal animal = new Animal(“giraffe”)。
+
+http://blog.csdn.net/ning109314/article/details/7633962
+[值类型]也就是基本数据类型
+ 基本数据类型常被称为四类八种
+四类：   1，整型 2，浮点型 3，字符型 4，逻辑型
+八种：   
+          1，整型3种 byte，short，int，long
+         2，浮点型2种 float，double
+         3，字符型1种 char
+         4，逻辑型1种 boolean
+[引用类型]
+除了四类八种基本类型外，所有的类型都称为引用类型

@@ -1,0 +1,17 @@
+http://developer.android.com/reference/java/io/Writer.html
+
+
+java.lang.Object
+   ↳	java.io.Writer
+
+Known Direct Subclasses
+BufferedWriter, 
+CharArrayWriter, 
+FilterWriter, 
+OutputStreamWriter, 
+PipedWriter, 
+PrintWriter, 
+StringWriter
+
+Known Indirect Subclasses
+FileWriter

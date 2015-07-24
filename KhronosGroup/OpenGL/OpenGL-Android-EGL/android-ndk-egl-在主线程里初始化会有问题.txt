@@ -1,0 +1,38 @@
+10:45 2015/6/4
+最后基本确定，导致APP崩的原因：
+是由于自定义的 choose config 选出的，config，有问题。
+怎么才能选出正确的 config ? 没有找到正确的方法，还是用 eglChooseConfig
+
+http://stackoverflow.com/questions/6365366/how-to-properly-initialize-and-terminate-egl-on-android
+That's not what the EGL spec says, but that' show it works on Android. 
+The solution to having multiple components using multiple OpenGL contexts 
+on the same thread (which they should not do) 
+is to check the current egl context and do a make current 
+if it's not the correct one. 
+This won't happen with GLSurfaceView for instance since each GLSurfaceView has its own rendering thread.
+
+Due to the fact that only one active rendering context is allowed per thread, 
+only one Component at same time may use OpenGL ES from main thread normally. 
+Having more than one Component which use the OpenGL ES in main thread running at same time 
+will lead to problems because 
+last component calling eglMakeCurrent() will implicitly "substitute" 
+all other Components' contexts by his own one 
+(and this actually will completely broke the components logic).
+
+eglTerminate() and eglInitialize() are reference counted 
+so it's okay for each "component" to invoke them. 
+On Android 3.0 in particular, 
+it is very common to have several OpenGL contexts in the same app, 
+and there is no problem whatsoever with EGL.
+
+Android actually has an internal workaround 
+for EGL initialization/termination issue in a form of explicit 
+(it is against the EGL specification and not mentioned in the Android documentation) 
+"reference counting" inside the eglInitialize() and eglTerminate()
+
+http://stackoverflow.com/questions/11726650/egl-can-context-be-shared-between-threads
+多线程共享 EGLContext
+first create a context in in one thread
+m_Context = eglCreateContext(m_Display, m_Config, 0, contextAttrs)
+Then in the other thread you create a shared context like this
+eglCreateContext(m_Display, m_Config, m_Context, contextAttrs);

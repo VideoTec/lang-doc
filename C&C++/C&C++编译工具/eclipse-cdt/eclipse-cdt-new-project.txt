@@ -1,0 +1,10 @@
+选择 ToolChain
+
+project -> property -> c/c++ build -> settings -> tool settings
+
+prefix: arm-hisiv100nptl-linux-
+path: /opt/hisi-linux-nptl/arm-hisiv100-linux/target/bin
+
+查看 .cproject 工程，看到下面的配置
+<option id="cdt.managedbuild.option.gnu.cross.prefix.2064263094" name="Prefix" superClass="cdt.managedbuild.option.gnu.cross.prefix" value="arm-hisiv100nptl-linux-" valueType="string"/>
+							<option id="cdt.managedbuild.option.gnu.cross.path.2109754876" name="Path" superClass="cdt.managedbuild.option.gnu.cross.path" value="/opt/hisi-linux-nptl/arm-hisiv100-linux/target/bin" valueType="string"/>

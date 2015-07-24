@@ -1,0 +1,50 @@
+基本函数：
+  jint *im_gray = env->GetIntArrayElements(grayOut, &isCopy1);
+  if (isCopy1 == JNI_TRUE)
+    env->ReleaseIntArrayElements(grayOut, im_gray, 0); // Copy the contents of the buffer back into array and free the buffer
+  else
+    env->ReleaseIntArrayElements(grayOut, im_gray, JNI_ABORT);
+    
+  jbyte *im_Y = env->GetByteArrayElements(YIn, 0);
+  env->ReleaseByteArrayElements(YIn, im_Y, JNI_ABORT); // Free the buffer without copying back any changes
+
+示例:
+static native float YUVtoGray(int sz, int[] grayOut, byte[] YIn);
+// get Gray from YUV
+JNIEXPORT float JNICALL
+Java_com_cameraStream_CppFunctionsJNI_YUVtoGray
+(JNIEnv *env, jclass jc, jint sz, jintArray grayOut, jbyteArray YIn) {
+
+  //return 100.0f;
+
+  // Java to C++ arrays
+  jboolean isCopy1; // copy flags
+
+  jint *im_gray = env->GetIntArrayElements(grayOut, &isCopy1);
+  jbyte *im_Y = env->GetByteArrayElements(YIn, 0);
+
+  // ----------------------------------  process
+  #ifndef STRIP_THE_CODE
+
+  float average_intensity = 0.0f;
+  for (int i=0; i<sz; i++)
+  {
+    int gray = im_Y[i] & 0xff;
+    average_intensity += (float)gray;
+    im_gray[i] = gray; // & 0xff
+
+  }
+  average_intensity /= sz;
+
+  #endif
+
+  // release
+  if (isCopy1 == JNI_TRUE)
+    env->ReleaseIntArrayElements(grayOut, im_gray, 0); // Copy the contents of the buffer back into array and free the buffer
+  else
+    env->ReleaseIntArrayElements(grayOut, im_gray, JNI_ABORT);
+
+  env->ReleaseByteArrayElements(YIn, im_Y, JNI_ABORT); // Free the buffer without copying back any changes
+
+  return(average_intensity);
+}

@@ -1,0 +1,12 @@
+a thin archive, which contains a symbol index and references to the original copies of the member files of the archive
+
+意思是： .a文件里，只是.o文件的引用？
+This is useful for building libraries for use within a local build tree, where the relocatable objects are expected to remain available, and copying the contents of each object would only waste time and space
+
+When linking a static library as a thin archive the .o-files are not copied into the archive, but rather they are referenced with their relative path from the .a file.
+
+How can I check if a given .a file is a thin archive or not?
+head -1 t.a 
+!<thin>
+
+创建 thin archive 的选项是什么？

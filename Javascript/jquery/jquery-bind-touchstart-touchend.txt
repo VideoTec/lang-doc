@@ -1,0 +1,10 @@
+This will work without any framework on any device that supports touch events.
+
+window.onload = function() {
+    //preload mouse down image here via Image()
+    $("#button_img").bind('touchstart', function(){
+        $("#button_img").attr("src","button_on.png");
+    }).bind('touchend', function(){
+        $("#button_img").attr("src","button_off.png");
+    });
+}

@@ -1,0 +1,164 @@
+---------------------------------------
+纹理坐标的定义 纹理坐标传递
+---------------------------------------
+2015.4.16 测试结果显示
+纹理座标改为 0 0 -> 0.5 0.5 就会把纹理图片的左上角那块区域，放大到视窗里
+纹理的像素，称作，texels 纹素
+
+There are a few different ways that texture coordinates can be defined. 
+In any case the standard is to specify them as an ordered pair (u, v) usually with values ranging from 0 to 1 floating point.
+
+Texel coordinates are in 2D, in the range [0,1]
+ OpenGL uses (s, t) as the coordinate parameters.
+ Commonly referred to as (u, v) coordinates by most graphics programs.
+
+纹理里保存一组颜色，用纹理坐标来获取其中一个颜色值。
+每个纹理坐标 与 顶点坐标，怎么对应的？看下面片元着色器
+四个纹理坐标，对应，四个顶点坐标
+    public static final String NO_FILTER_VERTEX_SHADER = "" +  顶点着色器，计算每个顶点的坐标 gl_Position
+            "attribute vec4 position;\n" +
+            "attribute vec4 inputTextureCoordinate;\n" +
+            " \n" +
+            "varying vec2 textureCoordinate;\n" +
+varying[英]['veərɪŋ] [美]['veərɪŋ] v.变化( vary的现在分词 )
+varying变量是vertex和fragment shader之间做数据传递用的
+一般vertex shader修改varying变量的值，然后fragment shader使用该varying变量的值
+因此varying变量在vertex和fragment shader二者之间的声明必须是一致的
+Varying (Interpolated) 在光栅化时，会进行插值计算
+the texture coordinate is passed down to the fragment shader as varying variable.
+            " \n" +
+            "void main()\n" +
+            "{\n" +
+            "    gl_Position = position;\n" +                          每个顶点计算一次：光栅化时 处理 gl_Position
+            "    textureCoordinate = inputTextureCoordinate.xy;\n" +   每个顶点计算一次：光栅化时 处理 textureCoordinate
+当这些数据经过光栅化时，会插值
+When this data goes through the rasterization step, the data is linearly interpolated 
+            "}";
+    public static final String NO_FILTER_FRAGMENT_SHADER = "" +  片元着色器，计算每个顶点的颜色 gl_FragColor
+            "varying highp vec2 textureCoordinate;\n" +
+            " \n" +
+            "uniform sampler2D inputImageTexture;\n" +
+            " \n" +
+            "void main()\n" +
+            "{\n" +
+            "     gl_FragColor = texture2D(inputImageTexture, textureCoordinate);\n" +
+            "}";
+顶点坐标和纹理坐标的对应关系
+Every time you draw a vertex, 
+you declare its texture coordinates before its vertices (similar to normals).
+
+纹理映射
+http://en.wikipedia.org/wiki/Texture_mapping
+http://en.wikipedia.org/wiki/UV_mapping
+把 2D 图片映射到 3d 物体上
+The letters "U" and "V" denote the axes of the 2D texture[note 1] 
+because "X", "Y" and "Z" are already used to denote the axes of the 3D object in model space.
+UV mapping is the 3D modeling process of making a 2D image representation of a 3D model's surface.
+(x,y,z) -> (u,v)
+Every vertex in a polygon is assigned a texture coordinate 
+(which in the 2d case is also known as a UV coordinate) 
+either via explicit assignment or by procedural definition.
+http://thedev-log.blogspot.com/2012/07/texture-coordinates-tutorial-opengl-and.html
+
+arbitrary[英][ˈɑ:bɪtrəri] [美][ˈɑ:rbətreri] adj.随意的，任性的，随心所欲的；主观的
+clamp[英][klæmp] [美][klæmp] n.钳，夹子；压板，
+OpenGL texture coordiates may be arbitrary values. 
+They will however be clamped, or repeated/wrapped into the range 0…1 depending on 
+texture coordinate wrap settings
+texture coordinate clamp settings.
+
+OpenGL can treat coordinate values outside the range [0,1] in one of two ways: clamp or repeat
+
+求某一个像素点的 纹理坐标值：
+float texCoordx = (float)pixelx/(float)widthInPixels;
+float texCoordy = (float)pixely/(float)heightInPixels; 
+
+---------------------------------------
+顶点坐标的定义 顶点做标的传递 OpenGL之坐标转换
+---------------------------------------
+顶点坐标，是要绘制的物理的坐标 - 播放视频时，绘制的是个特殊的物体：矩形
+
+顶点坐标的范围： OpenGL Vertex Value Range
+-1.0 to +1.0 (after all transformations are applied).
+the [-1,1]-box determines your visible scene after these two transformations
+This information is buried in the glViewport documentation in a somewhat roundabout way
+
+顶点到像素的转换机制 - OpenGL 之 坐标转换
+the vertex-to-pixels conversion mechanism of OpenGL.
+It is called transformation.
+Vertices are set in 3D coordinates which is transformed into a viewport coordinates (into your window view). 
+This transformation can be set in various ways. 
+Orthogonal transformation can be easiest to understand as a starter.
+orthogonal[英][ɔ:'θɒgənl] [美][ɔ:'θɒgənəl] adj.[数]直角的；矩形的；直交的；互相垂直的
+transformation[英][ˌtrænsfəˈmeɪʃn] [美][ˌtrænsfərˈmeɪʃn] n.变化；<核>转换；<语>转换；<电>变换
+
+---------------------------------------
+视窗的概念   glViewport
+
+理解几个重要的坐标系： device coordinates 、window coordinates 、
+---------------------------------------
+void glViewport(
+GLint x,            The lower-left corner of the viewport rectangle, in pixels. The default is (0,0).
+GLint y,            The lower-left corner of the viewport rectangle, in pixels. The default is (0,0).
+GLsizei width,      The width of the viewport. 
+                    When an OpenGL context is first attached to a window, width and height are set to the dimensions of that window.
+GLsizei height);
+
+---------------------------------------
+http://blog.csdn.net/zhongjling/article/details/8488844 坐标转换 
+http://www.songho.ca/opengl/gl_transform.html 坐标转换 
+http://stackoverflow.com/questions/7377912/opengl-define-vertex-position-in-pixels 第二个回答
+问题：各坐标系的默认值？
+---------------------------------------
+在OpenGL中，当我们申明顶点的时候，有时候说的是世界坐标，
+这是因为初始化的时候世界坐标系、模型坐标系和相机坐标系是一样的，重合在一起的
+
+MC是 Model Coordinate 的简写，表示模型坐标 就是3D坐标 本地坐标(相对于世界坐标)
+MC要经过模型变换(Modeling Transformation)才变换到世界坐标
+
+WC是 世界坐标WC(World Coordinate) 
+如何用世界坐标系来表示本地坐标系中的坐标 - 
+
+VC是 相机坐标也称为观测坐标(View Coordinate)
+相机坐标里有个法线
+
+正常坐标转换过程
+MC -> WC -> VC
+一般会合成一个转换过程
+MC -> VC
+模型观测变换的关键就是要得到相机坐标系中的坐标，
+因为光照等计算都是在这个这个坐标系中完成的
+
+得到相机坐标后，做投影变换
+投影变换(Projection Transformation) ：正交投影(Orthogonal Projection)和透视投影(Perspective Projection)
+做两件事
+第一个部分是将上个阶段得到的坐标转换(相机坐标)为平面坐标，
+第二个部分是将转换后的平面坐标在进行归一化并进行剪裁
+
+最后一个阶段 - 视口变换
+DC是 Device Coordinate 的简写，表示设备坐标  显示器，打印机等等
+In a final step the viewport transformation is applied and 
+the coordinates are transformed from the [-1,1] range into the [0,w]x[0,h]x[0,1] cube (assuming a glViewport(0, w, 0, h) call), 
+which are the vertex' final positions in the framebuffer and therefore its pixel coordinates.
+既然投影到了窗口上，那么还要深度值0.5干什么？
+这里要注意的是，虽然在窗口上显示时只需要x，y坐标就够了，但是要在2D窗口上显示3D图形时深度值是不可少的。
+这里的深度值不是用于显示，而是用于在光栅化的时候进行深度测试
+
+projection[英][prəˈdʒekʃn] [美][prəˈdʒɛkʃən] n.预测；规划，设计；[心]投射；突起物
+The main thing to keep in mind is, 
+that after the modelview and projection transforms every vertex with coordinates outside the [-1,1] range will be clipped away. 
+So the [-1,1]-box determines your visible scene after these two transformations.
+
+void glReadPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels);
+---------------------------------------
+可以读取窗口中的，一个像素的深度信息，怎么读出来的？opengl es 不支持 GL_DEPTH_COMPONENT
+---------------------------------------
+参考：
+http://stackoverflow.com/questions/16768090/depth-buffer-got-by-glreadpixels-is-always-1
+glEnable(GL_DEPTH_TEST);
+..
+glReadPixels(x, viewport[3] - y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, z);
+However according to the GLES sources, you cant use glReadPixels function to get depth values. 
+It only provides color buffer infos. 
+so I couldnt get a depth infos out of it.
+

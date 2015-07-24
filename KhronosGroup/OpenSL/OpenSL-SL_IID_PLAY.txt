@@ -1,0 +1,53 @@
+struct SLPlayItf_;
+typedef const struct SLPlayItf_ * const * SLPlayItf;
+
+struct SLPlayItf_ {
+	SLresult (*SetPlayState) (
+		SLPlayItf self,
+		SLuint32 state
+	);
+	SLresult (*GetPlayState) (
+		SLPlayItf self,
+		SLuint32 *pState
+	);
+	SLresult (*GetDuration) (
+		SLPlayItf self,
+		SLmillisecond *pMsec
+	);
+	SLresult (*GetPosition) (
+		SLPlayItf self,
+		SLmillisecond *pMsec
+	);
+	SLresult (*RegisterCallback) (
+		SLPlayItf self,
+		slPlayCallback callback,
+		void *pContext
+	);
+	SLresult (*SetCallbackEventsMask) (
+		SLPlayItf self,
+		SLuint32 eventFlags
+	);
+	SLresult (*GetCallbackEventsMask) (
+		SLPlayItf self,
+		SLuint32 *pEventFlags
+	);
+	SLresult (*SetMarkerPosition) (
+		SLPlayItf self,
+		SLmillisecond mSec
+	);
+	SLresult (*ClearMarkerPosition) (
+		SLPlayItf self
+	);
+	SLresult (*GetMarkerPosition) (
+		SLPlayItf self,
+		SLmillisecond *pMsec
+	);
+	SLresult (*SetPositionUpdatePeriod) (
+		SLPlayItf self,
+		SLmillisecond mSec
+	);
+	SLresult (*GetPositionUpdatePeriod) (
+		SLPlayItf self,
+		SLmillisecond *pMsec
+	);
+};

@@ -1,0 +1,47 @@
+对象 SLObjectItf 
+接口 SLEngineItf 等等
+
+创建 engine 对象
+
+static SLObjectItf engine_obj = NULL;
+static SLEngineItf engine_itf;
+SLresult result; //SL_RESULT_SUCCESS
+result = slCreateEngine(&engine_obj, 0, NULL, 0, NULL, NULL);
+result = (*engine_obj)->Realize(engine_obj, SL_BOOLEAN_FALSE);
+result = (*engine_obj)->GetInterface(engine_obj, SL_IID_ENGINE, &engine_itf);
+
+创建 output_mix 对象
+
+static SLObjectItf output_mix_obj = NULL;
+result = (*engine_itf)->CreateOutputMix(engine_itf, &output_mix_obj, 0, NULL, NULL);
+result = (*output_mix_obj)->Realize(output_mix_obj, SL_BOOLEAN_FALSE);
+
+创建 audio_player 对象
+
+static SLObjectItf player_obj = NULL;
+static SLPlayItf player_play_itf;
+static SLSeekItf player_seek_itf;
+//This interface exposes controls for selecting which of the player’s channels are heard and silenced. 
+static SLMuteSoloItf player_mute_solo_itf; 
+static SLVolumeItf player_vol_itf;
+
+const SLInterfaceID ids[3] = {SL_IID_SEEK, SL_IID_MUTESOLO, SL_IID_VOLUME};
+const SLboolean req[3] = {SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE};
+result = (*engine_itf)->CreateAudioPlayer(engine_itf, &player_obj, &audioSrc, &audioSnk, 3, ids, req);
+result = (*player_obj)->Realize(player_obj, SL_BOOLEAN_FALSE);
+result = (*player_obj)->GetInterface(player_obj, SL_IID_PLAY, &player_play_itf);
+result = (*player_obj)->GetInterface(player_obj, SL_IID_SEEK, &player_seek_itf);
+result = (*player_obj)->GetInterface(player_obj, SL_IID_MUTESOLO, &player_mute_solo_itf);
+result = (*player_obj)->GetInterface(player_obj, SL_IID_VOLUME, &player_vol_itf);
+
+SLDataSource 和 SLDataSink
+    SLDataLocator_URI loc_uri = {SL_DATALOCATOR_URI, (SLchar *) utf8};
+    SLDataFormat_MIME format_mime = {SL_DATAFORMAT_MIME, NULL, SL_CONTAINERTYPE_UNSPECIFIED};
+    SLDataSource audioSrc = {&loc_uri, &format_mime};
+
+    // configure audio sink
+    SLDataLocator_OutputMix loc_outmix = {SL_DATALOCATOR_OUTPUTMIX, outputMixObject};
+    SLDataSink audioSnk = {&loc_outmix, NULL};
+
+播放控制
+(*uriPlayerPlay)->SetPlayState(uriPlayerPlay, isPlaying ? SL_PLAYSTATE_PLAYING : SL_PLAYSTATE_PAUSED);

@@ -1,0 +1,17 @@
+使用2015编译下面的代码，出错
+
+void main() {
+	char buf[10] = {0};
+	sscanf(buf, "");
+}
+
+sscanf.o : error LNK2019: 无法解析的外部符号 _sscanf，该符号在函数 _main 中被引用
+D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\LIB\OLDNAMES.lib : 
+warning LNK4272:库计算机类型“UNKNOWN”与目标计算机类型“X86”冲突
+sscanf.exe : fatal error LNK1120: 1 个无法解析的外部命令
+make: *** [sscanf] Error 96
+
+原因：
+VS2015 contains a completely rewritten CRT with many bug and conformance fixes. 
+It's not surprising that this kind of breakage happened; 
+it's not clear if this is a temporary bug with the CRT being incompatible or if all static libraries (like SDL2main) will have to be recompiled for VS2015's runtime.

@@ -1,0 +1,24 @@
+http://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
+
+Inner Classes
+
+As with instance methods and variables, an inner class is associated with an instance of its enclosing class and has direct access to that object's methods and fields. Also, because an inner class is associated with an instance, it cannot define any static members itself.
+
+Objects that are instances of an inner class exist within an instance of the outer class. Consider the following classes:
+
+class OuterClass {
+    ...
+    class InnerClass {
+        ...
+    }
+}
+
+An instance of InnerClass can exist only within an instance of OuterClass and has direct access to the methods and fields of its enclosing instance.
+
+To instantiate an inner class, you must first instantiate the outer class. Then, create the inner object within the outer object with this syntax:
+
+OuterClass.InnerClass innerObject = outerObject.new InnerClass();
+
+参考
+http://stackoverflow.com/questions/12661041/how-to-initialize-a-new-camera-size-in-android
+E:\doc\Computer software\Android平台\android-sdk\android.hardware\android.hardware.Camera\android.hardware.Camera.Size.txt

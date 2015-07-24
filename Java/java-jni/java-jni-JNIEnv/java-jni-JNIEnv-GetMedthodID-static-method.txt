@@ -1,0 +1,2 @@
+参考下面的文档
+E:\doc\Computer software\Java\java-jni\java-jni-JNIEnv-GetObjectClass-static-class.txt

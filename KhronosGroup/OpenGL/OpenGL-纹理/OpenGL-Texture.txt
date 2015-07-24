@@ -1,0 +1,22 @@
+OpenGL ONLY accept POT （Power of Two）textures
+That means all the textures must to have the width and height a power of two value。
+Like 2, 4, 8, 16, 32, 64, 128, 256, 512 or 1024 pixels.
+
+从左下角 -> 右上角
+The textures in OpenGL reads the pixels starting from the lower left corner and goes to the upper right corner
+
+纹理单元
+Texture Units represent a temporary link between the stored array of pixels and the actual render processing
+by default any OpenGL implementation by vendors must supports up to 32 Texture Units
+Well, OpenGL could hold on up to 32 Texture Units, which we'll use inside the shaders, but the shader just support up to 8
+one Texture Unit can be used many times by multiple shaders pairs. 
+We need a fast way to let the shaders get access the textures, like a bridge, or something temporary. 纹理单元担当这个角色
+The user bind a texture data to a texture unit and instruct his shaders to use that unit
+
+纹理时注意两点：
+First, you must to activate the texture unit by using glActiveTexture() and then you bind the texture name/id using glBindTexture().
+
+The second important thing is that even by default the OpenGL supports up to 32 texture units, you can't use a slot number higher than the maximum supported texture units in your vendor's implementation
+
+"上传" 纹理数据，及设置纹理属性：
+upload the texture data and set some properties

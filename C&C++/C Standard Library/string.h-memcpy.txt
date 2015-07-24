@@ -1,0 +1,11 @@
+memcpy
+语法:
+
+ 
+
+
+  #include <string.h>
+  void *memcpy( void *to, const void *from, size_t count );
+ 
+
+功能：函数从from中复制count 个字符到to中，并返回to指针。 如果to 和 from 重叠，则函数行为不确定。

@@ -1,0 +1,106 @@
+---------------------------------------
+Java 提供了两种 Exception 的模式
+---------------------------------------
+http://blog.csdn.net/liuj2511981/article/details/8524418
+
+一种是 执行的时候所产生的Exception (Runtime Exception)，另外
+一种是 受控制的Exception (Checked Exception)
+
+所有的Checked Exception 均从java.lang.Exception 继承而来，
+而Runtime Exception 则继承java.lang.RuntimeException 或java.lang.Error 
+(实际上java.lang.RuntimeException 的上一层也是java.lang.Exception)
+
+Checked Exception 表示这个Exception 必须要被处理，
+也就是说程序设计者应该已经知道可能会收到某个Exception(因为要try catch住) ，
+所以程序设计者应该能针对这些不同的Checked Exception 做出不同的处理
+
+Runtime Exception 通常会暗示着程序上的错误，
+这种错误会导致程序设计者无法处理，而造成程序无法继续执行下去。
+
+Runtime Exception - 出现，说明程序有BUG。
+Checked Exception - 正常的程序判断，如：打开的文件不存在。
+
+示例：
+public class CException extends Exception {
+	public CException() {
+	}
+
+	public CException(String message) {
+		super(message);
+	}
+}
+
+public class TestException {
+	public void method1() throws CException {
+		throw new CException("Test Exception");
+	}
+
+	public void method2(String msg) {
+		if (msg == null) {
+			throw new NullPointerException("Message is null");
+		}
+	}
+
+	public void method3() throws CException {
+		method1();
+	}
+
+	// 以下省略
+	// ...
+}
+
+Checked Exception 表示这个Exception 必须要被处理，
+也就是说程序设计者应该已经知道可能会收到某个Exception(因为要try catch住) ，
+所以程序设计者应该能针对这些不同的Checked Exception 做出不同的处理
+
+---------------------------------------
+ Java异常：选择Checked Exception还是Unchecked Exception?
+---------------------------------------
+http://blog.csdn.net/kingzone_2008/article/details/8535287
+Java包含两种异常：checked异常和unchecked异常。C#只有unchecked异常。checked和unchecked异常之间的区别是：
+
+Checked异常必须被显式地捕获或者传递，
+如Basic try-catch-finally Exception Handling一文中所说。而
+
+unchecked异常则可以不必捕获或抛出。
+
+Checked异常继承java.lang.Exception类。
+Unchecked异常继承自java.lang.RuntimeException类。
+
+Checked和unchecked异常从功能的角度来讲是等价的。
+可以用checked异常实现的功能必然也可以用unchecked异常实现，反之亦然。
+
+选择checked异常还是unchecked异常是个人习惯或者组织规定问题。并不存在谁比谁强大的问题
+
+我建议的使用策略是：选择checked异常或unchecked异常中的一种使用。
+混合使用经常导致混乱和不一致。如果你是一个经验丰富的程序员，那么根据自己的需要使用吧。
+
+关闭一个应用的唯一合法时机是应用程序启动时。
+例如，如果配置文件丢失而且应用程序依赖于它，那么这时关闭应用程序是合法的
+
+---------------------------------------
+我过去支持checked异常，但是最近我改变了我的观点
+---------------------------------------
+我过去支持checked异常，但是最近我改变了我的观点。
+Rod Johnson（Spring Framework），
+Anders Hejlsberg（C#之父），
+Joshua Bloch（Effective Java，条目41：避免checked异常的不必要的使用）和
+其他一些朋友使我重新考虑了checked异常的真实价值。
+
+最近我们尝试在一个较大的项目中使用unchecked异常，效果还不错。
+错误处理被集中在了少数几个类中。
+会有需要本地错误处理的地方，而不是将异常传播给主错误处理代码。
+但是这种地方不会很多。
+
+由于代码中不会到处都是try-catch块，我们的代码变得可读性更好。
+换句话说，
+使用unchecked异常比使用checked异常减少了无用的catch-rethrow try-catch块。
+
+总之，我建议使用unchecked异常。
+至少在一个工程中尝试过。我总结了以下原因：
+
+Unchecked异常不会使代码显得杂乱，因为其避免了不必要的try-catch块。
+Unchecked异常不会因为异常声明聚集使方法声明显得杂乱。
+关于容易忘记处理unchecked异常的观点在我的实践中没有发生。
+关于无法获知如何处理未声明异常的观点在我的实践中没有发生。
+Unchecked异常避免了版本问题

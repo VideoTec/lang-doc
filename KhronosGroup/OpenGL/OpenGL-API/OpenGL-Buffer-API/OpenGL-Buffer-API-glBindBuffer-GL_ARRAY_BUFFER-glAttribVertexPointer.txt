@@ -1,0 +1,17 @@
+---------------------------
+当 GL_ARRAY_BUFFER 目标，绑定到一个非零 buffer 对象时
+---------------------------
+
+traditionally[英][trə'dɪʃənəlɪ] [美][trə'dɪʃənəlɪ] adv.传统上，传说上
+interpret[英][ɪnˈtɜ:prɪt] [美][ɪnˈtɜ:rprɪt] vt.解释；理解；诠释，体现；口译
+corresponding[英][ˌkɒrəˈspɒndɪŋ] [美][ˌkɔ:rəˈspɑ:ndɪŋ] adj.相当的，对应的；通信的；符合的，符合。。；一致的
+
+When vertex array pointer state is changed by a call to glVertexAttribPointer, 
+the current buffer object binding (GL_ARRAY_BUFFER_BINDING) 
+is copied into the corresponding client state for the vertex attrib array being changed, 
+one of the indexed GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDINGs. 
+
+While a non-zero buffer object is bound to the GL_ARRAY_BUFFER target, 
+the vertex array pointer parameter that is traditionally
+interpreted as a pointer to client-side memory is instead 
+interpreted as an offset within the buffer object measured in basic machine units.

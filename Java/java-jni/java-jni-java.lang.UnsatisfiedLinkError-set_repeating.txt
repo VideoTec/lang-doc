@@ -1,0 +1,14 @@
+java.lang.UnsatisfiedLinkError: set_repeating
+
+    /**
+     * Constructs a new {@code InvocationTargetException} instance with its
+     * cause / target exception filled in.
+     *
+     * @param exception
+     *            the exception which occurred while running the Method or
+     *            Constructor
+     */
+    public InvocationTargetException(Throwable exception) {
+        super(null, exception);
+        target = exception;
+    }

@@ -1,0 +1,169 @@
+**************
+重要的概念
+**************
+
+纹理对象
+
+纹理单元 TIU: texture image unit
+The OpenGL rendering context has multiple independent bind locations for textures called texture image unit
+The bind locations are named in this function GL_TEXTURE0​, GL_TEXTURE1​
+Alternatively, you can use bind locations of the form GL_TEXTURE0​ + i, 
+where i is a texture unit number between 0 and the implementation-defined constant GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS
+
+用于存储纹理的采样参数的对象
+A Sampler Object is an OpenGL Object that stores the sampling parameters for a Texture access inside of a shader.
+This makes it much easier to 
+centralize sampling parameters, or to 
+use the same texture with different sampling parameters
+A single sampler object may be bound to multiple texture units simultaneously
+
+活动纹理单元
+There is a current "active texture image unit", which is global state, and 
+changing this state is how one binds textures to different texture image units
+
+活动纹理单元的目标：the target texture of the active texture unit
+GL_TEXTURE_2D         二维纹理
+GL_TEXTURE_CUBE_MAP   三维纹理
+
+A texture 包含以下数据：
+a two-dimensional or cube-mapped image
+a set of parameters that determine how samples are derived from the image.（从图片里抽样）
+
+纹理空间
+texture space, with an (s, t) coordinate system.
+
+纹理座标
+The texture coordinates that are used to sample a texture are defined by the shader. 
+The shader doesn't have to use texture coordinates passed as vertex attributes; 
+it can make them up or generate them from arbitrary code.
+When using shaders, the only thing the texture unit does is define which texture is used. 指定那些纹理是用到的
+By setting a sampler uniform to point to a particular texture unit, 
+you are saying that any use of that sampler in the shader refers to the texture bound to that texture unit.
+
+解释：vec4 texture2D (sampler2D sampler, vec2 coord)
+the "sampler" variable specifies the texture unit you use, and 
+"coord", the texture coordinate, comes from some appropriate attribute you fed into your shader. 
+This call in the shader (or one like it) is how the GL knows which samplers get used with what texture coordinates.
+What is sampler2d really store? glUniform1i(unf_texture, 0);
+The sampler2D is bound to a texture unit
+
+**************
+重要的API
+**************
+
+选择 活动纹理单元 ：select active texture unit
+void glActiveTexture(GLenum texture);
+GL_TEXTUREi：i ranges from 0 to (GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS - 1).
+
+相关API：
+glGet with argument GL_ACTIVE_TEXTURE or GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS
+
+生成 纹理对象: generate texture names
+void glGenTextures(GLsizei n, GLuint * textures);
+The generated textures have no dimensionality;[dɪˌmenʃə'nælətɪ]维度 
+they assume the dimensionality of the texture target to which they are first bound
+解释：glGenTextures(1, &tex);
+You have created a space that will hold all of the data associated with a texture. 
+And the variable 'tex' now stores the reference to this texture.
+纹理对象 的名字
+Texture names are unsigned integers. 
+名字为零的, 纹理对象
+The value zero is reserved to represent the default texture for each texture target.
+
+绑定 纹理对象: bind a named texture to a texturing target
+void glBindTexture(GLenum target, GLuint texture);
+参数 target ：
+Must be either GL_TEXTURE_2D or GL_TEXTURE_CUBE_MAP
+注意：绑定到了 活动纹理单元 的目标上：
+When a texture is bound to a target, the previous binding for that target is automatically broken
+纹理对象的第一次绑定：决定纹理的维数：
+A texture first bound to GL_TEXTURE_2D       becomes a two-dimensional texture
+a texture first bound to GL_TEXTURE_CUBE_MAP becomes a cube-mapped texture
+
+设置 纹理对象 参数: set texture parameters
+glTexParameter
+纹理过滤
+GL_TEXTURE_MIN_FILTER  GL_LINEAR 线性取样
+GL_TEXTURE_MAG_FILTER  GL_LINEAR 线性取样
+纹理环绕：Texture Wrapping Mode
+GL_TEXTURE_WRAP_S      GL_CLAMP_TO_EDGE 
+GL_TEXTURE_WRAP_T      GL_CLAMP_TO_EDGE
+The initial value of GL_TEXTURE_MIN_FILTER is GL_NEAREST_MIPMAP_LINEAR
+The initial value of GL_TEXTURE_MAG_FILTER is GL_LINEAR
+Initially, GL_TEXTURE_WRAP_S is set to GL_REPEAT
+Initially, GL_TEXTURE_WRAP_T is set to GL_REPEAT
+纹理参数的含义，参考下面的链接
+http://blog.csdn.net/lixiang996/article/details/6859575
+在进行纹理帖图时，图象会出现在物体表面的（u,v）位置上，而这些值在[0.0,1.0]范围内。
+但是，如果超出这个值域，会发生什么情况呢？这由纹理的映射函数来决定。
+在OpenGL中，这类映射函数称为“Texture Wrapping Mode”；在D3D中，称为“Texture Addressing Mode”
+
+指定-上传 二维纹理图片 specify a two-dimensional texture image
+void glTexImage2D(
+GLenum target, 
+    GL_TEXTURE_2D, 
+	GL_TEXTURE_CUBE_MAP_POSITIVE_X, 
+	GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
+	GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 
+	GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 
+	GL_TEXTURE_CUBE_MAP_POSITIVE_Z, or 
+	GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+GLint level,  Level 0 is the base image level
+GLint internalformat,  
+      GL_ALPHA, 
+	  GL_LUMINANCE, 
+	  GL_LUMINANCE_ALPHA, 
+	  GL_RGB, 
+	  GL_RGBA
+GLsizei width,  at least 16 texels
+GLsizei height,  at least 16 texels
+GLint border,   Must be 0
+GLenum format,  GL_ALPHA, GL_RGB, GL_RGBA, GL_LUMINANCE, and GL_LUMINANCE_ALPHA
+GLenum type,    Data is read from data as a sequence of unsigned bytes or shorts, depending on type.
+const GLvoid * data);
+解释：glTexImage(GL_TEXTURE_2D, ...);
+You are telling OpenGL to create image data,
+associate that image data with the texture that 
+is currently bound to the active texture unit (GL_TEXTURE0) and 
+is bound to the GL_TEXTURE_2D target
+
+指定-上传 二维纹理子图片: specify a two-dimensional texture subimage
+void glTexSubImage2D(
+GLenum target,
+GLint level,
+GLint xoffset,
+GLint yoffset,
+GLsizei width,
+GLsizei height,
+GLenum format,
+GLenum type,
+const GLvoid * data);
+glTexSubImage2D redefines a contiguous subregion of an existing two-dimensional texture image.
+The texels referenced by data replace the portion of the existing texture array with 
+x indices xoffset and xoffset + width - 1 , inclusive, and 
+y indices yoffset and yoffset + height - 1 , inclusive.
+
+删除 纹理对象: delete named textures
+void glDeleteTextures(GLsizei n, const GLuint * textures);
+If a texture that is currently bound is deleted, the binding reverts to 0 (the default texture)
+silently ignores 0's and names that do not correspond to existing textures
+
+
+GLSL语言中的 sampler2D 类型：三个对象，sampler2D值，纹理对象，纹理单元
+You could bind the same texture to all 48 texture units if you wanted
+(minimum implementation requirement in GL3.3 - this effectively mandates at least 16 textures per-stage)
+不同的sampler2D值，指向相同的纹理单元，会出问题?
+http://stackoverflow.com/questions/19473193/using-a-single-texture-image-unit-with-multiple-sampler-uniforms
+Is it acceptable for an OpenGL application to 
+use the same texture image unit for multiple samplers within the same shader stage ？
+Two sampler uniforms with different names but which reference the same texture unit 
+are effectively the same as far as usage determination is concerned.
+每类着色器（ shader stage ）都有一个最大的纹理单元数
+GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS
+GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS
+and GL_MAX_TEXTURE_IMAGE_UNITS
+纹理 和 sampler2D 关系，参见下面的链接
+https://www.opengl.org/wiki/Sampler_%28GLSL%29#Binding_textures_to_samplers
+The value of a sampler uniform in a program is not a texture object, but a texture image unit index
+You can bind the same texture to two different texture units.
+you can even give the two different textures different texture parameters (well, mostly different texture parameters)

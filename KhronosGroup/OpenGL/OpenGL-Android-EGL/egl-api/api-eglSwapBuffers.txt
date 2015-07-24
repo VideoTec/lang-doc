@@ -1,0 +1,5 @@
+post EGL surface color buffer to a native window
+
+EGLBoolean eglSwapBuffers(	
+    EGLDisplay display,
+ 	EGLSurface surface);

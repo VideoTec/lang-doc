@@ -1,0 +1,12 @@
+---------------------------
+当 GL_ELEMENT_ARRAY_BUFFER 目标，绑定到一个非零 buffer 对象时
+---------------------------
+
+traditionally[英][trə'dɪʃənəlɪ] [美][trə'dɪʃənəlɪ] adv.传统上，传说上
+interpret[英][ɪnˈtɜ:prɪt] [美][ɪnˈtɜ:rprɪt] vt.解释；理解；诠释，体现；口译
+
+While a non-zero buffer object is bound to the GL_ELEMENT_ARRAY_BUFFER target, 
+the indices parameter of glDrawElements that is traditionally 
+
+interpreted as a pointer to client-side memory is instead 
+interpreted as an offset within the buffer object measured in basic machine units.

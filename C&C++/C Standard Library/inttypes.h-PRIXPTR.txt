@@ -1,0 +1,15 @@
+-----------------------------------------
+android ndk inttypes.h 中的定义
+-----------------------------------------
+#define	PRIxPTR			"x"		/* uintptr_t */
+
+#define	PRIXPTR			"X"		/* uintptr_t */
+
+-----------------------------------------
+示例代码：
+-----------------------------------------
+#include <inttypes.h>
+
+#include <stdint.h>
+
+printf("%016" PRIxPTR "\n", (uintptr_t)ptr);

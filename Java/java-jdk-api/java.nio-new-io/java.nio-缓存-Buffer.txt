@@ -1,0 +1,40 @@
+
+缓冲区本质上是一块可以写入数据，然后可以从中读取数据的内存。
+这块内存被包装成NIO Buffer对象，并提供了一组方法，用来方便的访问该块内存
+
+Java NIO里关键的Buffer实现：
+ByteBuffer
+CharBuffer
+DoubleBuffer
+FloatBuffer
+IntBuffer
+LongBuffer
+ShortBuffer
+这些Buffer覆盖了你能通过IO发送的基本数据类型：byte, short, int, long, float, double 和 char。
+
+Java NIO 还有个 MappedByteBuffer，用于表示内存映射文件
+
+http://ifeve.com/buffers/
+capacity[英][kəˈpæsəti] [美][kəˈpæsɪti] n.容量；才能；性能；生产能力
+
+Buffer的三个属性
+capacity      作为一个内存块，Buffer有一个固定的大小值，也叫“capacity”
+
+position      写模式时 position表示当前的位置。初始的position值为0
+              读模式时 从某个特定位置读，Buffer从写模式切换到读模式，position会被重置为0
+
+limit         写模式时  表示你最多能往Buffer里写多少数据，limit等于Buffer的capacity
+              读模式时  最多能读到多少数据，当切换Buffer到读模式时，limit会被设置成写模式下的position值
+
+使用Buffer读写数据一般遵循以下四个步骤：
+1）写入数据到Buffer
+2）调用flip()方法      将Buffer从写模式切换到读模式
+3）从Buffer中读取数据
+4）调用clear()方法或者compact()方法   清空缓冲区，让它可以再次被写入
+
+clear()方法
+会清空整个缓冲区。
+
+compact()方法
+只会清除已经读过的数据。
+任何未读的数据都被移到缓冲区的起始处，新写入的数据将放到缓冲区未读数据的后面

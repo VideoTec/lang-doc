@@ -1,0 +1,30 @@
+Name
+
+glCullFace — specify whether front- or back-facing polygons can be culled
+
+C Specification
+
+void glCullFace(
+GLenum mode
+);
+ 
+Parameters
+
+mode
+Specifies whether front- or back-facing polygons are candidates for culling. Symbolic constants GL_FRONT, GL_BACK, and GL_FRONT_AND_BACK are accepted. The initial value is GL_BACK.
+
+Description
+
+glCullFace specifies whether front- or back-facing polygons are culled (as specified by mode) when polygon culling is enabled. Polygon culling is initially disabled. To enable and disable polygon culling, call the glEnable and glDisable commands with the argument GL_CULL_FACE.
+
+glFrontFace specifies which of the clockwise and counterclockwise polygons are front-facing and back-facing. See glFrontFace.
+
+Notes
+
+If mode is GL_FRONT_AND_BACK, no polygons are drawn, but other primitives such as points and lines are drawn.
+如果mode的值为GL_FRONT_AND_BACK，那么多边形将不会被绘制到屏幕上，但其他图元如点和线还是会绘制到屏幕上的
+
+举例
+  glEnable(GL_CULL_FACE);
+  glFrontFace(GL_CCW);
+  glCullFace(GL_BACK);

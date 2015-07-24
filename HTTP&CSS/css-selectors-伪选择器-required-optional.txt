@@ -1,0 +1,16 @@
+:required可以选中具有required属性的表单元素，
+可以是input、select和textarea，例如下面这些元素都会被选中
+
+<input type="name" required>           必填 和 非必填 选项
+<input type="checkbox" required>
+<input type="email" required>
+<!-- and other input types as well.. -->
+<textarea name="name" id="message" cols="30" rows="10" required></textarea>
+<select name="nm" id="sel" required>
+    <!-- options -->
+</select>
+
+:optional则选中不具有required属性的表单元素，
+利用这两个伪类我们可以实现下面这个有意思的效果。
+
+http://blog.csdn.net/whqet/article/details/43449045#required和optional

@@ -1,0 +1,30 @@
+http://stevex.blog.51cto.com/4300375/1582209
+JAVA NIO 内存泄露
+
+-------------------------------------------
+DirectByteBuffer
+-------------------------------------------
+
+写NIO程序经常使用ByteBuffer来读取或者写入数据，
+那么使用ByteBuffer.allocate(capability)
+还是使用ByteBuffer.allocteDirect(capability)来分配缓存了？
+
+第一种方式是分配JVM堆内存，属于GC管辖范围，由于需要拷贝所以速度相对较慢；
+第二种方式是分配OS本地内存，不属于GC管辖范围，由于不需要内存拷贝所以速度相对较快。
+
+http://erhwenkuo.blogspot.com/2014/07/java.html
+Direct ByteBuffer的特點有:
+它allocated到的memory區塊是不在之前談到的JVM head記憶體
+它在JVM的Garbage Collector的範圍之外
+它適合用在這個Buffer會活的很 久而且Buffer的size比較大的場景
+
+-------------------------------------------
+DirectByteBuffer 怎么释放？
+-------------------------------------------
+
+1. http://stackoverflow.com/questions/5060307/bytebuffer-not-releasing-memory
+   从jni层分配 direct byte buffer
+   (*env)->NewDirectByteBuffer(env, buffer, size);
+   *(env)->GetDirectBufferAddress(env, directBuffer); 获取这个指针，并 free
+   
+2. 本地内存在JAVA中有一个对应的包装类 DirectByteBuffer - android jdk 里没有这个类

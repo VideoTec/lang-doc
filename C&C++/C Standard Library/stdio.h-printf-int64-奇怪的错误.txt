@@ -1,0 +1,16 @@
+uint64_t read_mp4_box_head(FILE *f) {
+  int32_t head_len = 8;
+  uint32_t tag = 0;
+  uint64_t size = r32b(f);
+  if(1 == size) {
+    size = r64b(f);
+    head_len += 8;
+  }
+  tag = r32b(f);
+  char *ptr = (char *)&tag;
+  printf("size: %d, %c%c%c%c\n", size, ptr[3], ptr[2], ptr[1], ptr[0]); 这里出了问题
+  return size - head_len;
+}
+
+printf("size: %lld, %c%c%c%c\n", size, ptr[3], ptr[2], ptr[1], ptr[0]); 输出： size: 28, ftyp
+printf("size: %d, %c%c%c%c\n", size, ptr[3], ptr[2], ptr[1], ptr[0]);   输出： size: 28,  fty

@@ -1,0 +1,12 @@
+2015.4.23 宏定义代码段里 嵌套 宏 是可以的
+
+#define  LOG_TAG    "JNILog"
+#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
+
+#define CHECK_FAIL(condition, err_code, err_msg) \
+  if(condition) {                                \
+    ret = err_code;                              \
+    LOGE("%s: %d\n", err_msg, err_code);         \
+    goto fail;                                   \
+  }

@@ -1,0 +1,22 @@
+Visual Studio 2013
+int _fseeki64( 
+   FILE *stream,
+   __int64 offset,
+   int origin 
+);
+
+unistd.h 传递的是 文件描述符 fd，不是文件指针 FILE *
+extern off_t lseek(int, off_t, int);
+extern off64_t lseek64(int, off64_t, int);
+
+-----------------------------
+seeko 与 seek 的区别，是变量类型的区别 long off_t
+-----------------------------
+gcc 的 stdio.h
+int	 fseeko(FILE *, off_t, int);
+off_t	 ftello(FILE *);
+
+int	 fseek(FILE *, long, int);
+long	 ftell(FILE *);
+
+标准库里没有 fseek64 的定义

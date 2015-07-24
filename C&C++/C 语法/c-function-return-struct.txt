@@ -1,0 +1,6 @@
+http://stackoverflow.com/questions/9653072/return-a-struct-from-a-function-in-c
+You can return a structure from a function (or use the = operator) without any problems. 
+
+A struct, at least a large one, will be allocated and returned on the stack, and will be popped off the stack (if at all) by the caller. The compiler will try to allocate it in the same spot where the caller is expecting to find this, but it will make a copy if that is not possible. It is possible, but not necessary that there is also a pointer to the struct, returned via registers.
+
+Of course the details will vary depending on architecture.

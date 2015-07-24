@@ -1,0 +1,59 @@
+http://developer.android.com/reference/java/lang/Throwable.html
+
+
+java.lang.Object
+   ↳	java.lang.Throwable
+
+Known Direct Subclasses - 直接派生类
+
+---------------------------------------
+Error（不可恢复的 unrecoverable errors）,
+---------------------------------------
+总是不可控制的(unchecked) 
+经常用来用于表示系统错误或低层资源的错误 
+如何可能的话，应该在系统级被捕捉 
+
+---------------------------------------
+Exception（可恢复的 recoverable exceptions）
+---------------------------------------
+1．可以是可被控制(checked) 或不可控制的(unchecked) 
+2．表示一个由程序员导致的错误 
+3．应该在应用程序级被处理
+
+---------------------------------------
+Known Indirect Subclasses - 间接派生类
+---------------------------------------
+AEADBadTagException, 
+AbstractMethodError, 
+AccessControlException, 
+AccountsException, 
+AclNotFoundException, 
+ActivityNotFoundException, 
+AlreadyConnectedException, 
+AndroidException, 
+AndroidRuntimeException, 
+AnnotationFormatError, 
+AnnotationTypeMismatchException, 
+ArithmeticException, 
+ArrayIndexOutOfBoundsException, 
+ArrayStoreException, and 308 others.
+
+---------------------------------------
+Java 提供了两种 Exception 的模式
+---------------------------------------
+http://blog.csdn.net/liuj2511981/article/details/8524418
+
+一种是 执行的时候所产生的Exception (Runtime Exception)，另外
+一种是 受控制的Exception (Checked Exception)
+
+所有的Checked Exception 均从java.lang.Exception 继承而来，而Runtime Exception 则继承java.lang.RuntimeException 或java.lang.Error (实际上java.lang.RuntimeException 的上一层也是java.lang.Exception)
+
+Checked Exception 表示这个Exception 必须要被处理，
+也就是说程序设计者应该已经知道可能会收到某个Exception(因为要try catch住) ，
+所以程序设计者应该能针对这些不同的Checked Exception 做出不同的处理
+
+Runtime Exception 通常会暗示着程序上的错误，
+这种错误会导致程序设计者无法处理，而造成程序无法继续执行下去。
+
+Runtime Exception - 出现，说明程序有BUG。
+Checked Exception - 正常的程序判断，如：打开的文件不存在。

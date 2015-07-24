@@ -1,0 +1,4 @@
+http://nicegege.iteye.com/blog/1181072
+
+jar包与其他的压缩包很相似，- 可以使用 7-zip 解压工具解压
+不过它包含了META-INF/MANIFEST.MF文件，它是jar包生成的时候，自动创建的

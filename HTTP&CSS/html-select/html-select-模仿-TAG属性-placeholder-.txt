@@ -1,0 +1,65 @@
+10:53:57
+Zola 2015/7/2 10:53:57
+下拉框在默认情况下能不能有提示文字？
+
+placeholder[英][ˈpleɪshəʊldə(r)] [美][ˈpleɪshoʊldə(r)]
+n.占位符
+
+<form action="demo_form.asp" method="get">
+  <input type="search" name="user_search" placeholder="Search W3School" />
+  <input type="submit" />
+</form>
+
+定义和用法
+placeholder 属性提供可描述输入字段预期值的提示信息（hint）。
+该提示会在输入字段为空时显示，并会在字段获得焦点时消失。
+注释：
+placeholder 属性适用于以下的 <input> 类型：
+text, search, url, telephone, email 以及 password
+
+http://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box
+<select placeholder="服务类型"> placeholder 不适用 select 标签，这样写是没用的
+
+<div class="formdiv">
+	<div class="namediv"><input type="text" class="name" placeholder="姓名"></div>
+    <div class="teldiv"><input type="text" class="tel" placeholder="手机号"></div>
+    <div class="seldiv">
+        <select placeholder="服务类型"> 不适用 select 标签
+		    <option value="" disabled selected style='display:none;'>服务类型</option>
+            <option value ="1">上门检测</option>  
+            <option value ="2">专家陪买</option>
+        </select> 
+    </div>
+    <button class="btn">申请贷款</button>
+</div>
+
+替代方法
+<select>
+    <option value="" disabled selected>Select your option</option>
+    <option value="hurr">Durr</option>
+</select>
+
+<select>
+    <option value='' disabled selected style='display:none;'>Please Choose</option>
+    <option value='0'>Open when powered (most valves do this)</option>
+    <option value='1'>Closed when powered, auto-opens when power is cut</option>
+</select>
+
+-----------------------------
+这是最终结果，理解其中的每个字段的含意
+
+select:required:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
+}
+
+<select required>
+  <option value="" disabled selected>Select something...
+  <option value="1">One
+  <option value="2">Two
+</select>

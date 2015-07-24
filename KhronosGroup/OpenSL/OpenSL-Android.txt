@@ -1,0 +1,28 @@
+Decode audio to PCM
+
+Note: this feature is available at API level 14 and higher.
+A standard audio player plays back to an audio device, and the data sink is specified as an output mix. However, as an Android extension, an audio player instead acts as a decoder if the data source is specified as a URI or Android file descriptor data locator with MIME data format, and the data sink is an Android simple buffer queue data locator with PCM data format.
+
+This feature is primarily intended for games to pre-load their audio assets when changing to a new game level, similar to android.media.SoundPool.
+
+The application should initially enqueue a set of empty buffers to the Android simple buffer queue, which will be filled with PCM data. The Android simple buffer queue callback is invoked after each buffer is filled. The callback handler should process the PCM data, re-enqueue the now-empty buffer, and then return. The application is responsible for keeping track of decoded buffers; the callback parameter list does not include sufficient information to indicate which buffer was filled or which buffer to enqueue next.
+
+The end of stream is determined implicitly by the data source. At the end of stream a SL_PLAYEVENT_HEADATEND event is delivered. The Android simple buffer queue callback will no longer be called after all consumed data is decoded.
+
+The sink's PCM data format typically matches that of the encoded data source with respect to sample rate, channel count, and bit depth. However, the platform implementation is permitted to decode to a different sample rate, channel count, or bit depth. There is a provision[美][prəˈvɪʒən]准备 to detect the actual PCM format; see section "Determining the format of decoded PCM data via metadata" below.
+
+Decode to PCM supports pause and initial seek. Volume control, effects, looping, and playback rate are not supported.
+
+Depending on the platform implementation, decoding may require resources that cannot be left idle. Therefore it is not recommended to starve the decoder by failing to provide a sufficient number of empty PCM buffers, e.g. by returning from the Android simple buffer queue callback without enqueueing another empty buffer. The result of decoder starvation is unspecified; the implementation may choose to either drop the decoded PCM data, pause the decoding process, or in severe cases terminate the decoder.
+
+参考
+http://stackoverflow.com/questions/10770979/is-it-possible-to-get-a-byte-buffer-directly-from-an-audio-asset-in-opensl-es-f
+
+Determining the format of decoded PCM data via metadata
+
+The metadata extraction interface SLMetadataExtractionItf is a standard OpenSL ES 1.0.1 interface, not an Android extension. However, the particular metadata keys that indicate the actual format of decoded PCM data are specific to Android, and are defined in header SLES/OpenSLES_AndroidMetadata.h.
+The metadata key indices are available immediately after Object::Realize. Yet the associated values are not available until after the first encoded data has been decoded. A good practice is to query for the key indices in the main thread after Realize, and to read the PCM format metadata values in the Android simple buffer queue callback handler the first time it is called.
+
+The OpenSL ES 1.0.1 metadata extraction interface SLMetadataExtractionItf is admittedly cumbersome, as it requires a multi-step process to first determine key indices and then to get the key values. Consult the example code for snippets showing how to work with this interface.
+
+Metadata key names are stable. But the key indices are not documented and are subject to change. An application should not assume that indices are persistent across different execution runs, and should not assume that indices are shared for different object instances within the same run.

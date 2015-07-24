@@ -1,0 +1,11 @@
+attachment[英][əˈtætʃmənt] [美][əˈtætʃmənt] n.（用电子邮件发送的）附件，附属物；依恋，依附；扣押财产<法>逮捕，扣押（人，财产
+
+Now each buffer attached to a Frame Buffer can be a Render Buffer or a texture.
+
+
+---------------------------------------------------------------
+A FBO attachment points 附加点 
+---------------------------------------------------------------
+GL_COLOR_ATTACHMENT0, ..., GL_COLOR_ATTACHMENTn  至少有一个
+GL_DEPTH_ATTACHMENT
+GL_STENCIL_ATTACHMENT

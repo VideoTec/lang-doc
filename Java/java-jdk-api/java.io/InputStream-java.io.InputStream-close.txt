@@ -1,0 +1,7 @@
+public void close ()
+
+Added in API level 1
+Closes this stream. Concrete implementations of this class should free any resources during close. This implementation does nothing.
+
+Throws
+IOException	if an error occurs while closing this stream.

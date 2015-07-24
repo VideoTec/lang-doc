@@ -1,0 +1,12 @@
+Built-In Variable	Precision	Data Type
+
+Vertex Shader Built-In Variables
+gl_Position			highp		vec4
+gl_FrontFacing		-			bool
+gl_PointSize		mediump		float
+
+Fragment Shader Built-In Variables
+gl_FragColor		mediump		vec4
+gl_FrontFacing		-			bool
+gl_FragCoord		mediump		vec4
+gl_PointCoord		mediump		vec2

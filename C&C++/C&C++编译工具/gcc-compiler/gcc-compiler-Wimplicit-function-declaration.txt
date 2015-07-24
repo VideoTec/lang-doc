@@ -1,0 +1,18 @@
+http://stackoverflow.com/questions/8440816/warning-implicit-declaration-of-function
+You are using a function for which the compiler has not seen a declaration ("prototype") yet.
+
+For example:
+
+int main()
+{
+    fun(2, "21"); /* The compiler has not seen the declaration. */       
+    return 0;
+}
+
+int fun(int x, char *p)
+{
+    /* ... */
+}
+You need to declare your function before main, like this, either directly or in a header:
+
+int fun(int x, char *p);

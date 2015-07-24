@@ -1,0 +1,30 @@
+I prefer not to modify the source directly, as that gets to be troublesome when trying to maintain multiple platforms. Instead, I pass -D__cdecl="" to the compiler flags to define it away.
+
+I have built a few VST's on linux using this approach, and it works fine. You should be safe just defining away (or manually removing, if you prefer) the explicit __cdecl. 
+The VST SDK is a bit retarded in this sense, especially in that it believes 
+there are only 2 operating systems in the world worth supporting, Mac and Windows. 
+
+If you look in aeffect.h, you'll find the following code:
+
+#if TARGET_API_MAC_CARBON
+    #ifdef __LP64__
+        #pragma options align=power
+    #else
+        #pragma options align=mac68k
+    #endif
+    #define VSTCALLBACK
+#elif defined __BORLANDC__
+    #pragma -a8
+#elif defined(__GNUC__)
+    #pragma pack(push,8)
+    #define VSTCALLBACK __cdecl
+#elif defined(WIN32) || defined(__FLAT__) || defined CBUILDER
+    #pragma pack(push)
+    #pragma pack(8)
+    #define VSTCALLBACK __cdecl
+#else
+    #define VSTCALLBACK
+#endif
+
+So basically, the best way to get around this is to undefine __cdecl away. 
+GCC should compile your code just fine.

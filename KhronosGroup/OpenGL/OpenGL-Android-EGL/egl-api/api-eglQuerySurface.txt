@@ -1,0 +1,2 @@
+eglQuerySurface(display, surface, EGL_WIDTH, &w);
+eglQuerySurface(display, surface, EGL_HEIGHT, &h);

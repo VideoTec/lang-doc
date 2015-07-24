@@ -1,0 +1,25 @@
+初始化步骤
+                                                   --- create context
+eglGetDisplay --- eglInitialize --- choose config                     --- make current
+                                                   --- create surface
+
+
+
+例子
+
+eglGetDisplay
+eglInitialize
+eglBindAPI
+
+choose frame buffer config
+
+eglCreateContext
+eglCreateWindowSurface
+eglMakeCurrent
+
+eglSwapBuffers(display, egl_surface);
+
+success = eglMakeCurrent(display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+success = eglDestroyContext(display, context);
+success = eglDestroySurface(display, window);
+success = eglTerminate(display);

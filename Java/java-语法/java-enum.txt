@@ -1,0 +1,15 @@
+ 用类定义：常量定义 缺点是什么？
+ Public static class RainbowColor { 
+    
+    // 红橙黄绿青蓝紫七种颜色的常量定义
+    public static final int RED = 0; 
+    public static final int ORANGE = 1; 
+    public static final int YELLOW = 2; 
+    public static final int GREEN = 3; 
+    public static final int CYAN = 4; 
+    public static final int BLUE = 5; 
+    public static final int PURPLE = 6; 
+ }
+ 
+ 用枚举来定义
+ enum RainbowColor { RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE }

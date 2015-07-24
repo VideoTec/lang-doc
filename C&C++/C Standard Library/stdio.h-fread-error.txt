@@ -1,0 +1,14 @@
+因为没有正确正确，fopen 的打开模式的区别，造成了下面的错误
+
+int main() {
+  uint8_t buf[1024] = {0};
+  FILE *f = fopen("E:\\WinApp\\libav-test\\fog.mp4", "r");
+  _fseeki64(f, 44, SEEK_SET);
+  printf("read 371, return : %d\n", fread(buf, 1, 371, f));
+  printf("read 372, return : %d\n", fread(buf, 1, 372, f));
+  printf("read 371, return : %d\n", fread(buf, 1, 371, f));
+  printf("read 372, return : %d\n", fread(buf, 1, 372, f));
+  printf("read 371, return : %d\n", fread(buf, 1, 371, f));  //读到这里时，文件结束了，原因是，fopen 的模式是 r
+  fclose(f);
+  return 0;
+}

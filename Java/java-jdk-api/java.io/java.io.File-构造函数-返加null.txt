@@ -1,0 +1,14 @@
+File outFile = new File(newFileName);
+
+什么情况下，会返加 null ?
+没有这种可能，只会抛出异常
+
+public File (String path)
+
+Added in API level 1
+Constructs a new file using the specified path.
+
+Parameters
+path	the path to be used for the file.
+Throws
+NullPointerException	if path is null.

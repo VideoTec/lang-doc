@@ -1,0 +1,27 @@
+objdump	显示目标文件的相关信息，亦可反汇编
+
+文档
+https://sourceware.org/binutils/docs-2.21/binutils/objdump.html
+
+objdump 有点像那个快速查看之类的工具，
+就是以一种可阅读的格式让你更多地了解二进制文件可能带有的附加信息。
+对于一般只想让自己程序跑起来的程序员，这个命令没有更多意义，
+对于想进一步了解系统的程序员，应该掌握这种工具，至少你可以
+自己写写shellcode了，或者
+看看人家给的 exploit 中的 shellcode 是什么东西
+
+用法： http://blog.csdn.net/beyondioi/article/details/7796414
+
+输出C源代码和反汇编出来的指令对照的格式
+objdump -S test.o
+
+objdump -D -b binary -m i386 a.bin
+-D表示对全部文件进行反汇编，
+-b表示二进制，
+-m表示指令集架构，
+a.bin就是我们要反汇编的二进制文件
+
+注意：
+未strip 和 经过strip 目标文件 反编译的结果不一样
+
+objdump -m可以查看更多支持的指令集架构，如i386:x86-64，i8086等

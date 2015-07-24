@@ -1,0 +1,14 @@
+static uint8_t *buffer = (uint8_t *)malloc(1024 * 2 * 2);
+env->ReleaseByteArrayElements(data, buffer, JNI_COMMIT);
+
+void ReleaseByteArrayElements(jbyteArray array, jbyte* elems, jint mode)
+
+gcc -fpermissive
+permissive[英][pəˈmɪsɪv] [美][pərˈmɪsɪv] adj.宽大的；放任的；自由的；容许的
+Downgrade[英][ˌdaʊnˈgreɪd] [美][ˈdaʊnˌɡred]低估 some diagnostics[英][ˌdaɪəg'nɒstɪks] [美][ˌdaɪəg'nɒstɪks] 诊断信息 about nonconformant[英]['nɒnkən'fɔ:mɪŋ] [美]['nɒnkən'fɔ:mɪŋ] 不一致的 code from errors to warnings. Thus, using -fpermissive will allow some nonconforming code to compile
+
+例如下面的错误，可以添加 fpermissive 选项，就不报错了。否则需要添加强制类型转换
+jni/libopensl.cpp:29:57: 
+error: invalid conversion from 'uint8_t* {aka unsignedchar*}' to 'jbyte* {aka signed char*}' [-fpermissive]
+E:/android/ndk/platforms/android-14/arch-arm/usr/include/jni.h:935:10: 
+error:initializing argument 2 of 'void _JNIEnv::ReleaseByteArrayElements(jbyteArray, jbyte*, jint)' [-fpermissive]

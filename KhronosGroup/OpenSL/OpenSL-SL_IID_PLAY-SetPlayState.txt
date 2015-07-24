@@ -1,0 +1,10 @@
+struct SLPlayItf_ {
+	SLresult (*SetPlayState) (
+		SLPlayItf self,
+		SLuint32 state
+	);
+
+/** Playback states */
+#define SL_PLAYSTATE_STOPPED	((SLuint32) 0x00000001)
+#define SL_PLAYSTATE_PAUSED	((SLuint32) 0x00000002)
+#define SL_PLAYSTATE_PLAYING	((SLuint32) 0x00000003)

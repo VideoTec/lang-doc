@@ -1,0 +1,4 @@
+#include <jni.h>
+
+jni interface result 有没有特殊函数？
+native-audio-jni.c 代码中的 (void)result; 什么意思？

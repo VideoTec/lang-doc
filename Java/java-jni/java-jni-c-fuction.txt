@@ -1,0 +1,6 @@
+Android JNI method - Is the second parameter jclass or jobject
+It is jclass if the method is static, otherwise jobject. 
+If you use javah, as the JNI designers intended, you will always get the right answer.
+
+void native_render(JNIEnv *env, jclass clazz)   对应的 java方法为静态方法
+void native_render(JNIEnv *env, jobject clazz)  对应的 java方法为非静态方法

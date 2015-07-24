@@ -1,0 +1,5 @@
+怎么从 JNI 把 direct-byte-buffer 转成 C 指针？
+类似于在堆上创建创建了一个Java和Jni层共享的整块内存区域，无论是Java层或者Jni层均可访问这块内存
+由于是采用的是共享内存的方式，因此相比于普通的数组传递，效率更高
+Direct Buffer方式更适合长期使用频繁访问的大块内存的共享
+Jni层只需要通过 GetDirectBufferAddress 函数即可获取到这块共享的内存的地址，Direct Buffer的管理工作均由操作系统来负责

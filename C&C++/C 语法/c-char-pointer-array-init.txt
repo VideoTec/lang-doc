@@ -1,0 +1,5 @@
+jni/libopensl.cpp:7:71: error: braces around scalar initializer for type 'const char*'
+   const char *files[] = {{"/sdcard/dream.mp3"}, {"/sdcard/test11.mp4"}};
+
+You should remove the braces: { and } around single values.
+改成：const char *files[] = {"/sdcard/dream.mp3", "/sdcard/test11.mp4"}; 就可以了

@@ -1,0 +1,40 @@
+http://developer.android.com/reference/java/io/FileInputStream.html
+
+ava.lang.Object
+   ↳	java.io.InputStream
+ 	   ↳	java.io.FileInputStream
+
+Known Direct Subclasses
+ParcelFileDescriptor.AutoCloseInputStream
+
+Known Indirect Subclasses
+AssetFileDescriptor.AutoCloseInputStream
+
+------------------------------------------------
+说明
+------------------------------------------------
+
+opposed[英][əˈpəʊzd] [美][əˈpoʊzd]
+adj.强烈反对某事物的；（表示对比）而，相对于；相反的；敌对的
+
+as opposed to
+与...相对, 相对于
+
+An input stream that reads bytes from a file.
+
+   File file = ...
+   InputStream in = null;
+   try {
+     in = new BufferedInputStream(new FileInputStream(file));
+     ...
+    finally {
+     if (in != null) {
+       in.close();
+     }
+   }
+   }
+
+This stream is not buffered. 
+Most callers should wrap this stream with a BufferedInputStream.
+
+Use FileReader to read characters, as opposed to bytes, from a file.

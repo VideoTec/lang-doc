@@ -1,0 +1,2 @@
+ar -t can be used to enumerate the object files in an archive, 
+so after that it's just a matter of providing that list to ar as you usually would when creating an archive.

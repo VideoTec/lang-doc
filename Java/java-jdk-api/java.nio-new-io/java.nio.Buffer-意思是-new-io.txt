@@ -1,0 +1,39 @@
+Java NIO 有以下Buffer类型
+
+ByteBuffer
+MappedByteBuffer
+CharBuffer
+DoubleBuffer
+FloatBuffer
+IntBuffer
+LongBuffer
+ShortBuffer
+
+Java NIO中的Buffer用于和NIO通道进行交互。
+
+Java NIO可以让你非阻塞的使用IO
+事件驱动机制：事件到的时候触发，而不是同步的去监视事件。减少无谓的线程切换
+Java NIO(New IO)是一个可以替代标准Java IO API的IO API（从Java 1.4开始)，Java NIO提供了与标准IO不同的IO工作方式
+缓冲区本质上是一块可以 读写数据 的内存。
+这块内存被包装成NIO Buffer对象，并提供了一组方法，用来方便的访问该块内存。
+
+怎么把一个浮点数组包装成一个 FloatBuffer ？
+public static FloatBuffer wrap (float[] array)
+Added in API level 1
+Creates a new float buffer by wrapping the given float array.
+Calling this method has the same effect as wrap(array, 0, array.length).
+
+ByteBuffer.allocate() vs. ByteBuffer.allocateDirect()
+direct byte buffer : 直接与 非直接缓冲区 
+直接字节缓冲区可以通过调用此类的 allocateDirect 工厂方法来创建
+直接缓冲区的内容可以驻留在常规的垃圾回收堆之外
+
+直接字节缓冲区:
+Java 虚拟机会尽最大努力直接在此缓冲区上执行本机 I/O 操作。
+在每次调用基础操作系统的一个本机 I/O 操作之前（或之后），
+虚拟机都会尽量避免将缓冲区的内容复制到中间缓冲区中（或从中间缓冲区中复制内容）
+
+ByteBuffer 特有的接口
+order(ByteOrder byteOrder)
+allocateDirect(int capacity)
+asCharBuffer() asFloatBuffer() 系列接口

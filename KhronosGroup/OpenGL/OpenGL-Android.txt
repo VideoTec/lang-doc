@@ -1,0 +1,65 @@
+http://stackoverflow.com/questions/5926316/android-gles20-called-unimplemented-opengl-es-api
+下面这个错误：
+12-22 15:54:37.074: E/libEGL(25824): called unimplemented OpenGL ES API
+原因：
+1. 模拟器未实现，需要选中，编辑模拟器Emulation Options选项勾选 Use Host GPU 然后重启模拟器再尝试。
+
+2. 真机上出现这个问题：需要设置egl的版本号。
+   mGLSurfaceView.setEGLContextClientVersion( 2 )
+   或者用下面的方法
+   Second, create a subclass of GLSurfaceView like this:
+public class CustomView extends GLSurfaceView {
+    final CustomRenderer renderer;
+    CustomView(Context context) {
+        super(context);
+        setEGLContextClientVersion(2); // This is the important line
+        renderer = new CustomRenderer();
+        setRenderer(renderer);
+    }
+}
+
+   下面这个配置是必需的吧？非必需
+   AndroidManifest.xml 
+   <uses-feature android:glEsVersion="0x00020000"></uses-feature>
+   <uses-sdk android:targetSdkVersion="8" android:minSdkVersion="8"></uses-sdk>
+
+GLSurfaceView 初始化设置：
+        mGLRender = new GLRender(graph);
+        mGLSurfaceView.setEGLContextClientVersion(2);
+        mGLSurfaceView.setRenderer(mGLRender); 必须在 setRenderMode之前调用，否则会崩溃。
+        mGLSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+
+下面这个会异常：原因是, glVertexAttribPointer,最后一参数，Buffer，
+ GLES20.glVertexAttribPointer(
+	    		mVertexAttributes, 2, GLES20.GL_FLOAT, false, 0, 
+	    		FloatBuffer.wrap(VERTEX_ARRAY));
+下面的异常：
+12-24 17:44:39.554: E/AndroidRuntime(17864): FATAL EXCEPTION: GLThread 8227
+12-24 17:44:39.554: E/AndroidRuntime(17864): java.lang.IllegalArgumentException: Must use a native order direct Buffer
+12-24 17:44:39.554: E/AndroidRuntime(17864): 	at android.opengl.GLES20.glVertexAttribPointerBounds(Native Method)
+12-24 17:44:39.554: E/AndroidRuntime(17864): 	at android.opengl.GLES20.glVertexAttribPointer(GLES20.java:1921)
+12-24 17:44:39.554: E/AndroidRuntime(17864): 	at com.example.testfvideo.GLFilter.onDrawFrame(GLFilter.java:73)
+12-24 17:44:39.554: E/AndroidRuntime(17864): 	at com.example.testfvideo.GLFilterGraph$1.run(GLFilterGraph.java:72)
+12-24 17:44:39.554: E/AndroidRuntime(17864): 	at com.example.testfvideo.GLFilterGraph.runPendingOnDrawTasks(GLFilterGraph.java:171)
+12-24 17:44:39.554: E/AndroidRuntime(17864): 	at com.example.testfvideo.GLFilterGraph.onDrawFrame(GLFilterGraph.java:47)
+12-24 17:44:39.554: E/AndroidRuntime(17864): 	at com.example.testfvideo.GLRender.onDrawFrame(GLRender.java:33)
+12-24 17:44:39.554: E/AndroidRuntime(17864): 	at android.opengl.GLSurfaceView$GLThread.guardedRun(GLSurfaceView.java:1467)
+12-24 17:44:39.554: E/AndroidRuntime(17864): 	at android.opengl.GLSurfaceView$GLThread.run(GLSurfaceView.java:1221)
+必须使用: ByteBuffer.allocateDirect(int cap) 来分配缓存区?
+
+调用glTexSubImage2D时出现下面的错误：调用前加一行就好了，data.position(0)
+Buffer data
+GLES20.glTexSubImage2D(GLES20.GL_TEXTURE_2D, 0, 0, 0, w, h, format, GLES20.GL_UNSIGNED_BYTE, data);
+12-24 21:04:18.980: A/libc(2027): Fatal signal 11 (SIGSEGV) at 0x40f625b0 (code=2)
+
+使用ByteBuffer一定要注意，把游标，置位。
+	    GLES20.glVertexAttribPointer(
+	    		mVertexAttributes, 2, GLES20.GL_FLOAT, false, 0, 
+	    		mVertexAttributesBuffer);
+因为没有置零，导致上传的顶点坐标为零，绘制不出结果。
+		mVertexAttributesBuffer = ByteBuffer
+				.allocateDirect(VERTEX_ARRAY.length * 4)
+				.order(ByteOrder.nativeOrder())
+				.asFloatBuffer();
+		mVertexAttributesBuffer.put(VERTEX_ARRAY);
+		mVertexAttributesBuffer.position(0);  // 由于忘记写这个，导致绘制不出结果来。

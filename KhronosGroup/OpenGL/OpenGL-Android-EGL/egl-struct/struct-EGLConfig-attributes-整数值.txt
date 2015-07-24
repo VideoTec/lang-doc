@@ -1,0 +1,245 @@
+列表：
+
+-------------------------------------------------------------------------------------
+EGL_ALPHA_MASK_SIZE - the desired alpha mask buffer size
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_ALPHA_SIZE - the desired size of the alpha component of the color buffer
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_RED_SIZE - the desired size of the red component of the color buffer
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_GREEN_SIZE the desired size of the green component of the color buffer
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_BLUE_SIZE - desired size of the blue component of the color buffer
+-------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------
+EGL_BUFFER_SIZE - the desired color buffer size
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_LUMINANCE_SIZE the desired size of the luminance component of the color buffer
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_STENCIL_SIZE - the desired stencil buffer size
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_DEPTH_SIZE the desired depth buffer size
+-------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------
+EGL_TRANSPARENT_RED_VALUE - an integer value indicating the transparent red value - EGL_TRANSPARENT_TYPE
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_TRANSPARENT_GREEN_VALUE - an integer value indicating the transparent green value - EGL_TRANSPARENT_TYPE
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_TRANSPARENT_BLUE_VALUE - an integer value indicating the transparent blue value - EGL_TRANSPARENT_TYPE
+-------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------
+EGL_MAX_SWAP_INTERVAL a integer that indicates the maximum value that can be passed to eglSwapInterval
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_MIN_SWAP_INTERVAL a integer the minimum value that can be passed to eglSwapInterval
+-------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------
+EGL_SAMPLE_BUFFERS - minimum acceptable number of multisample buffers
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_SAMPLES - minimum number of samples required in multisample buffers
+-------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------
+EGL_CONFIG_ID - a valid integer ID - 指定 EGLConfig ID
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_LEVEL an integer buffer level specification. overlay or underlay planes
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+EGL_MATCH_NATIVE_PIXMAP the handle of a valid native pixmap
+-------------------------------------------------------------------------------------
+
+
+
+详细解释
+
+-------------------------------------------------------------------------------------
+EGL_ALPHA_MASK_SIZE - nonnegative integer
+-------------------------------------------------------------------------------------
+Must be followed by a nonnegative integer that indicates 
+the desired alpha mask buffer size, in bits. 
+The smallest alpha mask buffers of at least the specified size are preferred. 
+The default value is zero.
+The alpha mask buffer is used only by OpenGL and OpenGL ES client APIs.
+
+-------------------------------------------------------------------------------------
+EGL_ALPHA_SIZE - nonnegative integer
+-------------------------------------------------------------------------------------
+Must be followed by a nonnegative integer that indicates 
+the desired size of the alpha component of the color buffer, in bits. 
+If this value is zero, color buffers with the smallest alpha component size are preferred. 
+Otherwise, color buffers with the largest alpha component of at least the specified size are preferred. 
+The default value is zero.
+
+-------------------------------------------------------------------------------------
+EGL_TRANSPARENT_RED_VALUE - integer value
+-------------------------------------------------------------------------------------
+Must be followed by an integer value indicating the transparent red value. 
+The value must be between zero and the maximum color buffer value for red. 
+Only frame buffer configurations that use the specified transparent red value will be considered. 
+The default value is EGL_DONT_CARE.
+This attribute is ignored unless EGL_TRANSPARENT_TYPE is included in attrib_list and specified as EGL_TRANSPARENT_RGB.
+
+-------------------------------------------------------------------------------------
+EGL_TRANSPARENT_GREEN_VALUE - integer value
+-------------------------------------------------------------------------------------
+Must be followed by an integer value indicating the transparent green value. 
+The value must be between zero and the maximum color buffer value for green. 
+Only frame buffer configurations that use the specified transparent green value will be considered. 
+The default value is EGL_DONT_CARE.
+This attribute is ignored unless EGL_TRANSPARENT_TYPE is included in attrib_list and specified as EGL_TRANSPARENT_RGB.
+
+-------------------------------------------------------------------------------------
+EGL_TRANSPARENT_BLUE_VALUE - integer value
+-------------------------------------------------------------------------------------
+Must be followed by an integer value indicating the transparent blue value. 
+The value must be between zero and the maximum color buffer value for blue. 
+Only frame buffer configurations that use the specified transparent blue value will be considered. 
+The default value is EGL_DONT_CARE.
+This attribute is ignored unless EGL_TRANSPARENT_TYPE is included in attrib_list and specified as EGL_TRANSPARENT_RGB.
+
+-------------------------------------------------------------------------------------
+EGL_BLUE_SIZE - nonnegative integer
+-------------------------------------------------------------------------------------
+Must be followed by a nonnegative integer that indicates 
+the desired size of the blue component of the color buffer, in bits. 
+If this value is zero, color buffers with the smallest blue component size are preferred. 
+Otherwise, color buffers with the largest blue component of at least the specified size are preferred. 
+The default value is zero.
+
+-------------------------------------------------------------------------------------
+EGL_BUFFER_SIZE - nonnegative integer
+-------------------------------------------------------------------------------------
+Must be followed by a nonnegative integer that indicates 
+the desired color buffer size, in bits. 
+The smallest color buffers of at least the specified size are preferred. 
+The default value is zero.
+
+The color buffer size is the sum of 
+EGL_RED_SIZE, 
+EGL_GREEN_SIZE, 
+EGL_BLUE_SIZE, and 
+EGL_ALPHA_SIZE, 
+and does not include any padding bits which may be present in the pixel format. 
+It is usually preferable to specify desired sizes for these color components individually.
+
+
+-------------------------------------------------------------------------------------
+EGL_MAX_SWAP_INTERVAL integer
+-------------------------------------------------------------------------------------
+interval[英][ˈɪntəvl] [美][ˈɪntərvl] n.间隔；幕间休息；（数学）区间
+Must be followed by a integer that indicates the maximum value that can be passed to eglSwapInterval. 
+The default value is EGL_DONT_CARE.
+
+-------------------------------------------------------------------------------------
+EGL_MIN_SWAP_INTERVAL integer
+-------------------------------------------------------------------------------------
+Must be followed by a integer that indicates the minimum value that can be passed to eglSwapInterval. 
+The default value is EGL_DONT_CARE.
+
+-------------------------------------------------------------------------------------
+EGL_RED_SIZE - nonnegative integer
+-------------------------------------------------------------------------------------
+Must be followed by a nonnegative integer that indicates the desired size of the red component of the color buffer, in bits. 
+If this value is zero, color buffers with the smallest red component size are preferred. 
+Otherwise, color buffers with the largest red component of at least the specified size are preferred.
+The default value is zero.
+
+-------------------------------------------------------------------------------------
+EGL_SAMPLE_BUFFERS - minimum acceptable number of multisample buffers
+-------------------------------------------------------------------------------------
+Must be followed by the minimum acceptable number of multisample buffers. 
+Configurations with the smallest number of multisample buffers that meet or exceed this minimum number are preferred. 
+Currently operation with more than one multisample buffer is undefined, so only values of zero or one will produce a match. 
+The default value is zero.
+
+-------------------------------------------------------------------------------------
+EGL_SAMPLES - minimum number of samples
+-------------------------------------------------------------------------------------
+Must be followed by the minimum number of samples required in multisample buffers. 
+Configurations with the smallest number of samples that meet or exceed the specified minimum number are preferred. 
+Note that it is possible for color samples in the multisample buffer to have fewer bits than colors in the main color buffers. 
+However, multisampled colors maintain at least as much color resolution in aggregate as the main color buffers.
+
+-------------------------------------------------------------------------------------
+EGL_STENCIL_SIZE - nonnegative integer
+-------------------------------------------------------------------------------------
+Must be followed by a nonnegative integer that indicates the desired stencil buffer size, in bits. 
+The smallest stencil buffers of at least the specified size are preferred. 
+If the desired size is zero, 
+frame buffer configurations with no stencil buffer are preferred. 
+The default value is zero.
+The stencil buffer is used only by OpenGL and OpenGL ES client APIs.
+
+-------------------------------------------------------------------------------------
+EGL_CONFIG_ID - a valid integer ID
+-------------------------------------------------------------------------------------
+Must be followed by a valid integer ID that indicates the desired EGL frame buffer configuration. 
+When a EGL_CONFIG_ID is specified, all other attributes are ignored. 
+The default value is EGL_DONT_CARE.
+The meaning of config IDs is implementation-dependent. 
+They are used only to uniquely identify different frame buffer configurations.
+
+
+-------------------------------------------------------------------------------------
+EGL_DEPTH_SIZE nonnegative
+-------------------------------------------------------------------------------------
+Must be followed by a nonnegative integer that indicates the desired depth buffer size, in bits. 
+The smallest depth buffers of at least the specified size is preferred. 
+If the desired size is zero, frame buffer configurations with no depth buffer are preferred. 
+The default value is zero.
+The depth buffer is used only by OpenGL and OpenGL ES client APIs.
+
+-------------------------------------------------------------------------------------
+EGL_GREEN_SIZE nonnegative
+-------------------------------------------------------------------------------------
+Must be followed by a nonnegative integer that indicates the desired size of the green component of the color buffer, in bits. 
+If this value is zero, color buffers with the smallest green component size are preferred. 
+Otherwise, color buffers with the largest green component of at least the specified size are preferred. 
+The default value is zero.
+
+-------------------------------------------------------------------------------------
+EGL_LEVEL integer
+-------------------------------------------------------------------------------------
+Must be followed by an integer buffer level specification. 
+This specification is honored exactly. 
+Buffer level zero corresponds to the default frame buffer of the display. 
+Buffer level one is the first overlay frame buffer, level two the second overlay frame buffer, and so on. 
+Negative buffer levels correspond to underlay frame buffers. The default value is zero.
+Most imlementations do not support overlay or underlay planes (buffer levels other than zero).
+
+-------------------------------------------------------------------------------------
+EGL_LUMINANCE_SIZE integer
+-------------------------------------------------------------------------------------
+Must be followed by a nonnegative integer that indicates the desired size of the luminance component of the color buffer, in bits. 
+If this value is zero, color buffers with the smallest luminance component size are preferred. 
+Otherwise, color buffers with the largest luminance component of at least the specified size are preferred. 
+The default value is zero.
+
+-------------------------------------------------------------------------------------
+EGL_MATCH_NATIVE_PIXMAP handle
+-------------------------------------------------------------------------------------
+Must be followed by the handle of a valid native pixmap, cast to EGLint, or EGL_NONE. 
+If the value is not EGL_NONE, 
+only configs which support creating pixmap surfaces with this pixmap using eglCreatePixmapSurface will match this attribute. 
+If the value is EGL_NONE, then configs are not matched for this attribute. 
+The default value is EGL_NONE.
+
+EGL_MATCH_NATIVE_PIXMAP 
+was introduced due to the difficulty of determining an EGLConfig 
+compatibile with a native pixmap using only color component sizes.

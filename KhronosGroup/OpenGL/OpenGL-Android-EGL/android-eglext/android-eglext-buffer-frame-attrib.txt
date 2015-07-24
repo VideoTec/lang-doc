@@ -1,0 +1,7 @@
+E:\android\ndk\platforms\android-21\arch-arm\usr\include\EGL\eglext.h
+
+#ifndef EGL_NV_coverage_sample
+#define EGL_NV_coverage_sample 1
+#define EGL_COVERAGE_BUFFERS_NV 0x30E0
+#define EGL_COVERAGE_SAMPLES_NV 0x30E1
+#endif

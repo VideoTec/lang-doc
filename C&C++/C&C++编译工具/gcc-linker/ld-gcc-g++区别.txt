@@ -1,0 +1,16 @@
+下面三个命令都可以作为链接器命令
+arm-linux-androideabi-gcc.exe
+arm-linux-androideabi-g++.exe
+arm-linux-androideabi-ld.exe
+
+区别是:
+http://stackoverflow.com/questions/6735277/any-difference-in-linking-with-gcc-vs-g
+g++ sets up the flags needed for linking with the C++ standard library. It may also set up exception handling
+
+http://stackoverflow.com/questions/5759353/is-g-both-a-c-compiler-and-a-linker
+g++ and gcc are drivers. Usually, they run the 
+preprocessor (cpp), 
+compiler proper (cc1plus for C++ and cc1 for C) and 
+the linker (gold or GNU ld) and 
+all other things necessary. 
+The difference between gcc and g++ is that the latter includes one additional library to link against (libstdc++).

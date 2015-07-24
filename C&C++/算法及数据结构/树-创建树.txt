@@ -1,0 +1,41 @@
+void CreateTree(PTree *T)
+{ 
+  LinkQueue q;
+  QElemType p,qq;
+  int i=1,j,l;
+  char c[MAX_TREE_SIZE]; /* 临时存放孩子节点数组 */
+  InitQueue(&q); /* 初始化队列 */
+  printf("请输入根节点(字符型，空格为空): ");
+  scanf("%c%*c",&T->nodes[0].data); /* 根节点序号为0，%*c吃掉回车符 */
+  if(T->nodes[0].data!=Nil) /* 非空树 */
+  {
+    T->nodes[0].parent=-1; /* 根节点无父节点 */
+    qq.name=T->nodes[0].data;
+    qq.num=0;
+    EnQueue(&q,qq); /* 入队此节点 */
+    while(i<MAX_TREE_SIZE&&!QueueEmpty(q)) /* 数组未满且队不空 */
+    {
+      DeQueue(&q,&qq); /* 节点加入队列 */
+      printf("请按长幼顺序输入节点%c的所有孩子: ",qq.name);
+      gets(c);
+      l=strlen(c);
+      for(j=0;j<l;j++)
+      {
+        T->nodes[i].data=c[j];
+        T->nodes[i].parent=qq.num;
+        p.name=c[j];
+        p.num=i;
+        EnQueue(&q,p); /* 入队此节点 */
+        i++;
+      }
+    }
+    if(i>MAX_TREE_SIZE)
+    {
+      printf("节点数超过数组容量\n");
+      exit(OVERFLOW);
+    }
+    T->n=i;
+  }
+  else
+    T->n=0;
+}

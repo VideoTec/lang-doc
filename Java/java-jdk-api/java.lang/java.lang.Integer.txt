@@ -1,0 +1,14 @@
+http://developer.android.com/reference/java/lang/Integer.html
+
+java.lang.Object
+   ↳	java.lang.Number
+ 	   ↳	java.lang.Integer
+
+The wrapper for the primitive type int.
+
+Implementation note: The "bit twiddling" methods in this class use techniques described in Henry S. Warren, Jr.'s Hacker's Delight, (Addison Wesley, 2002) and Sean Anderson's Bit Twiddling Hacks.
+
+------------------------------------------
+用法：
+------------------------------------------
+duration = Integer.valueOf(duration_str);

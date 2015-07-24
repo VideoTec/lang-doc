@@ -1,0 +1,71 @@
+EGLSurface eglCreatePixmapSurface(
+EGLDisplay display,
+EGLConfig config,
+NativePixmapType native_pixmap,
+EGLint const * attrib_list);
+
+------------------------------------
+http://m.oschina.net/blog/207334 EGL PixmapSurface实验笔记
+------------------------------------
+需要 支持 EGL_PIXMAP_BIT 的EGL实现，
+即 frame-buffer-surface-config 中的 EGL_SURFACE_TYPE 有包含 EGL_PIXMAP_BIT
+
+------------------------------------
+http://stackoverflow.com/questions/25504188/is-it-possible-to-use-pixmaps-on-android-via-java-api-for-gles
+------------------------------------
+Android has no support for Pixmaps
+
+------------------------------------
+NativePixmapType 定义
+------------------------------------
+E:\android\ndk\platforms\android-21\arch-arm\usr\include\EGL\eglplatform.h
+
+/* EGL 1.2 types, renamed for consistency in EGL 1.3 */
+typedef EGLNativeDisplayType NativeDisplayType;
+typedef EGLNativePixmapType  NativePixmapType;
+typedef EGLNativeWindowType  NativeWindowType;
+
+最终定义为
+typedef struct egl_native_pixmap_t*     EGLNativePixmapType;
+
+根据不同的平台，定义不同的类型
+
+#if defined(_WIN32) || defined(__VC32__) && !defined(__CYGWIN__) && !defined(__SCITECH_SNAP__) /* Win32 and WinCE */
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN 1
+#endif
+#include <windows.h>
+
+typedef HDC     EGLNativeDisplayType;
+typedef HBITMAP EGLNativePixmapType;
+typedef HWND    EGLNativeWindowType;
+
+#elif defined(__WINSCW__) || defined(__SYMBIAN32__)  /* Symbian */
+
+typedef int   EGLNativeDisplayType;
+typedef void *EGLNativeWindowType;
+typedef void *EGLNativePixmapType;
+
+#elif defined(__ANDROID__) || defined(ANDROID)
+
+#include <android/native_window.h>
+
+struct egl_native_pixmap_t;
+
+typedef struct ANativeWindow*           EGLNativeWindowType;
+typedef struct egl_native_pixmap_t*     EGLNativePixmapType;
+typedef void*                           EGLNativeDisplayType;
+
+#elif defined(__unix__)
+
+/* X11 (tentative)  */
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+
+typedef Display *EGLNativeDisplayType;
+typedef Pixmap   EGLNativePixmapType;
+typedef Window   EGLNativeWindowType;
+
+#else
+#error "Platform not recognized"
+#endif

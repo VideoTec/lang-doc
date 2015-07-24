@@ -1,0 +1,44 @@
+17:05 2015/4/27
+
+java 代码：
+ static class xxx {
+   static f1();
+   static f2();
+ }
+
+jni 代码
+        jclass sclass = env->GetObjectClass(sobj);
+        
+        jmethodID string_method = env->GetMethodID(sclass, "f1", "()Ljava/lang/String;");
+
+错误：
+I/DropBoxManager(  639):          bedd15bc  5572df33  /mnt/asec/cn.com.fetion.mvclip-1/lib/libconvert.so (Java_com_sea_1monster_video_jniinterface_VideoConvert_setup_1subtitles_1for_1group_1at_1index+110)
+I/DropBoxManager(  639):     #02  bedd15c0  4006f018
+I/DropBoxManager(  639):          bedd15c4  4be3fd78  /dev/ashmem/dalvik-LinearAlloc (deleted)
+I/DropBoxManager(  639):          bedd15c8  426d7b88  /dev/ashmem/dalvik-heap (deleted)
+
+
+参考：
+http://stackoverflow.com/questions/11764409/why-cant-my-c-code-find-my-java-functions
+BYTE Java_my_eti_commander_RelayAPIModel_00024NativeCalls_InitRelayJava( JNIEnv *env, jobject obj  ) {
+
+    myEnv = (env);
+    bluetoothClass = (*env)->GetObjectClass( env, obj );
+    myObject = obj;
+
+    changeID = (*myEnv)->GetMethodID( myEnv, myObject, "changeitJavaWrapper", "(S)V"  );
+    getID    = (*myEnv)->GetMethodID( myEnv, myObject, "getitJavaWrapper"   , "(S)S"   );
+    putID    = (*myEnv)->GetMethodID( myEnv, myObject, "putitJavaWrapper"   , "(B)V" );
+    flushID  = (*myEnv)->GetMethodID( myEnv, myObject, "flushitJavaWrapper" , "()V"   );
+    delayID  = (*myEnv)->GetMethodID( myEnv, myObject, "delayitJavaWrapper" , "(S)V"  );
+...
+}
+
+InitRelayJava is a static method - 
+that means your second parameter (obj) is a class object pointer, not a this pointer.
+
+So get rid of the following line:
+bluetoothClass = (*env)->GetObjectClass( env, obj );
+
+and instead pass obj to GetMethodID(), like this:
+changeID = (*myEnv)->GetMethodID( myEnv, obj, "changeitJavaWrapper", "(I)Z" ); 

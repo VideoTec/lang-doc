@@ -1,0 +1,27 @@
+DIV滚动至浏览器顶部位置固定
+跃
+是这个问题吧？
+Zola
+总结到位
+跃
+http://blog.sina.com.cn/s/blog_3eba8f1c0101k94s.html
+跃
+你能看懂吗，我看不懂这个代码，$
+跃
+$(window).scrollTop(); 当前屏幕，顶端的位置
+
+跃
+$(elm).offset().top 这个是需要设置的按钮的位置
+跃
+$.event.add(window, "scroll", function() 每滚动都判断这两个值''
+
+http://blog.sina.com.cn/s/blog_3eba8f1c0101k94s.html
+$(function() {
+var elm = $('.nav');
+var startPos = $(elm).offset().top;
+$.event.add(window, "scroll", function() {
+var p = $(window).scrollTop();
+$(elm).css('position',((p) > startPos) ? 'fixed' : 'static');
+$(elm).css('top',((p) > startPos) ? '0px' : '');
+});
+});

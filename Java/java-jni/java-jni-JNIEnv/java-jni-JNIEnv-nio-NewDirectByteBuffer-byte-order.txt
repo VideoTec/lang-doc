@@ -1,0 +1,10 @@
+http://bugs.java.com/bugdatabase/view_bug.do?bug_id=5043362
+
+The JNI function NewDirectByteBuffer always returns a big-endian byte buffer in
+order to be consistent with the java.nio.ByteBuffer API, which also always
+creates new buffers with big-endian order.  Changing this behavior now has the
+potential to break existing, working code, so we won't do that.
+
+We could add a new JNI function, say NewDirectByteBufferOfNativeOrder, but
+since the workaround is so trivial it's not clear that doing so would be
+worthwhile.

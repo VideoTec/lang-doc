@@ -1,0 +1,39 @@
+http://www.codeproject.com/Articles/726777/Part-Windows-Debugging-Techniques-Debugging-Memo
+
+The above mentioned technique is one of the easiest and most effective ways to debug the memory leak. 
+There are lot more different options in CRT Debug APIs, 
+which should be used to understand other ways to debug. 
+This approach is limited to heap memory leaks. 
+This does not cover handle leaks or growth in the number of threads. 
+For this we still have to rely on perfmon and trace the code based on use case and fix them.
+
+http://www.needfulsoftware.com/Documentation/CRTDebugHeap
+http://blog.csdn.net/wuxinyanzi/article/details/18032671
+使用CRT调试内存分配堆来找出未释放的内存空间
+
+Visual Studio提供了一系列的CRT调试API，
+CRT提供了一个调试内存分配堆，可以跟踪和管理内存在什么地方分配，
+
+当你在这个堆上分配内存的时候，
+每一次内存分配调用例如malloc或者new，
+CRT都会额外分配大约36个字节用来保存例如这个内存块分配的文件名、行号、内存块的大小等信息，
+最后CRT将这些内存块使用一个双链表链接起来。
+
+每一次内存释放的时候，
+free或者delete函数就从这个内存块链表里面将要释放的内存块删除，
+因此在需要检查内存泄漏的时候，
+只要遍历这个双链表依次打印出这些内存块就可以发现所有未释放的内存了
+
+// 使用CRT调试API
+#include <crtdbg.h>
+
+// 设置CRT调试API的报表输出模式，将所有的错误、警告还有断言都输出到控制台
+    _CrtSetReportMode( _CRT_WARN, _CRTDBG_MODE_FILE );
+    _CrtSetReportFile( _CRT_WARN, _CRTDBG_FILE_STDOUT );
+    _CrtSetReportMode( _CRT_ERROR, _CRTDBG_MODE_FILE );
+    _CrtSetReportFile( _CRT_ERROR, _CRTDBG_FILE_STDOUT );
+    _CrtSetReportMode( _CRT_ASSERT, _CRTDBG_MODE_FILE );
+    _CrtSetReportFile( _CRT_ASSERT, _CRTDBG_FILE_STDOUT );
+
+// 检查未释放的内存
+_CrtDumpMemoryLeaks();

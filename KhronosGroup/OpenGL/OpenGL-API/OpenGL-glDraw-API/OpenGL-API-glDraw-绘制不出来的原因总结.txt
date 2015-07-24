@@ -1,0 +1,5 @@
+1. 没有调用 eglSwapBuffers
+2. 错误的顶点 -- 这个问题很郁闷
+3. GL_CULL_FACE
+4. 灯光问题
+5. 

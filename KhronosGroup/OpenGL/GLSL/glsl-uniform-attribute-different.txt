@@ -1,0 +1,5 @@
+what is the difference between the uniforms, which are always constants, and the constants attributes. Well, the answer is: Good question! Just like the culling GL_FRONT_AND_BACK, this is one thing which I can't understand why the OpenGL continue using it. There are no real difference on the performance of uniforms and constant attributes, or on the memory size and these kind of impacts. So my big advice here is: let the attributes to dynamic values only! If you have a constant value, use the uniforms! Plus, have two things which make the uniforms the best choice to constant values: Uniforms can be used 128 times in the vertex shader but the attributes just 8 times and the other reason is because attributes can't be arrays.
+
+The function to set dynamic values is glVertexAttribPointer
+annoying[英][əˈnɔɪɪŋ] [美][əˈnɔɪɪŋ] adj.讨厌的；恼人的
+The annoying thing here is the constant value is the default behavior to the shaders, if you want to use dynamic values to attributes you will need to temporarily enable this feature. Dynamic values will be set as per-vertex. You must to use the following functions to enable and disable the dynamic values behavior:

@@ -1,0 +1,30 @@
+17:02 2015/5/19
+最终找到原因是，
+    //java_env.jenv_encoding->CallStaticVoidMethod(java_env.jclazz_encoding, java_env.method_encoding, (jfloat) (frame * coordinator.sum.scale) / (6 * coordinator.sum.value));
+
+方法 method_encoding 不是静态方法，应该使用 CallVoidMethod 方法就对了。
+
+05-19 17:09:07.645: W/dalvikvm(9902): JNI WARNING: jclass arg has wrong type (expected Ljava/lang/Class;, got Lcom/animation/everfrost/engine;)
+05-19 17:09:07.645: W/dalvikvm(9902):              in Lcom/animation/everfrost/engine;.convert:(Ljava/lang/String;IIII)V (CallStaticVoidMethodV)
+05-19 17:09:07.645: I/dalvikvm(9902): "main" prio=5 tid=1 RUNNABLE
+05-19 17:09:07.655: I/dalvikvm(9902):   | group="main" sCount=0 dsCount=0 obj=0x41f33508 self=0x41f1ced0
+05-19 17:09:07.655: I/dalvikvm(9902):   | sysTid=9902 nice=0 sched=0/0 cgrp=apps handle=1074257712
+05-19 17:09:07.655: I/dalvikvm(9902):   | schedstat=( 6253582904 2344871197 12565 ) utm=539 stm=85 core=2
+05-19 17:09:07.655: I/dalvikvm(9902):   at com.animation.everfrost.engine.convert(Native Method)
+05-19 17:09:07.660: I/dalvikvm(9902):   at com.example.videorecorddemo.PlayView.btnConvert(PlayView.java:76)
+05-19 17:09:07.660: I/dalvikvm(9902):   at java.lang.reflect.Method.invokeNative(Native Method)
+05-19 17:09:07.660: I/dalvikvm(9902):   at java.lang.reflect.Method.invoke(Method.java:511)
+05-19 17:09:07.665: I/dalvikvm(9902):   at android.view.View$1.onClick(View.java:3686)
+05-19 17:09:07.670: I/dalvikvm(9902):   at android.view.View.performClick(View.java:4211)
+05-19 17:09:07.670: I/dalvikvm(9902):   at android.view.View$PerformClick.run(View.java:17267)
+05-19 17:09:07.675: I/dalvikvm(9902):   at android.os.Handler.handleCallback(Handler.java:615)
+05-19 17:09:07.675: I/dalvikvm(9902):   at android.os.Handler.dispatchMessage(Handler.java:92)
+05-19 17:09:07.675: I/dalvikvm(9902):   at android.os.Looper.loop(Looper.java:137)
+05-19 17:09:07.675: I/dalvikvm(9902):   at android.app.ActivityThread.main(ActivityThread.java:4898)
+05-19 17:09:07.675: I/dalvikvm(9902):   at java.lang.reflect.Method.invokeNative(Native Method)
+05-19 17:09:07.675: I/dalvikvm(9902):   at java.lang.reflect.Method.invoke(Method.java:511)
+05-19 17:09:07.680: I/dalvikvm(9902):   at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:1013)
+05-19 17:09:07.680: I/dalvikvm(9902):   at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:780)
+05-19 17:09:07.680: I/dalvikvm(9902):   at dalvik.system.NativeStart.main(Native Method)
+05-19 17:09:07.680: E/dalvikvm(9902): VM aborting
+05-19 17:09:07.685: A/libc(9902): Fatal signal 11 (SIGSEGV) at 0xdeadd00d (code=1), thread 9902 (videorecorddemo)

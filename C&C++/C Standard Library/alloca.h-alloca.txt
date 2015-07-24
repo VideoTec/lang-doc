@@ -1,0 +1,27 @@
+#include <alloca.h>
+alloca - allocate memory that is automatically freed
+void *alloca(size_t size);
+
+The alloca() function allocates size bytes of space in the stack frame of the caller.
+This temporary space is automatically freed when the function that called alloca() returns to its caller
+
+D:\fvideo\IOS_Workspace\libCodec\src\MediaSourceImp.mm  代码中 误用了这个函数
+int CMediaSource::open(const std::string &file_name) {
+    NSURL *file_url = [NSURL fileURLWithPath:@(file_name.c_str())];
+    source_ = [[FMediaSource alloc] initWithURL:file_url setBGRA32Pixel:YES];
+    
+    if(!source_) {
+        return -1;
+    }
+    duration_ = source_.durationMiliSecond;
+    width_ = source_.width;
+    height_ = source_.height;
+    
+    if(width_ && height_) {
+        image_buffer_ = (unsigned char *)alloca(width_ * height_ * 4 + 1024); //应该使用 malloc 错用成了 alloca 造成了奇怪的错误
+    }
+    pcm_buffer_ = (unsigned char *)alloca(kAudioBufferLength + 1024);
+    video_frame_index_ = 0;
+    last_video_frame_pts_ = 0;
+    return 0;
+}

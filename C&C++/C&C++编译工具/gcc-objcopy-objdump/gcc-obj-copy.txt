@@ -1,0 +1,17 @@
+objcopy – R .comment – R .note.ABI-tag – R .gnu.version hello hello1
+
+文档
+https://sourceware.org/binutils/docs-2.21/binutils/objcopy.html
+
+解释 http://blog.csdn.net/junhua198310/article/details/1669545
+objcopy把一种目标文件中的内容复制到另一种类型的目标文件中
+
+如何将一个二进制文件，比如图片，词典一类的东西做为.o文件，直接链接到可执行文件内部呢？
+objcopy -I binary -O elf32-i386 -B i386 14_95_13.jpg image.o 
+
+使用objcopy把不用的信息去掉
+objcopy -R .comment -R .note halo halo.min
+objcopy -R .note -R .comment -S -O binary xyb xyb.bin
+-R .note -R .comment 表示移掉 .note 与 .comment 段
+-S 表示移出所有的标志及重定位信息
+-O binary xyb xyb.bin 表示由xyb生成二进制文件xyb.bin

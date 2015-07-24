@@ -1,0 +1,42 @@
+------------------------
+provide an opaque type
+------------------------
+opaque[英][əʊˈpeɪk] [美][oʊˈpeɪk] n.不透明，晦暗
+头文件中声明：
+
+typedef struct Point Point;      到实现文件里定义
+Point * point_new(int x, int y);
+
+------------------------
+struct tag name
+------------------------
+In C, the name s appearing in
+
+struct s
+    {
+    ...
+    };
+
+is a tag. A tag name is not a type name. 
+
+distinct[英][dɪˈstɪŋkt] [美][dɪˈstɪŋkt] adj.明显的，清楚的；卓越的，不寻常的；有区别的；确切的
+conceptually[英][kən'septʃʊəlɪ] [美][kən'septʃʊrlɪ] adv.概念地
+physically[英][ˈfɪzɪkli] [美][ˈfɪzɪkəlɪ] adv.体格上，身体上；物理上；<非正>完全地
+dispense[英][dɪˈspens] [美][dɪˈspɛns] vt.分配，分给；实施，施行；免除，豁免；配（药）
+
+In C, tags are distinct from all other names (for functions, types, variables, and enumeration constants). 
+C compilers maintain tags in a symbol table that's conceptually if not physically separate from the table that holds all other names. 
+Thus, it is possible for a C program to have both a tag and an another name with the same spelling in the same scope. 
+
+The tag name in a struct, union, or enum definition is optional. 可选的
+Many programmers fold the struct definition into the typedef and dispense with the tag altogether, as in:
+
+typedef struct
+    {
+    ...
+    } S;
+
+------------------------
+PLEASE don't typedef structs in C
+------------------------
+http://stackoverflow.com/questions/252780/why-should-we-typedef-a-struct-so-often-in-c

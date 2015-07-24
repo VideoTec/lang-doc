@@ -1,0 +1,47 @@
+Name
+
+glGetShaderiv — return a parameter from a shader object
+
+C Specification
+
+void glGetShaderiv(
+GLuint shader,
+GLenum pname,
+GLint *params     返回值
+);
+ 
+Parameters
+
+shader
+Specifies the shader object to be queried.
+
+pname
+Specifies the object parameter. Accepted symbolic names are GL_SHADER_TYPE, GL_DELETE_STATUS, GL_COMPILE_STATUS, GL_INFO_LOG_LENGTH, GL_SHADER_SOURCE_LENGTH.
+
+params
+Returns the requested object parameter.
+
+Description
+
+glGetShaderiv returns in params the value of a parameter for a specific shader object. The following parameters are defined:
+
+GL_SHADER_TYPE
+params returns GL_VERTEX_SHADER if shader is a vertex shader object, and GL_FRAGMENT_SHADER if shader is a fragment shader object.
+
+GL_DELETE_STATUS
+params returns GL_TRUE if shader is currently flagged for deletion, and GL_FALSE otherwise.
+
+GL_COMPILE_STATUS
+For implementations that support a shader compiler, params returns GL_TRUE if the last compile operation on shader was successful, and GL_FALSE otherwise.
+
+GL_INFO_LOG_LENGTH
+For implementations that support a shader compiler, params returns the number of characters in the information log for shader including the null termination character (i.e., the size of the character buffer required to store the information log). If shader has no information log, a value of 0 is returned.
+
+GL_SHADER_SOURCE_LENGTH
+For implementations that support a shader compiler, params returns the length of the concatenation of the source strings that make up the shader source for the shader, including the null termination character. (i.e., the size of the character buffer required to store the shader source). If no source code exists, 0 is returned.
+
+Notes
+
+Shader compiler support is optional, and thus must be queried before use by calling glGet with argument GL_SHADER_COMPILER. glShaderSource, glCompileShader, glGetShaderPrecisionFormat, and glReleaseShaderCompiler will each generate GL_INVALID_OPERATION on implementations that do not support a shader compiler, as will glGetShaderiv queries of GL_COMPILE_STATUS, GL_INFO_LOG_LENGTH, and GL_SHADER_SOURCE_LENGTH. Such implementations instead offer the glShaderBinary alternative for supplying a pre-compiled shader binary.
+
+If an error is generated, no change is made to the contents of params.

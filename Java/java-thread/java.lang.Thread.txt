@@ -1,0 +1,13 @@
+http://developer.android.com/reference/java/lang/Thread.html
+
+java.lang.Object
+   ↳	java.lang.Thread
+   
+派生类
+ForkJoinWorkerThread, HandlerThread
+
+A Thread is a concurrent unit of execution. It has its own call stack for methods being invoked, their arguments and local variables. Each application has at least one thread running when it is started, the main thread, in the main ThreadGroup. The runtime keeps its own threads in the system thread group.
+
+There are two ways to execute code in a new thread. You can either subclass Thread and overriding its run() method, or construct a new Thread and pass a Runnable to the constructor. In either case, the start() method must be called to actually execute the new Thread.
+
+Each Thread has an integer priority that affect how the thread is scheduled by the OS. A new thread inherits the priority of its parent. A thread's priority can be set using the setPriority(int) method.

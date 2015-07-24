@@ -1,0 +1,70 @@
+/*---------------------------------------------------------------------------*/
+/* Prefetch status interface                                                 */
+/*---------------------------------------------------------------------------*/
+
+#define SL_PREFETCHEVENT_STATUSCHANGE		((SLuint32) 0x00000001)
+#define SL_PREFETCHEVENT_FILLLEVELCHANGE	((SLuint32) 0x00000002)
+
+#define SL_PREFETCHSTATUS_UNDERFLOW		((SLuint32) 0x00000001)
+#define SL_PREFETCHSTATUS_SUFFICIENTDATA	((SLuint32) 0x00000002)
+#define SL_PREFETCHSTATUS_OVERFLOW		((SLuint32) 0x00000003)
+
+
+extern SL_API const SLInterfaceID SL_IID_PREFETCHSTATUS;
+
+
+/** Prefetch status interface methods */
+
+struct SLPrefetchStatusItf_;
+typedef const struct SLPrefetchStatusItf_ * const * SLPrefetchStatusItf;
+
+typedef void (SLAPIENTRY *slPrefetchCallback) (
+	SLPrefetchStatusItf caller,
+	void *pContext,
+	SLuint32 event
+);
+
+struct SLPrefetchStatusItf_ {
+	SLresult (*GetPrefetchStatus) (
+		SLPrefetchStatusItf self,
+		SLuint32 *pStatus
+	);
+	SLresult (*GetFillLevel) (
+		SLPrefetchStatusItf self,
+		SLpermille *pLevel
+	);
+	SLresult (*RegisterCallback) (
+		SLPrefetchStatusItf self,
+		slPrefetchCallback callback,
+		void *pContext
+	);
+	SLresult (*SetCallbackEventsMask) (
+		SLPrefetchStatusItf self,
+		SLuint32 eventFlags
+	);
+	SLresult (*GetCallbackEventsMask) (
+		SLPrefetchStatusItf self,
+		SLuint32 *pEventFlags
+	);
+	SLresult (*SetFillUpdatePeriod) (
+		SLPrefetchStatusItf self,
+		SLpermille period
+	);
+	SLresult (*GetFillUpdatePeriod) (
+		SLPrefetchStatusItf self,
+		SLpermille *pPeriod
+	);
+};
+
+建议调用顺序
+In summary, a recommended code sequence is:
+
+Engine::CreateAudioPlayer
+Object:Realize
+Object::GetInterface for SL_IID_PREFETCHSTATUS
+PrefetchStatus::SetCallbackEventsMask
+PrefetchStatus::SetFillUpdatePeriod
+PrefetchStatus::RegisterCallback
+Object::GetInterface for SL_IID_PLAY
+Play::SetPlayState to SL_PLAYSTATE_PAUSED or SL_PLAYSTATE_PLAYING
+preparation and prefetching occur here; during this time your callback will be called with periodic status updates

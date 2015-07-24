@@ -1,0 +1,18 @@
+<style>
+select:required:invalid {
+  color: gray;            更改 select 编辑框中的文字颜色
+}
+option {
+  color: black;  如果不设置，会继承 select 的 color 的值。
+}
+</style>
+<div>
+<select required>
+  <option value="" selected >Select something...  如果 value="0" 就成valid的了，对
+  <option value="1">One
+  <option value="2">Two
+</select>
+</div>
+
+当选反 value 为空的 option，
+就符合 select:required:invalid 伪选择 事件。

@@ -1,0 +1,42 @@
+/** PCM-type-based data format definition where formatType must be SL_DATAFORMAT_PCM*/
+typedef struct SLDataFormat_PCM_ {
+	SLuint32 		formatType;          SL_DATAFORMAT_PCM
+	SLuint32 		numChannels;
+	SLuint32 		samplesPerSec;
+	SLuint32 		bitsPerSample;
+	SLuint32 		containerSize;
+	SLuint32 		channelMask;
+	SLuint32		endianness;
+} SLDataFormat_PCM;
+
+/** MIME-type-based data format definition where formatType must be SL_DATAFORMAT_MIME*/
+typedef struct SLDataFormat_MIME_ {
+	SLuint32 		formatType;          SL_DATAFORMAT_MIME
+	SLchar * 		mimeType;            NULL The mime type of the data expressed as a string audio/mp4a-latm
+	SLuint32		containerType;       SL_CONTAINERTYPE_UNSPECIFIED SL_CONTAINERTYPE_MP4
+} SLDataFormat_MIME;
+
+typedef struct SLDataSource_ {
+	void *pLocator; 
+	void *pFormat;
+} SLDataSource;
+
+
+typedef struct SLDataSink_ {
+	void *pLocator;
+	void *pFormat;
+} SLDataSink;
+
+pLocator - 指向下列结构体的一种：
+Pointer to the specified data locator structure. 
+This may point to any of the following structures.
+SLDataLocator_Address 
+SLDataLocator_BufferQueue 
+SLDataLocator_IODevice 
+SLDataLocator_MIDIBufferQueue  
+SLDataLocator_URI              附带一个URI expressed as a string
+SLDataLocator_OutputMix        附带一个output_mix_obj对象的指针
+
+pFormat 指向下列结构体的一种：This parameter is ignored if pLocator is SLDataLocator_IODevice.
+SLDataFormat_PCM 
+SLDataFormat_MIME

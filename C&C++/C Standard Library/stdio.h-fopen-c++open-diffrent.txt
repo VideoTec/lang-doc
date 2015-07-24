@@ -1,0 +1,11 @@
+c++ 有个 open 函数
+
+<iostream>库自动定义了一些标准对象:
+
+cout, ostream类的一个对象，可以将数据显示在标准输出设备上. 
+cerr, ostream类的另一个对象，它无缓冲地向标准错误输出设备输出数据. 
+clog, 类似cerr,但是它使用缓冲输出. 
+cin, istream类的一个对象,它用于从标准输入设备读取数据. 
+<fstream>库允许编程人员利用ifstream和ofstream类进行文件输入和输出
+
+open() 创建一个输入流 

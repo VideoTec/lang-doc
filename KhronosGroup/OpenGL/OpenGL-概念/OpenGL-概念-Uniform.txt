@@ -1,0 +1,16 @@
+
+__load_uniform_int GL_INVALID_OPERATION 造成，郁闷的问题
+08-06 12:05:14.017: W/Adreno200-ES20(21675): <__load_uniform_int:318>: GL_INVALID_OPERATION
+
+			mShaderSampler0 = GLES20.glGetUniformLocation(mProgramID, "sampler0");
+			mShaderSampler1 = GLES20.glGetUniformLocation(mProgramID, "sampler1");
+			mShaderSampler2 = GLES20.glGetUniformLocation(mProgramID, "sampler2");
+			GLES20.glUniform1i(mShaderSampler0, 0);
+			GLES20.glUniform1i(mShaderSampler1, 1);
+			GLES20.glUniform1i(mShaderSampler2, 2);
+
+原因：上传Uniform变量，必须在，应用着色器程序后。
+GLES20.glUseProgram(mProgramID);
+
+参考
+https://www.opengl.org/wiki/GLSL_:_common_mistakes

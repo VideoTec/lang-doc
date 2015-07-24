@@ -1,0 +1,75 @@
+一般情况下是不可以用static修饰类的。如果一定要用static修饰类的话，通常static修饰的是匿名内部类
+
+在一个类中创建另外一个类，叫做成员内部类。这个成员内部类可以静态的（利用static关键字修饰），也可以是非静态的。由于静态的内部类在定义、使用的时候会有种种的限制。所以在实际工作中用到的并不多。
+在开发过程中，内部类中使用的最多的还是非静态地成员内部类。不过在特定的情况下，静态内部类也能够发挥其独特的作用
+
+静态内部类在 android 源中的应用
+ViewGroup为中的
+public static class LayoutParams {
+public static class MarginLayoutParams extends ViewGroup.LayoutParams {
+
+参考
+interact[英][ˌɪntərˈækt] [美][ˌɪntɚˈækt] v.相互作用；互相影响；互动
+static nested classes
+http://stackoverflow.com/questions/253492/static-nested-class-in-java-why
+The Sun page you link to has some key differences between the two:
+
+A nested class is a member of its enclosing class. 
+Non-static nested classes (inner classes) have access to other members of the enclosing class, 
+even if they are declared private. 
+Static nested classes do not have access to other members of the enclosing class.
+...
+
+Note: A static nested class interacts with the instance members of its outer class (and other classes) just like any other top-level class. 
+In effect, a static nested class is behaviorally a top-level class that has been nested in another top-level class for packaging convenience.
+There is no need for LinkedList.Entry to be top-level class as it is only used by LinkedList 
+(there are some other interfaces that also have static nested classes named Entry, such as Map.Entry - same concept). 
+And since it does not need access to LinkedList's members, it makes sense for it to be static - it's a much cleaner approach.
+
+start off with[英][stɑ:t ɔf wið] [美][stɑrt ɔf wɪð] 从…开始，用…开始
+
+As Jon Skeet points out, 
+I think it is a better idea if you are using a nested class is to start off with it being static, 
+and then decide if it really needs to be non-static based on your usage.
+
+参考
+simulate[英][ˈsɪmjuleɪt] [美][ˈsɪmjəˌlet] 冒充
+http://stackoverflow.com/questions/7486012/static-classes-in-java  top-level static class
+
+Java has static nested classes but it sounds like you're looking for a top-level static class. 
+Java has no way of making a top-level class static but you can simulate a static class like this:
+
+Declare your class final - Prevents extension of the class since extending a static class makes no sense
+Make the constructor private - Prevents instantiation by client code as it makes no sense to instantiate a static class
+Make all the members and functions of the class static - 
+Since the class cannot be instantiated no instance methods can be called or instance fields accessed
+Note that the compiler will not prevent you from declaring an instance (non-static) member. 
+The issue will only show up if you attempt to call the instance member
+Simple example per suggestions from above:
+
+public class TestMyStaticClass {
+     public static void main(String []args){
+        MyStaticClass.setMyStaticMember(5);
+        System.out.println("Static value: " + MyStaticClass.getMyStaticMember());
+        System.out.println("Value squared: " + MyStaticClass.squareMyStaticMember());
+        // MyStaticClass x = new MyStaticClass(); // results in compile time error
+     }
+}
+
+// A top-level Java class mimicking static class behavior
+public final class MyStaticClass {
+    private MyStaticClass () { // private constructor
+        myStaticMember = 1;
+    }
+    private static int myStaticMember;
+    public static void setMyStaticMember(int val) {
+        myStaticMember = val;
+    }
+    public static int getMyStaticMember() {
+        return myStaticMember;
+    }
+    public static int squareMyStaticMember() {
+        return myStaticMember * myStaticMember;
+    }
+}
+What good are static classes? A good use of a static class is in defining one-off, utility and/or library classes where instantiation would not make sense. A great example is the Math class that contains some mathematical constants such as PI and E and simply provides mathematical calculations. Requiring instantiation in such a case would be unnecessary and confusing. See Java's Math class. Notice that it is final and all of its members are static. If Java allowed top-level classes to be declared static then the Math class would indeed be static.

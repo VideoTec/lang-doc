@@ -1,0 +1,25 @@
+GetDirectBufferAddress
+void* GetDirectBufferAddress(JNIEnv* env, jobject buf);
+
+Fetches and returns the starting address of the memory region referenced by the given direct java.nio.Buffer.
+
+This function allows native code to access the same memory region that is accessible to Java code via the buffer object.
+
+LINKAGE:
+Index 230 in the JNIEnv interface function table.
+
+PARAMETERS:
+env: the JNIEnv interface pointer
+
+buf: a direct java.nio.Buffer object (must not be NULL)
+
+RETURNS:
+Returns the starting address of the memory region referenced by the buffer. 
+
+Returns NULL 
+if the memory region is undefined, 
+if the given object is not a direct java.nio.Buffer, or 
+if JNI access to direct buffers is not supported by this virtual machine.
+
+SINCE:
+JDK/JRE 1.4

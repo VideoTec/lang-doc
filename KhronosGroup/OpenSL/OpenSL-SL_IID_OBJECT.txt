@@ -1,0 +1,65 @@
+/*---------------------------------------------------------------------------*/
+/* Standard Object Interface                                                 */
+/*---------------------------------------------------------------------------*/
+
+extern SL_API const SLInterfaceID SL_IID_OBJECT;
+
+/** Object callback */
+
+
+typedef void (SLAPIENTRY *slObjectCallback) (
+	SLObjectItf caller,
+	const void * pContext,
+	SLuint32 event,
+	SLresult result,
+    SLuint32 param,
+    void *pInterface
+);
+
+
+struct SLObjectItf_ {
+	SLresult (*Realize) (
+		SLObjectItf self,
+		SLboolean async
+	);
+	SLresult (*Resume) (
+		SLObjectItf self,
+		SLboolean async
+	);
+	SLresult (*GetState) (
+		SLObjectItf self,
+		SLuint32 * pState
+	);
+	SLresult (*GetInterface) (
+		SLObjectItf self,
+		const SLInterfaceID iid,
+		void * pInterface
+	);
+	SLresult (*RegisterCallback) (
+		SLObjectItf self,
+		slObjectCallback callback,
+		void * pContext
+	);
+	void (*AbortAsyncOperation) (
+		SLObjectItf self
+	);
+	void (*Destroy) (
+		SLObjectItf self
+	);
+	SLresult (*SetPriority) (
+		SLObjectItf self,
+		SLint32 priority,
+		SLboolean preemptable
+	);
+	SLresult (*GetPriority) (
+		SLObjectItf self,
+		SLint32 *pPriority,
+		SLboolean *pPreemptable
+	);
+	SLresult (*SetLossOfControlInterfaces) (
+		SLObjectItf self,
+		SLint16 numInterfaces,
+		SLInterfaceID * pInterfaceIDs,
+		SLboolean enabled
+	);
+};

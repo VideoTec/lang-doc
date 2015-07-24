@@ -1,0 +1,10 @@
+implicit[英][ɪmˈplɪsɪt] [美][ɪmˈplɪsɪt] adj.不言明[含蓄]的
+
+-Wimplicit-function-declaration
+
+jni/fv_audio_player.c:35:3: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+
+第 35 行代码调用了
+strlen(source)
+
+出现这个警告的原因是：没有包含strlen的头文件 string.h

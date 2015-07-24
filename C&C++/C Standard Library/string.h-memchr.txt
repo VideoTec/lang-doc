@@ -1,0 +1,17 @@
+memchr
+语法:
+
+ 
+
+
+  #include <string.h>
+  void *memchr( const void *buffer, int ch, size_t count );
+ 
+
+功能：函数在buffer指向的数组的count个字符的字符串里查找ch 首次出现的位置。返回一个指针，指向ch 在字符串中首次出现的位置, 如果ch 没有在字符串中找到，返回NULL。例如:
+
+    char names[] = "Alan Bob Chris X Dave";
+    if( memchr(names,'X',strlen(names)) == NULL )
+      printf( "Didn't find an X\n" );
+    else
+      printf( "Found an X\n" );

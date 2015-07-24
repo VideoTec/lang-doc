@@ -1,0 +1,28 @@
+文档
+https://www.khronos.org/opengles/sdk/docs/man/xhtml/glClear.xml
+
+void glClear(
+GLbitfield mask  GL_COLOR_BUFFER_BIT, 
+                 GL_DEPTH_BUFFER_BIT, and 
+                 GL_STENCIL_BUFFER_BIT
+);
+
+clear buffers to preset values
+
+preset values 使用下面三个函数设置
+
+typedef khronos_float_t GLclampf;
+typedef          float         khronos_float_t;
+
+取值范围 0.0 - 1.0
+void glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha);
+void glClearDepthf(GLclampf depth); The initial value is 1
+void glClearStencil(GLint s); The initial value is 0.
+
+preset values 读取方法
+glGet with argument GL_DEPTH_CLEAR_VALUE
+glGet with argument GL_COLOR_CLEAR_VALUE
+glGet with argument GL_STENCIL_CLEAR_VALUE
+
+问题 glClear 执行后, 窗口没有变化,原因是:
+没有调用 eglSwapBuffers

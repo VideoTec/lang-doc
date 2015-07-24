@@ -1,0 +1,26 @@
+链接命令行
+gcc -L/workshop/IPC/trunk/IPClib -lm -o "TestApp"  
+./src/main.o ./src/mainfrm.o ./src/mainfrm1.o  
+/workshop/IPC/trunk/IPClib/libP2P.a 
+/workshop/IPC/trunk/IPClib/libCamcradle.a 
+/workshop/IPC/trunk/IPClib/libNetDevice.a 
+/workshop/IPC/trunk/IPClib/libRecorder.a 
+/workshop/IPC/trunk/IPClib/libRTSPSvr.a 
+/workshop/IPC/trunk/IPClib/libVideosurv.a 
+/workshop/IPC/trunk/IPClib/libNetwork.a 
+/workshop/IPC/trunk/IPClib/libProtocol.a 
+/workshop/IPC/trunk/IPClib/libMinixml.a 
+/workshop/IPC/trunk/IPClib/libbase.a -lpthread -lrt
+
+错误信息
+./src/mainfrm1.o: In function `InitFrame':
+/workshop/IPC/trunk/TestApp/Debug/../src/mainfrm1.c:49: multiple definition of `g_pRetDevInfo'
+./src/mainfrm.o:/workshop/IPC/trunk/TestApp/Debug/../src/mainfrm.c:49: first defined here
+
+错误原因：
+使用 eclipse 编译出错，原因是源文件目录下有两个重复的源文件
+/workshop/IPC/trunk/TestApp/Debug/../src/mainfrm1.c
+和
+/workshop/IPC/trunk/TestApp/Debug/../src/mainfrm.c
+
+问题: eclipse打开时 会自动添加目录下新的源文件？

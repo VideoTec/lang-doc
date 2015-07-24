@@ -1,0 +1,175 @@
+SL Engine 对象，用于创建以下SL对象，每个对象可以实现多个接口
+CreateLEDDevice          SL_IID_LED
+CreateVibraDevice        SL_IID_VIBRA
+CreateAudioPlayer        SL_IID_PLAY SL_IID_VOLUME
+CreateAudioRecorder      SL_IID_RECORD
+CreateMidiPlayer
+CreateListener
+Create3DGroup
+CreateOutputMix          SL_IID_OUTPUTMIX SL_IID_VOLUME
+CreateMetadataExtractor
+CreateExtensionObject
+
+QueryNumSupportedInterfaces
+QuerySupportedInterfaces
+
+QueryNumSupportedExtensions
+QuerySupportedExtension
+
+IsExtensionSupported
+
+/*****************************************************************************/
+/* SL engine constructor                                                     */
+/*****************************************************************************/
+
+#define SL_ENGINEOPTION_THREADSAFE	((SLuint32) 0x00000001)
+#define SL_ENGINEOPTION_LOSSOFCONTROL	((SLuint32) 0x00000002)
+
+typedef struct SLEngineOption_ {
+	SLuint32 feature;
+	SLuint32 data;
+} SLEngineOption;
+
+
+SL_API SLresult SLAPIENTRY slCreateEngine(
+	SLObjectItf             *pEngine,
+	SLuint32                numOptions,
+	const SLEngineOption    *pEngineOptions,
+	SLuint32                numInterfaces,
+	const SLInterfaceID     *pInterfaceIds,
+	const SLboolean         * pInterfaceRequired
+);
+
+SL_API SLresult SLAPIENTRY slQueryNumSupportedEngineInterfaces(
+	SLuint32 * pNumSupportedInterfaces
+);
+
+SL_API SLresult SLAPIENTRY slQuerySupportedEngineInterfaces(
+	SLuint32 index,
+	SLInterfaceID * pInterfaceId
+);
+
+/*---------------------------------------------------------------------------*/
+/* Engine Interface                                                          */
+/* --------------------------------------------------------------------------*/
+
+
+extern SL_API const SLInterfaceID SL_IID_ENGINE;
+
+struct SLEngineItf_;
+typedef const struct SLEngineItf_ * const * SLEngineItf;
+
+
+struct SLEngineItf_ {
+
+	SLresult (*CreateLEDDevice) (
+		SLEngineItf self,
+		SLObjectItf * pDevice,
+		SLuint32 deviceID,
+		SLuint32 numInterfaces,
+		const SLInterfaceID * pInterfaceIds,
+		const SLboolean * pInterfaceRequired
+	);
+	SLresult (*CreateVibraDevice) (
+		SLEngineItf self,
+		SLObjectItf * pDevice,
+		SLuint32 deviceID,
+		SLuint32 numInterfaces,
+		const SLInterfaceID * pInterfaceIds,
+		const SLboolean * pInterfaceRequired
+	);
+	SLresult (*CreateAudioPlayer) (
+		SLEngineItf self,
+		SLObjectItf * pPlayer,
+		SLDataSource *pAudioSrc,
+		SLDataSink *pAudioSnk,
+		SLuint32 numInterfaces,
+		const SLInterfaceID * pInterfaceIds,
+		const SLboolean * pInterfaceRequired
+	);
+	SLresult (*CreateAudioRecorder) (
+		SLEngineItf self,
+		SLObjectItf * pRecorder,
+		SLDataSource *pAudioSrc,
+		SLDataSink *pAudioSnk,
+		SLuint32 numInterfaces,
+		const SLInterfaceID * pInterfaceIds,
+		const SLboolean * pInterfaceRequired
+	);
+	SLresult (*CreateMidiPlayer) (
+		SLEngineItf self,
+		SLObjectItf * pPlayer,
+		SLDataSource *pMIDISrc,
+		SLDataSource *pBankSrc,
+		SLDataSink *pAudioOutput,
+		SLDataSink *pVibra,
+		SLDataSink *pLEDArray,
+		SLuint32 numInterfaces,
+		const SLInterfaceID * pInterfaceIds,
+		const SLboolean * pInterfaceRequired
+	);
+	SLresult (*CreateListener) (
+		SLEngineItf self,
+		SLObjectItf * pListener,
+		SLuint32 numInterfaces,
+		const SLInterfaceID * pInterfaceIds,
+		const SLboolean * pInterfaceRequired
+	);
+	SLresult (*Create3DGroup) (
+		SLEngineItf self,
+		SLObjectItf * pGroup,
+		SLuint32 numInterfaces,
+		const SLInterfaceID * pInterfaceIds,
+		const SLboolean * pInterfaceRequired
+	);
+	SLresult (*CreateOutputMix) (
+		SLEngineItf self,
+		SLObjectItf * pMix,
+		SLuint32 numInterfaces,
+		const SLInterfaceID * pInterfaceIds,
+		const SLboolean * pInterfaceRequired
+	);
+	SLresult (*CreateMetadataExtractor) (
+		SLEngineItf self,
+		SLObjectItf * pMetadataExtractor,
+		SLDataSource * pDataSource,
+		SLuint32 numInterfaces,
+		const SLInterfaceID * pInterfaceIds,
+		const SLboolean * pInterfaceRequired
+	);
+    SLresult (*CreateExtensionObject) (
+        SLEngineItf self,
+        SLObjectItf * pObject,
+        void * pParameters,
+        SLuint32 objectID,
+        SLuint32 numInterfaces,
+        const SLInterfaceID * pInterfaceIds,
+        const SLboolean * pInterfaceRequired
+    );
+	SLresult (*QueryNumSupportedInterfaces) (
+		SLEngineItf self,
+		SLuint32 objectID,
+		SLuint32 * pNumSupportedInterfaces
+	);
+	SLresult (*QuerySupportedInterfaces) (
+		SLEngineItf self,
+		SLuint32 objectID,
+		SLuint32 index,
+		SLInterfaceID * pInterfaceId
+	);
+    SLresult (*QueryNumSupportedExtensions) (
+        SLEngineItf self,
+        SLuint32 * pNumExtensions
+    );
+    SLresult (*QuerySupportedExtension) (
+        SLEngineItf self,
+        SLuint32 index,
+        SLchar * pExtensionName,
+        SLint16 * pNameLength
+    );
+    SLresult (*IsExtensionSupported) (
+        SLEngineItf self,
+        const SLchar * pExtensionName,
+        SLboolean * pSupported
+    );
+};

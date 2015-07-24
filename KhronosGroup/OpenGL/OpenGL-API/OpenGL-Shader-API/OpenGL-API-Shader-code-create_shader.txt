@@ -1,0 +1,43 @@
+GLuint create_shader(GLenum type, const char *source) {
+    GLuint name;
+
+    // Creates a Shader Object and returns its name/id.
+    name = glCreateShader(type);
+
+    // Uploads the source to the Shader Object.
+    glShaderSource(name, 1, &source, NULL);
+
+    // Compiles the Shader Object.
+    glCompileShader(name);
+
+    // If you are running in debug mode, query for info log.
+    // DEBUG is a pre-processing Macro defined to the compiler.
+    // Some languages could not has a similar to it.
+#if defined(DEBUG)
+
+    GLint log_length;
+
+    // Instead use GL_INFO_LOG_LENGTH we could use COMPILE_STATUS.
+    // I prefer to take the info log length, because it'll be 0 if the
+    // shader was successful compiled. If we use COMPILE_STATUS
+    // we will need to take info log length in case of a fail anyway.
+    glGetShaderiv(name, GL_INFO_LOG_LENGTH, &log_length);
+
+    if (log_length > 0)
+    {
+        // Allocates the necessary memory to retrieve the message.
+        GLchar *log = (GLchar *)malloc(log_length);
+
+        // Get the info log message.
+        glGetShaderInfoLog(name, log_length, &log_length, log);
+
+        // Shows the message in console.
+        printf("%s",log);
+
+        // Frees the allocated memory.
+        free(log);
+    }
+#endif
+
+    return name;
+}

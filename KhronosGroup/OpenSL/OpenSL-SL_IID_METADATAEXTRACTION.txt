@@ -1,0 +1,143 @@
+SLMetadataInfo represents a key or a value from a metadata item key/value pair. 
+typedef struct SLMetadataInfo_ {
+    SLuint32     size;
+    SLuint32     encoding;
+    SLchar       langCountry[16];
+    SLuint8      data[1];                 存储KEY字符串，或者，VALUE值，需要转换成对应的变量类型
+} SLMetadataInfo;
+
+The metadata key indices are available immediately after Object::Realize. 
+Yet the associated values are not available until after the first encoded data has been decoded. 
+A good practice [美][ˈpræktɪs] 做法 is to 
+query for the key indices in the main thread after Realize, and to 
+read the PCM format metadata values in the Android simple buffer queue callback handler the first time it is called
+
+/** PCM-type-based data format definition where formatType must be SL_DATAFORMAT_PCM*/
+typedef struct SLDataFormat_PCM_ {
+	SLuint32 		formatType;
+	SLuint32 		numChannels;
+	SLuint32 		samplesPerSec;
+	SLuint32 		bitsPerSample;
+	SLuint32 		containerSize;
+	SLuint32 		channelMask;
+	SLuint32		endianness;
+} SLDataFormat_PCM;
+typedef struct SLAndroidDataFormat_PCM_EX_ {
+    SLuint32         formatType;
+    SLuint32         numChannels;
+    SLuint32         sampleRate;
+    SLuint32         bitsPerSample;
+    SLuint32         containerSize;
+    SLuint32         channelMask;
+    SLuint32         endianness;
+    SLuint32         representation; [美][ˌrɛprɪzɛnˈteʃən] n.表现；陈述；表现…的事物；有代理人            多了一个字段
+} SLAndroidDataFormat_PCM_EX;
+
+下列是 key 字符串值
+/**
+ * Additional metadata keys to be used in SLMetadataExtractionItf:
+ *   the ANDROID_KEY_PCMFORMAT_* keys follow the fields of the SLDataFormat_PCM struct, and as such
+ *   all values corresponding to these keys are of SLuint32 type, and are defined as the fields
+ *   of the same name in SLDataFormat_PCM.  The exception is that sample rate is expressed here
+ *   in Hz units, rather than in milliHz units.
+ */
+#define ANDROID_KEY_PCMFORMAT_NUMCHANNELS   "AndroidPcmFormatNumChannels"
+#define ANDROID_KEY_PCMFORMAT_SAMPLERATE    "AndroidPcmFormatSampleRate"
+#define ANDROID_KEY_PCMFORMAT_BITSPERSAMPLE "AndroidPcmFormatBitsPerSample"
+#define ANDROID_KEY_PCMFORMAT_CONTAINERSIZE "AndroidPcmFormatContainerSize"
+#define ANDROID_KEY_PCMFORMAT_CHANNELMASK   "AndroidPcmFormatChannelMask"
+#define ANDROID_KEY_PCMFORMAT_ENDIANNESS    "AndroidPcmFormatEndianness"
+
+接口定义
+struct SLMetadataExtractionItf_ {
+	SLresult (*GetItemCount) (               获取总共有多个字段, key, 键值对
+		SLMetadataExtractionItf self,
+		SLuint32 *pItemCount
+	);
+	SLresult (*GetKeySize) (                 获取第 index KEY 的大小，字节数
+		SLMetadataExtractionItf self,
+		SLuint32 index,
+		SLuint32 *pKeySize
+	);
+	SLresult (*GetKey) (                     获取第 index KEY 的值 字符串
+		SLMetadataExtractionItf self,
+		SLuint32 index,
+		SLuint32 keySize,
+		SLMetadataInfo *pKey
+	);
+	SLresult (*GetValueSize) (               获取第 index KEY 的 VALUE 大小，字节数
+		SLMetadataExtractionItf self,
+		SLuint32 index,
+		SLuint32 *pValueSize
+	);
+	SLresult (*GetValue) (                   获取第 index KEY 的 VALUE 值
+		SLMetadataExtractionItf self,
+		SLuint32 index,
+		SLuint32 valueSize,
+		SLMetadataInfo *pValue
+	);
+	SLresult (*AddKeyFilter) (
+		SLMetadataExtractionItf self,
+		SLuint32 keySize,
+		const void *pKey,
+		SLuint32 keyEncoding,
+		const SLchar *pValueLangCountry,
+		SLuint32 valueEncoding,
+		SLuint8 filterMask
+	);
+	SLresult (*ClearKeyFilter) (
+		SLMetadataExtractionItf self
+	);
+};
+
+用法示例：
+SLDataFormat_PCM DetermineFormat( btTrack* t )
+{
+	SLuint32 mdCount = 0;
+	SLuint32 i;
+	SLDataFormat_PCM ret = { SL_DATAFORMAT_PCM, 0, 0, 0, 0, 0, 0 };
+	
+	// scan through the metadata items
+	SL_ERRCHECK( ( *( t->IMetaData ) )->GetItemCount( t->IMetaData, &mdCount ) );
+	LOG( "Scanning %d Metadata Items!", mdCount );
+	for( i = 0; i < mdCount; ++i )
+	{
+		SLMetadataInfo *key = NULL;
+		SLMetadataInfo *value = NULL;
+		SLuint32 itemSize = 0;
+		
+		// Get the size of and malloc memory for the metadata item
+		LOG( "Extracting Metadata %d...", i );
+		SL_ERRCHECK( ( *( t->IMetaData ) )->GetKeySize( t->IMetaData, i, &itemSize ) );
+		key = malloc( itemSize );
+		if( key )
+		{
+			// Extract the key into the memory
+			SL_ERRCHECK( ( *( t->IMetaData ) )->GetKey( t->IMetaData, i, itemSize, key ) );
+			SL_ERRCHECK( ( *( t->IMetaData ) )->GetValueSize( t->IMetaData, i, &itemSize ) );
+			value = malloc( itemSize );
+			if( value )
+			{ 
+				// Extract the value into memory
+				SL_ERRCHECK( ( *( t->IMetaData ) )->GetValue( t->IMetaData, i, itemSize, value ) );
+				LOG( "Key: %s, Value: %d", key->data, *( ( SLuint32* )value->data ) );
+				if( strcmp( key->data, ANDROID_KEY_PCMFORMAT_NUMCHANNELS ) == 0 )
+					ret.numChannels = *( ( SLuint32* )value->data );
+				else if( strcmp( key->data, ANDROID_KEY_PCMFORMAT_SAMPLERATE ) == 0 )
+					ret.samplesPerSec = *( ( SLuint32* )value->data ) * 1000;
+				else if( strcmp( key->data, ANDROID_KEY_PCMFORMAT_BITSPERSAMPLE ) == 0 )
+					ret.bitsPerSample = *( ( SLuint32* )value->data );
+				else if( strcmp( key->data, ANDROID_KEY_PCMFORMAT_CONTAINERSIZE ) == 0 )
+					ret.containerSize = *( ( SLuint32* )value->data );
+				else if( strcmp( key->data, ANDROID_KEY_PCMFORMAT_CHANNELMASK ) == 0 )
+					ret.channelMask = *( ( SLuint32* )value->data );
+				else if( strcmp( key->data, ANDROID_KEY_PCMFORMAT_ENDIANNESS ) == 0 )
+					ret.endianness = *( ( SLuint32* )value->data );
+				free(value);
+			}
+			free(key);
+		}
+	}
+	
+	return ret;
+}

@@ -1,0 +1,27 @@
+GetStringUTFChars returns a null-terminated string
+
+Returns a pointer to an array of bytes representing the string in modified UTF-8 encoding. This array is valid until it is released by ReleaseStringUTFChars().
+
+UTF-8 strings are always terminated with the '\0' character, whereas Unicode strings are not. To find out how many bytes are needed to represent a jstring in the UTF-8 format, JNI programmers can either call the ANSI C function strlen on the result of GetStringUTFChars, or call the JNI function GetStringUTFLength on the jstring reference directly.
+(Note that in the above sentence, "Unicode" means "UTF-16", or more accurately "the internal two-byte string representation used by Java, though finding proof of that is left as an exercise for the reader.)
+
+注意：
+JNI WARNING: received null jstring
+解决办法：
+调用GetStringUTFChars( )函数时，
+先判断下传入的jstring类型的变量是不是null，是就不用调用该函数，不是就可以放心的使用
+
+文档：GetStringUTFChars
+const char * GetStringUTFChars(JNIEnv *env, jstring string,jboolean *isCopy);
+Returns a pointer to an array of bytes representing the string in modified UTF-8 encoding. This array is valid until it is released by ReleaseStringUTFChars().
+If isCopy is not NULL, then *isCopy is set to JNI_TRUE if a copy is made; or it is set to JNI_FALSE if no copy is made.
+Returns a pointer to a modified UTF-8 string, or NULL if the operation fails.
+
+文档：ReleaseStringUTFChars
+void ReleaseStringUTFChars(JNIEnv *env, jstring string, const char *utf);
+Informs the VM that the native code no longer needs access to utf. The utf argument is a pointer derived from string using GetStringUTFChars().
+utf: a pointer to a modified UTF-8 string.
+
+示例：
+const char *file_name = env->GetStringUTFChars(jni_str, NULL);
+env->ReleaseStringUTFChars(jni_str, file_name);

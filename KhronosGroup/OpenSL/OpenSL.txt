@@ -1,0 +1,129 @@
+http://vec3.ca/getting-started-with-opensl-on-android/
+
+OpenSl ES 功能：
+Basic audio playback and recording
+3D audio effects including 3D positional audio
+Music experience enhancing effects including bass boost 低音增强 and environmental reverb混响环境
+Interactive music and ringtones using SP-MIDI, Mobile DLS, Mobile XMF 交互式 音乐和铃声
+Buffer Queues
+
+和OpenMAX AL的关系
+OpenMAX AL Comparison with OpenSL ES 
+OpenSL ES (Open Sound Library for Embedded Systems) is another Khronos Group API that also provides an audio library for the same target market as OpenMAX AL. OpenSL ES and OpenMAX AL share the same common architecture and have a few common features:
+
+Audio playback and recording
+Basic MIDI playback
+Metadata extraction
+
+（OpenSL ES）The object model is shared with OpenMAX AL 
+a device manufacturer can choose to implement one or both of the APIs. 
+Together the two APIs give access to a wide range of functionality of the device's multimedia engine.
+
+OpenSL ES 目标是：为应用程序提供 访问高级声音功能 的接口。
+The design goal of OpenSL ES is to give application developers access to advanced audio features 
+such as 3D positional audio and MIDI playback 
+while striving[straɪvɪŋ]力求 for easy application porting between manufacturers and platforms
+
+OpenSL ES 的三个 档次Profile
+OpenSL ES is divided up into three profiles:
+Phone
+Music
+Game
+
+-----------------------------------------------------------
+
+Android 2.3 exposes OpenSL ES 1.0 as part of their NDK
+头文件路径:
+E:\android\ndk\platforms\android-19\arch-arm\usr\include\SLES
+
+OpenSL ES 设计是面向对象的。（提供的是C语言的接口）
+基类：SLObjectItf  -  SLObject Iterface
+
+OpenSLES.h 定义了这个基类： Standard Object Interface
+/* Forward declaration for the object interface */
+struct SLObjectItf_;
+typedef const struct SLObjectItf_ * const * SLObjectItf;
+extern SL_API const SLInterfaceID SL_IID_OBJECT;
+
+每个SL对象，可以实际多个 SLInterface，
+创建时，可指定需要的接口，SLInterfaceID
+使用时，可以获取指定的接口指针，SLInterfaceID
+
+创建 SL_IID_ENGINE 对象：
+基础引擎对象 - 用于创建其它对象。
+extern SL_API const SLInterfaceID SL_IID_ENGINE;
+struct SLEngineItf_;
+typedef const struct SLEngineItf_ * const * SLEngineItf;
+
+示例代码：
+SLObjectItf engine_obj;
+SLEngineItf engine;
+ 
+slCreateEngine( &engine_obj, 0, nullptr, 0, nullptr, nullptr );
+(*engine_obj)->Realize( engine_obj, SL_BOOLEAN_FALSE );
+(*engine_obj)->GetInterface( engine_obj, SL_IID_ENGINE, &engine );
+
+示例代码： 
+//create the main OutputMix, try to get a volume interface for it
+ 
+SLObjectItf output_mix_obj;
+SLVolumeItf output_mix_vol;
+ 
+const SLInterfaceID ids[] = { SL_IID_VOLUME };
+const SLboolean req[] = { SL_BOOLEAN_FALSE };
+ 
+(*engine)->CreateOutputMix( engine, &output_mix_obj, 1, ids, req ); 
+(*output_mix_obj)->Realize( output_mix_obj, SL_BOOLEAN_FALSE ); 
+(*output_mix_obj)->GetInterface( output_mix_obj, SL_IID_VOLUME, &output_mix_vol); //注意，在具体平台上，可能没有实现这个接口。
+
+示例代码：
+SLObjectItf obj;
+(*obj)->Realize( obj, SL_BOOLEAN_FALSE ); realize（实现） 对象
+(*obj)->Destroy( obj ); 释放对象
+
+SLObjectItf 对象的三个状态（解释三个状态之间的转换）
+SL_OBJECT_STATE_UNREALIZED 初始化状态，还没有分配任何资源。刚创建的对象，处于这个状态。
+SL_OBJECT_STATE_SUSPENDED  休眠状态，不能使用，可以用Resume接口，恢复。
+SL_OBJECT_STATE_REALIZED   可用状态，Realize，可从UNREALIZED变成REALIZED
+
+重要概念：
+DataLocator
+DataFormat
+
+DataSource  输入源
+DataSink    输出
+
+Interface / Object / Profile
+
+使用OpenSl ES的关键步骤
+// configure audio source
+// configure audio sink
+// create audio player
+// realize the player
+
+// get the play interface
+// get the buffer queue interface
+// register callback on the buffer queue
+// get the effect send interface
+// get the volume interface
+
+// set the player's state to playing
+(*bqPlayerPlay)->SetPlayState(bqPlayerPlay, SL_PLAYSTATE_PLAYING)
+
+填充PCM数据：buffer queue的回调函数
+// this callback handler is called every time a buffer finishes playing
+void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *context)
+{
+    assert(bq == bqPlayerBufferQueue);
+    assert(NULL == context);
+    // for streaming playback, replace this test by logic to find and fill the next buffer
+    if (--nextCount > 0 && NULL != nextBuffer && 0 != nextSize) {
+        SLresult result;
+        // enqueue another buffer
+        result = (*bqPlayerBufferQueue)->Enqueue(bqPlayerBufferQueue, nextBuffer, nextSize);
+        // the most likely other result is SL_RESULT_BUFFER_INSUFFICIENT,
+        // which for this code example would indicate a programming error
+        assert(SL_RESULT_SUCCESS == result);
+        (void)result;
+    }
+}

@@ -1,0 +1,66 @@
+文档
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglCreatePixmapSurface.xhtml
+
+Name
+eglCreatePixmapSurface — create a new EGL pixmap surface
+C Specification
+EGLSurface eglCreatePixmapSurface(	EGLDisplay display,
+ 	EGLConfig config,
+ 	NativePixmapType native_pixmap,
+ 	EGLint const * attrib_list);
+ 
+Parameters
+display
+Specifies the EGL display connection.
+
+config
+Specifies the EGL frame buffer configuration that defines the frame buffer resource available to the surface.
+
+native_pixmap
+Specifies the native pixmap.
+
+attrib_list
+Specifies pixmap surface attributes. May be NULL or empty (first attribute is EGL_NONE).
+
+Description
+eglCreatePixmapSurface creates an off-screen EGL pixmap surface and returns its handle. If eglCreatePixmapSurface fails to create a pixmap surface, EGL_NO_SURFACE is returned.
+
+Surface attributes are specified as a list of attribute-value pairs, terminated with EGL_NONE. Accepted attributes are:
+
+EGL_VG_ALPHA_FORMAT
+Specifies how alpha values are interpreted by OpenVG when rendering to the surface. If its value is EGL_VG_ALPHA_FORMAT_NONPRE, then alpha values are not premultipled. If its value is EGL_VG_ALPHA_FORMAT_PRE, then alpha values are premultiplied. The default value of EGL_VG_ALPHA_FORMAT is EGL_VG_ALPHA_FORMAT_NONPRE.
+
+EGL_VG_COLORSPACE
+Specifies the color space used by OpenVG when rendering to the surface. If its value is EGL_VG_COLORSPACE_sRGB, then a non-linear, perceptually uniform color space is assumed, with a corresponding VGImageFormat of form VG_s*. If its value is EGL_VG_COLORSPACE_LINEAR, then a linear color space is assumed, with a corresponding VGImageFormat of form VG_l*. The default value of EGL_VG_COLORSPACE is EGL_VG_COLORSPACE_sRGB.
+
+Any EGL rendering context that was created with respect to config can be used to render into the surface. Use eglMakeCurrent to attach an EGL rendering context to the surface.
+
+Use eglQuerySurface to retrieve the ID of config.
+
+Use eglDestroySurface to destroy the surface.
+
+Notes
+The EGL_MATCH_NATIVE_PIXMAP attribute of eglChooseConfig can be used to select a frame buffer configuration matching a specified native pixmap.
+
+Attributes EGL_VG_ALPHA_FORMAT and EGL_VG_COLORSPACE, and the corresponding attribute values, are supported only if the EGL version is 1.2 or greater.
+
+The EGL_VG_ALPHA_FORMAT and EGL_VG_COLORSPACE attributes are used only by OpenVG. EGL itself, and other client APIs such as OpenGL and OpenGL ES , do not distinguish multiple colorspace models. Refer to section 11.2 of the OpenVG 1.0 specification for more information. The native window system's use and interpretation of alpha values is outside the scope of EGL, although the preferred behavior is for the window system to ignore the value of EGL_VG_ALPHA_FORMAT.
+
+Errors
+EGL_NO_SURFACE is returned if creation of the context fails.
+
+EGL_BAD_DISPLAY is generated if display is not an EGL display connection.
+
+EGL_NOT_INITIALIZED is generated if display has not been initialized.
+
+EGL_BAD_CONFIG is generated if config is not an EGL config.
+
+EGL_BAD_NATIVE_PIXMAP may be generated if native_pixmap is not a valid native pixmap.
+
+EGL_BAD_ATTRIBUTE is generated if attrib_list contains an invalid pixmap attribute or if an attribute value is not recognized or out of range.
+
+EGL_BAD_ALLOC is generated if there are not enough resources to allocate the new surface.
+
+EGL_BAD_MATCH is generated if the attributes of native_pixmap do not correspond to config or if config does not support rendering to pixmaps (the EGL_SURFACE_TYPE attribute does not contain EGL_PIXMAP_BIT).
+
+EGL_BAD_MATCH is generated if config does not support the specified OpenVG alpha format attribute (the value of EGL_VG_ALPHA_FORMAT is EGL_VG_ALPHA_FORMAT_PRE and the EGL_VG_ALPHA_FORMAT_PRE_BIT is not set in the EGL_SURFACE_TYPE attribute of config) or colorspace attribute (the value of EGL_VG_COLORSPACE is EGL_VG_COLORSPACE_LINEAR and the EGL_VG_COLORSPACE_LINEAR_IT is not set in the EGL_SURFACE_TYPE attribute of config).

@@ -1,0 +1,28 @@
+arithmetic[英][əˈrɪθmətɪk] [美][əˈrɪθmɪtɪk] n.算术，计算；算法
+factor[英][ˈfæktə(r)] [美][ˈfæktɚ] n.因素；<数>因子；代理人
+
+specify pixel arithmetic 
+
+void glBlendFunc(
+GLenum sfactor,  Specifies how the red, green, blue, and alpha source blending factors are computed
+GLenum dfactor   Specifies how the red, green, blue, and alpha destination blending factors are computed.
+);
+
+The following symbolic constants are accepted:
+ 
+GL_ZERO, 
+GL_ONE, 
+GL_SRC_COLOR, 
+GL_ONE_MINUS_SRC_COLOR, 
+GL_DST_COLOR, 
+GL_ONE_MINUS_DST_COLOR, 
+GL_SRC_ALPHA, 
+GL_ONE_MINUS_SRC_ALPHA, 
+GL_DST_ALPHA, 
+GL_ONE_MINUS_DST_ALPHA. 
+GL_CONSTANT_COLOR, 
+GL_ONE_MINUS_CONSTANT_COLOR, 
+GL_CONSTANT_ALPHA, and 
+GL_ONE_MINUS_CONSTANT_ALPHA. T
+
+he initial value is GL_ZERO.

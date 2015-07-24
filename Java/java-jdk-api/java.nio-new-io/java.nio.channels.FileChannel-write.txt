@@ -1,0 +1,21 @@
+public abstract int write (ByteBuffer src)
+
+Writes bytes from the given byte buffer to this file channel.
+
+The bytes are written starting at the current file position, 
+and after some number of bytes are written (up to the remaining number of bytes in the buffer) 
+the file position is increased by the number of bytes actually written.
+
+Parameters
+src	the byte buffer containing the bytes to be written.
+
+Returns
+the number of bytes actually written.
+
+Throws
+NonWritableChannelException	if the channel was not opened for writing.
+ClosedChannelException	if the channel was already closed.
+AsynchronousCloseException	if another thread closes the channel during the write.
+ClosedByInterruptException	if another thread interrupts the calling thread while this operation is in progress. 
+                            The interrupt state of the calling thread is set and the channel is closed.
+IOException	if another I/O error occurs, details are in the message.

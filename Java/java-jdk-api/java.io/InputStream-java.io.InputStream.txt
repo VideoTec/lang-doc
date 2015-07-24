@@ -1,0 +1,65 @@
+http://developer.android.com/reference/java/io/InputStream.html
+
+java.lang.Object
+   ↳	java.io.InputStream
+
+直接派生类：
+AssetManager.AssetInputStream, 
+BackupDataInputStream, 
+ByteArrayInputStream, -------------------- 内存
+ChunkedInputStream, 
+ContentLengthInputStream, 
+EofSensorInputStream, 
+FileInputStream,  ------------------------ 文件系统
+FilterInputStream, 
+IdentityInputStream, 
+ObjectInputStream, 
+PipedInputStream, 
+SequenceInputStream, 
+StringBufferInputStream
+
+间接派生类：
+AssetFileDescriptor.AutoCloseInputStream, 
+Base64InputStream, 
+BufferedInputStream, 
+CheckedInputStream, 
+CipherInputStream, 
+DataInputStream, 
+DeflaterInputStream, 
+DigestInputStream, 
+GZIPInputStream, 
+InflaterInputStream, 
+JarInputStream, 
+LineNumberInputStream, 
+ParcelFileDescriptor.AutoCloseInputStream, 
+PushbackInputStream, 
+ZipInputStream
+
+------------------------------------------------
+说明
+------------------------------------------------
+
+bulk[英][bʌlk] [美][bʌlk]
+n.（大）体积；大块，大量；大多数，大部分；主体
+
+adapt[英][əˈdæpt] [美][əˈdæpt]
+vi.适应于，适应不同情况（或环境）(to)
+vt.改编，改写；改变…以适合(for)
+
+A readable source of bytes.
+
+Most clients will use input streams that read data from 
+the file system (FileInputStream), 
+the network (getInputStream()/getInputStream()), or 
+from an in-memory byte array (ByteArrayInputStream).
+
+Use InputStreamReader to adapt a byte stream like this one into a character stream.
+
+Most clients should wrap their input stream with BufferedInputStream. Callers that do only bulk reads may omit buffering.
+
+Some implementations support marking a position in the input stream and resetting back to this position later. Implementations that don't return false from markSupported() and throw an IOException when reset() is called.
+
+Subclassing InputStream
+
+Subclasses that decorate another input stream should consider subclassing FilterInputStream, which delegates all calls to the source input stream.
+All input stream subclasses should override both read() and read(byte[],int,int). The three argument overload is necessary for bulk access to the data. This is much more efficient than byte-by-byte access.

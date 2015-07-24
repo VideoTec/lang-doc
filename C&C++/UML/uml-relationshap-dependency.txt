@@ -1,0 +1,7 @@
+依赖关系
+
+虚线 加 箭头指向 需要服务者
+
+A dependency is a weaker form of relationship showing 
+a relationship between a client and a supplier 
+where the client does not have semantic[英][sɪˈmæntɪk] [美][sɪˈmæntɪk]主义上的 knowledge of the supplier

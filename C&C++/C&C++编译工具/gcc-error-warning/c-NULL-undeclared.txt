@@ -1,0 +1,11 @@
+error: 'NULL' undeclared (first use in this function)
+
+NULL is not a built-in constant in the C or C++ languages. In fact, in C++ it's more or less obsolete, just use a plain literal 0 instead, the compiler will do the right thing depending on the context.
+
+In newer C++ (C++11 and higher), use nullptr (as pointed out in a comment, thanks).
+
+Otherwise, add
+
+#include <stddef.h>
+
+to get the NULL definition.

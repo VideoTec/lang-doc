@@ -1,0 +1,27 @@
+JNIEXPORT void JNICALL Java_com_sea_1monster_video_jniinterface_VideoConvert_register(JNIEnv *env, jclass clazz)
+{
+    register_attach_thread_callback(&attach_thread_callback_jvm);
+    register_detach_thread_callback(&detach_thread_callback_jvm);
+    
+    register_cropping_process_callback(&cropping_process_callback_jvm);
+    register_encoding_process_callback(&encoding_process_callback_jvm);
+    
+    register_audio_render_callback(&audio_render_callback);
+    
+    /*
+     */
+    
+    java_env.method_state_update = env->GetStaticMethodID(clazz, "updateVideoPlayState", "(I)V");
+    
+    java_env.method_cropping_progress = env->GetMethodID(clazz, "updateVideoCropProcessingPercent", "(F)V");
+    java_env.method_encoding_progress = env->GetMethodID(clazz, "updateVideoProcessingPercent", "(F)V");
+}
+
+官方文档：
+jmethodID GetMethodID(JNIEnv *env, jclass clazz, const char *name, const char *sig);
+
+Returns the method ID for an instance (nonstatic) method of a class or interface. The method may be defined in one of the clazz’s superclasses and inherited by clazz. The method is determined by its name and signature.
+
+GetMethodID() causes an uninitialized class to be initialized.
+
+To obtain the method ID of a constructor, supply <init> as the method name and void (V) as the return type.

@@ -1,0 +1,7 @@
+generalization [美][ˌdʒenrələˈzeɪʃn] n.一般化；普通化；归纳；概论
+
+泛化
+虚线 加 空三角 指向父类
+
+Generalization  can  be  defined  as  a  relationship  which  connects  a  specialized  element  with  a generalized element. 
+It basically describes inheritance relationship in the world of objects

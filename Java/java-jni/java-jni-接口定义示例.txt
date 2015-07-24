@@ -1,0 +1,38 @@
+extern "C" {
+    CMediaTarget *media_target_init(JNIEnv *env, jobject clazz, jstring fname);
+    void media_target_finalize(JNIEnv *env, jobject clazz, CMediaTarget *src);
+    int media_target_open(JNIEnv *env, jobject clazz, CMediaTarget *src);
+    void media_target_push_frame(JNIEnv *env, jobject clazz, CMediaTarget *src, jobject bmp);
+    void media_target_push_audio(JNIEnv *env, jobject clazz, CMediaTarget *src, jbyteArray audio, jint nb_sample);
+    void media_target_close(JNIEnv *env, jobject clazz, CMediaTarget *src);
+    int media_target_width(JNIEnv *env, jobject clazz, CMediaTarget *src);
+    int media_target_height(JNIEnv *env, jobject clazz, CMediaTarget *src);
+    void set_media_target_width(JNIEnv *env, jobject clazz, CMediaTarget *src, int w);
+    void set_media_target_height(JNIEnv *env, jobject clazz, CMediaTarget *src, int h);
+}
+
+JNINativeMethod g_media_target_native_methods[] = {
+    {"initMediaTarget", "(Ljava/lang/String;)I", (void *)media_target_init},
+    {"finalizeMediaTarget", "(I)V", (void *)media_target_finalize},
+    {"openMediaTarget", "(I)I", (void *)media_target_open},
+    {"pushFrameToMediaTarget", "(ILandroid/graphics/Bitmap;)V", (void *)media_target_push_frame},
+    {"pushAudioToMediaTarget", "(I[BI)V", (void *)media_target_push_audio},
+    {"closeMediaTarget", "(I)V", (void *)media_target_close},
+    {"widthOfMediaTarget", "(I)I", (void *)media_target_width},
+    {"heightOfMediaTarget", "(I)I", (void *)media_target_height},
+    {"setWidthOfMediaTarget", "(II)V", (void *)set_media_target_width},
+    {"setHeightOfMediaTarget", "(II)V", (void *)set_media_target_height}
+};
+
+extern "C" {    
+    CMediaTarget *media_target_init(JNIEnv *env, jobject clazz, jstring fname) {
+        const char *utf8 = env->GetStringUTFChars(fname, NULL);
+        if(!utf8) LOGE("JNI: media_target_init: GetStringUTFChars failed");
+
+        LOGI("JNI: media_target_init: %s", utf8);
+        CMediaTarget *obj = new CMediaTarget(utf8);
+
+        env->ReleaseStringUTFChars(fname, utf8);
+        return obj;
+    }
+}

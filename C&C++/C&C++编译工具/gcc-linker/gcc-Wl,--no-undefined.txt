@@ -1,0 +1,22 @@
+-Wl,--no-undefined
+error: undefined reference to '__android_log_print'
+
+链接 可执行文件 或者 动态库时, 使用这个选项的作用
+any undefined reference encountered when trying to build a shared library will result in an "undefined symbol" error. 
+This is a great help to catch bugs in your source code.
+
+如果不加这个选项
+However, if for some reason you need to disable this check
+Note that the corresponding shared library may fail to load at runtime.
+
+加上这个选项后，必须注意链接命令行里，所有，目标文件和库文件的依赖关系，及先后顺序
+如果出现相互依赖的情况，可以用重复某个文件方法来解决如：
+-lxx -la -lxx
+
+-Wl,--no-undefined
+目标文件 不用考虑目标文件的依赖顺序
+库文件   必须考虑依赖顺序，且必须在目标文件后出现
+
+15:23 2015/7/11 android.mk
+它是编译选项
+LOCAL_CFLAGS := -D__STDC_CONSTANT_MACROS -Wl,--no-undefined

@@ -1,0 +1,33 @@
+%d 有符号32位整数
+%lld 有符号64位整数
+%llx有符号64位16进制整数
+%u 无符号32位整数
+
+%l	long int	unsigned long int
+
+%d is for signed int, Use %u specifically for unsigned int. 
+Long and int types are same. %ld is for long int.
+
+
+http://stackoverflow.com/questions/900230/difference-between-long-and-int-data-types
+
+On many (but not all) C and C++ implementations, a long is larger than an int. Today's most popular desktop platforms, such as Windows and Linux, run primarily on 32 bit processors and most compilers for these platforms use a 32 bit int which has the same size and representation as a long.
+
+http://stackoverflow.com/questions/271076/what-is-the-difference-between-an-int-and-a-long-in-c
+ OS           arch           size
+Windows       IA-32        4 bytes
+Windows       Intel 64     4 bytes
+Windows       IA-64        4 bytes
+Linux         IA-32        4 bytes
+Linux         Intel 64     8 bytes
+Linux         IA-64        8 bytes
+Mac OS X      IA-32        4 bytes
+Mac OS X      Intel 64     8 bytes
+
+http://bbs.csdn.net/topics/360012625
+long与int：标准只规定long不小于int的长度，int不小于short的长度
+
+16 位的计算机中，int 一般也是 16 位的
+16 位的计算机中，long 是 32 位的
+
+long long 是64位的

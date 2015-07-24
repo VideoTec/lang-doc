@@ -1,0 +1,18 @@
+10:03 2015/5/28
+
+char *vertex_shader_string = " \
+      attribute vec4 a_vertex; \
+      void main() { \
+        gl_Position = a_vertex; \
+      }";
+
+jni/opengl_es.cpp:149:30: warning: deprecated conversion from string constant to
+ 'char*' [-Wwrite-strings]
+ char *vertex_shader_string = " \
+                              ^
+jni/opengl_es.cpp:154:33: warning: deprecated conversion from string constant to
+ 'char*' [-Wwrite-strings]
+  char *fragment_shader_string = " \
+  
+  比较和理的办法是把参数类型修改为  
+  const char *vertex_shader_string

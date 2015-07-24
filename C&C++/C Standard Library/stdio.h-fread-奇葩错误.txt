@@ -1,0 +1,6 @@
+能发现下面的错误吗？
+
+ unsigned char *buffer[1024] = {0};
+ fread(buffer, 1, 4, f);
+
+防止这种错误，应该开启那种警告呢？

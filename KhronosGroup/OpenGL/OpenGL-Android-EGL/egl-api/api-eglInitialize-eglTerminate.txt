@@ -1,0 +1,25 @@
+文档
+https://www.khronos.org/registry/egl/sdk/docs/man/html/eglInitialize.xhtml
+eglInitialize — initialize an EGL display connection
+
+display
+Specifies the EGL display connection to initialize.
+
+major
+Returns the major version number of the EGL implementation. May be NULL.
+
+minor[英][ˈmaɪnə(r)] [美][ˈmaɪnɚ] adj.较小的，少数的，小…；未成年的
+minor
+Returns the minor version number of the EGL implementation. May be NULL.
+
+注意：
+1. 重复调用不会出错
+2. major and minor do not return values if they are specified as NULL.
+3. Use eglTerminate to release resources associated with an EGL display connection
+   EGLAPI EGLBoolean EGLAPIENTRY eglTerminate(EGLDisplay dpy);
+
+头文件
+E:\android\ndk\platforms\android-19\arch-arm\usr\include\EGL\egl.h
+#include <EGL/egl.h>
+
+EGLAPI EGLBoolean EGLAPIENTRY eglInitialize(EGLDisplay dpy, EGLint *major, EGLint *minor);

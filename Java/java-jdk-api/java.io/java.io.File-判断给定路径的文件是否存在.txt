@@ -1,0 +1,20 @@
+			// 有同名文件需要删除，file生成不区分文件名大小写，所以必须删除
+			File outFile = new File(newFileName);
+			if (outFile != null && outFile.exists())
+				outFile.delete();
+
+http://stackoverflow.com/questions/1816673/how-do-i-check-if-a-file-exists-in-java
+Using java.io.File
+
+File f = new File(filePathString);
+if(f.exists() && !f.isDirectory()) { /* do something */ }
+
+注意：
+Note that exists() will return true for directories, too! 
+
+I would recommend using isFile() instead of exists(). 
+Most of the time you are looking to check if the path points to a file not only that it exists. 
+Remember that exists() will return true if your path points to a directory.
+
+new File("path/to/file.txt").isFile();
+new File("C:/").exists() will return true but will not allow you to open and read from it as a file.

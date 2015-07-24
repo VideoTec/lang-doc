@@ -1,0 +1,31 @@
+10:21 2015/4/27
+
+原因： 把变量名，写错了，并且写成了，库函数名
+
+源码：
+
+void mtarget_free_frame(AVFrame **frame) {
+  if(!frame)
+    return;
+  
+  if(*frame == 0)
+    return;
+  
+  if((*frame)->data[0])
+    av_free((*frame)->data[0]);
+  
+  free(*free)  这行错了，
+  *free = 0;   这行错了，
+}
+
+mtarget_file.c(266) : error C2296: “*”: 非法，左操作数包含“void”类型
+mtarget_file.c(266) : error C2297: “*”: 非法，右操作数包含“void (__cdecl *)(void *)”类型
+
+
+修改成
+free(*frame) 这里少加个分号
+*frame = 0;
+
+又出下面的错误：
+mtarget_file.c(266) : error C2296: “*”: 非法，左操作数包含“void”类型
+mtarget_file.c(266) : error C2297: “*”: 非法，右操作数包含“AVFrame **”类型

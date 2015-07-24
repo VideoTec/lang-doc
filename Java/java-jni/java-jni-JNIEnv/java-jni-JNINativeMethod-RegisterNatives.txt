@@ -1,0 +1,24 @@
+RegisterNatives
+jint RegisterNatives(JNIEnv *env, jclass clazz, const JNINativeMethod *methods, jint nMethods);
+
+Registers native methods with the class specified by the clazz argument. The methods parameter specifies an array of JNINativeMethod structures that contain the names, signatures, and function pointers of the native methods. The name and signature fields of the JNINativeMethod structure are pointers to modified UTF-8 strings. The nMethods parameter specifies the number of native methods in the array. The JNINativeMethod structure is defined as follows:
+
+typedef struct { 
+
+    char *name; 
+
+    char *signature; 
+
+    void *fnPtr; 
+
+} JNINativeMethod; 
+
+The function pointers nominally must have the following signature:
+
+ReturnType (*fnPtr)(JNIEnv *env, jobject objectOrClass, ...); 
+
+RETURNS:
+Returns “0” on success; returns a negative value on failure.
+
+c++ 中示例：
+env->RegisterNatives(fopensl_jni_cls, g_fopensl_jnicls_methods, g_methods_num);

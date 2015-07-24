@@ -1,0 +1,7 @@
+可以查看，运行时库及JDK的版本号
+
+java -version
+
+java version "1.8.0_05"
+Java(TM) SE Runtime Environment (build 1.8.0_05-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 25.5-b02, mixed mode)

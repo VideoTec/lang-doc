@@ -1,0 +1,30 @@
+EGLContext eglCreateContext(
+EGLDisplay display,
+EGLConfig config,           从 EGLConfig* 数组里选择一个
+                            Specifies the EGL frame buffer configuration 
+                            that defines the frame buffer resource 
+                            available to the rendering context
+EGLContext share_context,   EGL_NO_CONTEXT indicates that 
+                            no sharing is to take place
+EGLint const * attrib_list  Only the attribute EGL_CONTEXT_CLIENT_VERSION may be specified
+                            以 EGL_NONE 结束
+                            EGL_CONTEXT_CLIENT_VERSION, 1 生成 OpenGL ES 1.x context (默认值)
+                            EGL_CONTEXT_CLIENT_VERSION, 2 生成 OpenGL ES 2.x context
+                            EGL_CONTEXT_CLIENT_VERSION is only valid when the current rendering API is EGL_OPENGL_ES_API.
+);
+
+If share_context is not EGL_NO_CONTEXT, 
+then all shareable data in the context 
+(as defined by the client API specification for the current rendering API) 
+are shared by context share_context, 
+all other contexts share_context already shares with, and the newly created context. 
+An arbitrary number of rendering contexts can share data. 
+However, all rendering contexts that share data must themselves exist in the same address space. 
+Two rendering contexts share an address space if both are owned by a single process.
+
+http://stackoverflow.com/questions/11726650/egl-can-context-be-shared-between-threads
+多线程共享 EGLContext
+first create a context in in one thread
+m_Context = eglCreateContext(m_Display, m_Config, 0, contextAttrs)
+Then in the other thread you create a shared context like this
+eglCreateContext(m_Display, m_Config, m_Context, contextAttrs);

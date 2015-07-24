@@ -1,0 +1,9 @@
+https://www.khronos.org/opengles/sdk/docs/man/xhtml/glGet.xml
+
+    GLint mainframebuffer = 0;
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &mainframebuffer);
+
+GL_FRAMEBUFFER_BINDING
+params returns a single value, the name of the currently bound framebuffer. 
+The initial value is 0, indicating the default framebuffer. 
+See glBindFramebuffer.

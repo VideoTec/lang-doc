@@ -1,0 +1,8 @@
+fwrite 
+语法: 
+  #include <stdio.h>
+  int fwrite( const void *buffer, size_t size, size_t count, FILE *stream );
+
+ 
+
+fwrite()函数从数组buffer(缓冲区)中, 写count个大小为size(大小)的对象到stream(流)指定的流. 返回值是已写的对象的数量

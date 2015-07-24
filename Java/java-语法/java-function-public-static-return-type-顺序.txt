@@ -1,0 +1,26 @@
+http://stackoverflow.com/questions/16731240/what-is-a-reasonable-order-of-java-modifiers-abstract-final-public-static-e
+What is a reasonable order of Java modifiers (abstract, final, public, static, etc.)?
+
+It is reasonable to use the order according to the Java Virtual Machine Specification, Table 4.4
+
+public
+protected
+private
+abstract
+static
+final
+transient
+volatile
+synchronized
+native
+strictfp
+
+第一点：类型 和 变量名 相连
+第二点：访问权限在最前面 （public, private, protected）
+第三点：static final
+
+举例
+private static final String TAG = SendBroadcastActivity.class
+public synchronized void updateAttentionMarker(Marker marker,int status){
+public synchronized static RelationshipManager getInstance() {
+public static synchronized DownLoadUtil getInstance() {

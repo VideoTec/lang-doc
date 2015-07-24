@@ -1,0 +1,7 @@
+calloc() zero-initializes the buffer, while malloc() leaves the memory uninitialized.
+
+Zeroing out the memory may take a little time, so you probably want to use malloc() if that performance is an issue.
+If initializing the memory is more important, use calloc().
+For example, calloc() might save you a call to memset()
+
+http://stackoverflow.com/questions/1538420/difference-between-malloc-and-calloc
