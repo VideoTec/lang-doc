@@ -1,0 +1,21 @@
+Inner Classes
+
+As with instance methods and variables, an inner class is associated with an instance of its enclosing class and has direct access to that object's methods and fields. Also, because an inner class is associated with an instance, it cannot define any static members itself.
+
+Objects that are instances of an inner class exist within an instance of the outer class. Consider the following classes:
+
+class OuterClass {
+    ...
+    class InnerClass {
+        ...
+    }
+}
+
+An instance of InnerClass can exist only within an instance of OuterClass and has direct access to the methods and fields of its enclosing instance.
+
+To instantiate an inner class, you must first instantiate the outer class. Then, create the inner object within the outer object with this syntax:
+
+特别注意，这里调用构造的方式：
+OuterClass.InnerClass innerObject = outerObject.new InnerClass();
+
+There are two special kinds of inner classes: local classes and anonymous classes.

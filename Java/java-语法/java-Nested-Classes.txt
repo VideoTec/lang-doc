@@ -16,3 +16,12 @@ class OuterClass {
         ...
     }
 }
+
+区别：
+public class Parameters { --------------------------- inner classes
+Camera.Parameters param = camera.getParameters();
+
+static Nested Class 不依赖于外部类的实例对象
+public static class CameraInfo { -------------------- static nested classes
+Camera.CameraInfo cameraInfo = new CameraInfo();
+Camera.getCameraInfo(i, cameraInfo);
