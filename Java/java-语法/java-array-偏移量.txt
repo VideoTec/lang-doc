@@ -1,0 +1,17 @@
+    @Override
+    public void onProcessPCMBuffer(byte[] pcmBuffer) {
+        Log.v(TAG, "pcm reader process buffer");
+        for(int i = 0; i < 4; i++) {
+            mWriter.PushPCM(pcmBuffer + 1024 * i, 1024);  这样写是不对的
+        }
+    }
+	byte[] int 不能使用操作符 +
+	
+	In java a reference to an array is just like a reference to any other object, and a reference to an array is not simply a pointer to its first element.
+	
+	正确的做法：
+	public static byte[] get(byte[] array, int offset, int length) {
+    byte[] result = new byte[length];
+    System.arraycopy(array, offset, result, 0, length);
+    return result;
+  }
