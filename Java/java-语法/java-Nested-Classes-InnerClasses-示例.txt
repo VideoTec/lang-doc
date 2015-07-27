@@ -19,6 +19,33 @@ To instantiate an inner class, you must first instantiate the outer class. Then,
 
 OuterClass.InnerClass innerObject = outerObject.new InnerClass();
 
+------------------------------------------------------------------
+public class Parameters -------- Camera 的 inner-class
+------------------------------------------------------------------
+    public Parameters getParameters() {
+        Parameters p = new Parameters();
+        String s = native_getParameters();
+        p.unflatten(s);
+        return p;
+    }
+    
+    public void setParameters(Parameters params) {
+        // If using preview allocations, don't allow preview size changes
+        if (mUsingPreviewAllocation) {
+            Size newPreviewSize = params.getPreviewSize();
+            Size currentPreviewSize = getParameters().getPreviewSize();
+            if (newPreviewSize.width != currentPreviewSize.width ||
+                    newPreviewSize.height != currentPreviewSize.height) {
+                throw new IllegalStateException("Cannot change preview size" +
+                        " while a preview allocation is configured.");
+            }
+        }
+
+        native_setParameters(params.flatten());
+    }
+
+------------------------------------------------------------------
 参考
+------------------------------------------------------------------
 http://stackoverflow.com/questions/12661041/how-to-initialize-a-new-camera-size-in-android
 E:\doc\Computer software\Android平台\android-sdk\android.hardware\android.hardware.Camera\android.hardware.Camera.Size.txt

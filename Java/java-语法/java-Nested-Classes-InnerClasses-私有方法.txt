@@ -1,0 +1,1 @@
+outer class 可以访问 innner-class 的私有方法
