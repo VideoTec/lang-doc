@@ -1,0 +1,19 @@
+http://developer.android.com/reference/java/util/UUID.html
+
+UUID
+
+extends Object
+implements Serializable Comparable<UUID>
+
+java.lang.Object
+   ↳	java.util.UUID
+
+Class Overview
+UUID is an immutable representation of a 128-bit universally unique identifier (UUID).
+
+There are multiple, variant layouts of UUIDs, but this class is based upon variant 2 of RFC 4122, the Leach-Salz variant. This class can be used to model alternate variants, but most of the methods will be unsupported in those cases; see each method for details.
+
+用法示例：
+			final BesideHelpItemData item = new BesideHelpItemData();
+			item.msgkey = String.format("%s%s", Account.getUserId(),
+					UUID.randomUUID());

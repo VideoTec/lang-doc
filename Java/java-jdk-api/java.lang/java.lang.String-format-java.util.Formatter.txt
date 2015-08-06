@@ -1,0 +1,11 @@
+http://developer.android.com/reference/java/util/Formatter.html
+
+解释：
+<string name="beside_help_reply_somebody_format">回复%1$s: </string>
+
+it's possible to reorder arguments so that 
+they appear in a different order in the output than the order in which they were supplied. 
+For example, "%4$s" formats the fourth argument (4$) as a string (s).
+ 
+It's also possible to reuse an argument with <. 
+For example, format("%o %<d %<x", 64) results in "100 64 40"

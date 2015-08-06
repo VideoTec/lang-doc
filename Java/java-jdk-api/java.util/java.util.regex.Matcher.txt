@@ -1,0 +1,31 @@
+http://developer.android.com/reference/java/util/regex/Matcher.html
+
+implements MatchResult
+
+java.lang.Object
+   ↳	java.util.regex.Matcher
+   
+Class Overview
+The result of applying a Pattern to a given input. See Pattern for example uses.
+
+ // Direct use of Pattern:
+ Pattern p = Pattern.compile("Hello, (\\S+)");
+ Matcher m = p.matcher(inputString);
+ while (m.find()) { // Find each match in turn; String can't do this.
+     String name = m.group(1); // Access a submatch group; String can't do this.
+ }
+
+--------------------------------------
+http://developer.android.com/reference/java/util/regex/MatchResult.html
+--------------------------------------
+
+public interface
+MatchResult
+
+java.util.regex.MatchResult
+
+Known Indirect Subclasses
+Matcher
+
+Class Overview
+Holds the results of a successful match of a Pattern against a given string. Typically this is an instance of Matcher, but since that's a mutable class it's also possible to freeze its current state using toMatchResult().

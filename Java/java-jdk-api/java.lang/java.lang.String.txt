@@ -1,0 +1,34 @@
+http://developer.android.com/reference/java/lang/String.html
+
+public final class
+String
+
+extends Object
+
+implements Serializable Comparable<String> CharSequence
+
+java.lang.Object
+   ↳	java.lang.String
+   
+An immutable sequence of UTF-16 chars. See Character for details about the relationship between char and Unicode code points.
+
+This class is implemented using a char[]. The length of the array may exceed the length of the string. For example, the string "Hello" may be backed by the array ['H', 'e', 'l', 'l', 'o', 'W'. 'o', 'r', 'l', 'd'] with offset 0 and length 5.
+
+Multiple strings can share the same char[] because strings are immutable. 
+
+The substring(int) method always returns a string that shares the backing array of its source string. 
+
+Generally this is an optimization: fewer char[]s need to be allocated, and less copying is necessary. 
+
+But this can also lead to unwanted heap retention. 
+Taking a short substring of long string means that the long shared char[] won't be garbage until both strings are garbage. 
+
+This typically happens when parsing small substrings out of a large input. 
+To avoid this where necessary, call new String(longString.subString(...)). 
+The string copy constructor always ensures that the backing array is no larger than necessary.
+
+See Also
+
+StringBuffer
+StringBuilder
+Charset
