@@ -1,0 +1,16 @@
+---------------------------------------------------------------
+http://blog.csdn.net/sunshine1314/article/details/2309655
+---------------------------------------------------------------
+JAVA编写的程序则唯一采用big endian方式来存储数据
+网络协议也都是采用big endian的方式来传输数据的
+
+---------------------------------------------------------------
+pcm 16bit 字节序
+---------------------------------------------------------------
+AVSampleFormat 字节序的定义：is always in native-endian order
+
+allcodec.c 里对应的解码器
+    REGISTER_ENCDEC (PCM_S16BE,         pcm_s16be);
+    REGISTER_ENCDEC (PCM_S16LE,         pcm_s16le);
+
+mp3,aac等编码中，采用的应该是，小端字节序

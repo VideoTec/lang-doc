@@ -1,0 +1,4 @@
+ideographic[英][ˌɪdɪəʊ'græfɪk] [美][ˌɪdɪr'græfɪk] adj.表意的
+Ideographic Space 表意空格
+在表意文字中，U+3000（IDEOGRAPHIC SPACE）
+即表意空格则由于其宽度与其他表意文字等宽而被广泛使用

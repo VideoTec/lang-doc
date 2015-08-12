@@ -1,0 +1,10 @@
+carriage return       \r
+line feed             \n
+
+carriage[英][ˈkærɪdʒ] [美][ˈkærɪdʒ] n.运输，输送；（旧时载客的）四轮马车；〈英〉火车客车车厢；运费
+carriage return[英][ˈkæridʒ riˈtə:n] [美][ˈkærɪdʒ rɪˈtɚn] 回车
+
+line feed[英][lain fi:d] [美][laɪn fid] 换行，移行，线路馈电
+
+delimiter[英][dɪ'lɪmɪtə] [美][dɪ'lɪmɪtə] n.定界符，分隔符
+text file line delimiter 

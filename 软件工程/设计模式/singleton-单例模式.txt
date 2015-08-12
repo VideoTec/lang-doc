@@ -1,0 +1,20 @@
+singleton[英][ˈsɪŋgltən] [美][ˈsɪŋɡəltən]
+一个，独身，单独
+
+1. 构造函数是私有的
+
+2. 静态成员 + 静态方法
+提供一个创建对象的静态方法 + 保存这个对象的静态引用（或者指针）成员
+
+如：
+http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/5.1.0_r1/com/android/camera/CameraHolder.java?av=f
+
+// Use a singleton.
+private static CameraHolder sHolder;
+public static synchronized CameraHolder instance() {
+    if (sHolder == null) {
+        sHolder = new CameraHolder();
+    }
+    return sHolder;
+}
+

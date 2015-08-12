@@ -1,0 +1,7 @@
+
+CRC(Class-Responsibility-Collaborator)卡建模是一种简单且有效的面向对象的分析技术。
+在一个OO(面向对象)开发项目中，包括用户、系统分析员和开发者在建模和设计过程中经常应用CRC卡建模，使整个开发团队普遍的理解形成一致。
+它由三部分组成：
+1. 类(Class)
+2. 职责(Responsibility)
+3. 协作(Collaborator)

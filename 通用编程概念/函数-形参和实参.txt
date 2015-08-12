@@ -1,0 +1,4 @@
+http://docs.linuxtone.org/ebooks/C&CPP/c/ch03s03.html
+
+形参相当于函数中定义的变量，
+调用函数传递参数的过程相当于定义形参变量并且用实参的值来初始化
