@@ -1,0 +1,6 @@
+http://java.sun.com/j2se/1.5.0/docs/guide/language/varargs.html
+
+public static String format(String pattern, Object... arguments);
+
+http://my.oschina.net/victorHomePage/blog/67731
+java使用省略号代替多参数

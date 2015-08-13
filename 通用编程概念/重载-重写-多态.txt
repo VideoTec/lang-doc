@@ -1,0 +1,3 @@
+override->重写(=覆盖)、
+overload->重载、
+polymorphism -> 多态
