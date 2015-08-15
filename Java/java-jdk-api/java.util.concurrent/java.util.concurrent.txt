@@ -1,0 +1,28 @@
+http://developer.android.com/intl/zh-cn/reference/java/util/concurrent/package-summary.html
+
+concurrent[英][kənˈkʌrənt] [美][kənˈkɜ:rənt]
+adj.〈正式〉同时发生的；同时完成的；同时存在的
+n.[数] 共点；同时发生的事件
+
+tedious[英][ˈti:diəs] [美][ˈtidiəs]
+adj.单调沉闷的；冗长乏味的；令人生厌的
+
+Utility classes commonly useful in concurrent programming. 
+This package includes a few small standardized extensible frameworks,
+ 
+as well as some classes that provide 
+1）useful functionality and are otherwise 
+2）tedious or difficult to implement.
+
+Here are brief descriptions of the main components.
+ 
+See also the 
+java.util.concurrent.locks and 
+java.util.concurrent.atomic packages.
+
+1）Executors
+2）Timing
+3）Synchronizers
+4）Queues
+5）Concurrent Collections
+6）Memory Consistency Properties

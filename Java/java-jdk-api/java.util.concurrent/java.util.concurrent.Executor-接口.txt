@@ -1,0 +1,23 @@
+http://developer.android.com/intl/zh-cn/reference/java/util/concurrent/Executor.html
+
+executor[英][ɪgˈzekjətə(r)] [美][ɪɡˈzɛkjətɚ, ˈɛksɪˌkjutɚ]
+n.执行者；实行者；遗嘱执行人
+
+ava.util.concurrent.Executor
+
+Known Indirect Subclasses
+
+AbstractExecutorService, 
+ExecutorService, 
+ForkJoinPool, 
+ScheduledExecutorService, 
+ScheduledThreadPoolExecutor, 
+ThreadPoolExecutor
+
+Class Overview
+
+An object that executes submitted Runnable tasks. 
+
+This interface provides a way of decoupling task submission from the mechanics of how each task will be run, including details of thread use, scheduling, etc. 
+
+An Executor is normally used instead of explicitly creating threads. 
