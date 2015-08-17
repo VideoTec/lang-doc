@@ -1,0 +1,15 @@
+获取 类 名称
+
+    /**
+     * Returns the name of the class represented by this {@code Class}. For a
+     * description of the format which is used, see the class definition of
+     * {@link Class}.
+     *
+     * @return the name of the class represented by this {@code Class}.
+     */
+    public String getName() {
+        String result = name;
+        return (result == null) ? (name = getNameNative()) : result;
+    }
+
+    private native String getNameNative();
