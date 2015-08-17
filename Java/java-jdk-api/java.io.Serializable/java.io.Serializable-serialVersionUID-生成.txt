@@ -1,0 +1,7 @@
+http://myrl1023.iteye.com/blog/1048166
+
+先让这个类继承Serializable接口 
+使用Eclipse/Myeclipse IDE时，会出现左侧的黄色叹号提示，点击这个黄色叹号 
+选择第一项，添加已生成的串行版本标识
+
+“Adds a generated serial version ID to the selected type.”

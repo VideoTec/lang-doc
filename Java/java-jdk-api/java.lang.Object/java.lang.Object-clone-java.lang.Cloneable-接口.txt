@@ -1,0 +1,34 @@
+package java.lang;
+
+
+/**
+ * This (empty) interface must be implemented by all classes that wish to
+ * support cloning. The implementation of {@code clone()} in {@code Object}
+ * checks if the object being cloned implements this interface and throws
+ * {@code CloneNotSupportedException} if it does not.
+ *
+ * @see Object#clone
+ * @see CloneNotSupportedException
+ */
+public interface Cloneable {
+    // Marker interface
+}
+
+----------------------------
+¾ÙÀı£º
+----------------------------
+
+public class HelpItemData extends BaseData implements Cloneable {
+	private static final long serialVersionUID = 1L;
+	@Override
+	public HelpItemData clone() throws CloneNotSupportedException {
+		HelpItemData data = null;
+		try {
+			data = (HelpItemData) super.clone();
+		} catch (Exception e) {
+			LogSystem.e(TAG, "--->> clone() failed. e.message=" + e.getMessage());
+			e.printStackTrace();
+		}
+		return data;
+	}
+}
