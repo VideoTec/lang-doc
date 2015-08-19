@@ -1,3 +1,17 @@
+ http://blog.csdn.net/wgw335363240/article/details/6359614
+ 为什么java 中定义的常量值不采用enmu 枚举类型，而采用public final static 类型来定义呢？
+ Java 中的枚举类型采用关键字enum 来定义，从jdk1.5才有的新类型，所有的枚举类型都是继承自Enum 类型
+ 枚举类型的简单定义方法如下，我们似乎没办法定义每个枚举类型的值
+ 枚举类型增加构造方法，然后每个枚举类型的值通过构造函数传入对应的参数
+ 
+ http://www.cnblogs.com/frankliiu-java/archive/2010/12/07/1898721.html
+ enum很像特殊的class，实际上enum声明定义的类型就是一个类。 而这些类都是类库中Enum类的子类
+ Color枚举类就是class，而且是一个不可以被继承的final类。其枚举值(RED,BLUE...)都是Color类型的类静态常量
+ 这些枚举值都是public static final的，也就是我们经常所定义的常量方式，因此枚举类中的枚举值最好全部大写
+ 
+ http://www.ibm.com/developerworks/cn/java/j-lo-enum/
+ 如何避免错误使用 Enum
+ 
  用类定义：常量定义 缺点是什么？
  Public static class RainbowColor { 
     
@@ -13,3 +27,32 @@
  
  用枚举来定义
  enum RainbowColor { RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE }
+ 
+ 例子二：
+ public enum MoreOperation {
+		ATTENTION, BLACK, SHIELD;
+		void updateStatus(BroadCastNews b, int status) {
+			if (this == ATTENTION) {
+				b.isattention = status;
+				if (status == 1 && b.isshield == 1) // 关注,并且之前已经不看ta的动态
+					b.isshield = 0;
+			} else if (this == BLACK) {
+				b.isblack = status;
+			} else if (this == SHIELD) {
+				b.isshield = status;
+				if (status == 1 && b.isattention == 1) // 不看ta的动态,并且之前已经关注ta
+					b.isattention = 0;
+			}
+		}
+
+		String getActions() {
+			if (this == ATTENTION) {
+				return PersonAttrs.ACTION_ATTENTION;
+			} else if (this == BLACK) {
+				return PersonAttrs.ACTION_BLACK;
+			} else if (this == SHIELD) {
+				return PersonAttrs.ACTION_SHIELD;
+			}
+			return null;
+		}
+	}

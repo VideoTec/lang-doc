@@ -2,6 +2,8 @@ http://developer.android.com/reference/java/util/Map.html
 
 public interface java.util.Map<K, V>
 
+HashMap<Integer, MyObject> myMap = new HashMap<Integer, MyObject>();
+
 -----------------------------------
 派生类：
 -----------------------------------

@@ -1,0 +1,18 @@
+http://stackoverflow.com/questions/1789679/get-string-value-from-hashmap-depending-on-key-name
+
+Object value = map.get(myCode);
+
+http://stackoverflow.com/questions/16246821/how-to-get-values-keys-from-hashmap
+
+To get all the values from a map:
+
+for (Tab tab : hash.values()) {
+    // do something with tab
+}
+To get all the entries from a map:
+
+for ( Map.Entry<String, Tab> entry : hash.entrySet()) {
+    String key = entry.getKey();
+    Tab tab = entry.getValue();
+    // do something with key and/or tab
+}

@@ -1,0 +1,8 @@
+http://stackoverflow.com/questions/16148575/hashmap-and-int-as-key
+
+Use Integer instead.
+
+HashMap<Integer, MyObject> myMap = new HashMap<Integer, MyObject>();
+Java will automatically autobox your int primitive values to Integer objects.
+
+Read more about autoboxing from Oracle Java documentations.

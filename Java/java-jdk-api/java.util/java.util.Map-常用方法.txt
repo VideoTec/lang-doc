@@ -1,0 +1,29 @@
+private Map<Integer, Activity> mCacheSearchActivities 
+    = new LinkedHashMap<Integer, Activity>();
+
+    public void addSearchActivity(Activity activity) {
+        if (mCacheSearchActivities != null) {
+            int hashCode = activity.hashCode();
+            if (!mCacheSearchActivities.isEmpty() && mCacheSearchActivities.containsKey(hashCode)) {
+                mCacheSearchActivities.remove(hashCode);
+            }
+            mCacheSearchActivities.put(hashCode, activity);
+        }
+    }
+    
+    ±éÀú MAP mCacheSearchActivities.entrySet()
+        public void finishSearchActivity() {
+        if (mCacheSearchActivities != null && !mCacheSearchActivities.isEmpty()) {
+            List<Activity> activitys = new ArrayList<Activity>();
+
+            for (Entry<Integer, Activity> entry : mCacheSearchActivities.entrySet()) {
+                activitys.add(entry.getValue());
+            }
+            for (Activity activity : activitys) {
+                mCacheSearchActivities.remove(activity.hashCode());
+                if (!activity.isFinishing()) {
+                    activity.finish();
+                }
+            }
+        }
+    }
