@@ -1,0 +1,42 @@
+	/**创建地标任务*/
+	class CreateLandmarkTask extends AsyncTask<String, Void, Object> {
+
+		@Override
+		protected Object doInBackground(String... params) {
+			MarkerResponse signRespone;
+			try {
+				//ckey,name,longt,lat
+				signRespone = new GetData(mContext).createLandMark(params[0], params[1], params[2]);
+				if(signRespone != null){
+					if(signRespone.status == 200){
+						Marker marker = signRespone.data[0];
+						//updateAttentionMarker(marker,1); 
+						return marker; -------------------------- 第一种可能 是一个 MarkerResponse 对象
+					} else {
+						return signRespone; --------------------- 第二种可能 是一个 String 对象
+					}
+				}
+				return new Exception("null");
+			} catch (IOException e) {
+				e.printStackTrace();
+				return e; --------------------------------------- 第三种可能 是一个 Exception 对象
+			}
+		}
+
+		@Override
+		protected void onPostExecute(Object result) {
+			super.onPostExecute(result);
+			isCreating = false;
+			DataMonitor.getInstance().notifyDataListener(DataMonitor.DATA_TYPE_NOTIFY_CREATE_LANDMARK_RESULT, DataMonitor.ACT_TYPE_OPERATION_ADD, result);
+		}
+		
+	}
+    
+    下面是处理， result （ data ） 代码片段
+                if (data instanceof Exception) {
+                    ToastUtils.showLongToast(this, R.string.create_landmark_failed);
+                } else if (data instanceof MarkerResponse) { // 可能已经存在了
+                    MarkerResponse markerResponse = (MarkerResponse) data;
+                    ToastUtils.showLongToast(this, markerResponse.errormsg);
+                } else {
+                ｝

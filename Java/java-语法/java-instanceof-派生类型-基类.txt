@@ -1,0 +1,10 @@
+http://ju.outofmemory.cn/entry/59709
+
+instanceof 或者 Class.isInstance 方法判断了是否继承体系的实例，即除了判断本身，还判断是否超类或接口的实例
+
+http://blog.csdn.net/wuha0/article/details/8697398
+判断类与实例的关系有以下三种方式 
+
+1、instanceOf 关键字，用来判断对象是否是类的实例 
+2、isAssignableFrom，用来判断类型间是否存在派生关系 
+3、isInstance方法，用来判断对象是否属于某个类型的实例 
