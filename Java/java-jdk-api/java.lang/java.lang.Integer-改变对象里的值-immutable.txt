@@ -1,0 +1,12 @@
+http://stackoverflow.com/questions/3815173/increment-a-integers-int-value
+
+immutable[英][ɪˈmju:təbl] [美][ɪˈmjutəbəl]
+
+Integer objects are immutable, so you cannot modify the value once they have been created. You will need to create a new Integer and replace the existing one.
+
+playerID = new Integer(playerID.intValue() + 1);
+
+--------------------------------
+jni 接口中有办法修改其中的值
+--------------------------------
+env->SetIntField(nb_sample, id_value, nb);

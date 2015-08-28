@@ -1,0 +1,20 @@
+public static Boolean valueOf (String string)
+
+Added in API level 1
+Parses the specified string as a boolean value.
+
+Parameters
+string	the string representation of a boolean value.
+Returns
+Boolean.TRUE if string is equal to "true" using case insensitive comparison, Boolean.FALSE otherwise.
+See Also
+parseBoolean(String)
+
+源码：
+    public static Boolean valueOf(String string) {
+        return parseBoolean(string) ? Boolean.TRUE : Boolean.FALSE;
+    }
+    
+    public static boolean parseBoolean(String s) {
+        return "true".equalsIgnoreCase(s);
+    }

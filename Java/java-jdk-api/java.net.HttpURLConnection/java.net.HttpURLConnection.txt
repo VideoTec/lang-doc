@@ -1,0 +1,53 @@
+http://developer.android.com/intl/zh-cn/reference/java/net/HttpURLConnection.html
+
+public abstract class
+HttpURLConnection
+
+extends URLConnection
+
+java.lang.Object
+   ↳	java.net.URLConnection
+ 	   ↳	java.net.HttpURLConnection
+
+Known Direct Subclasses
+HttpsURLConnection
+
+pattern[英][ˈpætn] [美][ˈpætərn]
+n.模式；花样，样品；图案；榜样，典范
+
+Class Overview
+
+An URLConnection for HTTP (RFC 2616) used to send and receive data over the web. Data may be of any type and length. This class may be used to send and receive streaming data whose length is not known in advance.
+
+Uses of this class follow a pattern:
+
+第一步：URL.openConnection()
+Obtain a new HttpURLConnection by calling URL.openConnection() and 
+casting the result to HttpURLConnection.
+
+第二步：
+Prepare the request. 
+The primary property of a request is its URI. 
+Request headers may also include metadata 
+such as credentials, preferred content types, and session cookies.
+
+第三步：可选的
+Optionally upload a request body. Instances must be configured with setDoOutput(true) if they include a request body. Transmit data by writing to the stream returned by getOutputStream().
+
+第四步： getInputStream()
+Read the response. Response headers typically include metadata such as the response body's content type and length, modified dates and session cookies. The response body may be read from the stream returned by getInputStream(). If the response has no body, that method returns an empty stream.
+
+第五步：disconnect()
+Disconnect. Once the response body has been read, the HttpURLConnection should be closed by calling disconnect(). Disconnecting releases the resources held by a connection so they may be closed or reused.
+
+For example, to retrieve the webpage at http://www.android.com/:
+
+   URL url = new URL("http://www.android.com/");
+   HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+   try {
+     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+     readStream(in);
+    finally {
+     urlConnection.disconnect();
+   }
+ }

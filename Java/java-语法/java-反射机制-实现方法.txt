@@ -1,0 +1,25 @@
+http://baike.baidu.com/view/1865203.htm
+
+Java有个 Object 类，是所有Java 类的继承根源
+Object.getClass()返回一个 Class 对象
+
+Class 类十分特殊。
+它和一般类一样继承自Object，
+其实体用以
+1）表达Java程序运行时的classes和interfaces，也用来
+2）表达enum、array、
+3）表达primitive Java types（boolean, byte, char, short, int, long, float, double）以及关键词
+4）表达void。
+当一个class被加载，或当加载器（class loader）的defineClass()被JVM调用，
+JVM 便自动产生一个Class 对象
+
+Class 是 Reflection 故事起源。
+针对任何您想探勘的类，唯有先为它产生一个Class 对象，
+接下来才能经由后者唤起为数十多个的Reflection APIs
+
+----------------------------------
+java.lang.Class 和 java.lang.reflect 用于实现反射
+----------------------------------
+运行时构建编译时未知类的对象时，
+必须能够获得，这个类的，Class，对象。
+

@@ -1,0 +1,8 @@
+public URLConnection openConnection ()
+
+Added in API level 1
+Returns a new connection to the resource referred to by this URL.
+
+Throws
+IOException
+if an error occurs while opening the connection.

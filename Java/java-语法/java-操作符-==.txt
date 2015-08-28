@@ -1,0 +1,10 @@
+http://www.blogjava.net/xjacker/articles/330349.html
+1    Integer a = Integer.valueOf("var1");
+2    Integer b = Integer.valueOf("var2");
+3    if(a == b){
+4            
+5    }
+
+当然，关于==和equals()的区别这个是每个java程序员都清楚。
+
+表示的是，引用的是否是同一个对象。

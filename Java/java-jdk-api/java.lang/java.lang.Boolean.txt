@@ -1,0 +1,14 @@
+http://developer.android.com/intl/zh-cn/reference/java/lang/Boolean.html
+
+public final class
+Boolean
+
+extends Object
+implements Serializable Comparable<Boolean>
+
+java.lang.Object
+   ↳	java.lang.Boolean
+   
+Class Overview
+
+The wrapper for the primitive type boolean.

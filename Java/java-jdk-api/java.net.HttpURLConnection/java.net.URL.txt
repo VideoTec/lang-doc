@@ -1,0 +1,15 @@
+http://developer.android.com/intl/zh-cn/reference/java/net/URL.html
+
+public final class
+URL
+
+extends Object
+implements Serializable
+
+java.lang.Object
+   ↳	java.net.URL
+   
+Class Overview
+
+A Uniform Resource Locator that identifies 
+the location of an Internet resource as specified by RFC 1738.

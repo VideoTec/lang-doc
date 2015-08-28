@@ -1,0 +1,39 @@
+http://developer.android.com/intl/zh-cn/reference/java/net/URLConnection.html
+
+public abstract class
+URLConnection
+
+extends Object
+
+java.lang.Object
+   ↳	java.net.URLConnection
+   
+Known Direct Subclasses
+
+HttpURLConnection, JarURLConnection
+
+Known Indirect Subclasses
+HttpsURLConnection
+
+Class Overview
+
+A connection to a URL for reading or writing. 
+For HTTP connections, 
+see HttpURLConnection for documentation of HTTP-specific features.
+
+For example, to retrieve ftp://mirror.csclub.uwaterloo.ca/index.html:
+
+   URL url = new URL("ftp://mirror.csclub.uwaterloo.ca/index.html");
+   URLConnection urlConnection = url.openConnection();
+   InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+   try {
+     readStream(in);
+    finally {
+     in.close();
+   }
+ }
+ 
+URLConnection must be configured before it has connected to the remote resource. 
+Instances of URLConnection are not reusable: 
+you must use a different instance for each connection to a resource
+每个链接实例，不能重复使用，一次性

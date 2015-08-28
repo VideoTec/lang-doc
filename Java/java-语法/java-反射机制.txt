@@ -1,0 +1,31 @@
+http://baike.baidu.com/view/1865203.htm
+
+reflection[英][rɪˈflekʃn] [美][rɪˈflɛkʃən]
+n.反映；（关于某课题的）思考；（声、光、热等的）反射；映像
+
+introspection[英][ˌɪntrəˈspekʃn] [美][ˌɪntrəˈspɛkʃən]
+n.反省，内省；自我反省
+
+“程序运行时，允许改变程序结构或变量类型，这种语言称为动态语言”
+从这个观点看，
+Perl，Python，Ruby是动态语言，
+C++，Java，C#不是动态语言。
+
+但是JAVA有着一个非常突出的动态相关机制： Reflection
+用在Java身上指的是我们可以于运行时加载、探知、使用编译期间完全未知的classes。
+换句话说，Java程序可以加载一个运行时才得知名称的class，
+获悉其完整构造（但不包括methods定义），
+并生成其对象实体、或对其fields设值、或唤起其methods
+
+Java反射机制主要提供了以下功能： 
+在运行时判断任意一个对象所属的类；
+在运行时构造任意一个类的对象； - 这是什么意思？那个对象不是运行时构造的？费话？还是另有所指？
+在运行时判断任意一个类所具有的成员变量和方法；
+在运行时调用任意一个对象的方法； - 这句又是什么意思？
+生成动态代理
+
+可以于运行时加载、探知、使用编译期间完全未知的classes
+这种“看透class”的能力
+（the ability of the program to examine itself）
+被称为 introspection （内省、内观、反省）。
+Reflection和introspection是常被并提的两个术语

@@ -1,0 +1,17 @@
+public int compareTo (Integer object)
+
+Added in API level 1
+Compares this object to the specified integer object to determine their relative order.
+
+Parameters
+object	the integer object to compare this object to.
+
+Returns
+
+negative[英][ˈnegətɪv] [美][ˈnɛɡətɪv] [数]负的；
+positive[英][ˈpɒzətɪv] [美][ˈpɑ:zətɪv] [数]正的；
+
+a negative value if the value of this integer is less than the value of object; 0 if the value of this integer and the value of object are equal; a positive value if the value of this integer is greater than the value of object.
+
+See Also
+Comparable

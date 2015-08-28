@@ -1,0 +1,10 @@
+http://android-developers.blogspot.fr/2011/09/androids-http-clients.html
+
+Apache HTTP client has fewer bugs on Eclair and Froyo. It is the best choice for these releases.
+
+For Gingerbread and better, HttpURLConnection is the best choice. 
+Its simple API and small size makes it great fit for Android. 
+Transparent compression and response caching reduce network use, 
+improve speed and save battery. 
+New applications should use HttpURLConnection; 
+it is where we will be spending our energy going forward.

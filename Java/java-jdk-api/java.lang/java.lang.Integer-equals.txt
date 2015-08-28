@@ -1,0 +1,72 @@
+public boolean equals (Object o)
+
+Added in API level 1
+Compares this instance with the specified object and indicates if they are equal. In order to be equal, o must be an instance of Integer and have the same integer value as this object.
+
+Parameters
+o	the object to compare this integer with.
+Returns
+true if the specified object is equal to this Integer; false otherwise.
+
+源码：
+    public boolean equals(Object o) {
+        return (o instanceof Integer) && (((Integer) o).value == value);
+    }
+
+
+-------------------------------------------------------------
+http://stackoverflow.com/questions/17546466/comparing-string-and-integer-with-equals
+-------------------------------------------------------------
+        Integer v = 5;
+        boolean b = v.equals("5");
+
+会抛异常吗？不是，只是返回 false
+看源码就明白了：
+如果 o instanceof Integer 不成立，就会返回 false
+
+An Integer will never be equal to a String.
+
+Both classes have very strict equals() definitions 
+that only accept objects of their respective types.
+
+Integer.equals():
+The result is true if and only if the argument is not null and 
+is an Integer object that contains the same int value as this object.
+
+String.equals():
+The result is true if and only if the argument is not null and 
+is a String object that represents the same sequence of characters as this object.
+
+That's actually a quite common way to implement equals(): 
+only objects of the same class (and occasionally subclasses) can be equal. 
+Other implementations are possible, but are the exception.
+
+One common exception are the collections such as List: 
+every List implementation that follows the convention will return true 
+when compared to any other implementation, 
+if it has the same content in the same order.
+
+-------------------------------------------------------------
+http://www.blogjava.net/xjacker/articles/330349.html
+-------------------------------------------------------------
+1    Integer a = Integer.valueOf("var1");
+2    Integer b = Integer.valueOf("var2");
+3    if(a == b){
+4            
+5    }
+
+当然，关于==和equals()的区别这个是每个java程序员都清楚的了
+表示的是，引用的是否是同一个对象。
+
+按常理，上面的 a,b 肯定是不同的对象，但是：
+
+在Integer内中有块缓存，
+默认保存-128~127之间的Integer 对象，
+
+当你使用Integer.valueOf()静态方法来生成Integer对象时，
+会先判断这个数字的大小，
+若在-128~127之间的话，将直接使用缓存中的对象；
+若不是介于这个范围，将新生成对象。
+但是这个限于Integer.valueOf()静态方法，
+
+若使用构造函数来生成Integer对象时，情况又是不同的。
