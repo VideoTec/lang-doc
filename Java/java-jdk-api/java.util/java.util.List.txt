@@ -4,6 +4,16 @@ http://docs.oracle.com/javase/7/docs/api/java/util/List.html
 implements Collection<E>
 public interface java.util.List<E>
 
+AbstractList<E>, 
+AbstractSequentialList<E>, 
+ArrayList<E>, 
+CopyOnWriteArrayList<E>, 
+LinkedList<E>, 
+ObservableArrayList<T>, 
+ObservableList<T>, 
+Stack<E>, 
+Vector<E>
+
 A List is a collection which maintains an ordering for its elements. 
 Every element in the List has an index. 
 Each element can thus be accessed by its index, with the first index being zero. 

@@ -14,6 +14,11 @@
         }
     }
 
+
+        if(mAudioRecord.getState() == AudioRecord.STATE_UNINITIALIZED) {
+                throw new RuntimeException("audio record state is uninitialized");
+        }
+
 ---------------------------------------
 Java的标准异常对象
 ---------------------------------------

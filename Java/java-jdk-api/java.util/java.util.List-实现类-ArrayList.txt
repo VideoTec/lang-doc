@@ -1,0 +1,38 @@
+http://developer.android.com/intl/zh-cn/reference/java/util/ArrayList.html
+
+public class
+ArrayList
+extends AbstractList<E>
+implements Cloneable Serializable RandomAccess
+
+java.lang.Object
+   ↳	java.util.AbstractCollection<E>
+ 	   ↳	java.util.AbstractList<E>
+ 	 	   ↳	java.util.ArrayList<E>
+
+Known Direct Subclasses
+ObservableArrayList<T>
+
+-------------------------------------
+Class Overview
+-------------------------------------
+
+ArrayList is an implementation of List, backed by an array. 
+All optional operations including adding, removing, and replacing elements are supported.
+
+All elements are permitted, including null.
+
+This class is a good choice as your default List implementation. 
+Vector synchronizes all operations, 
+but not necessarily in a way that's meaningful to your application: 
+synchronizing each call to get, for example, 
+is not equivalent to synchronizing the list and iterating over it (which is probably what you intended). 
+CopyOnWriteArrayList is intended for the special case of very high concurrency, 
+frequent traversals, and very rare mutations.
+
+-------------------------------------
+http://www.cnblogs.com/skywang12345/p/3308900.html
+-------------------------------------
+
+ArrayList 是一个数组队列，相当于动态数组。
+它由数组实现，随机访问效率高，随机插入、随机删除效率低

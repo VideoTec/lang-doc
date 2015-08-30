@@ -1,0 +1,17 @@
+http://developer.android.com/intl/zh-cn/reference/java/util/Stack.html
+
+public class
+Stack
+extends Vector<E>
+
+java.lang.Object
+   ↳	java.util.AbstractCollection<E>
+ 	   ↳	java.util.AbstractList<E>
+ 	 	   ↳	java.util.Vector<E>
+ 	 	 	   ↳	java.util.Stack<E>
+
+Class Overview
+
+Stack is a Last-In/First-Out(LIFO) data structure which represents a stack of objects. 
+It enables users to pop to and push from the stack, including null objects. 
+There is no limit to the size of the stack.

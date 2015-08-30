@@ -1,0 +1,34 @@
+http://developer.android.com/intl/zh-cn/reference/java/util/LinkedList.html
+
+public class
+LinkedList
+extends AbstractSequentialList<E>
+implements List<E> Deque<E> Queue<E> Cloneable Serializable
+
+java.lang.Object
+   ↳	java.util.AbstractCollection<E>
+ 	   ↳	java.util.AbstractList<E>
+ 	 	   ↳	java.util.AbstractSequentialList<E>
+ 	 	 	   ↳	java.util.LinkedList<E>
+
+-------------------------------------
+Class Overview
+-------------------------------------
+
+LinkedList is an implementation of List, 
+backed by a doubly-linked list. 
+All optional operations including adding, removing, and replacing elements are supported.
+
+All elements are permitted, including null.
+
+This class is primarily useful if you need queue-like behavior. 
+It may also be useful as a list if you expect your lists to contain zero or one element, 
+but still require the ability to scale to slightly larger numbers of elements. 
+In general, though, you should probably use ArrayList if you don't need the queue-like behavior.
+
+-------------------------------------
+http://www.cnblogs.com/skywang12345/p/3308900.html
+-------------------------------------
+LinkedList 是一个双向链表。
+它也可以被当作堆栈、队列或双端队列进行操作。
+LinkedList随机访问效率低，但随机插入、随机删除效率低。

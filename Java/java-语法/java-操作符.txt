@@ -1,0 +1,15 @@
+http://docs.oracle.com/javase/tutorial/java/nutsandbolts/op1.html
+
+The Arithmetic Operators
+
+division[英][dɪˈvɪʒn] [美][dɪˈvɪʒən]
+n.分开，分隔；[数]除法；部门；[军]师
+
+remainder[英][rɪˈmeɪndə(r)] [美][rɪˈmendɚ]
+余数
+
++	Additive operator (also used for String concatenation)
+-	Subtraction operator
+*	Multiplication operator
+/	Division operator
+%	Remainder operator

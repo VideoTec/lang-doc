@@ -1,0 +1,21 @@
+Modifier 'public' is redundant for interface methods
+
+redundant[英][rɪˈdʌndənt] [美][rɪˈdʌndənt]
+adj.多余的，累赘的；（因人员过剩）被解雇的，失业的；重沓；衍
+
+示例：下面的 public 是多余的
+    public interface OnPCMReaderEvent {
+        public void onProcessPCMBuffer(byte[] pcmBuffer);
+        public void onStartRead();
+        public void onStopRead();
+        public void onReadError();
+    }
+
+http://stackoverflow.com/questions/161633/should-methods-in-a-java-interface-be-declared-with-or-without-a-public-access-m
+It is permitted, but discouraged as a matter of style, 
+to redundantly specify the public and/or abstract modifier for a method declared in an interface.
+
+http://stackoverflow.com/questions/17011374/are-public-and-public-final-redundant-for-interface-methods
+All methods in an interface are implicitly public and abstract (but not final).
+All fields in an interface are implicitly public, static and final.
+The JLS states this. It also states that these modifiers can be left out.

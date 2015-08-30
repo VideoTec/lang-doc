@@ -1,0 +1,34 @@
+http://developer.android.com/intl/zh-cn/reference/java/util/Vector.html
+
+public class
+Vector
+
+extends AbstractList<E>
+
+implements List<E> RandomAccess Cloneable Serializable
+
+java.lang.Object
+   ↳	java.util.AbstractCollection<E>
+ 	   ↳	java.util.AbstractList<E>
+ 	 	   ↳	java.util.Vector<E>
+
+Known Direct Subclasses
+
+Stack<E>
+
+--------------------------------------
+Class Overview
+--------------------------------------
+
+Vector is an implementation of List, backed by an array and synchronized. All optional operations including adding, removing, and replacing elements are supported.
+
+All elements are permitted, including null.
+
+This class is equivalent to ArrayList with synchronized operations. This has a performance cost, and the synchronization is not necessarily meaningful to your application: synchronizing each call to get, for example, is not equivalent to synchronizing on the list and iterating over it (which is probably what you intended). If you do need very highly concurrent access, you should also consider CopyOnWriteArrayList.
+
+--------------------------------------
+http://www.cnblogs.com/skywang12345/p/3308900.html
+--------------------------------------
+
+Vector 是矢量队列，和ArrayList一样，它也是一个动态数组，由数组实现。
+但是ArrayList是非线程安全的，而 Vector 是线程安全的

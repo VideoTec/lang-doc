@@ -1,0 +1,4 @@
+http://stackoverflow.com/questions/23331806/how-to-call-jnihelp-h-via-ndk
+
+JNIHelp.h is not part of NDK. You inherited some code from the Android platform. 
+You will find other dependencies on non-public modules, most likely libcutils and libutils
