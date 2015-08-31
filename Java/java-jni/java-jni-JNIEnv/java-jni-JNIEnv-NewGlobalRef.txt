@@ -1,0 +1,24 @@
+http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html
+
+jobject NewGlobalRef(JNIEnv *env, jobject obj);
+
+Creates a new global reference to the object referred to by the obj argument. The obj argument may be a global or local reference. Global references must be explicitly disposed of by calling DeleteGlobalRef().
+
+LINKAGE:
+Index 21 in the JNIEnv interface function table.
+
+PARAMETERS:
+env: the JNI interface pointer.
+
+obj: a global or local reference.
+
+RETURNS:
+Returns a global reference, or NULL if the system runs out of memory.
+
+---------------------------
+使用示例
+---------------------------
+
+jclass local = env->FindClass(CLS_JAVA_LANG_STRING);
+java_lang_string_class = (jclass)env->NewGlobalRef(local);
+env->DeleteLocalRef(local);

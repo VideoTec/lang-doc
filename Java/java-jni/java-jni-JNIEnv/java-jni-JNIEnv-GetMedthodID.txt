@@ -17,10 +17,15 @@ JNIEXPORT void JNICALL Java_com_sea_1monster_video_jniinterface_VideoConvert_reg
     java_env.method_encoding_progress = env->GetMethodID(clazz, "updateVideoProcessingPercent", "(F)V");
 }
 
+----------------------------
 官方文档：
+----------------------------
+
 jmethodID GetMethodID(JNIEnv *env, jclass clazz, const char *name, const char *sig);
 
-Returns the method ID for an instance (nonstatic) method of a class or interface. The method may be defined in one of the clazz’s superclasses and inherited by clazz. The method is determined by its name and signature.
+Returns the method ID for an instance (nonstatic) method of a class or interface. 
+The method may be defined in one of the clazz’s superclasses and inherited by clazz. 
+The method is determined by its name and signature.
 
 GetMethodID() causes an uninitialized class to be initialized.
 

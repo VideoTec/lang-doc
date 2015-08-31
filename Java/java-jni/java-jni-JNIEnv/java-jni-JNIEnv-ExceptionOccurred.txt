@@ -1,0 +1,27 @@
+http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html
+
+ExceptionOccurred
+jthrowable ExceptionOccurred(JNIEnv *env);
+
+Determines if an exception is being thrown. The exception stays being thrown until either the native code calls ExceptionClear(), or the Java code handles the exception.
+
+
+LINKAGE:
+Index 15 in the JNIEnv interface function table.
+
+PARAMETERS:
+env: the JNI interface pointer.
+
+RETURNS:
+Returns the exception object that is currently in the process of being thrown, or NULL if no exception is currently being thrown.
+
+ExceptionDescribe
+void ExceptionDescribe(JNIEnv *env);
+
+Prints an exception and a backtrace of the stack to a system error-reporting channel, such as stderr. This is a convenience routine provided for debugging.
+
+LINKAGE:
+Index 16 in the JNIEnv interface function table.
+
+PARAMETERS:
+env: the JNI interface pointer.

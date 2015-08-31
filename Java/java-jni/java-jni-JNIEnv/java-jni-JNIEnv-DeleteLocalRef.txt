@@ -1,0 +1,23 @@
+Local References
+Local references are valid for the duration of a native method call. They are freed automatically after the native method returns. Each local reference costs some amount of Java Virtual Machine resource. Programmers need to make sure that native methods do not excessively allocate local references. Although local references are automatically freed after the native method returns to Java, excessive allocation of local references may cause the VM to run out of memory during the execution of a native method.
+
+DeleteLocalRef
+
+void DeleteLocalRef(JNIEnv *env, jobject localRef);
+
+Deletes the local reference pointed to by localRef.
+
+
+LINKAGE:
+Index 23 in the JNIEnv interface function table.
+
+PARAMETERS:
+env: the JNI interface pointer.
+
+localRef: a local reference.
+
+
+Note
+JDK/JRE 1.1 provides the DeleteLocalRef function above so that programmers can manually delete local references. For example, if native code iterates through a potentially large array of objects and uses one element in each iteration, it is a good practice to delete the local reference to the no-longer-used array element before a new local reference is created in the next iteration.
+
+As of JDK/JRE 1.2 an additional set of functions are provided for local reference lifetime management. They are the four functions listed below.

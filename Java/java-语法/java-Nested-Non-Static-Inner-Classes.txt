@@ -1,0 +1,35 @@
+Inner Classes
+
+As with instance methods and variables, an inner class is associated with an instance of its enclosing class and has direct access to that object's methods and fields. Also, because an inner class is associated with an instance, it cannot define any static members itself.
+
+Objects that are instances of an inner class exist within an instance of the outer class. Consider the following classes:
+
+class OuterClass {
+    ...
+    class InnerClass {
+        ...
+    }
+}
+
+An instance of InnerClass can exist only within an instance of OuterClass and has direct access to the methods and fields of its enclosing instance.
+
+To instantiate an inner class, you must first instantiate the outer class. Then, create the inner object within the outer object with this syntax:
+
+特别注意，这里调用构造的方式：
+OuterClass.InnerClass innerObject = outerObject.new InnerClass();
+
+There are two special kinds of inner classes: local classes and anonymous classes.
+
+------------------------------------------------------------------------------
+https://en.wikipedia.org/wiki/Inner_class#Types_of_nested_classes_in_Java
+------------------------------------------------------------------------------
+
+Non-Static / Inner Classes
+
+Inner class - The following categories are called inner classes. Each instance of these classes has a reference to an enclosing instance (i.e. an instance of the enclosing class), except for local and anonymous classes declared in static context. Hence, they can implicitly refer to instance variables and methods of the enclosing class. The enclosing instance reference can be explicitly obtained via EnclosingClassName.this. Inner classes may not have static variables or methods, except for compile-time constant variables. When they are created, they must have a reference to an instance of the enclosing class; which means they must either be created within an instance method or constructor of the enclosing class, or (for member and anonymous classes) be created using the syntax enclosingInstance.new InnerClass().[1]
+
+Member class - They are declared outside a function (hence a "member") and not declared "static".
+
+Local class - These are classes that are declared in the body of a function. They can only be referred to in the rest of the function. They can use local variables and parameters of the function, but only ones that are declared "final". (This is because the local class instance must maintain a separate copy of the variable, as it may out-live the function; so as not to have the confusion of two modifiable variables with the same name in the same scope, the variable is forced to be non-modifiable.)
+
+Anonymous class - These are local classes that are automatically declared and instantiated in the middle of an expression. They can only directly extend one class or implement one interface. They can specify arguments to the constructor of the superclass, but cannot otherwise have a constructor (however, this is not a limitation, since it can have an instance initializer block to perform any initialization).

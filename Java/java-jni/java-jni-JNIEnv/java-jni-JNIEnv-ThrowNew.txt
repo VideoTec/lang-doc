@@ -1,0 +1,23 @@
+http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html
+
+ThrowNew
+jint ThrowNew(JNIEnv *env, jclass clazz,
+const char *message);
+
+Constructs an exception object from the specified class with the message specified by message and causes that exception to be thrown.
+
+LINKAGE:
+Index 14 in the JNIEnv interface function table.
+
+PARAMETERS:
+env: the JNI interface pointer.
+
+clazz: a subclass of java.lang.Throwable.
+
+message: the message used to construct the java.lang.Throwable object. The string is encoded in modified UTF-8.
+
+RETURNS:
+Returns 0 on success; a negative value on failure.
+
+THROWS:
+the newly constructed java.lang.Throwable object.

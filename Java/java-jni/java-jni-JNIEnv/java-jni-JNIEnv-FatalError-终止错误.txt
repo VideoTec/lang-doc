@@ -1,0 +1,45 @@
+http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html
+
+FatalError
+void FatalError(JNIEnv *env, const char *msg);
+
+raise[英][reɪz] [美][rez]
+v.提升；增加；养育；筹集
+
+recover[英][rɪˈkʌvə(r)] [美][rɪ'kʌvər]
+vi.恢复健康（体力、能力等）
+
+Raises a fatal error and does not expect the VM to recover. 
+This function does not return.
+
+LINKAGE:
+Index 18 in the JNIEnv interface function table.
+
+PARAMETERS:
+env: the JNI interface pointer.
+
+msg: an error message. The string is encoded in modified UTF-8.
+
+示例：
+extern "C" int jniRegisterNativeMethods(C_JNIEnv* env, const char* className,
+    const JNINativeMethod* gMethods, int numMethods)
+{
+    JNIEnv* e = reinterpret_cast<JNIEnv*>(env);
+
+    ALOGV("Registering %s's %d native methods...", className, numMethods);
+
+    scoped_local_ref<jclass> c(env, findClass(env, className));
+    if (c.get() == NULL) {
+        char* msg;
+        asprintf(&msg, "Native registration unable to find class '%s'; aborting...", className);
+        e->FatalError(msg);
+    }
+
+    if ((*env)->RegisterNatives(e, c.get(), gMethods, numMethods) < 0) {
+        char* msg;
+        asprintf(&msg, "RegisterNatives failed for '%s'; aborting...", className);
+        e->FatalError(msg);
+    }
+
+    return 0;
+}

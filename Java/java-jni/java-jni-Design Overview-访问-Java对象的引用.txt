@@ -1,0 +1,57 @@
+Accessing Java Objects
+--------------------------------------------
+
+The JNI provides a rich set of accessor functions on global and local references. This means that the same native method implementation works no matter how the VM represents Java objects internally. This is a crucial reason why the JNI can be supported by a wide variety of VM implementations.
+
+The overhead of using accessor functions through opaque references is higher than that of direct access to C data structures. We believe that, in most cases, Java programmers use native methods to perform nontrivial tasks that overshadow the overhead of this interface.
+
+--------------------------------------------
+Accessing Primitive Arrays
+--------------------------------------------
+This overhead is not acceptable for large Java objects containing many primitive data types, such as integer arrays and strings. (Consider native methods that are used to perform vector and matrix calculations.) It would be grossly inefficient to iterate through a Java array and retrieve every element with a function call.
+
+One solution introduces a notion of “pinning” so that the native method can ask the VM to pin down the contents of an array. The native method then receives a direct pointer to the elements. This approach, however, has two implications:
+
+1）The garbage collector must support pinning.
+2）The VM must lay out primitive arrays contiguously in memory. Although this is the most natural implementation for most primitive arrays, boolean arrays can be implemented as packed or unpacked. Therefore, native code that relies on the exact layout of boolean arrays will not be portable.
+
+We adopt a compromise that overcomes both of the above problems.
+
+First, we provide a set of functions to copy primitive array elements between a segment of a Java array and a native memory buffer. Use these functions if a native method needs access to only a small number of elements in a large array.
+
+Second, programmers can use another set of functions to retrieve a pinned-down version of array elements. Keep in mind that these functions may require the Java VM to perform storage allocation and copying. Whether these functions in fact copy the array depends on the VM implementation, as follows:
+
+1）If the garbage collector supports pinning, and the layout of the array is the same as expected by the native method, then no copying is needed.
+2）Otherwise, the array is copied to a nonmovable memory block (for example, in the C heap) and the necessary format conversion is performed. A pointer to the copy is returned.
+
+Lastly, the interface provides functions to inform the VM that the native code no longer needs to access the array elements. When you call these functions, the system either unpins the array, or it reconciles the original array with its non-movable copy and frees the copy.
+
+Our approach provides flexibility. A garbage collector algorithm can make separate decisions about copying or pinning for each given array. For example, the garbage collector may copy small objects, but pin the larger objects.
+
+nondeterministic[英]['nɒndɪtɜ:mɪ'nɪstɪk] [美]['nɒndɪtɜ:mɪ'nɪstɪk]
+adj.非定常的，非确定的
+
+A JNI implementation must ensure that native methods running in multiple threads can simultaneously access the same array. For example, the JNI may keep an internal counter for each pinned array so that one thread does not unpin an array that is also pinned by another thread. Note that the JNI does not need to lock primitive arrays for exclusive access by a native method. Simultaneously updating a Java array from different threads leads to nondeterministic results.
+
+--------------------------------------------
+Accessing Fields and Methods
+--------------------------------------------
+
+The JNI allows native code to access the fields and to call the methods of Java objects. The JNI identifies methods and fields by their symbolic names and type signatures. A two-step process factors out the cost of locating the field or method from its name and signature. For example, to call the method f in class cls, the native code first obtains a method ID, as follows:
+
+
+jmethodID mid =      env->GetMethodID(cls, “f”, “(ILjava/lang/String;)D”); 
+
+The native code can then use the method ID repeatedly without the cost of method lookup, as follows:
+
+
+jdouble result = env->CallDoubleMethod(obj, mid, 10, str); 
+
+A field or method ID does not prevent the VM from unloading the class from which the ID has been derived. After the class is unloaded, the method or field ID becomes invalid. The native code, therefore, must make sure to:
+
+1）keep a live reference to the underlying class, or
+2）recompute the method or field ID
+
+if it intends to use a method or field ID for an extended period of time.
+
+The JNI does not impose any restrictions on how field and method IDs are implemented internally.

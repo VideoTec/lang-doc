@@ -1,0 +1,8 @@
+当对应的 class unloaded 时。
+
+A field or method ID does not prevent the VM from unloading the class from which the ID has been derived. After the class is unloaded, the method or field ID becomes invalid. The native code, therefore, must make sure to:
+
+1）keep a live reference to the underlying class, or
+2）recompute the method or field ID
+
+if it intends to use a method or field ID for an extended period of time.

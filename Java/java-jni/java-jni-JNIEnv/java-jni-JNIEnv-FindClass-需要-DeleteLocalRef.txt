@@ -1,0 +1,9 @@
+http://stackoverflow.com/questions/23741224/using-jnienvfindclass-do-i-need-to-free-the-returned-jclass-reference
+
+No you don't need to call DeleteLocalRef.
+FindClass returns a local reference. 
+So there is no need to delete. 
+The JVM will do this automatically after the JNI call is finished.
+
+But if you want you can delete the local reference. 
+It should not make any difference.

@@ -1,0 +1,76 @@
+http://docs.oracle.com/javase/6/docs/technotes/guides/jni/spec/design.html
+
+--------------------------------------------
+Reporting Programming Errors
+--------------------------------------------
+The JNI does not check for programming errors such as passing in NULL pointers or illegal argument types. Illegal argument types includes such things as using a normal Java object instead of a Java class object. The JNI does not check for these programming errors for the following reasons:
+
+1）Forcing JNI functions to check for all possible error conditions degrades the performance of normal (correct) native methods.
+2）In many cases, there is not enough runtime type information to perform such checking.
+
+Most C library functions do not guard against programming errors. The printf() function, for example, usually causes a runtime error, rather than returning an error code, when it receives an invalid address. Forcing C library functions to check for all possible error conditions would likely result in such checks to be duplicated--once in the user code, and then again in the library.
+
+The programmer must not pass illegal pointers or arguments of the wrong type to JNI functions. Doing so could result in arbitrary consequences, including a corrupted system state or VM crash.
+
+--------------------------------------------
+Java Exceptions
+--------------------------------------------
+
+The JNI allows native methods to raise arbitrary Java exceptions. The native code may also handle outstanding Java exceptions. The Java exceptions left unhandled are propagated back to the VM.
+
+--------------------------------------------
+Exceptions and Error Codes
+--------------------------------------------
+
+Certain JNI functions use the Java exception mechanism to report error conditions. In most cases, JNI functions report error conditions by returning an error code and throwing a Java exception. The error code is usually a special return value (such as NULL) that is outside of the range of normal return values. Therefore, the programmer can:
+
+1）quickly check the return value of the last JNI call to determine if an error has occurred, and
+2）call a function, ExceptionOccurred(), to obtain the exception object that contains a more detailed description of the error condition.
+
+There are two cases where the programmer needs to check for exceptions without being able to first check an error code:
+
+1）The JNI functions that invoke a Java method return the result of the Java method. The programmer must call ExceptionOccurred() to check for possible exceptions that occurred during the execution of the Java method.
+2）Some of the JNI array access functions do not return an error code, but may throw an ArrayIndexOutOfBoundsException or ArrayStoreException.
+
+In all other cases, a non-error return value guarantees that no exceptions have been thrown.
+
+--------------------------------------------
+Asynchronous Exceptions
+--------------------------------------------
+
+In cases of multiple threads, threads other than the current thread may post an asynchronous exception. An asynchronous exception does not immediately affect the execution of the native code in the current thread, until:
+
+1）the native code calls one of the JNI functions that could raise synchronous exceptions, or
+2）the native code uses ExceptionOccurred() to explicitly check for synchronous and asynchronous exceptions.
+
+Note that only those JNI function that could potentially raise synchronous exceptions check for asynchronous exceptions.
+
+Native methods should insert ExceptionOccurred()checks in necessary places (such as in a tight loop without other exception checks) to ensure that the current thread responds to asynchronous exceptions in a reasonable amount of time.
+
+--------------------------------------------
+Exception Handling
+--------------------------------------------
+
+There are two ways to handle an exception in native code:
+
+1）The native method can choose to return immediately, causing the exception to be thrown in the Java code that initiated the native method call.
+2）The native code can clear the exception by calling ExceptionClear(), and then execute its own exception-handling code.
+
+After an exception has been raised, the native code must first clear the exception before making other JNI calls. When there is a pending exception, the JNI functions that are safe to call are:
+
+
+  ExceptionOccurred()
+  ExceptionDescribe()
+  ExceptionClear()
+  ExceptionCheck()
+  ReleaseStringChars()
+  ReleaseStringUTFChars()
+  ReleaseStringCritical()
+  Release<Type>ArrayElements()
+  ReleasePrimitiveArrayCritical()
+  DeleteLocalRef()
+  DeleteGlobalRef()
+  DeleteWeakGlobalRef()
+  MonitorExit()
+  PushLocalFrame()
+  PopLocalFrame()
