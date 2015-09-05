@@ -2,4 +2,9 @@
 
 没有 strerror_r
 
-strerror_r[80]	POSIX 1, GNU	a variant of strerror that is thread-safe. GNU version is incompatible with POSIX one.
+extern int    strerror_r(int errnum, char *buf, size_t n);
+
+strerror_r[80]
+
+POSIX 1, GNU
+a variant of strerror that is thread-safe. GNU version is incompatible with POSIX one.

@@ -10,3 +10,25 @@ typedef const struct JNIInvokeInterface* JavaVM;
 
 官方文档
 http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html
+
+-----------------------------------------
+18:33 2015/9/5 
+注意： c/c++ 中的 JNIEnv 指针可以互相传递。
+原因： 内存布局一致。？
+-----------------------------------------
+
+extern "C" int jniThrowException(C_JNIEnv* c_env, const char* className, const char* msg)
+
+在 cpp 文件中，可以正常调用，
+
+extern "C" {
+JNIEXPORT int JNICALL jniSay(JNIEnv *env, jobject clazz, jstring jni_str);
+}
+
+int jniSay(JNIEnv *env, jobject clazz, jstring jni_str) {
+  const char *str_utf8 = env->GetStringUTFChars(jni_str, nullptr);
+  jniThrowNullPointerException(env, "test exception");
+  LOGI("%s", str_utf8);
+  env->ReleaseStringUTFChars(jni_str, str_utf8);
+  return 9;
+}
