@@ -4,7 +4,7 @@ Java 提供了两种 Exception 的模式
 http://blog.csdn.net/liuj2511981/article/details/8524418
 
 一种是 执行的时候所产生的Exception (Runtime Exception)，另外
-一种是 受控制的Exception (Checked Exception)
+一种是 受控制的 Exception (Checked Exception)
 
 所有的Checked Exception 均从java.lang.Exception 继承而来，
 而Runtime Exception 则继承java.lang.RuntimeException 或java.lang.Error 

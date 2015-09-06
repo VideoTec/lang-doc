@@ -1,0 +1,16 @@
+http://developer.android.com/intl/zh-cn/reference/java/lang/NullPointerException.html
+
+public class
+NullPointerException
+
+extends RuntimeException
+
+java.lang.Object
+   ↳	java.lang.Throwable
+ 	   ↳	java.lang.Exception
+ 	 	   ↳	java.lang.RuntimeException
+ 	 	 	   ↳	java.lang.NullPointerException
+               
+Class Overview
+
+Thrown when a program tries to access a field or method of an object or an element of an array when there is no instance or array to use, that is if the object or array points to null. It also occurs in some other, less obvious circumstances, like a throw e statement where the Throwable reference is null.

@@ -1,0 +1,14 @@
+http://stackoverflow.com/questions/12564428/is-throws-throwable-good-practice
+
+You should not throw Throwable. Here's why...
+
+Throwable is the top of the hierarchy of things that can be thrown, and is made up of Exceptions and Errors. Since Errors by definition arise from unsalvagable conditions, it is pointless to include them in your method declaration. That leaves just Exception, so..
+
+You should declare your method with throws Exception instead.
+
+
+Note that the narrower the range of throws the better.
+
+Declaring your method to be throws Exception is OK if your method doesn't generate the exceptions, but instead calls other code that is declared as throws Exception and you want exceptions to percolate up the call stack.
+
+If your method is the generating the exception, then declare a narrower range, eg throws IOException, MyProcessingException, etc

@@ -1,0 +1,5 @@
+http://stackoverflow.com/questions/2731719/how-can-this-of-the-outer-class-be-accessed-from-an-inner-class
+
+You can access the instance of the outer class like this:
+
+Outer.this
