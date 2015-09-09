@@ -1,0 +1,18 @@
+
+------------------------------------
+例子：
+------------------------------------
+public final Cursor query (
+    Uri uri, 
+    String[] projection, 
+    String selection, 
+    String[] selectionArgs, 
+    String sortOrder)
+
+注意下面的匿名字符串数组实参
+Cursor mCursor = 
+    sContext.getApplicationContext().getContentResolver().query(
+        Uri.withAppendedPath(AUTHORITY_URI, GROUP_DIRECTORY), 
+        new String[] {"_id","name","get_group_portrait_hds","portrait_crc","uri" },
+        "ower_id=? and identity in (1,2,3)" ,
+        new String[] { Account.getUserId()}, null);
