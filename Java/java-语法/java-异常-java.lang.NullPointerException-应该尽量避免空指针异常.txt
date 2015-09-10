@@ -1,0 +1,44 @@
+http://howtodoinjava.com/2013/04/05/how-to-effectively-handle-nullpointerexception-in-java/
+
+------------------------------------------------
+Best ways to avoid NullPointerException
+------------------------------------------------
+
+1) Ternary Operator
+String str = (param == null) ? "NA" : param;
+
+2) Use apache commons StringUtils for String operations
+
+3) Check Method Arguments for null very early
+
+4) Consider Primitives Rather than Objects
+
+5) Carefully Consider Chained Method Calls
+ref.method1().method2().method3().methods4();
+
+6) Use String.valueOf() Rather than toString()
+
+7) Avoid returning null from your methods
+
+8) Discourage Passing of Null Parameters
+
+9) Call String.equals(String) on ‘Safe’ Non-Null String
+
+------------------------------------------------
+Available NullPointerException safe operations
+不会抛空指针异常的操作符
+------------------------------------------------
+1）instanceof operator
+
+// Unnecessary code
+if (data != null &amp;&amp; data instanceof InterestingData) {
+}
+ 
+// Less code. Better!!
+if (data instanceof InterestingData) {
+}
+
+2）Accessing static members of a class
+
+MyObject obj = null;
+String attrib = obj.staticAttribute; //no NullPointerException because staticAttribute is static variable defined in class MyObject
