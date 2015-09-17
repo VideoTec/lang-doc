@@ -1,0 +1,3 @@
+if (!BASE_URL.endsWith("/")) {
+                            BASE_URL += "/";
+}

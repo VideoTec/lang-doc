@@ -1,0 +1,18 @@
+public abstract E set (int location, E object)
+
+Added in API level 1
+Replaces the element at the specified location in this List with the specified object. This operation does not change the size of the List.
+
+Parameters
+
+location	the index at which to put the specified object.
+object	the object to insert.
+
+Returns
+the previous element at the index.
+
+Throws
+UnsupportedOperationException	if replacing elements in this List is not supported.
+ClassCastException	if the class of an object is inappropriate for this List.
+IllegalArgumentException	if an object cannot be added to this List.
+IndexOutOfBoundsException	if location < 0 || location >= size()

@@ -1,0 +1,8 @@
+http://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local
+
+解决方法：
+1. 本地建立 web 服务器
+   python -m SimpleHTTPServer  
+2. In Chrome you can use this flag: --allow-file-access-from-files
+http://stackoverflow.com/questions/18586921/how-to-launch-html-using-chrome-at-allow-file-access-from-files-mode
+"C:\PathTo\Chrome.exe" --allow-file-access-from-files

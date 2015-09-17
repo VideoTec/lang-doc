@@ -1,0 +1,6 @@
+http://stackoverflow.com/questions/5585779/converting-string-to-int-in-java
+
+int foo = Integer.parseInt("1234");
+See the Java Documentation for more information.
+
+(If you have it in a StringBuffer, you'll need to do Integer.parseInt(myBuffer.toString()); instead).
