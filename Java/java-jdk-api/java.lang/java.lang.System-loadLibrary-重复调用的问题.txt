@@ -1,0 +1,28 @@
+System.loadLibrary 
+对同一个库，调用一次，后续的加载调用，会忽略。
+
+http://stackoverflow.com/questions/1133083/prevent-java-from-loading-library-more-than-once
+
+If the library has already be loaded any subsequent calls to load the same library will be ignored.
+
+System.loadLibrary:
+
+Loads the system library specified by the libname argument. The manner in which a library name is mapped to the actual system library is system dependent.
+
+The call System.loadLibrary(name) is effectively equivalent to the call
+
+ Runtime.getRuntime().loadLibrary(name)
+
+Runtime.loadLibrary:
+
+Loads the dynamic library with the specified library name. A file containing native code is loaded from the local file system from a place where library files are conventionally obtained. The details of this process are implementation-dependent. The mapping from a library name to a specific filename is done in a system-specific manner.
+
+First, if there is a security manager, its checkLink method is called with the libname as its argument. This may result in a security exception.
+
+The method System.loadLibrary(String) is the conventional and convenient means of invoking this method. If native methods are to be used in the implementation of a class, a standard strategy is to put the native code in a library file (call it LibFile) and then to put a static initializer:
+
+ static { System.loadLibrary("LibFile"); }
+ 
+within the class declaration. When the class is loaded and initialized, the necessary native code implementation for the native methods will then be loaded as well.
+
+If this method is called more than once with the same library name, the second and subsequent calls are ignored.

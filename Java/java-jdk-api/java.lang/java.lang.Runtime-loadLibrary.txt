@@ -1,0 +1,14 @@
+
+http://developer.android.com/intl/zh-cn/reference/java/lang/Runtime.html#loadLibrary(java.lang.String)
+
+public void loadLibrary (String nickname)
+
+Added in API level 1
+Loads a shared library. Class loaders have some influence over this process, but for a typical Android app, it works as follows:
+
+Given the name "MyLibrary", that string will be passed to mapLibraryName(String). That means it would be a mistake for the caller to include the usual "lib" prefix and ".so" suffix.
+
+That file will then be searched for on the application's native library search path. This consists of the application's own native library directory followed by the system's native library directories.
+
+Throws
+UnsatisfiedLinkError	if the library can not be loaded, either because it's not found or because there is something wrong with it.

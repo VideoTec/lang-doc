@@ -1,0 +1,9 @@
+http://developer.android.com/intl/zh-cn/reference/java/lang/System.html
+
+public final class
+System
+extends Object
+java.lang.Object
+   ↳	java.lang.System
+Class Overview
+Provides access to system-related information and resources including standard input and output. Enables clients to dynamically load native libraries. All methods of this class are accessed in a static way and the class itself can not be instantiated.

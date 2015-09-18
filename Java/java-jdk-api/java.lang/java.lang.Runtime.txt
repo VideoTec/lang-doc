@@ -1,0 +1,9 @@
+http://developer.android.com/intl/zh-cn/reference/java/lang/Runtime.html#loadLibrary(java.lang.String)
+
+public class
+Runtime
+extends Object
+java.lang.Object
+   ↳	java.lang.Runtime
+Class Overview
+Allows Java applications to interface with the environment in which they are running. Applications can not create an instance of this class, but they can get a singleton instance by invoking getRuntime().
