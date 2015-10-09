@@ -1,0 +1,10 @@
+异常：
+java.lang.NumberFormatException: Invalid long: "200059925@14437cf4c5c8700aa2e20795c1ba2118"
+	at java.lang.Long.invalidLong(Long.java:124)
+	at java.lang.Long.parse(Long.java:363)
+	at java.lang.Long.parseLong(Long.java:353)
+	at java.lang.Long.parseLong(Long.java:321)
+	at java.lang.Long.valueOf(Long.java:511)
+
+java.lang.NumberFormatException: Invalid long: "200059925@"
+java.lang.NumberFormatException: Invalid long: "200059925a"

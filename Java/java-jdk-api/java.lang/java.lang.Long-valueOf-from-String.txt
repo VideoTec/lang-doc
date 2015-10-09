@@ -1,0 +1,27 @@
+public static Long valueOf (String string)
+
+Added in API level 1
+Parses the specified string as a signed decimal long value.
+
+Parameters
+string	the string representation of a long value.
+
+Returns
+a Long instance containing the long value represented by string.
+
+Throws
+NumberFormatException	if string cannot be parsed as a long value.
+
+See Also
+parseLong(String)
+
+异常：
+java.lang.NumberFormatException: Invalid long: "200059925@14437cf4c5c8700aa2e20795c1ba2118"
+	at java.lang.Long.invalidLong(Long.java:124)
+	at java.lang.Long.parse(Long.java:363)
+	at java.lang.Long.parseLong(Long.java:353)
+	at java.lang.Long.parseLong(Long.java:321)
+	at java.lang.Long.valueOf(Long.java:511)
+
+java.lang.NumberFormatException: Invalid long: "200059925@"
+java.lang.NumberFormatException: Invalid long: "200059925a"

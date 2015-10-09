@@ -1,0 +1,22 @@
+http://developer.android.com/intl/zh-cn/reference/java/lang/Long.html
+
+public final class
+Long
+extends Number
+implements Comparable<Long>
+java.lang.Object
+   ↳	java.lang.Number
+ 	   ↳	java.lang.Long
+       
+Class Overview
+The wrapper for the primitive type long.
+
+Implementation note: The "bit twiddling" methods in this class use techniques described in Henry S. Warren, Jr.'s Hacker's Delight, (Addison Wesley, 2002) and Sean Anderson's Bit Twiddling Hacks.
+
+
+http://qsfwy.iteye.com/blog/244200
+long的取值范围为（-9223372036854774808~9223372036854774807），
+占用8个字节（-2的63次方到2的63次方-1）
+
+int的取值范围为（-2147483648~2147483647），
+占用4个字节（-2的31次方到2的31次方-1）

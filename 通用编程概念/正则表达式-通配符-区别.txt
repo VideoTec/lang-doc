@@ -1,0 +1,4 @@
+http://blog.csdn.net/huiguixian/article/details/6284834
+
+在文本过滤工具里，都是用正则表达式，比如像awk，sed，等，是针对文件的内容的
+通配符多用在文件名上，比如查找find，ls，cp，等等

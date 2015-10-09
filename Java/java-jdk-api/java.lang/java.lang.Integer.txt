@@ -12,3 +12,24 @@ Implementation note: The "bit twiddling" methods in this class use techniques de
 用法：
 ------------------------------------------
 duration = Integer.valueOf(duration_str);
+
+异常：
+java.lang.NumberFormatException: Invalid long: "200059925@14437cf4c5c8700aa2e20795c1ba2118"
+	at java.lang.Long.invalidLong(Long.java:124)
+	at java.lang.Long.parse(Long.java:363)
+	at java.lang.Long.parseLong(Long.java:353)
+	at java.lang.Long.parseLong(Long.java:321)
+	at java.lang.Long.valueOf(Long.java:511)
+
+java.lang.NumberFormatException: Invalid long: "200059925@"
+java.lang.NumberFormatException: Invalid long: "200059925a"
+
+------------------------------------------
+http://qsfwy.iteye.com/blog/244200
+------------------------------------------
+
+long的取值范围为（-9223372036854774808~9223372036854774807），
+占用8个字节（-2的63次方到2的63次方-1）
+
+int的取值范围为（-2147483648~2147483647），
+占用4个字节（-2的31次方到2的31次方-1）
