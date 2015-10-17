@@ -1,0 +1,34 @@
+---------------------------------------------------------------------------------------
+public boolean regionMatches (boolean ignoreCase, int thisStart, String string, int start, int length)
+---------------------------------------------------------------------------------------
+
+Added in API level 1
+Returns true if the given subsequence of the given string matches this string starting at the given offset.
+
+If ignoreCase is true, case is ignored during the comparison. The strings are compared one char at a time. This is not suitable for case-insensitive string comparison for all locales. Use a Collator instead.
+
+Parameters
+ignoreCase	specifies if case should be ignored (use Collator instead for non-ASCII case insensitivity).
+thisStart	the start offset in this string.
+string	the other string.
+start	the start offset in string.
+length	the number of chars to compare.
+
+Throws
+NullPointerException	if string is null.
+
+---------------------------------------------------------------------------------------
+public boolean regionMatches (int thisStart, String string, int start, int length)
+---------------------------------------------------------------------------------------
+
+Added in API level 1
+Returns true if the given subsequence of the given string matches this string starting at the given offset.
+
+Parameters
+thisStart	the start offset in this string.
+string	the other string.
+start	the start offset in string.
+length	the number of chars to compare.
+
+Throws
+NullPointerException	if string is null

@@ -1,0 +1,40 @@
+http://www.111cn.net/wy/js-ajax/50701.htm
+
+Zola  17:05:22
+<script type="text/javascript">
+function $(id)
+{
+   return document.getElementById(id);
+}
+这段    啥意思
+王翔  17:07:10
+function $(id)  定义了个函数 函数名是 $
+调用方法 $(id)
+类似于  function fn(id) {}
+fn(id)
+Zola  17:07:54
+这样写   九宫格那个js就冲突了
+王翔  17:08:16
+这个函数是 jquery 的基础
+你为什么要定义这个函数？
+改个名字不行吗？
+Zola  17:08:57
+中奖用户公告  那个信息滚动的   用的
+怎么改
+王翔  17:09:07
+http://www.111cn.net/wy/js-ajax/50701.htm
+Zola  17:09:12
+我就是想改   不知道怎么改
+王翔  17:09:41
+是这个问题吗？
+Uncaught TypeError: Cannot set property ‘onclick’ of null
+Zola  17:09:53
+是
+没报错
+就是不执行
+王翔  17:10:28
+除了用 jquery,还用了什么库？
+Zola  17:10:34
+没有了
+
+最后的解决方法，把 函数名$ 换成别的函数名

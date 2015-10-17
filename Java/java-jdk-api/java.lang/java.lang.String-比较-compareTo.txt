@@ -1,0 +1,40 @@
+在java编程中，我们会偶尔遇到字符串大小比较的问题，
+compareTo()方法很简单就实现这种功能。
+
+该方法用于判断一个字符串是大于、等于还是小于另一个字符串。
+判断字符串大小的依据是根据它们在字典中的顺序决定的。
+
+语法： 
+Str1.compareTo(Str2); 
+
+其返回的是一个int类型值。若Str1等于参数字符串Str2字符串，则返回0；
+若该Str1按字典顺序小于参数字符串Str2，则返回值小于0；
+若Str1按字典顺序大于参数字符串Str2，则返回值大于0。
+
+---------------------------------------------------
+public int compareTo (String string)
+---------------------------------------------------
+
+Added in API level 1
+Compares this string to the given string.
+
+The strings are compared one char at a time. In the discussion of the return value below, note that char does not mean code point, though this should only be visible for surrogate pairs.
+
+If there is an index at which the two strings differ, the result is the difference between the two chars at the lowest such index. If not, but the lengths of the strings differ, the result is the difference between the two strings' lengths. If the strings are the same length and every char is the same, the result is 0.
+
+Throws
+NullPointerException	if string is null.
+
+---------------------------------------------------
+public int compareToIgnoreCase (String string)
+---------------------------------------------------
+
+Added in API level 1
+Compares this string to the given string, ignoring case differences.
+
+The strings are compared one char at a time. This is not suitable for case-insensitive string comparison for all locales. Use a Collator instead.
+
+If there is an index at which the two strings differ, the result is the difference between the two chars at the lowest such index. If not, but the lengths of the strings differ, the result is the difference between the two strings' lengths. If the strings are the same length and every char is the same, the result is 0.
+
+Throws
+NullPointerException	if string is null.

@@ -1,0 +1,21 @@
+public boolean endsWith (String suffix)
+
+Added in API level 1
+Compares the specified string to this string to determine if the specified string is a suffix.
+
+Throws
+NullPointerException	if suffix is null.
+
+
+
+if (!BASE_URL.endsWith("/")) {
+                            BASE_URL += "/";
+}
+
+http://stackoverflow.com/questions/13712043/java-regular-expression-for-matching-filenames-or-filetypes
+
+if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")) {
+    // good
+} else {
+    // bad
+}

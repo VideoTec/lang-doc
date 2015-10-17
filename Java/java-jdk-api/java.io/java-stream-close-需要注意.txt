@@ -1,0 +1,42 @@
+http://stackoverflow.com/questions/156508/closing-a-java-fileinputstream
+For Java 7 and above try-with-resources should be used:
+
+try (InputStream in = new FileInputStream(file)) {
+  // TODO: work
+} catch (IOException e) {
+  // TODO: handle error
+}
+If you're stuck on Java 6 or below...
+
+This pattern avoids mucking around with null:
+
+    try {
+        InputStream in = new FileInputStream(file);
+        try {
+            // TODO: work
+        } finally {
+            in.close();
+        }
+    } catch (IOException e) {
+        // TODO: error handling
+    }
+For a more detail on how to effectively deal with close, read this blog post: Java: how not to make a mess of stream handling. It has more sample code, more depth and covers the pitfalls of wrapping close in a catch block.
+
+http://illegalargumentexception.blogspot.com/2008/10/java-how-not-to-make-mess-of-stream.html
+
+ /**
+   * Writes "Hello, World!" to a file.
+   */
+  public static void main(String[] args) {
+    try {
+      byte[] data = "Hello, World!".getBytes("UTF-8");
+      OutputStream out = new FileOutputStream("output.txt");
+      //if write throws an error
+      out.write(data);
+      //then close will never be called! BUG!
+      out.close();
+    } catch(IOException e) {
+      System.err.println("ERROR");
+      e.printStackTrace();
+    }
+  }

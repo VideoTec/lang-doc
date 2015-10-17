@@ -1,0 +1,39 @@
+public boolean matches (String regularExpression)
+
+Added in API level 1
+Tests whether this string matches the given regularExpression. This method returns true only if the regular expression matches the entire input string. A common mistake is to assume that this method behaves like contains(CharSequence); if you want to match anywhere within the input string, you need to add .* to the beginning and end of your regular expression. See matches(String, CharSequence).
+
+If the same regular expression is to be used for multiple operations, it may be more efficient to reuse a compiled Pattern.
+
+Throws
+if the syntax of the supplied regular expression is not valid.
+NullPointerException	if regularExpression == null
+
+-------------------------------------------------------------
+http://blog.csdn.net/victoryckl/article/details/6930409
+-------------------------------------------------------------
+String.matches() 这个方法主要是返回是否匹配指定的字符串，
+如果匹配则为true,否则为false;
+
+-------------------------------------------------------------
+http://www.mkyong.com/regular-expressions/how-to-validate-image-file-extension-with-regular-expression/
+-------------------------------------------------------------
+([^\s]+(\.(?i)(jpg|png|gif|bmp))$)
+
+(			#Start of the group #1
+ [^\s]+			#  must contains one or more anything (except white space)
+       (		#    start of the group #2
+         \.		#	follow by a dot "."
+         (?i)		#	ignore the case sensive checking for the following characters
+             (		#	  start of the group #3
+              jpg	#	    contains characters "jpg"
+              |		#	    ..or
+              png	#	    contains characters "png"
+              |		#	    ..or
+              gif	#	    contains characters "gif"
+              |		#	    ..or
+              bmp	#	    contains characters "bmp"
+             )		#	  end of the group #3
+       )		#     end of the group #2	
+  $			#  end of the string
+)			#end of the group #1

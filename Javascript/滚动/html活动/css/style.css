@@ -1,0 +1,88 @@
+@charset "utf-8";
+* { padding:0; margin:0;}
+body {font-size:14px; background-color:#f16925; max-width: 1080px; margin: 0 auto; line-height: 20px;}
+.header {text-align:center;}
+.header img {width:100%; max-width:1080px;}
+
+.main { width: 100%; margin: 0 auto; padding-top: 10px; padding-bottom: 30px;}
+.main-up {
+	background-color: #f96835; 
+	margin: 0 auto; 
+	border-bottom: 10px solid #ffe8b6; 
+	border-left: 7px solid transparent; 
+	border-right: 7px solid transparent; 
+	height: 0; 
+	width: 90%;
+	box-shadow: 0 2px 1px #b3a480;
+	position: relative;
+}
+.main-mid {width: 90%;background-color: #ffe8b6;margin: 0 auto;padding-bottom: 30px;color: #b95621;font-size: 12px;}
+.hdgz-jp { background-color: #ffeecc;margin: 0 10px;padding: 10px 5px;}
+.hdjp, .hdgz { width: 30%; max-width: 156px; margin-bottom: -5px;}
+
+.tab-title td {background: url(../images/img-gg.png) no-repeat;background-size: 22px;font-size: 16px;font-weight: bold;
+	padding-left: 24px; height: 30px;line-height: 30px;color: #f96834;}
+.tab {width: 90%;margin: 0 auto;}
+.tab th {text-align: left;}
+.tab td {width: 20%;text-align: left;}
+
+.zjgg {margin: 0 auto;}
+.zjggbt { background: url(../images/img-gg.png) no-repeat; background-size: 22px; font-size: 16px; font-weight: bold;
+	padding-left: 24px; height: 30px; line-height: 30px; color: #f96834; display: block;}
+.th1 { width: 27%; float: left; text-align: left; font-weight: bold;}
+.th1-2 { width: 45%;}
+.th2 {width: 27%;float: left; display: block; text-align: left;}
+.th2-2 {width: 45%;}
+.main-down {
+	background-color: #f96835; margin: 0 auto; 
+	border-top: 10px solid #ffe8b6; 
+	border-left: 7px solid transparent; 
+	border-right: 7px solid transparent; 
+	height: 0; 
+	width: 90%;
+	box-shadow: 0 -2px 1px 0 #b3a480; 
+}
+#lottery{margin:20px auto;background:url(../images/bg.jpg) no-repeat;background-size:100%;padding:8% 8%; width: 80%; }
+#lottery table { width: 100%;}
+#lottery table td{width:25%;height:25%;text-align:center;vertical-align:middle; margin:0; font-size:24px;color:#333;font-index:-999; border: 0;}
+#lottery table td img {width:100%;}
+#lottery table td a{width:50%;height:50%;display:none;text-decoration:none;}
+#lottery table td.active{background-color:#ea0000; margin: 0;}
+
+
+ul {
+	 padding-right: 0px;
+	 padding-left: 0px;
+	 padding-bottom: 0px;
+	 margin: 0px;
+	 padding-top: 0px;
+	 margin: 0 auto;
+	 width: 90%;
+	}
+	#announcement {
+	 width:100%;
+	 background:url() repeat;
+	 overflow: hidden;
+	}
+	#announcement div {
+	 /*padding:0px 10px 0px 10px;*/
+	 overflow-y:hidden;
+	 line-height: 24px;
+	 height: 96px;
+	}
+	#announcement li {
+	 font-size: 12px;
+	 float: left;
+	 list-style-type: none;
+	 margin-right: 20px;
+	 background: url() no-repeat 0px 50%;
+	 white-space: nowrap;
+	 width: 100%;
+	}
+	#announcement a {
+	 text-decoration: none;
+	 color: #b95621;
+	}
+	#announcement a:hover {
+	 text-decoration:underline;
+	}

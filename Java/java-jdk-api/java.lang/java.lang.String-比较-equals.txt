@@ -1,0 +1,18 @@
+public boolean equals (Object other)
+
+Added in API level 1
+Compares the given object to this string and returns true if they are equal. The object must be an instance of String with the same length, where for every index, charAt on each string returns the same value.
+
+Parameters
+other	the object to compare this instance with.
+Returns
+true if the specified object is equal to this Object; false otherwise.
+
+--------------------------------------------------------
+public boolean equalsIgnoreCase (String string)
+--------------------------------------------------------
+
+Added in API level 1
+Compares the given string to this string ignoring case.
+
+The strings are compared one char at a time. This is not suitable for case-insensitive string comparison for all locales. Use a Collator instead.

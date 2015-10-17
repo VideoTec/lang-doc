@@ -1,0 +1,38 @@
+http://stackoverflow.com/questions/43157/easy-way-to-write-contents-of-a-java-inputstream-to-an-outputstream
+
+I think this will work, but make sure to test it... minor "improvement", but it might be a bit of a cost at readability.
+
+byte[] buffer = new byte[1024];
+int len;
+while ((len = in.read(buffer)) != -1) {
+    out.write(buffer, 0, len);
+}
+
+private void copyInputStreamToFile( InputStream in, File file ) {
+    try {
+        OutputStream out = new FileOutputStream(file);
+        byte[] buf = new byte[1024];
+        int len;
+        while((len=in.read(buf))>0){
+            out.write(buf,0,len);
+        }
+        out.close();
+        in.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+
+As WMR mentioned, org.apache.commons.io.IOUtils from Apache has a method called copy(InputStream,OutputStream) which does exactly what you're looking for.
+
+So, you have:
+
+InputStream in;
+OutputStream out;
+IOUtils.copy(in,out);
+in.close();
+out.close();
+...in your code.
+
+Is there a reason you're avoiding IOUtils?
