@@ -1,0 +1,4 @@
+public String trim ()
+
+Added in API level 1
+Returns a string with no code points <= \\u0020 at the beginning or end.

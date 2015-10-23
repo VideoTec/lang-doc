@@ -1,0 +1,8 @@
+http://stackoverflow.com/questions/26555346/java-fastest-way-to-check-if-a-string-contains-only-certain-characters
+
+Use a regular expression:
+
+Pattern.matches("[\\dA-Z]+", string)
+[\\dA-Z]+: At least one occurrence (+) of digits or uppercase letters.
+
+If you want to include lowercase letter, replace [\\dA-Z]+ with [\\dA-Za-z]+.

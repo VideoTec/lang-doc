@@ -1,0 +1,4 @@
+public boolean contains (CharSequence cs)
+
+Added in API level 1
+Returns true if this string contains the charss from the given CharSequence.

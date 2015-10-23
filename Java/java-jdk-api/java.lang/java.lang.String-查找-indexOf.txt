@@ -1,0 +1,13 @@
+http://stackoverflow.com/questions/2615749/java-method-to-get-position-of-a-match-in-a-string
+
+The family of methods that does this are:
+
+int indexOf(String str)
+indexOf(String str, int fromIndex)
+
+int lastIndexOf(String str)
+lastIndexOf(String str, int fromIndex)
+
+Returns the index within this string of 
+the first (or last) occurrence of the specified substring 
+[searching forward (or backward) starting at the specified index].
