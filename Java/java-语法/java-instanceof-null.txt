@@ -1,0 +1,4 @@
+http://jurisp.iteye.com/blog/815704
+
+instanceof 操作符定义为当左操作符为null的时候返回false.  
+右操作符不能是null；
