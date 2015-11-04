@@ -1,0 +1,20 @@
+http://stackoverflow.com/questions/1295424/how-to-convert-float-to-int-with-java
+
+Using Math.round() will round the float to the nearest integer.
+
+public static long round(double d)
+public static int round(float f)
+
+http://stackoverflow.com/questions/4377842/how-can-i-convert-integer-into-float-in-java
+
+You just need to cast at least one of the operands to a float:
+
+float z = (float) x / y;
+
+or
+
+float z = x / (float) y;
+
+or (unnecessary)
+
+float z = (float) x / (float) y;

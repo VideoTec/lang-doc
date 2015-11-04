@@ -1,0 +1,2 @@
+中括号是类型的一部分
+String[] args， 而非String args[]
