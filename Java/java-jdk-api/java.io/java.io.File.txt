@@ -1,5 +1,6 @@
 参考
 file:///E:/android-sdk-windows/docs/reference/java/io/File.html
+http://developer.android.com/intl/zh-cn/reference/android/widget/EditText.html
 
 Class Overview
 An "abstract" representation of a file system entity identified by a pathname. The pathname may be absolute (relative to the root directory of the file system) or relative to the current directory in which the program is running.
