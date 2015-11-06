@@ -1,0 +1,48 @@
+java 内部类，编译后会生成单独的 class 文件如：
+
+R$color.class
+
+接口也会单独生成CLASS文件
+public interface OnCrash {
+	public void onPreTerminate(Thread thread, Throwable ex);
+	public void onTerminate(Thread thread, Throwable ex);
+}
+CrashHandler$OnCrash.class
+
+匿名类也会生成单独的CLASS文件
+CrashHandler$1.class
+CrashHandler$1$1.class
+
+这两个CLASS文件是下面的代码，生成的：
+    public void init(long preTerminateMillis, OnCrash onCrash) {
+        mPreTerminateMillis = preTerminateMillis;
+        mOnCrash = onCrash;
+        Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(final Thread thread, final Throwable ex) {
+                if (LogSystem.DEBUG) {
+                    LogSystem.e(fTag, "mTag = " + mTag + ", thread = " + thread, ex);
+                }
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Looper.prepare();
+                        if (mOnCrash != null) {
+                            mOnCrash.onPreTerminate(thread, ex);
+                        }
+                        Looper.loop();
+                    }
+                }.start();
+                SystemClock.sleep(mPreTerminateMillis);
+                if (mOnCrash != null) {
+                    mOnCrash.onTerminate(thread, ex);
+                }
+            }
+        });
+    }
+
+参考
+http://8796412.blog.51cto.com/8786412/1391505
+http://zhouchaofei2010.iteye.com/blog/2214620
+内部类的class文件命名是：主类＋$＋内部类名
+匿名类的class文件命名是：主类＋$＋(1,2,3....)

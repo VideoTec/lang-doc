@@ -1,0 +1,20 @@
+http://wenku.baidu.com/view/c923dc284b73f242336c5f5a.html
+
+在一个*.java的文件中：
+
+1）只能有一个public class的声明，
+且文件名必须与 public class 类名一致。
+
+2）但是允许有多个class的声明 
+
+例子：
+
+public class Hello{ 
+    public static void main(String args[]){
+         System.out.println("Hello World!!!");
+     } }; 
+class A{}; 
+class B{};  
+
+在以上的文件中，定义了三个类，
+那么此时程序编译之后会形成三个*.class文件

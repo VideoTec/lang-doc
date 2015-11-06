@@ -1,0 +1,12 @@
+http://bbs.csdn.net/topics/40421531
+http://wenku.baidu.com/view/c923dc284b73f242336c5f5a.html
+
+带 public 的类的特点：
+1）一个外部可以访问的类 （其它包可以访问）
+2）文件名要和（public的）类名一样
+3）一个文件里面只能有一个public类 （因为一个文件只能一个名）
+   附加一点：一个 java 文件中可以定义多个类，但只能有一个类是 public
+   
+不带 public 的类的特点：
+1）不写public,则.java文件的名称为任意，
+2）只有同一个package中的类能访问这个类
