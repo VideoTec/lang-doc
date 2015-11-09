@@ -1,0 +1,31 @@
+http://stackoverflow.com/questions/2223386/why-doesnt-java-allow-overriding-of-static-methods
+
+Overriding depends on having an instance of a class. 
+The point of polymorphism is that you can subclass a class and the objects implementing those subclasses will have different behaviors for the same methods defined in the superclass (and overridden in the subclasses). 
+A static method is not associated with any instance of a class so the concept is not applicable.
+
+There were two considerations driving Java's design that impacted this.
+ 
+1）One was a concern with performance: there had been a lot of criticism of Smalltalk about it being too slow (garbage collection and polymorphic calls being part of that) and 
+Java's creators were determined to avoid that. 
+
+2）Another was the decision that the target audience for Java was C++ developers. 
+Making static methods work the way they do had the benefit of 
+familiarity for C++ programmers and was also very fast, 
+because there's no need to wait until runtime to figure out which method to call.
+
+http://stackoverflow.com/questions/16617408/overriding-static-methods-in-java
+
+You didn't override anything here. To see for yourself, Try putting @Override annotation before public static void a() in class B and Java will throw an error.
+
+You just defined a function in class B called a(), which is distinct (no relation whatsoever) from the function a() in class A.
+
+But Because B.a() has the same name as a function in the parent class, it hides A.a() [As pointed by Eng. Fouad]. At runtime, the compiler uses the actual class of the declared reference to determine which method to run. For example,
+
+B b = new B();
+b.a() //prints B.a()
+
+A a = (A)b;
+a.a() //print A.a(). Uses the declared reference's class to find the method.
+You cannot override static methods in Java. Remember static methods and fields are associated with the class, not with the objects. (Although, in some languages like Smalltalk, this is possible).
+

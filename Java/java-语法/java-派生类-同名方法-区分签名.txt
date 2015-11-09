@@ -1,0 +1,28 @@
+https://m.oschina.net/blog/422305
+
+与基类中同名的方法，如果签名完全一致，会覆盖基类的方法。
+同时在基类中与派生类同名，但是签名不同的函数并不会被覆盖
+（这与C++不同，C++中名字相同就会全部覆盖，而不管签名是否一致）。
+
+@Override 作用：
+通过@Override可以显示指定派生类的函数为覆盖基类同签名的函数，
+如果没有同签名函数则报错，避免本来想覆盖，结果变成了重载。
+
+静态方法 与 实例方法
+另外，不能用static方法覆盖非static方法，反之也不可以
+
+https://docs.oracle.com/javase/tutorial/java/IandI/hidevariables.html
+
+Hiding Fields
+
+Within a class, 
+a field that has the same name 
+as a field in the superclass hides the superclass's field, 
+even if their types are different. 
+
+Within the subclass, 
+the field in the superclass cannot be referenced by its simple name. 
+Instead, the field must be accessed through super
+
+Generally speaking, 
+we don't recommend hiding fields as it makes code difficult to read.
