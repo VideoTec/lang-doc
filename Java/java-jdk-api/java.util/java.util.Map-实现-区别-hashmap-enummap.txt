@@ -1,0 +1,74 @@
+http://javarevisited.blogspot.com/2012/09/difference-between-enummap-and-hashmap-in-java-vs.html
+
+tricky[英][ˈtrɪki] [美][ˈtrɪki]
+adj.狡猾的；（形势、工作等）复杂的；机警的；微妙的
+
+HashMap vs EnumMap in Java
+
+What is difference between EnumMap and HashMap in Java 
+is the latest Java collection interview question which has been asked to couple of my friends. 
+
+This is one of the tricky Java question, 
+specially if you are not very much familiar with EnumMap in Java, 
+which is not uncommon, given you can use it with only Enum keys. 
+
+Main difference between EnumMap and HashMap is that 
+EnumMap is a specialized Map implementation exclusively for Enum as key. 
+
+可提高性能
+Using Enum as key, 
+allows to do some implementation level optimization for high performance 
+which is generally not possible with other object's as key. 
+
+We have seen lot of interview questions on HashMap in our article How HashMap works in Java 
+but what we missed there is this question which is recently asked to some of my friend. 
+Unlike HashMap, EnumMap is not applicable for every case but its best suited when you have Enum as key. 
+
+We have already covered basics of EnumMap and some EnumMap example in my last article 
+What is EnumMap in Java and In this post we will focus on key differences between HashMap and EnumMap in Java.
+
+两者的共同点：
+Before looking differences between EnumMap and HashMap, 
+few words about What is common between them. 
+Both of them implements Map interface 
+so they can be used in all methods which accept Map and data can be accessed 
+using common Map methods e.g. get() and put(). 
+
+EnumMap 的内部实现 使用数据Array
+Internally EnumMap is represented using Array and 
+provides constant time performance for common methods e.g. get() or put(). 
+Now let's see few differences between EnumMap vs HashMap :
+
+1) As said earlier, first and foremost difference between EnumMap and HashMap is that, 
+EnumMap is optimized for enum keys while 
+HashMap is a general purpose Map implementation similar to Hashtable. 
+you can not use any type other than Enum as key in EnumMap 
+but you can use both Enum and any other Object as key in HashMap.
+
+2) Another difference between EnumMap and HashMap is performance. 
+as discussed in previous point, d
+ue to specialized optimization done for Enum keys, 
+EnumMap is likely to perform better than HashMap when using enum as key object.
+
+collision[英][kəˈlɪʒn] [美][kəˈlɪʒən]
+n.碰撞；冲突；（意见，看法）的抵触；（政党等的）倾轧
+
+probability[英][ˌprɒbəˈbɪləti] [美][ˌprɑ:bəˈbɪləti]
+n.可能性；几率，概率；或然性
+
+3) One more thing which can be considered as difference between HashMap and EnumMap 
+is probability of Collision. 
+Since Enum is internally maintain as array and 
+they are stored in there natural order using ordinal(), 
+as shown in following code which is taken from put() method of EnumMap
+
+    int index = ((Enum)key).ordinal();
+    Object oldValue = vals[index];
+    vals[index] = maskNull(value);
+
+Since EnumMap doesn't call hashCode method on keys, there is no chance of collision.
+
+These were some notable difference between EnumMap and HashMap in Java. 
+In short EnumMap is best suited for enum keys, 
+for which it has optimized and perform better than HashMap in Java. 
+Use EnumMap whenever you can use enum as keys.

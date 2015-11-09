@@ -1,0 +1,52 @@
+http://blog.csdn.net/ahuier/article/details/8452643
+JavaSE第六十讲 EnumSet与EnumMap详解
+
+http://m.yiibai.com/java/util/java_util_enummap.html
+
+java.util.EnumMap 类是一种专门Map实现与枚举键的使用。
+以下是有关EnumMap要点：
+1) 所有在枚举映射的键都必须来自所指定，或明或暗地，创建映射的时候一个枚举类型。
+2) 枚举映射保持在其键的自然顺序。
+3) EnumMap是不同步的。如果多个线程同时访问一个枚举映射并发和线程中的至少一个修改的映射，它应该保持外部同步
+
+public class EnumMap<K extends Enum<K>,V>
+构造函数：
+
+1	EnumMap(Class<K> keyType)
+此构造函数创建具有指定键类型的空枚举映射。
+
+例子：
+public enum Type { BACK, FRONT }
+mInfs = new EnumMap<Type, Info>(Type.class);
+
+2	EnumMap(EnumMap<K,? extends V> m) 
+此构造函数创建具有相同的键类型与指定枚举映射的枚举映射，最初包含相同的映射关系(如果有的话)。
+3	EnumMap(Map<K,? extends V> m) 
+此构造函数从指定的映射表进行初始化创建一个枚举映射。
+
+1	void clear() 
+此方法从此映射删除所有映射。
+2	EnumMap<K,V> clone() 
+此方法返回此枚举映射的浅表副本。
+3	boolean containsKey(Object key) 
+如果此映射包含指定键的映射此方法返回true。
+4	boolean containsValue(Object value) 
+如果此映射一个或多个键映射到指定值，该方法返回true。
+5	Set<Map.Entry<K,V>> entrySet()
+此方法返回此映射中包含的映射关系的Set视图。
+6	boolean equals(Object o) 
+此方法将指定对象与此映射比较是否相等。
+7	V get(Object key) 
+这个方法返回指定键所映射的值，或者null，如果此映射不包含该键。
+8	Set<K> keySet() 
+此方法返回此映射中包含的键的Set视图。
+9	V put(K key, V value) 
+这种方法与关联此映射中的指定键指定的值。
+10	void putAll(Map<? extends K,? extends V> m) 
+这种方法将所有从指定映射此映射中的映射。
+11	V remove(Object key)
+此方法从该映射删除映射为这个键，如果存在的话。
+12	int size() 
+此方法返回键- 值映射关系在映射的大小。
+13	Collection<V> values() 
+此方法返回此映射中包含的值的Collection视图。

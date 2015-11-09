@@ -1,0 +1,27 @@
+http://blog.csdn.net/ahuier/article/details/8453049
+
+Reflection。这个字的意思是“反射、映象、倒影”，
+用在Java身上指的是我们可以于运行时加载、探知、使用编译期间完全未知的classes。
+换句话说，Java程序可以加载一个运行时才得知名称的class，
+获悉其完整构造（但不包括methods定义），并生成其对象实体、或对其fields设值、或唤起其methods。
+这种“看透class”的能力
+（the ability of the program to examine itself）
+被称为introspection（内省、内观、反省）。
+Reflection和introspection是常被并提的两个术语
+
+Java 反射机制主要提供了以下功能
+1)在运行时判断任意一个对象所属的类。
+2)在运行时构造任意一个类的对象。
+[在编译的时候通过new的方式构造一个对象，但是在反射里面是通过一个间接的方式生成]
+3) 在运行时判断任意一个类所具有的成员变量和方法。
+4) 在运行时调用任意一个对象的方法
+
+在JDK中，主要由以下类来实现Java反射机制，这些类大多数都位于java.lang.reflect包中
+1)Class类：代表一个类。[这个包位于java.lang包下，下面的几个位于java.lang.reflect包下]
+2)Field 类：代表类的成员变量（成员变量也称为类的属性）。
+3)Method类：代表类的方法。
+4)Constructor类：代表类的构造方法。
+5)Array类：提供了动态创建数组,以及访问数组的元素的静态方法
+
+Class类代表着类本身，每一个类都会有一个与之关联的Class类
+Java 中，无论生成某个类的多少个对象，这些对象都会对应于同一个 Class 对象
