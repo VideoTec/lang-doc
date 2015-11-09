@@ -1,0 +1,8 @@
+http://lenjey.iteye.com/blog/513736
+
+Exception in thread “main” java.io.InvalidClassException: Person; local class incompatible: stream classdesc serialVersionUID = 8383901821872620925, local class serialVersionUID = -763618247875550322 
+
+没有指定serialVersionUID的，
+那么java编译器会自动给这个class进行一个摘要算法，
+类似于指纹算法，只要这个文件多一个空格，得到的UID就会截然不同的，
+可以保证在这么多类中，这个编号是唯一的。

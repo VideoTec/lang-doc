@@ -1,0 +1,11 @@
+静态方法 - 隐藏
+实例方法 - 重写
+
+https://docs.oracle.com/javase/tutorial/java/IandI/override.html
+
+The distinction between 
+hiding a static method and 
+overriding an instance method has important implications:
+
+The version of the overridden instance method that gets invoked is the one in the subclass.
+The version of the hidden static method that gets invoked depends on whether it is invoked from the superclass or the subclass.
