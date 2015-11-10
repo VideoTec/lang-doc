@@ -1,0 +1,5 @@
+http://www.hawstein.com/posts/google-java-style.html
+
+不可能满足列限制的行(例如，Javadoc中的一个长URL，或是一个长的JSNI方法参考)。
+package和import语句(见3.2节和3.3节)。
+注释中那些可能被剪切并粘贴到shell中的命令行。

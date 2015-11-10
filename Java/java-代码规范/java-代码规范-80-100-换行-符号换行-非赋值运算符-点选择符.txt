@@ -1,0 +1,8 @@
+如果在非赋值运算符处断开，那么在该符号前断开(比如+，它将位于下一行)。
+
+注意：这一点与Google其它语言的编程风格不同(如C++和JavaScript)。
+
+这条规则也适用于以下“类运算符”符号：
+点分隔符(.)，
+类型界限中的&（<T extends Foo & Bar>)，
+catch 块中的管道符号(catch (FooException | BarException e)

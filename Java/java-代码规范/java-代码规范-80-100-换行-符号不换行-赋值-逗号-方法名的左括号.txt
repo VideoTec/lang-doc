@@ -1,0 +1,13 @@
+http://www.hawstein.com/posts/google-java-style.html
+
+方法名或构造函数名与左括号留在同一行。
+逗号(,)与其前面的内容留在同一行。
+
+如果在赋值运算符处断开，
+通常的做法是在该符号后断开(比如=，它与前面的内容留在同一行)。
+这条规则也适用于foreach语句中的分号
+
+例如：
+        AudioRecordAnimViewMgr.Event recordAnimViewEvent =
+                new AudioRecordAnimViewMgr.Event() {
+                }

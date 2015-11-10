@@ -1,0 +1,4 @@
+http://www.hawstein.com/posts/google-java-style.html
+
+每次只声明一个变量
+不要使用组合声明，比如int a, b;。
