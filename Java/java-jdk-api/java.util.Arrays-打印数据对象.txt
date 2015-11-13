@@ -1,0 +1,4 @@
+http://java67.blogspot.com/2014/03/how-to-print-array-in-java-example-tutorial.html
+
+http://javarevisited.blogspot.sg/2013/03/convert-and-print-byte-array-to-hex-string-java-example-tutorial.html
+
