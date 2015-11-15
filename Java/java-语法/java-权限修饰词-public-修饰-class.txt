@@ -1,3 +1,8 @@
+对于类访问权限来说，
+仅有两个选择：包访问权限或public。
+类既不可以是private的，也不可以是protected的，
+但内部类是个特例，一个内部类可以是private或protected的。
+
 http://bbs.csdn.net/topics/40421531
 http://wenku.baidu.com/view/c923dc284b73f242336c5f5a.html
 
