@@ -1,0 +1,53 @@
+https://www.sebug.net/vuldb/ssvid-89723
+JBoss “Java 反序列化”过程远程命令执行漏洞
+
+漏洞原理
+反序列化是指特定语言中将传递的对象序列化数据重新恢复为实例对象的过程，
+而在这个过程中会执行一系列的字节流解析和对象实例化操作用于恢复之前序列化时的对象。
+在原博文所提到的那些 Java 应用里都有特定的接口用于传递序列化对象数据，
+而在反序列化时并没有限制实例化对象的类型，
+导致可以任意构造应用中已经包含的对象利用反序列化操作进行实例化。
+
+Java 在进行反序列化操作的时候会使用 
+ObjectInputStream 类调用 readObject() 方法去读取传递过来的序列化对象字节流进行处理，
+要想利用反序列化过程进行攻击，
+就必须构造出一个能够自动执行的代码调用链。
+而议题《Marshalling Pickles》中巧好就使用 
+Apache Commons Collections 库构造出了一个能够在反序列化操作时能够自动执行命令的调用链。
+具体构造详情可参考原议题PPT。
+
+软件供应链自动化公司Sonatype的首席技术官Joshua Corman 说：
+“InvokerTransmer 类目本身并无害而且也不会反序列化，
+但是当它们组合在一起时，安全问题就出现了。”，
+该公司帮助研发员追踪和管理他们在应用程序中使用的组件。
+
+http://m.v4.cc/News-592203.html
+
+Apache Commons Collections组件当中的一项缺陷令Java应用服务器陷入遭受侵袭的风险当中
+
+该 项漏洞存在于Apache Commons当中，这套库当中包含着一系列使用范围极广的Java组件，
+并由Apache软件基金会负责维护。
+该库被默认使用于大量Java应用程序服 务器以及
+包括甲骨文WebLogic、IBM WebSphere、JBoss、Jenkins以及OpenNMS等其它产品当中。
+该项漏洞专门存在于Apache Commons的Collections组件当中，
+而且会收集不安全的Java对象反序列化内容。
+在编程语言当中，序列化是指将数据转化为二进制格式以保存为文件、
+驻留在内存中或者通过网络进行发送的过程。
+反序列化则是该流程的逆向执行过程。
+
+“总而言之，
+不可信的输入内容不应被盲目进行反序列化处理。
+开发人员应当了解到库的工作原理并利用库进行输入内容验证，
+而非简单认为或者指望库本身拥有解决安全问题的能力。”
+
+http://drops.wooyun.org/papers/10467
+common-collections中Java反序列化漏洞导致的RCE原理分析
+
+主要探讨一下在特殊环境下，反序列化能否达到远程代码执行（RCE）。
+
+总结下，漏洞产生的主要问题还是在用户可控的序列化字符串上，
+在使用 ObjectInputStream 与 ObjectOutputStream 类的时候，
+最好进行白名单校验，防止意外的发生
+
+https://commons.apache.org/proper/commons-collections/apidocs/org/apache/commons/collections4/functors/InvokerTransformer.html
+

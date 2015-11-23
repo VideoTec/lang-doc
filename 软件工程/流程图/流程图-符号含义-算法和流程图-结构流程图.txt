@@ -1,0 +1,6 @@
+http://micro.ustc.edu.cn/Fortran/ZJDing/Sec2-1.htm
+
+1973年美国学者I.Nassi和B.Shneiderman提出了一种新的流程图形式。
+在这种流程图中，完全去掉了带箭头的流程线。
+全部算法写在一个矩形框内。在该框内还可以包含其它的从属于它的框，
+即可由一些基本的框组成一个大的框。
