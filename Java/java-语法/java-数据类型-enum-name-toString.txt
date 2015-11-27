@@ -1,0 +1,41 @@
+http://stackoverflow.com/questions/13291076/java-enum-why-use-tostring-instead-of-name
+
+Returns the name of this enum constant, 
+exactly as declared in its enum declaration. 
+Most programmers should use the toString method in preference to this one, 
+as the toString method may return a more user-friendly name. 
+This method is designed primarily for use in specialized situations 
+where correctness depends on getting the exact name, 
+which will not vary from release to release.
+
+------------------------------------------------------------------------------
+It really depends on what you want to do with the returned value:
+------------------------------------------------------------------------------
+
+If you need to get the exact name used to declare the enum constant, you should use name() as toString may have been overriden
+If you want to print the enum constant in a user friendly way, you should use toString which may have been overriden (or not!).
+When I feel that it might be confusing, I provide a more specific getXXX method, for example:
+
+public enum Fields {
+    LAST_NAME("Last Name"), FIRST_NAME("First Name");
+
+    private final String fieldDescription;
+
+    private Fields(String value) {
+        fieldDescription = value;
+    }
+
+    public String getFieldDescription() {
+        return fieldDescription;
+    }
+}
+
+http://stackoverflow.com/questions/18031125/what-is-the-difference-between-enum-name-and-enum-tostring
+public enum WeekDay {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY;
+
+    public String toString() {
+        return name().charAt(0) + name().substring(1).toLowerCase();
+    }
+}
+In this example,  WeekDay.MONDAY.name() returns "MONDAY", and WeekDay.MONDAY.toString() returns "Monday".

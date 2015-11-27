@@ -1,0 +1,82 @@
+http://stackoverflow.com/questions/7894762/anonymous-initialization-strange-serialization-warning
+
+ArrayList<Object> arrayList = new ArrayList<Object>(){{add(new Object());}}; 
+
+这样初始化有一个警告：
+The serializable class does not declare a static final serialVersionUID field of type long
+
+http://blog.csdn.net/liubo2012/article/details/8591956
+java map双括号初始化方式的问题
+
+关于双括号的初始化凡是确实很方便，特别是在常量文件中,无可替代
+Map map = new HashMap() { 
+　　{ 
+　　put("Name", "Unmi"); 
+　　put("QQ", "1125535"); 
+　　} 
+};
+
+双括号写法的原理：
+第一层括弧 实际是定义了一个内部匿名类 (Anonymous Inner Class)，
+第二层括弧 实际上是一个实例初始化块 (instance initializer block)，
+这个块在内部匿名类构造时被执行。
+这个块之所以被叫做“实例初始化块”是因为它们被定义在了一个类的实例范围内。
+
+http://www.xjiujiu.com/?id=410
+//初始化List
+List list   = new ArrayList(){{
+    add("string1");
+    add("string2");
+    //some other add() code......
+    add("stringN");
+}};
+//初始化Map
+Map map = new HashMap(){{
+    put("key1", "value1");
+    put("key2", "value2");
+    //.... some other put() code
+    put("keyN", "valueN");
+}};
+
+http://stackoverflow.com/questions/507602/how-can-i-initialize-a-static-map
+
+public class Test {
+    private static final Map<Integer, String> myMap;
+    static {
+        Map<Integer, String> aMap = ....;
+        aMap.put(1, "one");
+        aMap.put(2, "two");
+        myMap = Collections.unmodifiableMap(aMap);
+    }
+}
+
+static final Map<Integer, String> MY_MAP = ImmutableMap.of(
+        1, "one",
+        2, "two"
+);
+
+public class Test {
+    private static final Map<Integer, String> MY_MAP = createMap();
+
+    private static Map<Integer, String> createMap() {
+        Map<Integer, String> result = new HashMap<Integer, String>();
+        result.put(1, "one");
+        result.put(2, "two");
+        return Collections.unmodifiableMap(result);
+    }
+}
+
+static final Map<String , String> FLAVORS = new HashMap<String , String>() {{
+    put("Up",    "Down");
+    put("Charm", "Strange");
+    put("Top",   "Bottom");
+}};
+
+http://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way
+
+Map<String, Integer> left = ImmutableMap.of("a", 1, "b", 2, "c", 3);
+
+HashMap<String, String > h = new HashMap<String, String>(){{
+        put("a","b");
+    }};
+    

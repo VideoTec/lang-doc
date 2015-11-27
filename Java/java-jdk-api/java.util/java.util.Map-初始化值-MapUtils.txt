@@ -1,0 +1,9 @@
+https://objectpartners.com/2014/06/05/inline-initialization-of-java-maps/
+
+自定义的 MapUtils 类：
+https://gist.github.com/nbuesing/ad311f3a83b6a4c51bc2#file-maputils-java
+
+If you include MapUtils, which is less than 50 lines of code, and you statically import one of the methods, MapUtils.entry() you can initialize a Map as follows:
+
+Map<String,Integer> map = MapUtils.asMap(entry(“A”, 1), entry(“B”, 2), entry(“C”, 3), entry(“D”, 4));
+Map<String,Integer> map = MapUtils.asUnmodifiableMap(entry(“A”, 1), entry(“B”, 2), entry(“C”, 3), entry(“D”, 4));

@@ -1,0 +1,19 @@
+初始化 枚举MAP：
+
+enum PageType {
+    PAGE_TYPE_MAIN, PAGE_TYPE_MSG, PAGE_TYPE_CONNECTION, PAGE_TYPE_PERSONAL, PAGE_TYPE_NONE
+}
+private Map<PageType, String> mTitleNames = new EnumMap<PageType, String>(PageType.class);
+
+双大括号初始化方法：
+
+    private Map<PageType, String> mTitleNames = new EnumMap<PageType, String>(PageType.class) {{
+        put(PageType.PAGE_TYPE_NONE, "主页");
+        put(PageType.PAGE_TYPE_MAIN, "主页");
+        put(PageType.PAGE_TYPE_MSG, "消息");
+        put(PageType.PAGE_TYPE_PERSONAL, "我的");
+        put(PageType.PAGE_TYPE_CONNECTION, "人脉");
+    }};
+    
+这样初始化有一个警告：
+The serializable class does not declare a static final serialVersionUID field of type long

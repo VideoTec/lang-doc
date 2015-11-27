@@ -1,0 +1,25 @@
+http://alvinalexander.com/java/using-java-enum-for-loop-tutorial
+
+enum Day
+{
+  SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY 
+}
+
+Java enum for loop discussion
+As you can see in the example, the Java enum for loop code looks like this:
+
+for (Day d: Day.values())
+{
+  System.out.println(d);
+}
+This is a standard Java 5 for loop, with the only here being the use of the values method of our Java enum. This values method returns an enum array -- in this case an enum array of type Day (Day[]) -- that our Java 5 for loop can iterate through.
+
+As you might guess from looking at the code -- and knowing that the values method returns an enum array -- the output from the test enum class is:
+
+SUNDAY
+MONDAY
+TUESDAY
+WEDNESDAY
+THURSDAY
+FRIDAY
+SATURDAY
