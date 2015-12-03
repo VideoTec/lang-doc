@@ -1,0 +1,11 @@
+https://css-tricks.com/crop-top/
+
+Sometimes you want an image to resize responsively 
+but restrict its height — cropping it then as it widens. 
+Here, we explore three options with various trade-offs.
+
+Here, in place of an <img>, 
+we create a div with a background-image and 
+use CSS3's dandy new background-size: cover to have it size proportionally. 
+As a bonus, 
+we can easily crop from the top, center, or bottom using background-position

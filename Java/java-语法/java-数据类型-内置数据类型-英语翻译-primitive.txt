@@ -1,0 +1,4 @@
+primitive[英][ˈprɪmətɪv] [美][ˈprɪmɪtɪv]
+
+primitive主数据类型。
+java等编程语言中的默认基本数据类型，如：int，long等等

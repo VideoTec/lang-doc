@@ -1,0 +1,8 @@
+安装 java 后发现环境变量PATH，里增加了个路径：
+
+C:\ProgramData\Oracle\Java\javapath
+
+里面有三个快捷方式：
+java.exe     C:\Program Files\Java\jre1.8.0_66\bin\java.exe
+javaw.exe    C:\Program Files\Java\jre1.8.0_66\bin\javaw.exe
+javaws.exe   C:\Program Files\Java\jre1.8.0_66\bin\javaws.exe

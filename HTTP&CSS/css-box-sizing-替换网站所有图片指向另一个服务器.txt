@@ -1,0 +1,18 @@
+https://css-tricks.com/replace-the-image-in-an-img-with-css/
+
+/* All in one selector */
+.banner {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url(http://notrealdomain2.com/newbanner.png) no-repeat;
+  width: 180px; /* Width of new image */
+  height: 236px; /* Height of new image */
+  padding-left: 180px; /* Equal to width of new image */
+}
+
+It worked beautifully. Here's what's cool:
+
+It works on just about any element, even empty ones like <img> or <hr>
+Browser support is excellent (Chrome, Firefox, Opera, Safari, IE8+) http://caniuse.com/#feat=css3-boxsizing
+Refrains from using SEO unfriendly display: none or other properties

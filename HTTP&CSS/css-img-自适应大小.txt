@@ -1,0 +1,17 @@
+http://stackoverflow.com/questions/787839/resize-image-proportionally-with-css
+
+To resize the image proportionally using CSS I tried following.
+
+img.resize{
+    width:540px; /* you can use % */
+    height: auto;
+}
+
+Control size and maintain proportion :
+
+#your-img {
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+    max-height: 300px;
+}
