@@ -1,0 +1,8 @@
+需要添加单引号吗？
+11:13 2015/12/4
+最后验证，不用加单引号，也可以。
+
+http://stackoverflow.com/questions/5797293/trying-to-push-data-into-js-function-within-webview
+
+I needed to add single quotes around the JSON string.
+mWebView.loadUrl("javascript:returnData('"+json+"')");

@@ -1,0 +1,17 @@
+literal[英][ˈlɪtərəl] [美][ˈlɪtərəl]
+adj.照字面的；原义的；逐字的；平实的，避免夸张
+
+http://stackoverflow.com/questions/970039/09-is-not-recognized-where-as-9-is-recognized
+
+In java, if you are defining an integer, a leading '0' will denote that you are defining a number in octal
+
+int i = 07; //integer defined as octal
+int i = 7; // integer defined as base 10
+int i = 0x07; // integer defined as hex
+int i = 0b0111; // integer defined as binary (Java 7+)
+
+----------------------------------------------
+12:53 2015/12/4
+----------------------------------------------
+    /**聊天室**/
+    public static final long BESIDE_CHATROOM = 0164100001;//聊天室tab  这值是： 30441473

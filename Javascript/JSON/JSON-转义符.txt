@@ -1,0 +1,1 @@
+https://forums.xamarin.com/discussion/15705/how-to-escape-a-json-object-to-feed-into-a-javascript-function
