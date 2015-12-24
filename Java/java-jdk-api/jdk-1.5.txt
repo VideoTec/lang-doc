@@ -1,0 +1,5 @@
+http://www.cnblogs.com/peida/p/EventBus.html
+
+Java 5 就已经泛型了。Java 5是一次大规模的语法调整，
+许多程序库从那开始重新设计了API，使其更简洁易用。
+当然，那些不做应对的程序库，多半也就过时了

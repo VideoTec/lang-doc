@@ -1,0 +1,112 @@
+
+com.google.common.annotations  
+com.google.common.base    
+com.google.common.cache    
+com.google.common.collect
+com.google.common.escape 
+com.google.common.eventbus
+com.google.common.graph
+com.google.common.hash
+com.google.common.html
+com.google.common.io
+com.google.common.math
+com.google.common.net
+com.google.common.primitives
+com.google.common.reflect
+com.google.common.util.concurrent
+com.google.common.xml 
+
+http://google.github.io/guava/releases/snapshot/api/docs/
+
+-------------------------------------
+com.google.common.annotations  
+-------------------------------------  
+Common annotation types.
+
+-------------------------------------
+com.google.common.base 
+-------------------------------------   
+Basic utility libraries and interfaces.
+
+-------------------------------------
+com.google.common.cache 
+-------------------------------------   
+This package contains caching utilities.
+
+-------------------------------------
+com.google.common.collect 
+-------------------------------------   
+This package contains generic collection interfaces and implementations, 
+and other utilities for working with collections.
+
+-------------------------------------
+com.google.common.escape
+-------------------------------------    
+Interfaces, utilities, and simple implementations of escapers and encoders.
+
+-------------------------------------
+com.google.common.eventbus
+-------------------------------------    
+The EventBus allows publish-subscribe-style 
+communication between components 
+without requiring the components to 
+explicitly register with one another (and thus be aware of each other).
+
+-------------------------------------
+com.google.common.graph
+-------------------------------------    
+An API for representing graph (node and edge) data.
+
+-------------------------------------
+com.google.common.hash  
+-------------------------------------  
+Hash functions and related structures.
+
+-------------------------------------
+com.google.common.html 
+-------------------------------------   
+Escapers for HTML.
+
+-------------------------------------
+com.google.common.io 
+-------------------------------------   
+This package contains utility methods and classes for 
+working with Java I/O; 
+
+for example 
+1）input streams, 
+2）output streams, 
+3）readers, writers, and files.
+
+-------------------------------------
+com.google.common.math  
+-------------------------------------  
+Arithmetic functions operating on primitive values and BigInteger instances.
+
+-------------------------------------
+com.google.common.net  
+-------------------------------------  
+This package contains utility methods and classes for 
+working with net addresses (numeric IP and domain names).
+
+-------------------------------------
+com.google.common.primitives 
+-------------------------------------   
+Static utilities for working with 
+the eight primitive types and void, 
+and value types for treating them as unsigned.
+
+-------------------------------------
+com.google.common.reflect 
+-------------------------------------   
+This package contains utilities to work with Java reflection.
+
+-------------------------------------
+com.google.common.util.concurrent  
+-------------------------------------  
+Concurrency utilities.
+
+-------------------------------------
+com.google.common.xml    
+-------------------------------------
+Escapers for XML.

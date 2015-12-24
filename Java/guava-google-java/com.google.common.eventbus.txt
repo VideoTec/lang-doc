@@ -1,0 +1,42 @@
+@Subscribe + 参数类型 代替 事件接口定义。
+
+例如：
+
+class MultipleListener {
+ @Subscribe  
+    public void listenInteger(Integer event) {  
+        lastInteger = event; 
+        System.out.println("event Integer:"+lastInteger);
+    }  
+   
+    @Subscribe  
+    public void listenLong(Long event) {  
+        lastLong = event; 
+        System.out.println("event Long:"+lastLong);
+    } 
+}
+
+测试代码：
+
+EventBus eventBus = new EventBus("test");  
+MultipleListener multiListener = new MultipleListener();  
+
+注册、订阅
+eventBus.register(multiListener);
+
+发布
+eventBus.post(new Integer(300));  
+eventBus.post(new Long(800));
+
+http://www.cnblogs.com/peida/p/EventBus.html
+
+Guava学习笔记：EventBus
+
+EventBus是Guava的事件处理机制，
+是设计模式中的观察者模式（生产/消费者编程模型）的优雅实现。
+对于事件监听和发布订阅模式，
+EventBus是一个非常优雅和简单解决方案，
+我们不用创建复杂的类和接口层次结构
+
+使用Guava之后, 如果要订阅消息, 就不用再继承指定的接口, 
+只需要在指定的方法上加上@Subscribe注解即可
