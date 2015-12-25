@@ -1,0 +1,4 @@
+http://stackoverflow.com/questions/13938695/waiting-for-process-to-end-in-java
+he waitFor() method will make the calling thread to wait until the process p completes(It can be dangerous,since the if the process gets blocked in any infinite loop, the main thread will wait all the time.
+
+I suggest writing some semaphore file, and set some value in it when your process completes from java file.The main method can waiting on checking the status of semaphore file.
