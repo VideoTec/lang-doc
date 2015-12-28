@@ -1,0 +1,16 @@
+http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html
+
+java.lang 
+Class Class<T>
+
+java.lang.Object
+  extended by java.lang.Class<T>
+  
+Type Parameters:
+
+T - the type of the class modeled by this Class object. 
+For example, the type of String.class is Class<String>. 
+Use Class<?> if the class being modeled is unknown.
+
+All Implemented Interfaces:
+Serializable, AnnotatedElement, GenericDeclaration, Type

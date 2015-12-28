@@ -1,0 +1,7 @@
+https://docs.oracle.com/cd/F49540_01/DOC/java.815/a64683/ejb4.htm
+
+The EJB Architecture
+
+EJBs are based conceptually on the Java Remote Method Invocation (RMI) model. For example, remote object access and parameter passing for EJBs follow the RMI specification.
+
+The EJB specification does not prescribe that the transport mechanism has to be pure RMI. The Oracle8i EJB server uses RMI over IIOP for its transport protocol, a practice that is becoming common among server vendors.

@@ -1,0 +1,23 @@
+https://en.wikipedia.org/wiki/Data_transfer_object
+A value object is not a DTO. 
+The two terms have been conflated by Java developers in the past
+
+http://stackoverflow.com/questions/1612334/difference-between-dto-vo-pojo-javabeans
+So, for many people, 
+DTOs and VOs are the same thing 
+(but Fowler uses VOs to mean something else as we saw). 
+Most of time, 
+they follow the JavaBeans conventions and are thus JavaBeans too. 
+And all are POJOs.
+
+http://martinfowler.com/bliki/ValueObject.html
+
+literature[英][ˈlɪtrətʃə(r)] [美][ˈlɪtərəˌtʃʊr, -tʃɚ]
+n.文学；文学作品；文献；著作
+
+Early J2EE literature used the term value object 
+to describe a different notion, 
+what I call a Data Transfer Object. 
+
+They have since changed their usage and 
+use the term Transfer Object instead.

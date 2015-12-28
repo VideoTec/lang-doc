@@ -1,0 +1,25 @@
+http://martinfowler.com/eaaCatalog/index.html
+
+简单的概念：
+
+Base Patterns:
+http://martinfowler.com/eaaCatalog/valueObject.html
+
+Distribution Patterns:
+http://martinfowler.com/eaaCatalog/dataTransferObject.html
+
+-----------------------------------------------------
+http://book.douban.com/subject/1229954/
+-----------------------------------------------------
+
+确切的讲，
+是读过Part I: The Narriatives. 后面的内容是企业架构模式的详述，
+我觉得最好是找几个典型的框架源代码对照着读效果比较好。
+这本书完成的时间是2002年，
+现在读这本书的时候不得不赞叹教父 Martin Fowler 的前瞻性。
+虽然由于技术的快速发展，
+有些内容已经过时了，比如EJB2，
+但本书把些数据库对象关系、事务、并发、领域模型、MVC等讲得很深入。
+
+读教父的书你不得很佩服他的洞察力，
+他非常善于从司空见惯的日常现象中发现规律并且据此准确得预测未来。

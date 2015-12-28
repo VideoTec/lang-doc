@@ -1,0 +1,15 @@
+http://www.oracle.com/technetwork/java/javase/documentation/spec-136004.html
+
+JavaBeans Spec
+
+The JavaBeans 1.01 specification is now available. 
+This describes JavaBeans since they were introduced in JDK. 
+This minor revision fixes some errors 
+and omissions in the JavaBeans 1.00-A spec, 
+adds some clarifications, 
+and defines some extra (optional) conventions. 
+
+See the change history for details.
+
+http://www.oracle.com/technetwork/java/javase/documentation/spec-141065.html 
+版本历史

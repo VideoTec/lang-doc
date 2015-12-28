@@ -1,0 +1,68 @@
+http://martinfowler.com/bliki/ValueObject.html
+
+In P of EAA I described Value Object as a small object such as a Money or date range object. Their key property is that they follow value semantics rather than reference semantics.
+
+You can usually tell them because their notion of equality isn't based on identity, instead two value objects are equal if all their fields are equal. Although all fields are equal, you don't need to compare all fields if a subset is unique - for example currency codes for currency objects are enough to test equality.
+
+immutable[英][ɪˈmju:təbl] [美][ɪˈmjutəbəl]
+adj.不可改变的
+
+A general heuristic is that value objects should be entirely immutable. If you want to change a value object you should replace the object with a new one and not be allowed to update the values of the value object itself - updatable value objects lead to aliasing problems.(别名问题)
+
+http://www.yiibai.com/java/think12.1.1.html
+“别名”意味着多个句柄都试图指向同一个对象，
+就象前面的例子展示的那样。
+若有人向那个对象里写入一点什么东西，就会产生别名问题。
+若其他句柄的所有者不希望那个对象改变，恐怕就要失望了。
+http://blog.csdn.net/wang_yubin/article/details/8189067
+别名现象主要出现在赋值的问题上
+对基本数据类型的赋值是很简单的．
+基本数据类型存储了实际的数值,而并非指向一个对象的引用,
+所以在为其赋值的时候,是直接将一个地方的内容复制到了另一个地方.
+例如,
+对基本数据类型使用a=b,那么b的内容就复制给a.
+若接着又修改了a,而b根本不会受这种修改的影响
+
+对象"赋值"的时候,情况却发生了变化.
+对一个对象进行操作时,我们真正操作的是对对象的引用.
+所以倘若"将一个对象赋值给另一个对象",
+实际是将"引用"从一个地方复制到另一个地方.
+这意味着假若对对象使用c=d,
+那么c和d都指向原本只有d的指向的那个对象.
+
+Early J2EE literature used the term value object to describe a different notion, what I call a Data Transfer Object. They have since changed their usage and use the term Transfer Object instead.
+
+You can find some more good material on value objects on the wiki and by Dirk Riehle.
+
+http://blog.csdn.net/marshane/article/details/2548006
+
+ValueObject的值（状态）一旦创建以后就不会改变了。
+所以可以当基本数据类型用。
+比如Java中的String, BigDecimal, BigInteger都是ValueObject
+
+
+
+----------------------------------------
+(别名问题)
+----------------------------------------
+
+http://www.yiibai.com/java/think12.1.1.html
+“别名”意味着多个句柄都试图指向同一个对象，
+就象前面的例子展示的那样。
+若有人向那个对象里写入一点什么东西，就会产生别名问题。
+若其他句柄的所有者不希望那个对象改变，恐怕就要失望了。
+http://blog.csdn.net/wang_yubin/article/details/8189067
+别名现象主要出现在赋值的问题上
+对基本数据类型的赋值是很简单的．
+基本数据类型存储了实际的数值,而并非指向一个对象的引用,
+所以在为其赋值的时候,是直接将一个地方的内容复制到了另一个地方.
+例如,
+对基本数据类型使用a=b,那么b的内容就复制给a.
+若接着又修改了a,而b根本不会受这种修改的影响
+
+对象"赋值"的时候,情况却发生了变化.
+对一个对象进行操作时,我们真正操作的是对对象的引用.
+所以倘若"将一个对象赋值给另一个对象",
+实际是将"引用"从一个地方复制到另一个地方.
+这意味着假若对对象使用c=d,
+那么c和d都指向原本只有d的指向的那个对象.

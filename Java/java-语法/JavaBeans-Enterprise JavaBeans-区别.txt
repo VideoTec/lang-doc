@@ -1,0 +1,7 @@
+http://en.wikipedia.org/wiki/Plain_Old_Java_Object
+
+A JavaBean is a POJO that is serializable, 
+has a no-argument constructor, 
+and allows access to properties using getter and setter methods. 
+An Enterprise JavaBean is not a single class but an entire component model 
+(again, EJB 3 reduces the complexity of Enterprise JavaBeans).

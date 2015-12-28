@@ -1,0 +1,21 @@
+Implicit super constructor SQLiteOpenHelper() 
+is undefined for default constructor. 
+Must define an explicit constructor
+
+原因：SQLiteOpenHelper 没有无参构造方法
+
+public class MySQLiteOpenHelper extends SQLiteOpenHelper {
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // TODO Auto-generated method stub
+        
+    }
+
+}
