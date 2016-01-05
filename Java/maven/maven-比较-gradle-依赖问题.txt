@@ -1,0 +1,28 @@
+http://www.infoq.com/cn/news/2011/04/xxb-maven-6-gradle
+
+关于Gradle的依赖管理起初我有一点担心，就是它是否有传递性依赖的机制呢？
+经过文档阅读和实际试验后，这个疑虑打消了，
+
+Gradle能够解析现有的Maven POM或者Ivy的XML配置，
+从而得到传递性依赖的信息，并且引入到当前项目中，这实在是一个聪明的做法。
+在此基础上，它也支持
+1）排除传递性依赖或者干脆
+2）关闭传递性依赖，其中第二点是Maven所不具备的特性
+
+自动化依赖管理的基石是仓库，
+Maven中央仓库已经成为了Java开发者不可或缺的资源，
+Gradle既然有依赖管理，那必然也得用到仓库，
+这当然也包括了Maven中央仓库，就像这样：
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    mavenRepo urls: "http://repository.sonatype.org/content/groups/forge/"
+}
+
+这段代码几乎不用解释，
+就是在Gradle中配置使用Maven本地仓库、中央仓库、以及自定义地址仓库。
+在我实际构建项目的时候，能看到终端打印的下载信息，
+下载后的文件被存储在 USER_HOME/.gradle/cache/ 目录下供项目使用，
+这种实现的方法与Maven又是及其类似了，
+可以说Gradle不仅最大限度的继承Maven的很多理念，仓库资源也是直接拿来用

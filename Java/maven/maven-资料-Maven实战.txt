@@ -1,0 +1,2 @@
+http://www.infoq.com/cn/minibooks/maven-in-action
+

@@ -1,0 +1,13 @@
+正则表达式（一）：纠结的转义
+http://www.infoq.com/cn/news/2011/01/regular-expressions-1
+
+正则表达式（二）：Unicode诸问题（上）
+正则表达式（三）：Unicode诸问题（下）
+http://www.infoq.com/cn/news/2011/02/regular-expressions-unicode
+http://www.infoq.com/cn/news/2011/03/regular-expressions-unicode-2
+
+正则表达式（四）：正则表达式的与或非 
+http://www.infoq.com/cn/news/2011/04/regular-expressions-4
+
+正则表达式（五）：浅谈两种匹配操作
+http://www.infoq.com/cn/articles/regular-expressions-5-match

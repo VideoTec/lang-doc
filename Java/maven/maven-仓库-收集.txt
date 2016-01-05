@@ -1,0 +1,15 @@
+http://blog.csdn.net/zhousanlong/article/details/15501179
+
+公有仓库地址：
+
+http://repo1.maven.org/maven2/
+http://repository.jboss.com/maven2/
+http://repository.sonatype.org/content/groups/public/
+http://mirrors.ibiblio.org/pub/mirrors/maven2/org/acegisecurity/
+
+私有仓库地址：
+
+http://repository.codehaus.org/
+http://snapshots.repository.codehaus.org/
+http://people.apache.org/repo/m2-snapshot-repository
+http://people.apache.org/repo/m2-incubating-repository/

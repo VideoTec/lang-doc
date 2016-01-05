@@ -1,0 +1,16 @@
+http://stackoverflow.com/questions/17616012/grep-extract-only-whole-word
+
+9606    ENSP00000239223 DUSP1   BLAST
+9606    ENSP00000239223 DUSP1-001 Ensembl
+
+I want to retrieve the first line but not the second one.
+I tried several commands as:
+
+grep -E "^DUSP1"
+grep '\<DUSP1\>'
+grep '^DUSP1$'
+grep -w DUSP1
+
+But none of them seem to work. Which option should I use?
+
+http://www.computerworld.com/article/2764489/unix-tip-grepping-on-whole-words.html

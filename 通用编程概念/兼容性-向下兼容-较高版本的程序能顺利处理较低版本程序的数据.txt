@@ -1,0 +1,6 @@
+向下兼容(Downward Compatible)编辑
+又称向后兼容（Backwards compatibility），计算机术语
+
+https://en.wikipedia.org/wiki/X86-64
+x86-64 also provides 64-bit general-purpose registers and numerous other enhancements. 
+It is fully backward compatible with the 16-bit and 32-bit x86 code.

@@ -1,0 +1,16 @@
+http://www.oracle.com/technetwork/cn/community/java/apache-maven-getting-started-1-406235-zhs.html
+
+写这个 maven 的入门篇是因为之前在一个开发者会的动手实验中
+发现挺多人对于 maven 不是那么了解，所以就有了这个想法。
+这个入门篇分上下两篇。
+
+本文着重动手，用 maven 来构建运行 hellow world 程序，
+体会一下不用任何 IDE ，只用 maven 是咋回事。
+然后下篇就讲解一下 maven 的核心概念。
+
+写这两篇文章特意回避了复杂的示例，也不使用 IDE ，
+目的是排除干扰，着重于 maven 本身
+
+Maven 是一个项目管理和构建自动化工具。
+但是对于我们程序员来说，我们最关心的是它的项目构建功能。
+所以这里我们介绍的就是怎样用 maven 来满足我们项目的日常需要

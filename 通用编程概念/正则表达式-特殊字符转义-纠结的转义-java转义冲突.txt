@@ -1,0 +1,10 @@
+http://www.infoq.com/cn/news/2011/01/regular-expressions-1
+
+Java中字符串（String）的规则，
+其中转义序列（escape sequence）用来表示特殊字符，
+比如\n表示换行符，\t表示制表符，
+而\[并不是Java能识别的转义序列，当然要出错了。
+
+为了表示“正则表达式中的\[”，
+我们传递给Pattern.compile()的字符串必须正确表示\[——在字符串中，
+[ 是不需要转义的，而 \ 是需要转义的，所以在字符串中，应该写做 \\[

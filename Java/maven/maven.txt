@@ -1,0 +1,33 @@
+maven[英][ˈmeɪvn] [美][ˈmevən]
+n.<美口>专家，内行
+
+官网
+https://maven.apache.org/
+
+------------------------------------------------------
+Maven 名称来历
+------------------------------------------------------
+
+https://en.wikipedia.org/wiki/Apache_Maven
+
+Yiddish[英][ˈjɪdɪʃ] [美][ˈjɪdɪʃ]
+n.意第绪语，依地语（犹太人使用的国际语
+
+accumulator[英][əˈkju:mjəleɪtə(r)] [美][əˈkjumjəˌletɚ]
+n.<英>蓄电池，积聚者；蓄势器；收集器；蓄电池组
+
+Maven is a build automation tool used primarily for Java projects. 
+The word maven means "accumulator of knowledge" in Yiddish.
+
+------------------------------------------------------
+Maven 简介
+------------------------------------------------------
+
+Apache Maven，
+是一个软件（特别是Java软件）项目管理及自动构建工具，
+由Apache软件基金会所提供。基于项目对象模型（缩写：POM）概念，
+Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。
+
+Maven也可被用于构建和管理各种项目，
+例如C#，Ruby，Scala和其他语言编写的项目。
+Maven曾是Jakarta项目的子项目，现为由Apache软件基金会主持的独立Apache项目。

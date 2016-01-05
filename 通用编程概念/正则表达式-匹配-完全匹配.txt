@@ -1,0 +1,2 @@
+http://www.unixresources.net/linux/clf/vrml/archive/00/00/66/89/668993.html
+^test$应该就可以解决了吧

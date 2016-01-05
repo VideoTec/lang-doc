@@ -1,0 +1,2 @@
+http://shift-alt-ctrl.iteye.com/blog/2208786
+Jenkins + Git + Maven + tomcat集成环境搭建

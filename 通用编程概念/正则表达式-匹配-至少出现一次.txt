@@ -1,0 +1,33 @@
+http://www.codebit.cn/javascript/regex-match-at-least-one-non-space-character.html
+正则表达式：匹配至少有一个非空白字符并且不超过指定长度
+
+正则表达式规则分析：
+
+^[s]{0,}$ ：整个字符串为空或者都是空白字符
+^[ws]{7,}$ ： 整个字符串长度大于6
+
+.{7} ： 整个字符串长度大于6，注意：这里的 . 匹配任意字符
+^s*$ ：整个字符串为空或者都是空白字符
+
+http://www.jincon.com/archives/61/
+
+PHP正则表达式匹配密码要求：至少一个大写字母，一个小写，一个数字
+
+$str = "密码";
+if(preg_match('/(?=.*d)(?=.*[a-z])(?=.*[A-Z]).*/',$str,$m)){
+	echo '1';	
+}else{
+	echo '0';
+}
+
+或者
+
+$str = "12aV2222";
+if(preg_match('/(?=.*d)(?=.*[a-z])(?=.*[A-Z]).*/',$str) && strlen($str)>7){
+	echo '1';	
+}else{
+	echo '0';
+}
+
+http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386832260566c26442c671fa489ebc6fe85badda25cd000
+
