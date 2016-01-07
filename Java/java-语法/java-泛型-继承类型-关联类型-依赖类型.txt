@@ -1,0 +1,11 @@
+关联类型 泛型：
+public class FtProtocolNotify<ReqArgs> {
+    private ReqArgs reqArgs; ---------  作为一个成员
+    
+	public FtProtocolNotify(ReqArgs reqArgs) {
+		this.reqArgs = reqArgs;
+	}
+	public ReqArgs getReqArgs() {
+		return reqArgs;
+	}
+}

@@ -1,0 +1,6 @@
+Microsoft Office is 
+backward compatible（向后兼容） but not 
+forward compatible. （向前兼容）
+Office 2003 cannot accommodate new features 
+that were introduced in later versions. 
+Post your macro code (or cell content) to the Office programming forum.
