@@ -1,0 +1,41 @@
+http://toughcoder.net/blog/2014/11/12/java-7-and-8-and-android/
+
+Java 8(JDK 8）的语言新特性
+
+Java 8最大的改进就是增加了lambda表达式(Lambda Expression)，来看个实例：
+在Java 8中，可以比用匿名内部类更加方便的方式来设置回调
+
+import java.util.*;
+
+public class Lambda<T> {
+    public void apply(List<T> list, Action<T> action) {
+        for (T t : list) {
+            action.perform(t);
+        }
+    }
+
+    public static void main(String[] args) {
+        List<String> stuff = new ArrayList<>();
+        for (String s : args) {
+            stuff.add(s);
+        }
+
+        Lambda<String> lambda = new Lambda<>();
+        // Use lambda expression to specify action
+        lambda.apply(stuff, s -> System.out.println(s));
+
+        // Another example of lambda expression for threading
+        new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                System.out.println("working " + i + " seconds");
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {}
+            }
+        }).start();
+    }
+}
+
+interface Action<T> {
+    public void perform(T t);
+}

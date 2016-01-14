@@ -1,0 +1,41 @@
+http://nerds.weddingpartyapp.com/tech/2014/12/24/implementing-an-event-bus-with-rxjava-rxbus/
+
+decoupling[英][dɪ'kʌplɪŋ] [美][dɪ'kʌplɪŋ]
+n.退耦（装置）
+
+anonymity[英][ˌænəˈnɪməti] [美][ˌænəˈnɪmɪti]
+n.匿名；作者不详；匿名者；无名者
+
+coupling[英][ˈkʌplɪŋ] [美][ˈkʌplɪŋ]
+n.[电]耦合；联结；[机]管箍；（火车的）车钩
+耦合是指两个或两个以上的电路元件或电网络等的
+输入与输出之间存在紧密配合与相互影响，
+并通过相互作用从一侧向另一侧传输能量的现象
+
+Pub-sub pattern
+
+The objective of the pub-sub pattern is exactly the same as the Observer pattern viz. 
+you want some other class to know of certain events taking place.
+
+There’s an important semantic difference between the Observer and Pub-sub patterns though: 
+in the pub-sub pattern the focus is on “broadcasting” messages outside. 
+The Observable here doesn’t want to know who the events are going out to, 
+just that they’ve gone out. 
+In other words the Observable (a.k.a Publisher) 
+doesn’t want to know who the Observers (a.k.a Subscribers) are.
+
+Why the anonymity?
+
+It allows for this thing called “decoupling”, which is a good word in computer programming. You want to keep coupling as low as possible in your design.
+
+Typically, you would expect the publisher to have direct knowledge of each of the many subscribers that it needs to notify, so it can go about notifying each of them, once the “event” or message is ready. But with an event bus, the publisher is relieved of such duties and this independence helps, because the publisher and subscriber need not have logic coded in them that establish the dependencies between the two.
+
+In other words “consciously decouple” your code whenever you can*.
+
+How the anonymity?
+
+Ok, so a natural question with the pub-sub pattern is: how do you actually achieve that anonymity between publisher and subscriber? An easy way is to just get hold of a middleman and let that middleman take care of all the communication. An event bus is one such middleman.
+
+That’s it. An event bus is as simple as that.
+
+Two event bus libraries that are commonly used in Android are Otto and Green Robot’s EventBus. There are plenty of posts online that explain how to implement them in your app.

@@ -1,0 +1,20 @@
+http://jdam.cd/async-android/
+
+criteria[英][kraɪ'tɪərɪə] [美][kraɪˈtɪrɪə]
+n.（批评、判断等的）标准，准则( criterion的名词复数 )；(criterion的复数)
+
+RxJava is a library for 
+1）the Observable abstraction and 
+2）related higher-order functions. 
+It allows us to meet 4/5 of the criteria above with little effort and 
+it supports the functional-reactive programming paradigm in Java.
+
+At this point,
+it’s fairly well battle-tested on Android. 
+It’s been in production in the SoundCloud app for over two years and 
+it’s used by several other companies 
+like Trello, Square and The New York Times.
+
+https://ingramchen.io/blog/2014/10/retromlambda.html
+
+尤其是專案開始走向 Promise 與 Reactive 這種風格開發時，lambda 是完全必要的工具，不然程式碼可讀性實在是太差。在沒有 retrolambda 之前，你還有個理由不採用這種風格開發，但現在阻力都沒了，你該開始在 Android 裡擁抱 Promise pattern 來處理非同步的工作。

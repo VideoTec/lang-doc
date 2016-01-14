@@ -1,0 +1,27 @@
+http://www.cnblogs.com/kavlez/p/4263122.html
+翻译的《Effective Java》 第二版，但是译的太烂了
+
+下面这几种写法都是非法的：
+new List<E>[]
+new List<String>[]
+new E[]
+
+下面通过一段代码说明泛型数组为什么非法：
+
+// Why generic array creation is illegal - won't compile!
+List<String>[] stringLists = new List<String>[1]; // (1)
+List<Integer> intList = Arrays.asList(42); // (2)
+Object[] objects = stringLists; // (3)
+objects[0] = intList; // (4)
+String s = stringLists[0].get(0); // (5)
+
+首先假设第一行是合法的。
+第二行本身合法，鉴于第一行是合法并且数组是协变的，第三行也是合法的。
+
+鉴于泛型用擦除实现的，
+即List的运行时类型是List，
+相应地，List[]的运行时类型是List[]，第四行是合法的。
+
+到了第五行则变得矛盾，说好的String类型呢？
+为什么声明了类型参数还是来了个ClassCastException？
+既然如此，索性让第一行产生compile-time error吧，泛型又变得美好了。

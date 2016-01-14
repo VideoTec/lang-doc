@@ -1,0 +1,7 @@
+http://stackoverflow.com/questions/1028250/what-is-functional-reactive-programming
+
+《Composing Reactive Animations》
+http://conal.net/fran/tutorial.htm 
+
+《Functional Reactive Animation》
+http://conal.net/papers/icfp97/

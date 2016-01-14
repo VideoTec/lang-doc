@@ -1,0 +1,34 @@
+https://docs.oracle.com/javase/tutorial/java/generics/rawTypes.html
+
+Unchecked Error Messages
+
+As mentioned previously, when mixing legacy code with generic code, you may encounter warning messages similar to the following:
+
+Note: Example.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+This can happen when using an older API that operates on raw types, as shown in the following example:
+
+public class WarningDemo {
+    public static void main(String[] args){
+        Box<Integer> bi;
+        bi = createBox();
+    }
+
+    static Box createBox(){
+        return new Box();
+    }
+}
+
+The term "unchecked" means that the compiler does not have enough type information to perform all type checks necessary to ensure type safety. The "unchecked" warning is disabled, by default, though the compiler gives a hint. To see all "unchecked" warnings, recompile with -Xlint:unchecked.
+
+Recompiling the previous example with -Xlint:unchecked reveals the following additional information:
+
+WarningDemo.java:4: warning: [unchecked] unchecked conversion
+found   : Box
+required: Box<java.lang.Integer>
+        bi = createBox();
+                      ^
+1 warning
+
+To completely disable unchecked warnings, use the -Xlint:-unchecked flag. The @SuppressWarnings("unchecked") annotation suppresses unchecked warnings.
+If you are unfamiliar with the @SuppressWarnings syntax, see Annotations.

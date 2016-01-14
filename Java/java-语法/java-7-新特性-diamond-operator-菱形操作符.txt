@@ -1,0 +1,46 @@
+diamond[英][ˈdaɪəmənd] [美][ˈdaɪəmənd, ˈdaɪmənd]
+
+n.钻石，金刚石；菱形；方块
+vt.镶钻石于；用钻石装饰
+adj.金刚石的；菱形的；用钻石装饰的
+
+http://www.javaworld.com/article/2074080/core-java/jdk-7--the-diamond-operator.html
+
+http://www.cnblogs.com/ykt/archive/2011/11/14/2248477.html
+
+引入了"Diamond Operator"（写法：<>）
+一句话描述：简化创建参数化类的对象的语法
+
+示例： 
+(before 7) Map<String, List<Trade>> trades = new TreeMap<String, List<Trade>> (); 
+(since 7) Map<String, List<Trade>> trades = new TreeMap <> ();
+ 
+注意点： 
+trades = new TreeMap () 
+也是合法的，但是编译器会提示"type-safety warnings" 
+11:19 2016/1/12
+之所以合法：是为了兼容， java 1.5之前，未引入泛型时的代码。
+见 《Effective Java》 第五单 泛型 
+
+Comment： 
+Java 7以前要避免这种繁琐的语法，要借用static factory method来实现；
+《Effective Java 2nd》 Item 1中对此进行过说明, 
+Joshua在书中提到
+"Someday the language may perform this sort of type inference on constructor invocations as well as method invocations."，
+果不其然，现在这个版本里就支持了这个特性。
+
+http://stackoverflow.com/questions/4166966/what-is-the-point-of-the-diamond-operator-in-java-7
+
+The issue with
+
+List<String> list = new LinkedList();
+
+is that on the left hand side, 
+you are using the generic type List<String> 
+where on the right side you are using the raw type LinkedList. 
+Raw types in Java effectively only exist for compatibility with pre-generics code and 
+should never be used in new code unless you absolutely have to.
+
+注: raw-type 的含义
+https://docs.oracle.com/javase/tutorial/java/generics/rawTypes.html
+A raw type is the name of a generic class or interface without any type arguments. 

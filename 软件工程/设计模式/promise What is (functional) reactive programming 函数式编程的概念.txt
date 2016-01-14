@@ -1,0 +1,16 @@
+http://stackoverflow.com/questions/1028250/what-is-functional-reactive-programming
+
+To me it is about 2 different meanings of symbol =:
+
+1）
+In math x = sin(t) means, that x is different name for sin(t). 
+So writing x + y is the same thing as sin(t) + y. 
+Functional reactive programming is like math in this respect: 
+if you write x + y, 
+it is computed with whatever the value of t is at the time it's used.
+
+2）
+In C-like programming languages (imperative languages), 
+x = sin(t) is an assignment: 
+it means that x stores the value of sin(t) taken 
+at the time of the assignment.

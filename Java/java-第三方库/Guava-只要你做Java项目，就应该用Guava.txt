@@ -1,0 +1,5 @@
+http://www.blogbus.com/dreamhead-logs/226738702.html
+
+一句话，只要你做Java项目，就应该用Guava。
+
+guava是Google出品的一套Java核心库，在我看来，它甚至应该是JDK的一部分。作为一个Java程序员，如果你没抱怨过JDK的设计，只能说明一点，你写得程序还是太少。正是JDK设计不彰，才有了一些项目来补充JDK的不足。如果说老Java程序员应该听说过Apache Commons Lang，那新Java程序员该知道的就是Guava了。

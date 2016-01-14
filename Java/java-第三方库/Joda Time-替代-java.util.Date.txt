@@ -1,0 +1,13 @@
+http://www.blogbus.com/dreamhead-logs/226738702.html
+
+Joda Time
+
+你觉得一个API设计得差到什么份上，才会把自己差不多的API全部Deprecated掉。java.util.Date便是这样的奇葩。因为它的API几乎都是反直觉的，几乎所有敢于用它的Java程序员都吃过它的亏。想初始化个2013年的第一天，还真不那么容易：
+
+  Date firstDayOf2013 = new Date(113, 0, 1);
+
+如果你是个Java新手，你能猜出113是从哪来的吗？（好吧，它是2013-1900，至于为什么是1900，这真得问API的设计者了）。
+
+Joda Time就是人们实在无法忍受这样东西的产物。同样的代码用Joda Time实现：
+
+  DateTime firstDayOf2013 = new DateTime().withDate(2013, 1, 1);

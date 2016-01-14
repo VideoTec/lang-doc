@@ -1,0 +1,5 @@
+《Effective Java》
+Item 23: Don't use raw types in new code
+
+http://www.cnblogs.com/kavlez/p/4263122.html  
+翻译的《Effective Java》 第二版，但是译的太烂了

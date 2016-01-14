@@ -1,0 +1,5 @@
+http://www.blogbus.com/dreamhead-logs/226738756.html
+
+日志几乎是稍微有点规模的项目躲不开的一个东西，如果你是个老Java程序员，你必然知道Log4J，多半也知道Commons Logging。是时候把它们扔掉了，因为有SLF4J和Logback了。SLF4J要替代Commons Logging，而Logback的目标是Log4J。
+
+程序员里愤青多，SLF4J和Logback的作者就是一个，他叫Ceki Gülcü，事实上，他也是Log4J的作者。Log4J的开发状态实在让他太不爽了，于是，他另起炉灶，打造出新的替代品。

@@ -1,0 +1,7 @@
+
+Haskell（发音为/ˈhæskəl/）是一种标准化的，
+通用的纯函數程式語言，有非限定性语义和强静态类型。
+
+https://wiki.haskell.org/FRP
+
+Functional Reactive Programming (FRP) integrates time flow and compositional events into functional programming. This provides an elegant way to express computation in domains such as interactive animations, robotics, computer vision, user interfaces, and simulation.

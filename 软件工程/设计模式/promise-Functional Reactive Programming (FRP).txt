@@ -1,0 +1,30 @@
+https://wiki.haskell.org/FRP
+
+Functional Reactive Programming (FRP) integrates time flow and compositional events into functional programming. This provides an elegant way to express computation in domains such as interactive animations, robotics, computer vision, user interfaces, and simulation.
+
+http://www.infoq.com/cn/articles/functional-reactive-programming
+
+函数式反应型编程(FRP) —— 实时互动应用开发的新思路
+
+反应型系统(Reactive System) ： 
+类似 GOOGLE 输入框，实时显示的提示
+典型的外部环境变化包括外部输入信号的变化、事件的发生，
+而且系统的响应通常是实时的。
+互动系统是最重要的一种反应型系统，
+它不但能响应外部环境的变化，
+还会将自己的内部状态通过某种方式反馈给外部观察者
+
+1）编程范式：Reactive Programming
+上面两例中X风格的代码主要描述系统中数据(消息)流的结构关系，至于环境变化如何导致某些数据流变化，这些变化了的数据流又如何导致其它的相关数据流变化，压根儿不需要关心。这是一种编程范式，称之为Reactive Programming。
+
+2）Functional Reactive Programming，简称FRP
+而主要利用函数式编程(Functional Programming)的思想和方法(函数、高阶函数)来支持Reactive Programming就是所谓的Functional Reactive Programming，简称FRP
+
+FRP的优势
+
+在FRP的编程模型里，
+基本信号可以在不做任何修改的情况下被转换或者组合成新的复杂信号，
+而新的复杂信号又可以在不做任何修改的情况下被转换或者组合成更复杂的信号，
+就像乐高积木的搭建，
+这个过程可以一直进行下去，
+直到构建出足够复杂的信号以满足系统的需求
