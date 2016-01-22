@@ -1,0 +1,14 @@
+http://stackoverflow.com/questions/217258/comparing-references-in-java
+
+Let's say that you have overridden an object's equals() and hashCode() methods, 
+so that they use the object's fields.
+
+How you do you check if two references are to the same object, 
+ala the stock equals() method?
+
+使用相等操作符判断
+
+Use == on objects to perform identity comparison.
+
+That is what the default implementation of equals() does, 
+but one normally overrides equals() to serve as an "equivalent content" check.

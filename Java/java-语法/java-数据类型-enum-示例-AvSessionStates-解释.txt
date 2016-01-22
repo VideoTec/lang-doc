@@ -1,0 +1,56 @@
+在 UCommon.jar 包中
+package com.feinno.sdk.session;
+
+/**
+ * 音视频通话的状态码
+ */
+public enum AvSessionStates {
+
+私有构造方法：
+  private int nCode;
+  private AvSessionStates(int code) {
+    this.nCode = code;
+  }
+
+将整形值转换为枚举值
+  public static AvSessionStates fromInt(int v)
+
+一个成员变量：
+private int nCode;
+public int value() { return this.nCode; }
+
+所有的枚举值：
+    /**连接成功，正在通话，不包含响铃时间(来电和去电)*/
+    Connected(3),
+    /**被对方保持通话(来电和去电)*/
+    Held(15),
+    /**主动保持通话(来电和去电)*/
+    Hold(14),
+    /**被对方挂断(来电和去电)（去电对方响铃挂断为Rejected）*/
+    这个应该是指的来电 ........... by wx
+    HungUp(8),
+    /**主动挂断(来电和去电)*/
+    End(9),
+
+    /**去电时尝试连接，对方响铃之前*/
+    Connecting(1),
+    /**去电对方不可达*/
+    NotReachable(11),
+    /**去电时对方正在响铃*/
+    Ringing(2),
+    /**去电时对方忙*/
+    Busy(5),
+    /**去电对方响铃，被对方挂断*/
+    Rejected(7),
+
+    /**被邀请（来电），正在响铃*/
+    Invited(12),
+    /**被邀请（来电）响铃后用户同意邀请（接听），此时连接尚未建立*/
+    Accepted(13),
+
+    /**连接出现错误*/
+    Error(10),
+    /**连接失败*/
+    Failed(4),
+    /**连接超时*/
+    Timeout(6);

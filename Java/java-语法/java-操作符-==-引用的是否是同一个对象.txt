@@ -1,0 +1,31 @@
+http://www.blogjava.net/xjacker/articles/330349.html
+1    Integer a = Integer.valueOf("var1");
+2    Integer b = Integer.valueOf("var2");
+3    if(a == b){
+4            
+5    }
+
+当然，关于==和equals()的区别这个是每个java程序员都清楚。
+
+表示的是，引用的是否是同一个对象。
+
+在Integer内中有块缓存，默认保存-128~127之间的Integer 对象，
+当你使用Integer.valueOf()静态方法来生成Integer对象时，
+会先判断这个数字的大小，若在-128~127之间的话，将直接使用缓存中的对象；
+若不是介于这个范围，将新生成对象。但是这个限于Integer.valueOf()静态方法，
+若使用构造函数来生成Integer对象时，情况又是不同的。
+
+http://stackoverflow.com/questions/217258/comparing-references-in-java
+
+Let's say that you have overridden an object's equals() and hashCode() methods, 
+so that they use the object's fields.
+
+How you do you check if two references are to the same object, 
+ala the stock equals() method?
+
+使用相等操作符判断
+
+Use == on objects to perform identity comparison.
+
+That is what the default implementation of equals() does, 
+but one normally overrides equals() to serve as an "equivalent content" check.

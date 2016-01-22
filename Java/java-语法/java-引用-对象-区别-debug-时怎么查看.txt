@@ -1,0 +1,12 @@
+当运行到某个断点时：
+
+Android Studio Debug 视图中的 Variables 窗口
+
+this = {ExampleUnitTest@817} 
+a1 = {Integer@822} "1"
+a1_another = {Integer@822} "1"
+a500 = {Integer@823} "500"
+a500_another = {Integer@836} "500"
+
+注意大括号中内容：
+类名@对象的什么

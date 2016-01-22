@@ -1,0 +1,10 @@
+stuff[英][stʌf] [美][stʌf]
+n.材料，原料，资料；〈俚〉钱，现金；填充物；素材资料
+vt.塞满；填塞；让吃饱
+vi.吃得过多
+
+http://stackoverflow.com/questions/9247886/what-is-difference-between-references-and-objects-in-java
+
+References are names. Objects are stuff. 
+You can have different names for stuff, 
+even for stuff that doesn't actually exist.
