@@ -1,0 +1,46 @@
+https://google.github.io/styleguide/javaguide.html#s3.4.2-class-member-ordering
+
+The ordering of the members of a class 
+can have a great effect on learnability, 
+but there is no single correct recipe for how to do it. 
+Different classes may order their members differently.
+
+What is important is that 
+each class order its members in some logical order, 
+which its maintainer could explain if asked. 
+
+chronological[英][ˌkrɒnəˈlɒdʒɪkl] [美][ˌkrɑ:nəˈlɑ:dʒɪkl]
+adj.按时间的前后顺序排列的；编年的
+
+habitually[英][hə'bɪtʃʊəlɪ] [美][həˈbɪtʃʊəlɪ]
+adv.习惯地，惯常地；素；素常
+
+For example, 
+new methods are not just habitually added to the end of the class, 
+as that would yield "chronological by date added" ordering, 
+which is not a logical ordering.
+
+Overloads: never split - 重载方法要放在一起
+
+When a class has 
+multiple constructors, or 
+multiple methods with the same name, 
+these appear sequentially, with no intervening members.
+
+http://stackoverflow.com/questions/14124270/java-eclipse-members-sort-order-vs-oracle-code-conventions
+
+In Eclipse, the default "Members Sort Order" 
+Types
+Static Fields
+Static Initializers
+Static Methods
+Fields
+Initializers
+Constructors
+Methods
+
+Oracle's Java Code Conventions say the order should be:
+Class (static) variables
+Instance variables
+Constructors
+Methods

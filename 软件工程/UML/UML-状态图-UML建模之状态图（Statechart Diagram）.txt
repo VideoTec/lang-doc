@@ -1,0 +1,14 @@
+http://www.cnblogs.com/ywqu/archive/2009/12/17/1626043.html
+
+一、状态图简介（Brief introduction）
+二、状态图元素（State Diagram Elements）
+1、状态（States）
+2、转移（Transitions）
+3、动作（State Actions）
+4、自身转移（Self-Transitions）
+5、组合状态（Compound States）
+6、进入节点（Entry Point）
+7、退出节点（Exit Point）
+8、历史状态（History States）
+9、并发区域（Concurrent Regions）
+三、状态图案例分析（State Diagram Example Analysis）

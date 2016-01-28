@@ -1,0 +1,7 @@
+Class and member modifiers, when present, 
+appear in the order recommended by the Java Language Specification:
+
+public protected private 
+abstract static final 
+transient volatile 
+synchronized native strictfp
