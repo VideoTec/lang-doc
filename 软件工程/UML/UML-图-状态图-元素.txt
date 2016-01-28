@@ -1,0 +1,11 @@
+http://www.uml.org.cn/oobject/201005103.asp
+
+1、状态（States）
+2、转移（Transitions）
+3、动作（State Actions）
+4、自身转移（Self-Transitions）
+5、组合状态（Compound States）
+6、进入节点（Entry Point）
+7、退出节点（Exit Point）
+8、历史状态（History States）
+9、并发区域（Concurrent Regions）

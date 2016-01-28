@@ -1,0 +1,62 @@
+diagram[英][ˈdaɪəgræm] [美][ˈdaɪəˌɡræm]
+n.图表；图解；示意图；[数]线图
+vt.用图表示；图解
+
+https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80
+
+UML并不限定UML要素型别非得是某图形上的型别。
+一般来说，每个UML要素大约会出现在图的所有型别。
+这种弹性在UML 2.0部分被限定。
+
+为了要保持工程图的传统，
+在您的UML图上加注用途、约束、或意图永远无伤大雅。
+
+UML 2为了符合模型驱动架构（Model Driven Architecture）的需求
+做了大幅度的修改除在图形基础上扩充及变化了部分的展现方式外，
+也增加了一些图形标准元件，
+比前一版多出了
+由循序图与互动图所混合而成的互动概图（Interaction Overview Diagram）、
+强调时间点的时序图（Timing Diagram）与合成结构图（Composite Structure Diagram），
+此外，在UML2中，UML1
+合作图转变为通讯图（Communication Diagram），且在
+循序图中也添加了互动框（Interaction Frame）的概念，
+还有增加一些运算子（如sd、loop、alt等）。
+同时，UML2支援模型驱动架构（MDA）倡议，提供稳定的基础架构，
+容许软件开发程序增添自动化作业。
+此外，MDA把大型的系统分解成几个元件模型，并与其他模型保持连结，使得UML更加精确。
+
+UML 2.2中一共定义了14种图示（diagrams）
+
+----------------------------
+第一类：
+----------------------------
+结构性图形（Structure diagrams）强调的是系统式的建模：
+
+静态图（static diagram）
+    类别图（en:Class Diagram）
+    对象图（en:Object diagram）
+    包图（en:Package diagram）
+实现图（implementation diagram）
+    组件图（en:Component diagram）
+    部署图（en:Deployment diagram）
+剖面图（en:Profile diagram）
+复合结构图（en:Composite structure diagram）
+
+----------------------------
+第二类：
+----------------------------
+行为式图形（Behavior diagrams）强调系统模型中触发的事件：
+
+活动图（en:Activity diagram）
+状态图（en:State Machine diagram）
+用例图（en:Use Case Diagram）
+
+----------------------------
+第三类：
+----------------------------
+交互性图形（Interaction diagrams），属于行为图形的子集合，强调系统模型中的资料流程：
+
+通信图（en:Communication diagram）
+交互概述图（en:Interaction overview diagram，UML 2.0）
+时序图（en:Sequence diagram，UML 2.0）
+时间图（en:Timing Diagram，UML 2.0）

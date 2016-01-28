@@ -1,0 +1,56 @@
+https://en.wikipedia.org/wiki/State_diagram
+
+Newcomers to the state machine formalism often confuse 
+state diagrams with flowcharts. 
+
+The figure below shows a comparison of a state diagram with a flowchart. 
+A state machine (panel (a)) performs actions in response to explicit events.
+ 
+In contrast, the flowchart (panel (b)) 
+does not need explicit events but rather transitions 
+from node to node in its graph automatically upon completion of activities.
+
+Nodes of flowcharts are edges in the induced graph of states. 
+The reason is that each node in a flowchart represents a program command. 
+A program command is an action to be executed. 
+So it is not a state, 
+but when applied to the program's state, 
+it results in a transition to another state.
+
+In more detail, 
+the source code listing represents a program graph. 
+Executing the program graph (parsing and interpreting) 
+results in a state graph. 
+So each program graph induces a state graph. 
+Conversion of the program graph 
+to its associated state graph is called "unfolding" of the program graph.
+
+The program graph is a sequence of commands. 
+If no variables exist, 
+then the state consists only of the program counter, 
+which keeps track of where in the program we are during execution 
+(what is the next command to be applied).
+
+In this case before executing a command the program counter 
+is at some position (state before the command is executed). 
+Executing the command moves the program counter to the next command. 
+Since the program counter is the whole state, 
+it follows that executing the command changed the state. 
+So the command itself corresponds to a transition between the two states.
+
+Now consider the full case, 
+when variables exist and are affected by the program commands being executed. 
+Then between different program counter locations, 
+not only does the program counter change, 
+but variables might also change values, due to the commands executed. 
+Consequently even if we revisit some program command (e.g. in a loop), 
+this doesn't imply the program is in the same state.
+
+下面没有整理：
+In the previous case, the program would be in the same state, because the whole state is just the program counter, so if the program counter points to the same position (next command) it suffices to specify that we are in the same state. However, if the state comprises also of variables, then if those change value, we can be at the same program location with different variable values, meaning in a different state in the program's state space. The term "unfolding" originates from this multiplication of locations when producing the state graph from the program graph.
+
+A representative example is a do loop incrementing some counter until it overflows and becomes 0 again. Although the do loop executes the same increment command iteratively, so the program graph executes a cycle, in its state space is not a cycle, but a line. This results from the state being the program location (here cycling) combined with the counter value, which is strictly increasing (until the overflow), so different states are visited in sequence, until the overflow. After the overflow the counter becomes 0 again, so the initial state is revisited in the state space, closing a cycle in the state space (assuming the counter was initialized to 0).
+
+The figure above attempts to show that reversal of roles by aligning the arcs of the state diagrams with the processing stages of the flowchart.
+
+You can compare a flowchart to an assembly line in manufacturing because the flowchart describes the progression of some task from beginning to end (e.g., transforming source code input into object code output by a compiler). A state machine generally has no notion of such a progression. The door state machine shown at the top of this article, for example, is not in a more advanced stage when it is in the "closed" state, compared to being in the "opened" state; it simply reacts differently to the open/close events. A state in a state machine is an efficient way of specifying a particular behavior, rather than a stage of processing.

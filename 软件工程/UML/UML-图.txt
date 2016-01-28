@@ -1,0 +1,56 @@
+
+https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80
+UML 2.2中一共定义了14种图示（diagrams）
+
+----------------------------
+第一类：
+----------------------------
+结构性图形（Structure diagrams）强调的是系统式的建模：
+
+静态图（static diagram）
+    类别图（en:Class Diagram）
+    对象图（en:Object diagram）
+    包图（en:Package diagram）
+实现图（implementation diagram）
+    组件图（en:Component diagram）
+    部署图（en:Deployment diagram）
+剖面图（en:Profile diagram）
+复合结构图（en:Composite structure diagram）
+
+----------------------------
+第二类：
+----------------------------
+行为式图形（Behavior diagrams）强调系统模型中触发的事件：
+
+活动图（en:Activity diagram）
+状态图（en:State Machine diagram）
+用例图（en:Use Case Diagram）
+
+----------------------------
+第三类：
+----------------------------
+交互性图形（Interaction diagrams），属于行为图形的子集合，强调系统模型中的资料流程：
+
+通信图（en:Communication diagram）
+交互概述图（en:Interaction overview diagram，UML 2.0）
+时序图（en:Sequence diagram，UML 2.0）
+时间图（en:Timing Diagram，UML 2.0）
+
+http://www.cnblogs.com/jingwhale/p/4230235.html
+
+下面是 uml 1.0 的定义
+以上面 2.0 的为准
+
+1.用例图：从用户角度描述系统功能，并指各功能的操作者。
+2.静态图：包括类图，包图，对象图。
+   类图：描述系统中类的静态结构
+   包图：是包和类组成的，表示包与包之间的关系，包图描述系统的分层结构
+   对象图：是类图的实例
+3.行为图：描述系统动态模型和对象组成的交换关系。包括状态图和活动图
+   活动图：描述了业务实现用例的工作流程
+   状态图：是描述状态到状态控制流，常用于动态特性建模
+4.交互图：描述对象之间的交互关系
+   顺序图：对象之间的动态合作关系，强调对象发送消息的顺序，同时显示对象之间的交互
+   合作图：描述对象之间的协助关系
+5.实现图：
+   配置图：定义系统中软硬件的物理体系结构
