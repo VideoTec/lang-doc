@@ -1,0 +1,50 @@
+大部分注解，是帮助编译器，发现代码中的错误。
+
+http://blog.csdn.net/wanglu198506/article/details/43155773
+源文件：
+http://anupcowkur.com/posts/a-look-at-android-support-annotations/
+
+Android Support Library从19.1版本开始引入了一个新的注解库，
+其中包括了很多有用的元注解，
+可以用来修饰代码并且帮助发现bug。
+Support Library本身也使用了这些注解，
+当使用Support Library库的时候，
+Android Studio实际上已经在基于这些注解来检查代码中的潜在问题了。
+
+使用注解库
+这些注解不是默认加载的，它们被包装为一个单独的库。
+Support Library现在是由一些更小的库组成的，
+包括：v4-support、appcompat、gridlayout、mediarouter等等。
+
+添加注解的最简单的方法就是打开Project Structure对话框。
+首先在左边选中module，然后右边选中Dependencies标签，点击“+”号按钮，
+选择Library Dependency。
+如果SDK中已经包括了Android Support库，
+那么注解支持库就会显示在快捷选择列表中了，只需要点击选择就可以
+
+compile 'com.android.support:support-annotations:20.0.0'
+
+http://www.flysnow.org/2015/08/13/android-tech-docs-support-annotations.html
+
+@Nullable注解
+@StringRes注解
+@IntDef
+
+Support library 22.2及其之后版本支持
+线程注解
+@UiThread
+@MainThread  @MainThread方法的地方也能调用@UiThread方法，反之亦然
+@WorkerThread
+@BinderThread
+
+@ColorInt注解，表示你期望的是一个代表颜色的整数值
+@Size, @IntRange, @FloatRange 值约束
+@RequiresPermission 权限注解
+@CallSuper 方法重写 重写方法，必须调用 super 方法
+@CheckResult 方法返回一个值，你期望调用者用这个值做些事情
+
+@VisibleForTesting 这个注解标注到类、方法或者字段上，以便你在测试的时候可以使用他们
+
+https://asce1885.gitbooks.io/android-rd-senior-advanced/content/shen_ru_qian_chu_android_support_annotations.html
+
+深入浅出Android Support Annotations

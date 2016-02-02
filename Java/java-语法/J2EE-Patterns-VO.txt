@@ -1,13 +1,27 @@
 http://martinfowler.com/bliki/ValueObject.html
 
-In P of EAA I described Value Object as a small object such as a Money or date range object. Their key property is that they follow value semantics rather than reference semantics.
+In P of EAA I described Value Object as a small object 
+such as a Money or date range object. 
+Their key property is that 
+they follow value semantics rather than reference semantics.
 
-You can usually tell them because their notion of equality isn't based on identity, instead two value objects are equal if all their fields are equal. Although all fields are equal, you don't need to compare all fields if a subset is unique - for example currency codes for currency objects are enough to test equality.
+You can usually tell them 
+because their notion of equality isn't based on identity, 
+instead two value objects are equal 
+if all their fields are equal. 
+Although all fields are equal, 
+you don't need to compare all fields if a subset is unique - 
+for example currency codes for currency objects are enough to test equality.
 
 immutable[英][ɪˈmju:təbl] [美][ɪˈmjutəbəl]
 adj.不可改变的
 
-A general heuristic is that value objects should be entirely immutable. If you want to change a value object you should replace the object with a new one and not be allowed to update the values of the value object itself - updatable value objects lead to aliasing problems.(别名问题)
+A general heuristic is that 
+value objects should be entirely immutable. 
+If you want to change a value object 
+you should replace the object with a new one and 
+not be allowed to update the values of the value object itself - 
+updatable value objects lead to aliasing problems.(别名问题)
 
 http://www.yiibai.com/java/think12.1.1.html
 “别名”意味着多个句柄都试图指向同一个对象，
@@ -30,7 +44,10 @@ http://blog.csdn.net/wang_yubin/article/details/8189067
 这意味着假若对对象使用c=d,
 那么c和d都指向原本只有d的指向的那个对象.
 
-Early J2EE literature used the term value object to describe a different notion, what I call a Data Transfer Object. They have since changed their usage and use the term Transfer Object instead.
+Early J2EE literature used the term value object 
+to describe a different notion, 
+what I call a Data Transfer Object. 
+They have since changed their usage and use the term Transfer Object instead.
 
 You can find some more good material on value objects on the wiki and by Dirk Riehle.
 

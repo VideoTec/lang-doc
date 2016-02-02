@@ -21,9 +21,19 @@ a Data Transfer Object.
 Wikipedia has a decent definition of Data Transfer Object:
 
 http://en.wikipedia.org/wiki/Data_Transfer_Object
-Data transfer object (DTO), formerly known as value objects or VO, is a design pattern used to transfer data between software application subsystems. DTOs are often used in conjunction with data access objects to retrieve data from a database.
+Data transfer object (DTO), 
+formerly known as value objects or VO, (这个不对吧， VO IS NOT DTO)
+is a design pattern used to transfer data 
+between software application subsystems. 
+DTOs are often used in conjunction with data access objects 
+to retrieve data from a database.
 
-The difference between data transfer objects and business objects or data access objects is that a DTO does not have any behaviour except for storage and retrieval of its own data (accessors and mutators).
+The difference between 
+1) data transfer objects and 
+2) business objects or 
+3) data access objects 
+is that a DTO does not have any behaviour 
+except for storage and retrieval of its own data (accessors and mutators).
 
 In a traditional EJB architecture, DTOs serve dual purposes: 
 1）first, they work around the problem that entity beans are not serializable; 
@@ -49,33 +59,113 @@ http://en.wikipedia.org/wiki/Plain_Old_Java_Object
 fancy[英][ˈfænsi] [美][ˈfænsi]
 adj.（构思者）奇特的；昂贵的；（价格等）高价的；[美国俚语]真棒
 
-POJO is an acronym for Plain Old Java Object. The name is used to emphasize that the object in question is an ordinary Java Object, not a special object, and in particular not an Enterprise JavaBean (especially before EJB 3). The term was coined by Martin Fowler, Rebecca Parsons and Josh MacKenzie in September 2000:
+conclude[英][kənˈklu:d] [美][kənˈklud]
+vt.& vi.结束，终止；推断；议定
+vt.得出结论；缔结；推断出；决定
+vi.终了；作出决定或达成协议
 
-"We wondered why people were so against using regular objects in their systems and concluded that it was because simple objects lacked a fancy name. So we gave them one, and it's caught on very nicely."
+plain[英][pleɪn] [美][plen]
+n.平原；平地；[纺织业]平针；朴实无华的东西
+adj.平的；素的；清晰的；相貌平平的
+adv.清楚地，明白地；平易地；[用以加强语气]显然；完全地
+vi.发牢骚；诉苦
 
-The term continues the pattern of older terms for technologies that do not use fancy new features, such as POTS (Plain Old Telephone Service) in telephony, and PODS (Plain Old Data Structures) that are defined in C++ but use only C language features, and POD (Plain Old Documentation) in Perl.
+POJO is an acronym for Plain Old Java Object. 
+The name is used to emphasize that the object in question 
+is an ordinary Java Object, 
+not a special object, and in particular 
+not an Enterprise JavaBean (especially before EJB 3). 
+The term was coined by Martin Fowler, Rebecca Parsons and Josh MacKenzie in September 2000:
 
-The term has most likely gained widespread acceptance because of the need for a common and easily understood term that contrasts with complicated object frameworks. A JavaBean is a POJO that is serializable, has a no-argument constructor, and allows access to properties using getter and setter methods. An Enterprise JavaBean is not a single class but an entire component model (again, EJB 3 reduces the complexity of Enterprise JavaBeans).
+"We wondered why people were so 
+against using regular objects in their systems and 
+concluded that it was because simple objects lacked a fancy name. 
+So we gave them one, and it's caught on very nicely."
 
-As designs using POJOs have become more commonly-used, systems have arisen that give POJOs some of the functionality used in frameworks and more choice about which areas of functionality are actually needed. Hibernate and Spring are examples.
+The term continues the pattern of older terms for technologies 
+that do not use fancy new features, such as 
+POTS (Plain Old Telephone Service) in telephony, and 
+PODS (Plain Old Data Structures) that are defined in C++ but use only C language features, and 
+POD (Plain Old Documentation) in Perl.
+
+The term has most likely gained widespread acceptance 
+because of the need for a common and easily understood term 
+that contrasts with complicated object frameworks.
+A JavaBean is a POJO that is 
+1) serializable, 
+2) has a no-argument constructor, and 
+3) allows access to properties using getter and setter methods. 
+An Enterprise JavaBean is not a single class but an entire component model 
+(again, EJB 3 reduces the complexity of Enterprise JavaBeans).
+
+As designs using POJOs have become more commonly-used, 
+systems have arisen that give POJOs some of the functionality used in frameworks and 
+more choice about which areas of functionality are actually needed. 
+Hibernate and Spring are examples.
+
+注释：
+
+尽管如此，EJB的广泛普及仍然为其复杂度所制约。
+尽管已经有一些高质量的集成开发工具可以协助开发人员通过自动编码解决一部分重复作业，
+但这并不能降低学习此项技术的难度。
+另一方面，“草根阶层”的编程爱好者们发起了一场旨在使用 “轻量级”技术以代替复杂的EJB的运动。
+这些技术包括 
+Hibernate （用于提供数据持久化和对象-关系映射）及 
+Spring 框架（用于封装业务逻辑）。
 
 -------------------------------------------
-POJO
+JavaBeans
 -------------------------------------------
 JavaBeans
 A JavaBean is a class that follows the JavaBeans conventions as defined by Sun. 
 Wikipedia has a pretty good summary of what JavaBeans are:
 
+convention[英][kənˈvenʃn] [美][kənˈvɛnʃən] 
+n.会议；全体与会者；国际公约；惯例，习俗，规矩
+
+conventions[英][kən'venʃnz] [美][kən'venʃnz]
+（某一职业、政党等的人士召开的）大会( convention的名词复数 )；协议；习俗；（美国）全国代表大会
+
 http://en.wikipedia.org/wiki/JavaBean
 
-JavaBeans are reusable software components for Java that can be manipulated visually in a builder tool. Practically, they are classes written in the Java programming language conforming to a particular convention. They are used to encapsulate many objects into a single object (the bean), so that they can be passed around as a single bean object instead of as multiple individual objects. A JavaBean is a Java Object that is serializable, has a nullary(无) constructor, and allows access to properties using getter and setter methods.
+JavaBeans are reusable software components for Java 
+that can be manipulated visually in a builder tool. 
+Practically, they are classes written in the Java programming language 
+conforming to a particular convention. 
+They are used to encapsulate many objects into a single object (the bean), 
+so that they can be passed around as a single bean object 
+instead of as multiple individual objects. 
+A JavaBean is a Java Object that is 
+1) serializable, 
+2) has a nullary(无) constructor, and 
+3) allows access to properties using getter and setter methods.
 
-In order to function as a JavaBean class, an object class must obey certain conventions about method naming, construction, and behavior. These conventions make it possible to have tools that can use, reuse, replace, and connect JavaBeans.
+In order to function as a JavaBean class, 
+an object class must obey certain conventions about 
+1) method naming, 
+2) construction, and 
+3) behavior. 
+
+These conventions make it possible to have tools 
+that can use, reuse, replace, and connect JavaBeans.
 
 The required conventions are:
 
-1）The class must have a public default constructor. This allows easy instantiation within editing and activation frameworks.
-2）The class properties must be accessible using get, set, and other methods (so-called accessor methods and mutator methods), following a standard naming convention. This allows easy automated inspection and updating of bean state within frameworks, many of which include custom editors for various types of properties.
-3）The class should be serializable. This allows applications and frameworks to reliably save, store, and restore the bean's state in a fashion that is independent of the VM and platform.
+1）The class must have a public default constructor. 
+This allows easy instantiation within editing and activation frameworks.
 
-Because these requirements are largely expressed as conventions rather than by implementing interfaces, some developers view JavaBeans as Plain Old Java Objects that follow specific naming conventions.
+2）The class properties must be accessible 
+using get, set, and other methods (so-called accessor methods and mutator methods), 
+following a standard naming convention. 
+This allows easy automated inspection and updating of bean state within frameworks, 
+many of which include custom editors for various types of properties.
+
+3）The class should be serializable. 
+This allows applications and frameworks to reliably 
+save, store, and restore the bean's state in a fashion 
+that is independent of the VM and platform.
+
+Because these requirements are largely expressed as conventions 
+rather than by implementing interfaces, 
+some developers view JavaBeans as Plain Old Java Objects 
+that follow specific naming conventions.

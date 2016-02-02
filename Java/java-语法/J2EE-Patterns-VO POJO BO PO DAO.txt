@@ -25,7 +25,7 @@ DAO中包含了各种数据库的操作方法。
 
 四、BO:business object 
 业务对象,封装业务逻辑的java对象,
-通过调用DAO方法,结合PO,VO进行业务操作。
+通过调用DAO方法,结合PO,DTO进行业务操作。
 
 五、POJO:plain ordinary java object 
 简单无规则java对象,

@@ -1,0 +1,87 @@
+https://zh.wikipedia.org/wiki/EJB
+
+企业级JavaBean（Enterprise JavaBean, EJB）
+是一个用来构筑企业级应用的服务器端可被管理组件。
+
+Java企业版API（Java Enterprise Edition）中提供了对EJB的规范。
+EJB是一个封装有某个应用程序之业务逻辑服务器端组件。
+EJB最早于1997年由IBM提出，旋即被太阳微系统采用并形成标准（EJB 1.0 和EJB 1.1）。
+其后在Java社区进程（Java Community Process）支持下陆续有一些JSR被制订来定义新的EJB标准，
+分别是JSR 19 (EJB 2.0), JSR 153 (EJB 2.1) 以及最新的JSR 220 (EJB 3.0)。
+
+EJB规范的目的在于为企业及应用开发人员实现后台业务提供一个标准方式，
+从而解决一些此前总是在作业过程中总是重复发生的问题。
+EJB以一个标准方式自动处理了
+诸如数据持久化，事务集成，安全对策等不同应用的共有问题，
+使得软件开发人员可以专注于程序的特定需求而不再饱受那些非业务元素的困扰。
+
+据此，EJB规范明确了一个应用服务器应当支持的中间管理细目，包括：
+
+1）数据持久化
+2）事务处理
+3）并发控制
+4）基于JMS的事件驱动
+5）基于JNDI的名字和空间管理
+6）基于JCE和JAAS的安全管理
+7）应用服务器端的软件组件部署
+8）使用RMI-IIOP协议的远程过程调用
+9）将业务方法暴露为Web服务
+
+此外，EJB定义文档还指定了EJB容器和各EJB的角色定位，
+以及如何将EJB部署至EJB容器当中
+
+从拥抱到抛弃
+
+由于IBM和Sun Microsystems等EJB提倡者力推其前景，
+起初一些大公司纷纷采用EJB部署他们的系统。
+然而随后各种问题便接踵而至，对EJB的恶评短时间内激增。
+对于初学者，EJB的API显得太过困难；
+对于许多程序员来说，书写那些必须抛出特定异常的接口
+并将bean类作为抽象类实现的做法既不直观也不正常。
+当然，EJB所被赋予的使命，如对象关系映射和事务管理确实有其天然复杂性，
+但其API之复杂还是令开发人员们觉得望而却步，
+一些人开始怀疑EJB除了引入了复杂的实现手段以外似乎并未带来什么实际好处。
+
+另外，实际运用中被发现，
+如果使用EJB来封装业务逻辑会带来性能上的下降。
+这是因为，最早的EJB规范只允许客户端通过特定协议（如CORBA）进行远程方法调用来调用，
+即使大部分实际应用根本就不需要分布式计算。
+直到EJB 2.0才引入了本地接口，
+以支持可以开发不通过网络就能直接本地调用的EJB系统。
+
+尽管如此，EJB的广泛普及仍然为其复杂度所制约。
+尽管已经有一些高质量的集成开发工具可以协助开发人员通过自动编码解决一部分重复作业，
+但这并不能降低学习此项技术的难度。
+另一方面，“草根阶层”的编程爱好者们发起了一场旨在使用 “轻量级”技术以代替复杂的EJB的运动。
+这些技术包括 
+Hibernate（用于提供数据持久化和对象-关系映射）及 
+Spring框架（用于封装业务逻辑）。
+尽管它们不像EJB那样有巨头支持，但其在庶民间却更加流行，
+并且也被一些对EJB深感失望的企业所采用。
+
+重生
+
+EJB规范起初的一个主要价值—对分布式应用进行事务管理—
+在随后的实践中被一致认为几乎没能派上用场。
+对于企业级应用来说，Spring和Hibernate等简化框架更加实用。
+因此，EJB 3.0规范（JSR 220）为了迎合这个趋势相比于其前辈进行了一次激进的大跳跃。
+受到 Spring 影响，
+EJB 3.0也使用所谓的“传统简单Java对象（POJO）”；
+同时，支持依赖注入来简化全异系统的集成与配置。
+Hibernate的创始人Gavin King参与了这一新版规范的制订，并对EJB大加提倡。
+Hibernate的许多特性也被引入到Java持久化API当中，从而取代原来的实体bean。
+EJB 3.0规范大幅采用Java注释（annotation）来对代码进行元数据修饰，
+从而消减了此前EJB编程的冗杂性。
+
+相应地，EJB 3.0几乎成为了一个全新的API，
+与此前的数版可谓毫无相似度可言。
+
+https://docs.oracle.com/cd/F49540_01/DOC/java.815/a64683/ejb4.htm
+
+企业级JavaBean（Enterprise JavaBean, EJB）
+
+The EJB Architecture
+
+EJBs are based conceptually on the Java Remote Method Invocation (RMI) model. For example, remote object access and parameter passing for EJBs follow the RMI specification.
+
+The EJB specification does not prescribe that the transport mechanism has to be pure RMI. The Oracle8i EJB server uses RMI over IIOP for its transport protocol, a practice that is becoming common among server vendors.

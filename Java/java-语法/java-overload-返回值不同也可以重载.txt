@@ -1,0 +1,39 @@
+举例一：
+android.hardware.Camera.Parameters
+
+        /**
+         * Returns the value of a String parameter.
+         *
+         * @param key the key name for the parameter
+         * @return the String value of the parameter
+         */
+        public String get(String key) {
+            return mMap.get(key);
+        }
+
+        /**
+         * Returns the value of an integer parameter.
+         *
+         * @param key the key name for the parameter
+         * @return the int value of the parameter
+         */
+        public int getInt(String key) {
+            return Integer.parseInt(mMap.get(key));
+        }
+
+举例二：
+android.os.Bundle
+    @Nullable
+    public <T extends Parcelable> T getParcelable(@Nullable String key) {
+        unparcel();
+        Object o = mMap.get(key);
+        if (o == null) {
+            return null;
+        }
+        try {
+            return (T) o;
+        } catch (ClassCastException e) {
+            typeWarning(key, o, "Parcelable", e);
+            return null;
+        }
+    }

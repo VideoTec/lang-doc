@@ -1,0 +1,21 @@
+定义：
+public class Camera {
+    public class Parameters {
+    }; 注意要加个分号，代码规范吧，不加也不出错
+}
+
+使用方法示例一：
+    注意：Parameters p = camera.new Parameters();
+    必须得绑定一个 Camera 对象。
+
+    public static Parameters getParametersCopy(Camera.Parameters parameters) {
+        if (parameters == null) {
+            throw new NullPointerException("parameters must not be null");
+        }
+
+        Camera camera = parameters.getOuter();
+        Parameters p = camera.new Parameters();
+        p.copyFrom(parameters);
+
+        return p;
+    }

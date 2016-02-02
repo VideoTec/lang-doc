@@ -1,0 +1,27 @@
+/**
+ * Denotes that a parameter, field or method return value can be null.
+ * <p>
+ * When decorating a method call parameter, this denotes that the parameter can
+ * legitimately be null and the method will gracefully deal with it. Typically
+ * used on optional parameters.
+ * <p>
+ * When decorating a method, this denotes the method might legitimately return
+ * null.
+ * <p>
+ * This is a marker annotation and it has no specific attributes.
+ *
+ * @hide
+ */
+ 
+ 源码：
+ E:\android-sdk-windows\sources\android-23\android\annotation
+ 
+ http://blog.csdn.net/wanglu198506/article/details/43155773
+ @Nullable注解可以用来标识特定的参数或者返回值可以为null。
+ 类似的，@NonNull注解可以用来标识参数不能为null。
+ 如果一个局部变量已经被知道为null，然后它被作为参数传递给了一个方法，
+ 并且这个参数被标记为@NonNull，
+ 那么IDE会警告这样做可能引发潜在的Crash问题
+ 
+ 对应的工具：
+ compile 'com.android.support:support-annotations:23.1.1'

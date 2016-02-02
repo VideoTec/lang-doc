@@ -1,0 +1,42 @@
+定义：
+public class Camera {
+    public static class CameraInfo {
+    }; 注意要加个分号，代码规范吧，不加也不出错
+}
+
+使用示例一：
+CameraInfo info = new CameraInfo();
+Camera.getCameraInfo(cameraPosition, info);
+
+使用示例二：
+    /**
+     * Returns the information about a particular camera.
+     * If {@link #getNumberOfCameras()} returns N, the valid id is 0 to N-1.
+     */
+    public static void getCameraInfo(int cameraId, CameraInfo cameraInfo) {
+        _getCameraInfo(cameraId, cameraInfo);
+        IBinder b = ServiceManager.getService(Context.AUDIO_SERVICE);
+        IAudioService audioService = IAudioService.Stub.asInterface(b);
+        try {
+            if (audioService.isCameraSoundForced()) {
+                // Only set this when sound is forced; otherwise let native code
+                // decide.
+                cameraInfo.canDisableShutterSound = false;
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, "Audio service is unavailable for queries");
+        }
+    }
+    
+使用示例三：
+    public static Camera open() {
+        int numberOfCameras = getNumberOfCameras();
+        CameraInfo cameraInfo = new CameraInfo();
+        for (int i = 0; i < numberOfCameras; i++) {
+            getCameraInfo(i, cameraInfo);
+            if (cameraInfo.facing == CameraInfo.CAMERA_FACING_BACK) {
+                return new Camera(i);
+            }
+        }
+        return null;
+    }

@@ -1,0 +1,9 @@
+Integer
+String
+
+这些类有个特征：没有提供修改内部值的方法 - immutable
+这样做的结果：这些对象，一旦创建，就不可修改了，是线程安全的，
+
+http://stackoverflow.com/questions/6952363/replace-a-character-at-a-specific-index-in-a-string
+String are immutable in Java. You can't change them.
+You need to create a new string with the character replaced.
