@@ -1,0 +1,6 @@
+private static synchronized Handler getAsyncHandler(Handler h, String threadName)
+getAsyncHandler(sMediaHandler, VOIP_MEDIA_THREAD)
+
+sMediaHandler 传进 getAsyncHandler 方法：
+1）会修改 sMediaHandler 引用的对象。
+2）sMediaHandler 引用赋值操作 的 意义。
