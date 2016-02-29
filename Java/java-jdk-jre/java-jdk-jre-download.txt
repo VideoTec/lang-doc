@@ -11,3 +11,5 @@ testing programs written in the Java programming language and running on the Jav
 
 Java SE Development Kit 8u65
 Java SE Development Kit 8u66
+
+http://www.oracle.com/technetwork/cn/java/javase/downloads/jdk7-downloads-1880260.html
