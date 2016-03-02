@@ -1,0 +1,17 @@
+http://developer.android.com/intl/zh-cn/reference/java/util/concurrent/ThreadPoolExecutor.html
+
+java.lang.Object
+   ↳	java.util.concurrent.AbstractExecutorService
+ 	   ↳	java.util.concurrent.ThreadPoolExecutor
+       
+An ExecutorService that executes each submitted task 
+using one of possibly several pooled threads, 
+normally configured using Executors factory methods.
+
+Thread pools address two different problems: 
+they usually provide improved performance when executing large numbers of asynchronous tasks, 
+due to reduced per-task invocation overhead, 
+and they provide a means of bounding and managing the resources, 
+including threads, consumed when executing a collection of tasks. 
+Each ThreadPoolExecutor also maintains some basic statistics, 
+such as the number of completed tasks.

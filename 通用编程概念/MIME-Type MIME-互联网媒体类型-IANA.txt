@@ -1,0 +1,17 @@
+IANA维护着一个媒体类型和字符编码的记录列表。
+他们的列表通过互联网向公众开放。
+
+http://developer.android.com/intl/zh-cn/guide/topics/providers/content-provider-creating.html#MIMETypes
+对于文本、HTML 或 JPEG 等常见数据类型， 
+getType() 应该为该数据返回标准 MIME 类型。 
+IANA MIME Media Types 网站上提供了这些标准类型的完整列表
+http://www.iana.org/assignments/media-types/media-types.xhtml
+
+https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91%E5%8F%B7%E7%A0%81%E5%88%86%E9%85%8D%E5%B1%80
+互联网号码分配局（英语：Internet Assigned Numbers Authority，缩写IANA），
+是一家互联网地址指派机构，
+管理国际互联网中使用的IP地址、域名和许多其它参数的机构。
+IP地址、
+自治系统成员以及许多顶级和二级域名分配的日常职责
+由国际互联网注册中心（IR）和地区注册中心承担。
+IANA是由ICANN管理的
