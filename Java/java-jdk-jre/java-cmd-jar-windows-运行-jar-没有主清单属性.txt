@@ -1,0 +1,7 @@
+eclipse 输出一个 jar，在 WINDOWS 命令行下运行，会出错：
+
+C:\Users\wangxiangfx>java -jar d:\work\server.jar
+d:\work\server.jar中没有主清单属性
+
+http://www.mamicode.com/info-detail-409062.html
+导出jar文件的时候选择【可运行的jar文件】而不是【Jar文件】即可

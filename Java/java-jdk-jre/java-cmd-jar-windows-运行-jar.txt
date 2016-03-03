@@ -1,0 +1,9 @@
+http://stackoverflow.com/questions/394616/running-jar-file-in-windows
+
+I have a "helloworld.jar" file. For running a JAR file I am using a command-line window and executing the following command:
+
+    java -jar helloworld.jar
+
+By using this command I can execute the JAR file. But instead of doing it in a command-line window, I want to execute the JAR file if I double click on the JAR file. I did some Google search for this. But I cannot do this.
+
+For this do I need to install any software? Can any one provide me help on this?
