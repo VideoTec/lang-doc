@@ -1,0 +1,5 @@
+编译命令：
+
+"C:\Program Files\Java\jdk1.7.0_60\bin\javac.exe" org\json\*.java
+
+会在源文件所在路径生成 *.class 文件。

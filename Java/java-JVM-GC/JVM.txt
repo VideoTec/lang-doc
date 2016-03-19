@@ -1,0 +1,11 @@
+http://www.cnblogs.com/zhguang/p/3257367.html
+
+关于JVM，需要说明一下的是，目前使用最多的Sun公司的JDK中，
+自从1999年的JDK1.2开始直至现在仍在广泛使用的JDK6，
+其中默认的虚拟机都是HotSpot。
+2009年，Oracle收购Sun，加上之前收购的EBA公司，
+Oracle拥有3大虚拟机中的两个：JRockit和HotSpot，
+Oracle也表明了想要整合两大虚拟机的意图，
+但是目前在新发布的JDK7中，默认的虚拟机仍然是HotSpot，
+因此本文中默认介绍的虚拟机都是HotSpot，
+相关机制也主要是指HotSpot的GC机制。

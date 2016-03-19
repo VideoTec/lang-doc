@@ -1,0 +1,8 @@
+http://bbs.csdn.net/topics/390240130
+
+String path="D:\\hello\\hello.txt";
+File f = new File(path);
+
+/** 创建文件路径中包含的文件夹 **/
+if (!f.getParentFile().exists())
+    f.getParentFile().mkdirs();

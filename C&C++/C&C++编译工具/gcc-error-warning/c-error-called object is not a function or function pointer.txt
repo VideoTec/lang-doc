@@ -1,0 +1,37 @@
+19:47 2016/3/16
+
+代码：
+
+#include <jni.h>
+
+#include "v6_api.h"
+#include "v6_schemas.h"
+
+jint jni_proto_new(JNIEnv *env, jobject clazz, jstring type_name) {
+  const char *type_name_str = (*env)->GetStringUTFChars(env, type_name, 0);
+  v6_proto *ptr = v6_proto_new(type_name_str)               -------------------------  这里少了个分号
+  (*env)->ReleaseStringUTFChars(env, type_name, type_name_str);
+  return ptr;
+}
+
+错误信息：
+
+./jni_proto.c: In function 'jni_proto_new':
+./jni_proto.c:41:19: error: called object is not a function or function pointer
+   v6_proto *ptr = v6_proto_new(type_name_str)
+                   ^
+                   
+http://stackoverflow.com/questions/26780011/c-programming-error-called-object-is-not-a-function-or-function-pointer
+
+You missed one semicolon just before that line with error:
+
+ poped = stac[*t] <----- here
+ (*t)--;
+ 
+The reason for this strange error is that compiler saw sth like that:
+
+ poped = stac[*t](*t)--;
+ 
+Which it could interpret as a call to a function pointer coming from a table, 
+but this obviously makes no sense, because stac is an array of ints, 
+not an array of function pointers.

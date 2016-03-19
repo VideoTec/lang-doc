@@ -1,0 +1,44 @@
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+    }
+    
+    问题，添加的代码应该写在，super.finalize，前还是后？
+
+惯用写法：
+
+try {
+   // Do whatever the finalization is
+}
+finally {
+   super.finalize();
+}
+
+    
+http://stackoverflow.com/questions/31985830/why-calling-super-finalize-is-preferred-when-overriding-finalize-method
+http://stackoverflow.com/questions/11379115/do-you-call-super-finalize-within-a-subclass
+
+idiom[英][ˈɪdiəm] [美][ˈɪdiəm]
+n.习语，成语；方言，土语；（语言）风格；惯用语法
+
+It's not a need, it's a finalizer writing idiom that should be followed.
+
+If, at any time in the future, 
+you refactor your code and your class extends some other class that may have a finalize method, 
+this practice will prevent strange bugs from popping up.
+
+The idiom is
+
+try {
+   // Do whatever the finalization is
+}
+finally {
+   super.finalize();
+}
+
+This ensures that the superclass finalizer, 
+if there is ever a non-trivial one, 
+will be called even if some exception is thrown 
+(because nothing catches exceptions in finalizers, their execution simply stops).
+
+And of course: Avoid finalizers. (Item 7 in Joshua Bloch's Effective Java, second edition).

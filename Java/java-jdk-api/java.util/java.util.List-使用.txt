@@ -1,0 +1,3 @@
+使用方法：
+
+List<BasicNameValuePair> lparams = new LinkedList<BasicNameValuePair>()

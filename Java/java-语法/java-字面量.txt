@@ -1,6 +1,9 @@
 literal[英][ˈlɪtərəl] [美][ˈlɪtərəl]
 adj.照字面的；原义的；逐字的；平实的，避免夸张
 
+17:06 2016/3/16 long 型字面量
+connectReqProto.userId = 13810112345L;
+
 18:00 2015/9/1
 十六进制字面量
 0xddaaffbb

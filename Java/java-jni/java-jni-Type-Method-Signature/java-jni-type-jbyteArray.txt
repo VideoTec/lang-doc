@@ -1,0 +1,21 @@
+typedef _jarray*        jarray;
+typedef _jobjectArray*  jobjectArray;
+typedef _jbooleanArray* jbooleanArray;
+typedef _jbyteArray*    jbyteArray;
+typedef _jcharArray*    jcharArray;
+typedef _jshortArray*   jshortArray;
+typedef _jintArray*     jintArray;
+typedef _jlongArray*    jlongArray;
+typedef _jfloatArray*   jfloatArray;
+typedef _jdoubleArray*  jdoubleArray;
+
+class _jarray : public _jobject {};
+class _jobjectArray : public _jarray {};
+class _jbooleanArray : public _jarray {};
+class _jbyteArray : public _jarray {};
+class _jcharArray : public _jarray {};
+class _jshortArray : public _jarray {};
+class _jintArray : public _jarray {};
+class _jlongArray : public _jarray {};
+class _jfloatArray : public _jarray {};
+class _jdoubleArray : public _jarray {};

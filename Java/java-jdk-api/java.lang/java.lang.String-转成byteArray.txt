@@ -1,0 +1,9 @@
+http://stackoverflow.com/questions/18571223/how-to-convert-java-string-into-byte
+
+The object your method decompressGZIP() needs is a byte[].
+
+So the basic, technical answer to the question you have asked is:
+
+byte[] b = string.getBytes();
+byte[] b = string.getBytes(Charset.forName("UTF-8"));
+byte[] b = string.getBytes(StandardCharsets.UTF_8); // Java 7+ only

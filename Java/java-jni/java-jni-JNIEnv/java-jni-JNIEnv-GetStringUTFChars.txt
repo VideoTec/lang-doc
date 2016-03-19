@@ -13,13 +13,17 @@ JNI WARNING: received null jstring
 
 文档：GetStringUTFChars
 const char * GetStringUTFChars(JNIEnv *env, jstring string,jboolean *isCopy);
-Returns a pointer to an array of bytes representing the string in modified UTF-8 encoding. This array is valid until it is released by ReleaseStringUTFChars().
-If isCopy is not NULL, then *isCopy is set to JNI_TRUE if a copy is made; or it is set to JNI_FALSE if no copy is made.
+Returns a pointer to an array of bytes representing the string in modified UTF-8 encoding. 
+This array is valid until it is released by ReleaseStringUTFChars().
+If isCopy is not NULL, then *isCopy 
+is set to JNI_TRUE if a copy is made; or it 
+is set to JNI_FALSE if no copy is made.
 Returns a pointer to a modified UTF-8 string, or NULL if the operation fails.
 
 文档：ReleaseStringUTFChars
 void ReleaseStringUTFChars(JNIEnv *env, jstring string, const char *utf);
-Informs the VM that the native code no longer needs access to utf. The utf argument is a pointer derived from string using GetStringUTFChars().
+Informs the VM that the native code no longer needs access to utf. 
+The utf argument is a pointer derived from string using GetStringUTFChars().
 utf: a pointer to a modified UTF-8 string.
 
 示例：

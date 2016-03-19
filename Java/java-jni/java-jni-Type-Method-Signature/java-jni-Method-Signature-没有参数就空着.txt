@@ -1,0 +1,18 @@
+15:44 2016/3/17
+
+private static native int nativeStartSDK();
+
+这个签名应该写成：
+
+{"nativeStartSDK", "()I", (void *)jni_start_sdk}
+
+如果写成：
+
+{"nativeStartSDK", "(V)I", (void *)jni_start_sdk}
+
+会出错：
+
+ ERROR: couldn't find native method
+ Requested: Lcom/feinno/v6sdk/SdkAPI;.nativeStartSDK:(V)I
+ Candidate: Lcom/feinno/v6sdk/SdkAPI;.nativeStartSDK:()I
+ JNI posting fatal error: RegisterNatives failed for 'com/feinno/v6sdk/SdkAPI'; aborting...
