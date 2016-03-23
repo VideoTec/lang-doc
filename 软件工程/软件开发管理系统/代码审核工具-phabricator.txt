@@ -1,0 +1,17 @@
+https://zh.wikipedia.org/wiki/Phabricator
+
+Phabricator是一套基于Web的软件开发协作工具，
+包括
+代码审查工具Differential，
+资源库浏览器Diffusion，
+变更监测工具Herald，
+Bug跟踪工具Maniphest和
+维基工具Phriction。
+
+Phabricator可与Git、Mercurial和Subversion集成使用。
+其可在Apache许可证第2版下作为自由软件分发。
+
+Phabricator最初是Facebook的一个内部工具，
+主要开发者为Evan Priestley[1]。
+Evan Priestley离开Facebook后，
+在名为Phacility的新公司继续Phabricator的开发。

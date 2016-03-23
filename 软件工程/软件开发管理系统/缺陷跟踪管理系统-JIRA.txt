@@ -1,0 +1,6 @@
+https://zh.wikipedia.org/wiki/JIRA
+
+JIRA[5] 是一个缺陷跟踪管理系统，
+为针对缺陷管理、任务追踪和项目管理的商业性应用软件，
+开发者是澳大利亚的Atlassian。
+JIRA这个名字并不是一个缩写，而是截取自“Gojira”，日文的哥斯拉发音。

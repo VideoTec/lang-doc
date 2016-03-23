@@ -1,0 +1,11 @@
+https://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5
+
+代码审查（英语：Code review）是指对计算机源代码系统化地审查，
+常用软件同行评审的方式进行，
+其目的是在找出及修正在软件开发初期未发现的错误，
+提升软件质量及开发者的技术。
+代码审查常以不同的形式进行，
+例如结对编程、非正式的看过整个代码，或是正式的软件检查
+
+代码审核工具列表：
+https://en.wikipedia.org/wiki/List_of_tools_for_code_review

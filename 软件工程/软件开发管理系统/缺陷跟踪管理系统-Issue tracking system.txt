@@ -1,0 +1,17 @@
+https://zh.wikipedia.org/wiki/%E7%BC%BA%E9%99%B7%E8%B7%9F%E8%B8%AA%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F
+
+缺陷跟踪管理系统是一种应用软件，
+它被设计用来帮助质量保证和程序员在工作中维护软件缺陷的跟踪报告，
+也可以被认为是一种问题跟踪管理系统。
+
+许多的缺陷跟踪管理系统, 
+比如那些大多数在开源软件工程中使用的，
+允许用户直接登记缺陷报告，
+还有一些则是只在公司或者机构内部用来进行软件开发。
+很具代表性，缺陷跟踪管理系统总是集成一些软件工程管理应用软件。
+
+缺陷跟踪管理系统在软件开发时是非常有用的，
+它被广泛使用于软件公司的产品开发
+
+https://en.wikipedia.org/wiki/Comparison_of_issue-tracking_systems
+https://en.wikipedia.org/wiki/Issue_tracking_system

@@ -1,0 +1,6 @@
+https://zh.wikipedia.org/wiki/Bugzilla
+
+Bugzilla是一款用于软件缺陷追踪管理的网络应用程序，
+由Mozilla计划开发和应用。
+1998年，网景公司开放其源代码后，以Mozilla公共许可证协议授权。
+有许多组织采用其作为旗下软件（特别是自由软件）的产品缺陷追踪系统。
