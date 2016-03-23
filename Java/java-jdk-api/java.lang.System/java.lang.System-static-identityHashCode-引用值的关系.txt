@@ -1,0 +1,35 @@
+http://stackoverflow.com/questions/4930781/how-do-hashcode-and-identityhashcode-work-at-the-back-end
+
+How do Object.hashCode() and System.identityHashCode() work at the back end?
+Assuming that it hasn't been overridden, 
+the Object.hashCode() method simply calls System.identityHashCode(this).
+
+The exact behavior of System.identityHashCode(Object) depends on the JVM implementation. 
+(The actual implementation on recent Hotspot JVMs is rather clever, but I digress.)
+
+Does identityHashCode() return the reference of the object?
+
+No. It returns an int, and an int cannot hold a reference. (Duh!)
+
+That integer returned by identityHashCode 
+may be related to the (a) machine address for the object, or it may not be. 
+The value returned by identityHashCode() is guaranteed not to change for the lifetime of the object. 
+This means that of the GC relocates an object (after an identityHashCode() call) 
+then it cannot use the new object address as the identity hashcode.
+
+Does hashCode() depend on the ? of the object ? == operator how to work in back end.
+
+This doesn't make sense. There is no ? == or ?== operator in Java.
+
+What is the difference between hashCode() and identityHashCode()?
+
+This is partly explained above. Other differences include:
+
+The hashcode() method is a non-final instance method, 
+and should be overridden in any class where the equals(Object) is overridden. 
+By contrast, identityHashCode(Object) is a static method and therefore cannot be overridden.
+
+The identityHashCode(Object) method gives you a identifier for an object 
+which can (in theory) be used for other things than hashing and hash tables. 
+(Unfortunately, it is not a unique identifier, 
+but it is guaranteed to never change for the lifetime of the object.)

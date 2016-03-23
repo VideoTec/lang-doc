@@ -1,0 +1,26 @@
+http://stackoverflow.com/questions/4930781/how-do-hashcode-and-identityhashcode-work-at-the-back-end
+
+The identityHashCode(Object) method gives you a identifier for an object 
+which can (in theory) be used for other things than hashing and hash tables. 
+(Unfortunately, it is not a unique identifier, 
+but it is guaranteed to never change for the lifetime of the object.)
+
+http://stackoverflow.com/questions/909843/how-to-get-the-unique-id-of-an-object-which-overrides-hashcode
+
+System.identityHashCode(yourObject) will give the 'original' hash code of yourObject as an integer. 
+Uniqueness isn't necessarily guaranteed, note. 
+The Sun JVM implementation will give you a value 
+which is related to the original memory address for this object, 
+but that's an implementation detail and you shouldn't rely on it.
+
+EDIT: Answer modified following Tom's comment below re. memory addresses and moving objects.
+
+http://www.nomachetejuggling.com/2008/06/04/getting-a-java-objects-reference-id/
+
+In any case, this identityHashCode 
+is a handy way to get an approximate unique identifier for an object in memory, 
+but be careful using it in such a way, 
+as it's not technically guaranteed unique by the JVM.
+
+handy[英][ˈhændi] [美][ˈhændi]
+adj.方便的；手边的，附近的；便于使用的；手巧的

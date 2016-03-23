@@ -1,0 +1,9 @@
+http://www.nomachetejuggling.com/2008/06/04/getting-a-java-objects-reference-id/
+
+It exposes this via a method called identityHashCode.
+
+You can also handily convert an integer to a hex string using the Integer class, 
+so you can get the value that would come after the @ in a default toString() 
+implementation by calling this:
+
+Integer.toHexString(System.identityHashCode(object))

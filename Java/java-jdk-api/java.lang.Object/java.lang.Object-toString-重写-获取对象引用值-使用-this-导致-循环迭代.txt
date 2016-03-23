@@ -1,0 +1,16 @@
+代码：
+
+    public String toString() {
+        return "BasicResultProto@" + this
+                + "; code:" + code
+                + "; reason:" + reason;
+    }
+    
+本意，是想输出，当前对象引用值，结果造成了，调用 this.toString.
+因些循环迭代。
+
+解决方法：
+http://stackoverflow.com/questions/18396927/how-to-print-the-address-of-an-object-if-you-have-redefined-tostring-method
+Anyhow, the way to get this number is to call System.identityHashCode(obj).
+http://stackoverflow.com/questions/580984/how-do-you-get-the-object-reference-of-an-object-in-java-when-tostring-and-h
+Integer.toHexString(System.identityHashCode(object));

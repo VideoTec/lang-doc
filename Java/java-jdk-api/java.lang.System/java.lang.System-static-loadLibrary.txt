@@ -1,0 +1,6 @@
+    /**
+     * See {@link Runtime#loadLibrary}.
+     */
+    public static void loadLibrary(String libName) {
+        Runtime.getRuntime().loadLibrary(libName, VMStack.getCallingClassLoader());
+    }

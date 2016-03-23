@@ -1,0 +1,12 @@
+http://www.nomachetejuggling.com/2008/06/04/getting-a-java-objects-reference-id/
+
+In Java, when you call the toString() method of an object that hasn't overridden it, 
+it prints out strings that look like these:
+
+Object@3e25a5
+Car@19821f
+
+Many people believe that this is the memory location of the object, 
+but it's not quite. 
+It is, however, a string that seems unique to an object, 
+so the confusion seems understandable.

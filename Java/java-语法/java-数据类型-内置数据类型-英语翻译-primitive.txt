@@ -2,3 +2,23 @@ primitive[英][ˈprɪmətɪv] [美][ˈprɪmɪtɪv]
 
 primitive主数据类型。
 java等编程语言中的默认基本数据类型，如：int，long等等
+
+https://en.wikibooks.org/wiki/Java_Programming/Primitive_Types
+http://stackoverflow.com/questions/10430582/primitive-data-types-in-java
+
+In Java, every variable has a type declared in the source code. 
+There are two kinds of types: 
+reference types and primitive types. 
+
+Reference types are references to objects. 
+Primitive types directly contain values. 
+There are 8 primitive types:
+
+byte
+short
+int
+long
+char
+float
+double
+boolean

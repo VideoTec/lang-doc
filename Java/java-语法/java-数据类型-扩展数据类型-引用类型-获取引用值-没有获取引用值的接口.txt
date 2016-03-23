@@ -1,0 +1,51 @@
+http://stackoverflow.com/questions/4930781/how-do-hashcode-and-identityhashcode-work-at-the-back-end
+Does identityHashCode() return the reference of the object?
+No. It returns an int, and an int cannot hold a reference. (Duh!)
+
+That integer returned by identityHashCode 
+may be related to the (a) machine address for the object, or it may not be. 
+The value returned by identityHashCode() 
+is guaranteed not to change for the lifetime of the object. 
+This means that of the GC relocates an object (after an identityHashCode() call) 
+then it cannot use the new object address as the identity hashcode.
+
+代码：
+
+    public String toString() {
+        return "BasicResultProto@" + this
+                + "; code:" + code
+                + "; reason:" + reason;
+    }
+    
+本意，是想输出，当前对象引用值，结果造成了，调用 this.toString.
+因些循环迭代。
+
+解决方法：
+http://stackoverflow.com/questions/18396927/how-to-print-the-address-of-an-object-if-you-have-redefined-tostring-method
+Anyhow, the way to get this number is to call System.identityHashCode(obj).
+
+http://stackoverflow.com/questions/580984/how-do-you-get-the-object-reference-of-an-object-in-java-when-tostring-and-h
+Integer.toHexString(System.identityHashCode(object));
+
+What exactly are you planning on doing with it 
+(what you want to do makes a difference with what you will need to call).
+
+hashCode,as defined in the javadocs says:
+
+As much as is reasonably practical, 
+the hashCode method defined by class Object does 
+return distinct integers for distinct objects. 
+(This is typically implemented by converting the internal address of the object into an integer, 
+but this implementation technique is not required by the Java™ programming language.)
+So if you are using the hashCode to find out 
+if it is a unique object in memory that isn't a good way to do it.
+
+System.identityHashCode does the following:
+
+Returns the same hash code for the given object 
+as would be returned by the default method hashCode(), 
+whether or not the given object's class overrides hashCode(). 
+The hash code for the null reference is zero.
+
+Which, for what you are doing sounds like what you want... 
+but what you want to do might not be safe depending on how the library is implemented.

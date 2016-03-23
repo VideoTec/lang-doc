@@ -1,0 +1,49 @@
+
+    /**
+     * Returns an integer hash code for the parameter. The hash code returned is
+     * the same one that would be returned by the method {@code
+     * java.lang.Object.hashCode()}, whether or not the object's class has
+     * overridden hashCode(). The hash code for {@code null} is {@code 0}.
+     *
+     * @param anObject
+     *            the object to calculate the hash code.
+     * @return the hash code for the given object.
+     * @see java.lang.Object#hashCode
+     */
+    public static native int identityHashCode(Object anObject);
+    
+参考 java.lang.Object 的 hashCode 方法：
+
+    /**
+     * Returns an integer hash code for this object. By contract, any two
+     * objects for which {@link #equals} returns {@code true} must return
+     * the same hash code value. This means that subclasses of {@code Object}
+     * usually override both methods or neither method.
+     *
+     * <p>Note that hash values must not change over time unless information used in equals
+     * comparisons also changes.
+     *
+     * <p>See <a href="{@docRoot}reference/java/lang/Object.html#writing_hashCode">Writing a correct
+     * {@code hashCode} method</a>
+     * if you intend implementing your own {@code hashCode} method.
+     *
+     * @return this object's hash code.
+     * @see #equals
+     */
+    public int hashCode() {
+        int lockWord = shadow$_monitor_;
+        final int lockWordStateMask = 0xC0000000;  // Top 2 bits.
+        final int lockWordStateHash = 0x80000000;  // Top 2 bits are value 2 (kStateHash).
+        final int lockWordHashMask = 0x0FFFFFFF;  // Low 28 bits.
+        if ((lockWord & lockWordStateMask) == lockWordStateHash) {
+            return lockWord & lockWordHashMask;
+        }
+        return System.identityHashCode(this);
+    }
+    
+http://www.cnblogs.com/danne823/archive/2011/11/29/about_hashcode.html
+运行后的结果都是:  hashcode() 与 System.identityHashCode() 生成的数字并不相等
+
+http://stackoverflow.com/questions/4930781/how-do-hashcode-and-identityhashcode-work-at-the-back-end
+Assuming that it hasn't been overridden, 
+the Object.hashCode() method simply calls System.identityHashCode(this)
