@@ -1,0 +1,10 @@
+
+http://www.w3school.com.cn/sql/sql_orderby.asp
+
+以逆字母顺序显示公司名称：
+SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC
+
+http://heisetoufa.iteye.com/blog/364161
+排序有升序和降序之分，ASC表示升序排序，DESC表示降序排序。
+如果不指明排序顺序，默认的排序顺序为升序ASC。
+如果要降序，必须书写DESC关键字

@@ -1,0 +1,12 @@
+    /**
+     * Returns an integer hash code for the receiver. Objects which are equal
+     * return the same value for this method.
+     *
+     * @return this {@code Date}'s hash.
+     *
+     * @see #equals
+     */
+    @Override
+    public int hashCode() {
+        return (int) (milliseconds >>> 32) ^ (int) milliseconds;
+    }

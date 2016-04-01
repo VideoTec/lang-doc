@@ -1,0 +1,23 @@
+http://wiki.jikexueyuan.com/project/java-collection/linkedhashset.html
+
+LinkedHashSet 首先我们需要知道的是它是一个 Set 的实现，
+所以它其中存的肯定不是键值对，而是值。
+此实现与 HashSet 的不同之处在于，
+LinkedHashSet 维护着一个运行于所有条目的双重链接列表。
+此链接列表定义了迭代顺序，
+该迭代顺序可为插入顺序或是访问顺序。
+
+对于 LinkedHashSet 而言，
+它继承与 HashSet、又基于 LinkedHashMap 来实现的
+
+LinkedHashSet 底层使用 LinkedHashMap 来保存所有元素，
+它继承与 HashSet，其所有的方法操作上又与 HashSet 相同，
+因此 LinkedHashSet 的实现上非常简单，只提供了四个构造方法，
+并通过传递一个标识参数，调用父类的构造器，
+底层构造一个 LinkedHashMap 来实现，在相关操作上与父类 HashSet 的操作相同，
+直接调用父类 HashSet 的方法即可。
+
+http://rmn190.iteye.com/blog/332819
+LinkedHashSet有"排重"的作用, 其中的一个用处就是可以
+把List或Array中的元素放到一个HashSet里以
+把重复的元素去掉

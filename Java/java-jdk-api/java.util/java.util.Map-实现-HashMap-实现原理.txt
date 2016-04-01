@@ -1,0 +1,46 @@
+http://www.cnblogs.com/chenssy/p/3521565.html
+http://www.importnew.com/7099.html
+http://blog.csdn.net/vking_wang/article/details/14166593
+
+哈希表有多种不同的实现方法，我接下来解释的是最常用的一种方法 —— 
+拉链法，我们可以理解为“链表的数组” 
+
+哈希表是由数组+链表组成的，一个长度为16的数组中，每个元素存储的是一个链表的头结点
+
+首先HashMap里面实现一个静态内部类Entry，
+其重要的属性有 key , value, next，
+从属性key,value我们就能很明显的看出来Entry就是HashMap键值对实现的一个基础bean，
+我们上面说到HashMap的基础就是一个线性数组，
+这个数组就是Entry[]，Map里面的内容都保存在Entry[]里面
+
+   /**
+     * The table, resized as necessary. Length MUST Always be a power of two.
+     */
+    transient Entry[] table;
+
+求得数组下标：
+一个长度为16的数组中，每个元素存储的是一个链表的头结点。
+那么这些元素是按照什么样的规则存储到数组中呢。
+一般情况是通过hash(key)%len获得，
+也就是元素的key的哈希值对数组长度取模得到。
+比如上述哈希表中，
+12%16=12,28%16=12,108%16=12,140%16=12。
+所以12、28、108以及140都存储在数组下标为12的位置
+
+疑问：如果两个key通过hash%Entry[].length得到的index相同，会不会有覆盖的危险？
+　　这里HashMap里面用到链式数据结构的一个概念。
+上面我们提到过Entry类里面有一个next属性，作用是指向下一个Entry。
+打个比方， 
+第一个键值对A进来，通过计算其key的hash得到的index=0，记做:Entry[0] = A。一会后又进来一个键值对B，通过计算其index也等于0，现在怎么办？
+HashMap会这样做:B.next = A,Entry[0] = B,如果又进来C,index也等于0,
+那么C.next = B,Entry[0] = C；
+这样我们发现index=0的地方其实存取了A,B,C三个键值对,
+他们通过next这个属性链接在一起。所以疑问不用担心。
+也就是说数组中存储的是最后插入的元素。
+到这里为止，HashMap的大致实现，我们应该已经清楚了
+
+当然HashMap里面也包含一些优化方面的实现，这里也说一下。
+比如：Entry[]的长度一定后，
+随着map里面数据的越来越长，这样同一个index的链就会很长，会不会影响性能？
+HashMap里面设置一个因子，
+随着map的size越来越大，Entry[]会以一定的规则加长长度。

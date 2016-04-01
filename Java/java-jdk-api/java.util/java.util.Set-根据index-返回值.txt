@@ -1,0 +1,31 @@
+http://stackoverflow.com/questions/4395871/how-to-get-index-of-an-item-in-java-util-set
+
+A small static custom method in a Util class would help:
+
+ public static int getIndex(Set<? extends Object> set, Object value) {
+   int result = 0;
+   for (Object entry:set) {
+     if (entry.equals(value)) return result;
+     result++;
+   }
+   return -1;
+ }
+If you need/want one class that is a Set and offers a getIndex() method, I strongly suggest to implement a new Set and use the decorator pattern:
+
+ public class IndexAwareSet<T> implements Set {
+   private Set<T> set;
+   public IndexAwareSet(Set<T> set) {
+     this.set = set;
+   }
+
+   // ... implement all methods from Set and delegate to the internal Set
+
+   public int getIndex(T entry) {
+     int result = 0;
+     for (T entry:set) {
+       if (entry.equals(value)) return result;
+       result++;
+     }
+     return -1;
+   }
+ }

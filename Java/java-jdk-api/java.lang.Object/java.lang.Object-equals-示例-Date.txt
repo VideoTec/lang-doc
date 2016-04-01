@@ -1,0 +1,18 @@
+
+    /**
+     * Compares the specified object to this {@code Date} and returns if they are equal.
+     * To be equal, the object must be an instance of {@code Date} and have the same millisecond
+     * value.
+     *
+     * @param object
+     *            the object to compare with this object.
+     * @return {@code true} if the specified object is equal to this {@code Date}, {@code false}
+     *         otherwise.
+     *
+     * @see #hashCode
+     */
+    @Override
+    public boolean equals(Object object) {
+        return (object == this) || (object instanceof Date)
+                && (milliseconds == ((Date) object).milliseconds);
+    }

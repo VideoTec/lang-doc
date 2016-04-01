@@ -1,0 +1,22 @@
+audit[英][ˈɔ:dɪt] [美][ˈɔdɪt]
+
+n.审计，查账
+vt.审计，查账；旁听
+vi.审计
+
+auditor[英][ˈɔ:dɪtə(r)] [美][ˈɔdɪtɚ]
+n.审计员；查账员；听者；旁听生
+
+Each year they audit our accounts and certify them as being true and fair.
+他们每年对我们进行账务审核，以确保其真实无误。
+
+http://www.oschina.net/question/191440_125562
+
+规则创建好后，Audit功能也就能用上了。
+当有规则被触发，Audit的右边会有数字显示当前有多少提交（commit）需要Audit。
+Audit中的操作是对commit进行审核。
+当选择Accept Commit动作保存后，
+这条commit记录就从Audit中消除。其他动作，可自行试试。
+
+触发Audit的另一种方法是要svn提交时在备注中加入Auditors:xxx。
+xxx为Phabricator系统中用户名。

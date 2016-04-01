@@ -1,0 +1,51 @@
+http://stackoverflow.com/questions/18852059/java-list-containsobject-with-field-value-equal-to-x
+
+You have two choices.
+
+1. The first choice, which is preferable, is to override the `equals()` method in your Object class.
+
+Let's say, for example, you have this Object class:
+
+public class MyObject {
+    private String name;
+    private String location;
+    //getters and setters
+}
+
+Now let's say you only care about the MyObject's name, that it should be unique so if two `MyObject`s have the same name they should be considered equal. In that case, you would want to override the `equals()` method (and also the `hashcode()` method) so that it compares the names to determine equality.
+
+Once you've done this, you can check to see if a Collection contains a MyObject with the name "foo" by like so:
+
+MyObject object = new MyObject();
+object.setName("foo");
+collection.contains(object);
+
+However, this might not be an option for you if:
+
+You are using both the name and location to check for equality, but you only want to check if a Collection has any `MyObject`s with a certain location. In this case, you've already overridden `equals()`.
+`MyObject` is part of an API that you don't have liberty to change.
+If either of these are the case, you'll want option 2:
+
+2. Write your own utility method:
+
+public static boolean containsLocation(Collection<MyObject> c, String location) {
+    for(MyObject o : c) {
+        if(o != null && o.getLocation.equals(location)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+Alternatively, you could extend ArrayList (or some other collection) and then add your own method to it:
+
+public boolean containsLocation(String location) {
+    for(MyObject o : this) {
+        if(o != null && o.getLocation.equals(location)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+Unfortunately there's not a better way around it.

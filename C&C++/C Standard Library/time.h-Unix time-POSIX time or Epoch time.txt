@@ -1,0 +1,10 @@
+https://en.wikipedia.org/wiki/Unix_time
+
+Unix time (also known as POSIX time or Epoch time) 
+is a system for describing instants in time,
+defined as the number of seconds 
+that have elapsed since 
+00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970,
+not counting leap seconds.
+
+Example: 1458730894 (ISO 8601: 2016-03-23T11:01:34Z

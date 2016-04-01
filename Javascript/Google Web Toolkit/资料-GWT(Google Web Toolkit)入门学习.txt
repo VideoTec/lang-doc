@@ -1,0 +1,11 @@
+http://www.cnblogs.com/syxchina/archive/2011/12/19/gwt_base_1.html
+
+GWT入门学习 
+
+1介绍 
+
+2 安装 
+
+3 第一个gwt项目 
+
+4 gwt 和extjs结合 

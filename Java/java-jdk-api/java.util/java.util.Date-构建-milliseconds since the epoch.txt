@@ -1,0 +1,17 @@
+Unix time (also known as POSIX time or Epoch time) 
+is a system for describing instants in time,
+defined as the number of seconds 
+that have elapsed since 
+00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970,
+not counting leap seconds.
+
+    /**
+     * Initializes this {@code Date} instance using the specified millisecond value. The
+     * value is the number of milliseconds since Jan. 1, 1970 GMT.
+     *
+     * @param milliseconds
+     *            the number of milliseconds since Jan. 1, 1970 GMT.
+     */
+    public Date(long milliseconds) {
+        this.milliseconds = milliseconds;
+    }

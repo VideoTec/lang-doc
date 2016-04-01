@@ -1,0 +1,37 @@
+
+    /**
+     * Replaces all matches for {@code regularExpression} within this string with the given
+     * {@code replacement}.
+     * See {@link Pattern} for regular expression syntax.
+     *
+     * <p>If the same regular expression is to be used for multiple operations, it may be more
+     * efficient to reuse a compiled {@code Pattern}.
+     *
+     * @throws PatternSyntaxException
+     *             if the syntax of the supplied regular expression is not
+     *             valid.
+     * @throws NullPointerException if {@code regularExpression == null}
+     * @see Pattern
+     * @since 1.4
+     */
+    public String replaceAll(String regularExpression, String replacement) {
+        return Pattern.compile(regularExpression).matcher(this).replaceAll(replacement);
+    }
+
+http://stackoverflow.com/questions/10372862/java-string-remove-all-non-numeric-characters
+
+Try this code:
+
+String str = "a12.334tyz.78x";
+str = str.replaceAll("[^\\d.]", "");
+Now str will contain "12.334.78".
+
+I would use a regex.
+
+String text = "-jaskdh2367sd.27askjdfh23";
+String digits = text.replaceAll("[^0-9.]", "");
+System.out.println(digits);
+prints
+
+2367.2723
+You might like to keep - as well for negative numbers.

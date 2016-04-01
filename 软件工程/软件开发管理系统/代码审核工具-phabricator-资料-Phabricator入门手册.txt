@@ -1,0 +1,45 @@
+http://www.oschina.net/question/191440_125562
+
+本手册概述 3
+
+安装篇 3
+
+安装环境 3
+
+安装步骤 3
+
+其它可选安装 4
+
+配置篇 4
+
+配置Apache 4
+
+配置administor用户 5
+
+使用篇 5
+
+配置数据库 6
+
+配置邮件 6
+
+Repositories 7
+
+Diffusion 8
+
+Organization介绍 10
+
+Pepole介绍 10
+
+用户角色分类 10
+
+Projects 11
+
+Oweners（用作创建包） 12
+
+Herlad（用作创建规则） 13
+
+Audit 13
+
+Maniphest（用作创建任务） 14
+
+交流功能介绍 16

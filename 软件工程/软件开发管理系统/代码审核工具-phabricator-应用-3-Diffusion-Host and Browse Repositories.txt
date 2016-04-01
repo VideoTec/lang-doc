@@ -1,0 +1,6 @@
+diffusion[英][dɪ'fju:ʒn] [美][dɪˈfjuʒən]
+n.扩散；<物，化>扩散；传播；<人>（文化等的）传流
+
+http://www.oschina.net/question/191440_125562
+
+配置Repositories后，在Diffusion页面能看到Repositories的信息

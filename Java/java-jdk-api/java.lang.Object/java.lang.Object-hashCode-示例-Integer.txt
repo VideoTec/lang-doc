@@ -1,0 +1,5 @@
+
+    @Override
+    public int hashCode() {
+        return value;   --- 这个封装的那个值
+    }

@@ -1,0 +1,41 @@
+
+http://rmn190.iteye.com/blog/332819
+LinkedHashSet有"排重"的作用, 其中的一个用处就是可以
+把List或Array中的元素放到一个HashSet里以
+把重复的元素去掉
+
+http://alex09.iteye.com/blog/539549
+
+对于 HashSet 而言，它是基于 HashMap 实现的，
+HashSet 底层采用 HashMap 来保存所有元素，
+因此 HashSet 的实现比较简单
+
+它只是封装了一个 HashMap 对象来存储所有的集合元素，
+所有放入 HashSet 中的集合元素实际上由 HashMap 的 key 来保存，
+而 HashMap 的 value 则存储了一个 PRESENT，它是一个静态的 Object 对象
+
+HashSet 的绝大部分方法都是通过调用 HashMap 的方法来实现的，
+因此 HashSet 和 HashMap 两个集合在实现本质上是相同的
+
+实际运行上面程序将看到程序输出 false，
+这是因为 HashSet 判断两个对象相等的标准
+除了要求通过 equals() 方法比较返回 true 之外，
+还要求两个对象的 hashCode() 返回值相等。
+而上面程序没有重写 Name 类的 hashCode() 方法，
+两个 Name 对象的 hashCode() 返回值并不相同，
+因此 HashSet 会把它们当成 2 个对象处理，因此程序返回 false
+
+当我们试图把某个类的对象当成 HashMap 的 key，
+或试图将这个类的对象放入 HashSet 中保存时，
+重写该类的 equals(Object obj) 方法和 hashCode() 方法很重要，
+而且这两个方法的返回值必须保持一致：
+当该类的两个的 hashCode() 返回值相同时，
+它们通过 equals() 方法比较也应该返回 true。
+通常来说，所有参与计算 hashCode() 返回值的关键属性，
+都应该用于作为 equals() 比较的标准。
+
+http://wiki.jikexueyuan.com/project/java-collection/linkedhashset.html
+
+HashSet 的方法基本上都是基于 HashMap 来实现的，
+说白了，HashSet内部的数据结构就是一个 HashMap，
+其方法的内部几乎就是在调用 HashMap 的方法。

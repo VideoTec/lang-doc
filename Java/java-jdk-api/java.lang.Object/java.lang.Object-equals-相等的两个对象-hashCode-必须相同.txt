@@ -1,0 +1,10 @@
+     * <p>The general contract for the {@code equals} and {@link
+     * #hashCode()} methods is that if {@code equals} returns {@code true} for
+     * any two objects, then {@code hashCode()} must return the same value for
+     * these objects. This means that subclasses of {@code Object} usually
+     * override either both methods or neither of them.
+     
+http://www.oschina.net/question/82993_75533
+
+hashCode()方法被用来获取给定对象的唯一整数。
+这个整数被用来确定对象被存储在HashTable类似的结构中的位置。

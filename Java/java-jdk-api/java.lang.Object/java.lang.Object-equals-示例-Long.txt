@@ -1,0 +1,15 @@
+
+    /**
+     * Compares this instance with the specified object and indicates if they
+     * are equal. In order to be equal, {@code o} must be an instance of
+     * {@code Long} and have the same long value as this object.
+     *
+     * @param o
+     *            the object to compare this long with.
+     * @return {@code true} if the specified object is equal to this
+     *         {@code Long}; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        return (o instanceof Long) && (((Long) o).value == value);
+    }

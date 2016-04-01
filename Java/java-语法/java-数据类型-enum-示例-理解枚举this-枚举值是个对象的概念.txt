@@ -1,0 +1,28 @@
+
+    public enum CallState {
+        UNKNOWN,
+        INCOMING,
+        OUTGOING,
+        MISSED,
+        VOICEMAIL;
+
+        public String getName() {
+            switch(this) {      --------------    这个值的含义，枚举值是枚举类型的对象
+                case INCOMING: {
+                    return "呼入电话";
+                }
+                case OUTGOING: {
+                    return "呼出电话";
+                }
+                case MISSED: {
+                    return "未接电话";
+                }
+                case VOICEMAIL: {
+                    return "已取消的电话";
+                }
+                default: {
+                    return "未知通话类型";
+                }
+            }
+        }
+    }

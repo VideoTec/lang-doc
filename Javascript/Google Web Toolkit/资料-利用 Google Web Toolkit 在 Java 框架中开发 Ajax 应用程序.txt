@@ -1,0 +1,5 @@
+http://www.ibm.com/developerworks/cn/opensource/os-ad-gwt1/
+
+使用 Google Web Toolkit、Apache Derby 和 Eclipse 构建 Ajax 应用程序，
+第 1 部分: 梦幻前端
+利用 Google Web Toolkit 在 Java 框架中开发 Ajax 应用程序

@@ -1,0 +1,15 @@
+#if defined(__cplusplus)
+typedef _JNIEnv JNIEnv;
+typedef _JavaVM JavaVM;
+#else
+typedef const struct JNINativeInterface* JNIEnv;
+typedef const struct JNIInvokeInterface* JavaVM;
+#endif
+
+// 从 native 结体体中获取数据
+jint jni_session_get_id(JNIEnv *env, jobject clazz) {
+  v6_session *ptr = (v6_session *)(*env)->GetIntField(env, clazz, g_field_session_ptr);
+  return ptr->getsessionid();
+}
+
+JNIEnv *env -- 指向结体指针的指针了。

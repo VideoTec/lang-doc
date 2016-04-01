@@ -15,3 +15,16 @@ Phabricator最初是Facebook的一个内部工具，
 主要开发者为Evan Priestley[1]。
 Evan Priestley离开Facebook后，
 在名为Phacility的新公司继续Phabricator的开发。
+
+官网：
+http://phabricator.org/
+
+原作者	Evan Priestley.[1]
+开发者	Phacility, Inc[2]
+初始版本	2010年，​6年前
+编程语言	PHP[3]
+操作系统	跨平台
+语言	英语
+类型	代码审查
+许可协议	Apache许可证第2版[4]
+网站	phabricator.org

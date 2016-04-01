@@ -1,0 +1,30 @@
+
+
+http://www.cnblogs.com/hubingxu/archive/2012/02/21/2361281.html
+LinkedHashMap保存了记录的插入顺序，
+在用Iterator遍历LinkedHashMap时，先得到的记录肯定是先插入的
+
+http://zhangshixi.iteye.com/blog/673789  【这个文章里的描述是错误的吧】
+
+1. LinkedHashMap概述：
+
+LinkedHashMap是Map接口的哈希表和链接列表实现，
+具有可预知的迭代顺序。
+此实现提供所有可选的映射操作，
+并允许使用null值和null键。此类不保证映射的顺序，
+特别是它不保证该顺序恒久不变。
+
+LinkedHashMap实现与HashMap的不同之处在于，
+后者维护着一个运行于所有条目的双重链接列表。
+此链接列表定义了迭代顺序，该
+迭代顺序可以是插入顺序或者是访问顺序。
+
+注意，此实现不是同步的。
+如果多个线程同时访问链接的哈希映射，
+而其中至少一个线程从结构上修改了该映射，则它必须保持外部同步。
+
+LinkedHashMap采用的hash算法和HashMap相同，
+但是它重新定义了数组中保存的元素Entry，
+该Entry除了保存当前对象的引用外，
+还保存了其上一个元素before和下一个元素after的引用，
+从而在哈希表的基础上又构成了双向链接列表

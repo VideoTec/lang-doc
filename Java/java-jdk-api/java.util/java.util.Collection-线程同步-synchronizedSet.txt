@@ -1,0 +1,17 @@
+http://developer.android.com/intl/zh-cn/reference/java/util/LinkedHashSet.html
+
+Like HashSet, LinkedHashSet is not thread safe, 
+so access by multiple threads must be synchronized 
+by an external mechanism such as synchronizedSet(Set).
+
+http://developer.android.com/intl/zh-cn/reference/java/util/Collections.html#synchronizedSet(java.util.Set<E>)
+
+public static Set<E> synchronizedSet (Set<E> set)
+
+Added in API level 1
+Returns a wrapper on the specified set which synchronizes all access to the set.
+
+Parameters
+set	Set: the set to wrap in a synchronized set.
+Returns
+Set<E>	a synchronized set.

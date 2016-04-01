@@ -1,0 +1,17 @@
+String 的hashCode值：
+
+    private int hashCode; 缓存值
+    
+    @Override public int hashCode() {
+        int hash = hashCode;
+        if (hash == 0) {
+            if (count == 0) {
+                return 0;
+            }
+            for (int i = 0; i < count; ++i) {
+                hash = 31 * hash + charAt(i);
+            }
+            hashCode = hash;
+        }
+        return hash;
+    }

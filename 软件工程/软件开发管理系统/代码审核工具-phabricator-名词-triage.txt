@@ -1,0 +1,8 @@
+triage[英][ˈtri:ɑ:ʒ] [美][tri:ˈɑ:ʒ]
+治疗类选法（根据紧迫性和救活的可能性等在战场上决定哪些人优先治疗的方法）
+
+Who has been assigned the latest change request introduced in the triage meeting?
+谁分配到了由分类会议中引出的最近的变更请求？
+
+和任务的优先级相关的术语：例如
+triaged this task as "Normal" priority.

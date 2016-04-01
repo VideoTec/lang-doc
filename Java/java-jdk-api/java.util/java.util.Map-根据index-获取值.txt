@@ -1,0 +1,13 @@
+http://stackoverflow.com/questions/2686092/java-get-index-of-key-in-hashmap
+
+Use LinkedHashMap instead of HashMap It will always return keys in same order (as insertion) when calling keySet()
+
+For more detail, see Class LinkedHashMap
+
+Not sure if this is any "cleaner", but:
+
+List keys = new ArrayList(map.keySet());
+for (int i = 0; i < keys.size(); i++) {
+    Object obj = keys.get(i);
+    // do stuff here
+}

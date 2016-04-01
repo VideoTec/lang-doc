@@ -1,0 +1,14 @@
+http://stackoverflow.com/questions/17279519/removing-items-from-list-in-java
+
+
+65
+down vote
+for (Iterator<String> iter = list.listIterator(); iter.hasNext(); ) {
+    String a = iter.next();
+    if (...) {
+        iter.remove();
+    }
+}
+Making an additional assumption that the list is of strings. 
+As already answered, an list.iterator() is needed. 
+The listIterator can do a bit of navigation too.

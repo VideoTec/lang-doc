@@ -1,0 +1,20 @@
+/**
+ * {@code Collections} contains static methods which operate on
+ * {@code Collection} classes.
+ *
+ * @since 1.2
+ */
+public class Collections {
+public static <T> int binarySearch(List<? extends Comparable<? super T>> list, T object)
+
+http://blog.csdn.net/vonzhoufz/article/details/44753173
+Collections里面同样有类似的辅助函数，不过是利用迭代器取得特定位置的元素
+
+http://stackoverflow.com/questions/587404/finding-all-objects-that-have-a-given-property-inside-a-collection
+You could write a method that takes an instance of an interface 
+which defines a check(Cat) method, 
+where that method can be implemented with whatever property-checking you want.
+
+http://www.tutorialspoint.com/java/util/collections_binarysearch_comparable.htm
+public static <T> int binarySearch(List<? extends Comparable<? super T>> list,   T key)
+public static <T> int binarySearch(List<? extends T> list, T object, Comparator<? super T> comparator)

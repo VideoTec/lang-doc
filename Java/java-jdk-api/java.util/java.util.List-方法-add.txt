@@ -1,0 +1,88 @@
+public void add(int location, E object);
+public boolean add(E object);
+public boolean addAll(int location, Collection<? extends E> collection);
+public boolean addAll(Collection<? extends E> collection);
+
+    /**
+     * Inserts the specified object into this {@code List} at the specified location.
+     * The object is inserted before the current element at the specified
+     * location. If the location is equal to the size of this {@code List}, the object
+     * is added at the end. If the location is smaller than the size of this
+     * {@code List}, then all elements beyond the specified location are moved by one
+     * position towards the end of the {@code List}.
+     *
+     * @param location
+     *            the index at which to insert.
+     * @param object
+     *            the object to add.
+     * @throws UnsupportedOperationException
+     *                if adding to this {@code List} is not supported.
+     * @throws ClassCastException
+     *                if the class of the object is inappropriate for this
+     *                {@code List}.
+     * @throws IllegalArgumentException
+     *                if the object cannot be added to this {@code List}.
+     * @throws IndexOutOfBoundsException
+     *                if {@code location < 0 || location > size()}
+     */
+    public void add(int location, E object);
+
+    /**
+     * Adds the specified object at the end of this {@code List}.
+     *
+     * @param object
+     *            the object to add.
+     * @return always true.
+     * @throws UnsupportedOperationException
+     *                if adding to this {@code List} is not supported.
+     * @throws ClassCastException
+     *                if the class of the object is inappropriate for this
+     *                {@code List}.
+     * @throws IllegalArgumentException
+     *                if the object cannot be added to this {@code List}.
+     */
+    public boolean add(E object);
+
+    /**
+     * Inserts the objects in the specified collection at the specified location
+     * in this {@code List}. The objects are added in the order they are returned from
+     * the collection's iterator.
+     *
+     * @param location
+     *            the index at which to insert.
+     * @param collection
+     *            the collection of objects to be inserted.
+     * @return true if this {@code List} has been modified through the insertion, false
+     *         otherwise (i.e. if the passed collection was empty).
+     * @throws UnsupportedOperationException
+     *                if adding to this {@code List} is not supported.
+     * @throws ClassCastException
+     *                if the class of an object is inappropriate for this
+     *                {@code List}.
+     * @throws IllegalArgumentException
+     *                if an object cannot be added to this {@code List}.
+     * @throws IndexOutOfBoundsException
+     *                if {@code location < 0 || location > size()}.
+     * @throws NullPointerException if {@code collection} is {@code null}.
+     */
+    public boolean addAll(int location, Collection<? extends E> collection);
+
+    /**
+     * Adds the objects in the specified collection to the end of this {@code List}. The
+     * objects are added in the order in which they are returned from the
+     * collection's iterator.
+     *
+     * @param collection
+     *            the collection of objects.
+     * @return {@code true} if this {@code List} is modified, {@code false} otherwise
+     *         (i.e. if the passed collection was empty).
+     * @throws UnsupportedOperationException
+     *                if adding to this {@code List} is not supported.
+     * @throws ClassCastException
+     *                if the class of an object is inappropriate for this
+     *                {@code List}.
+     * @throws IllegalArgumentException
+     *                if an object cannot be added to this {@code List}.
+     * @throws NullPointerException if {@code collection} is {@code null}.
+     */
+    public boolean addAll(Collection<? extends E> collection);

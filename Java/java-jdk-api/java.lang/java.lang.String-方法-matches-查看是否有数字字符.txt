@@ -1,0 +1,24 @@
+http://stackoverflow.com/questions/7607260/check-non-numeric-characters-in-string
+
+You can check this with a regex.
+
+Suppose that (numeric values only):
+
+String a = "493284835";
+a.matches("^[0-9]+$"); // returns true
+Suppose that (alphanumeric values only):
+
+String a = "dfdf4932fef84835fea";
+a.matches("^([A-Za-z]|[0-9])+$"); // returns true
+As Pangea said in the comments area :
+
+If the performance are critical, 
+it's preferrable to compile the regex. See below for an example :
+
+String a = "dfdf4932fef84835fea";
+Pattern pattern = Pattern.compile("^([A-Za-z]|[0-9])+$");
+Matcher matcher = pattern.matcher(a);
+
+if (matcher.find()) {
+    // it's ok
+}

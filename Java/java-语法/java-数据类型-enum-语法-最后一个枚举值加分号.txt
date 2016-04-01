@@ -1,0 +1,17 @@
+    public enum CallState {
+        UNKNOWN,
+        INCOMING,
+        OUTGOING,
+        MISSED  ------------ 这里需要加分号与类成员分开
+
+        public String stateName() {
+            switch(this) {
+                case INCOMING: {
+                    return "呼入电话";
+                }
+                default: {
+                    return "未知电话";
+                }
+            }
+        }
+    }

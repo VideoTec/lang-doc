@@ -1,0 +1,22 @@
+http://stackoverflow.com/questions/12949690/java-arrays-how-to-add-elements-at-the-beginning
+
+List has the method add(int, E), so you can use:
+
+list.add(0, yourObject);
+
+Afterwards you can delete the last element with:
+
+if(list.size() > 10)
+    list.remove(list.size() - 1);
+    
+However, you might want to rethink your requirements or use a different data structure, like a Queue
+
+EDIT
+
+Maybe have a look at Apache's CircularFifoBuffer:
+
+CircularFifoBuffer is a first in first out buffer with a fixed size that replaces its oldest element if full.
+Just initialize it with you maximum size:
+
+Buffer buffer = new CircularFifoBuffer(10);
+NB: As of Common-Collections 4, CircularFifoBuffer is now CircularFifoQueue

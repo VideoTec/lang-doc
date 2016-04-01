@@ -1,3 +1,31 @@
+
+    /**
+     * Returns an integer hash code for this object. By contract, any two
+     * objects for which {@link #equals} returns {@code true} must return
+     * the same hash code value. This means that subclasses of {@code Object}
+     * usually override both methods or neither method.
+     *
+     * <p>Note that hash values must not change over time unless information used in equals
+     * comparisons also changes.
+     *
+     * <p>See <a href="{@docRoot}reference/java/lang/Object.html#writing_hashCode">Writing a correct
+     * {@code hashCode} method</a>
+     * if you intend implementing your own {@code hashCode} method.
+     *
+     * @return this object's hash code.
+     * @see #equals
+     */
+    public int hashCode() {
+        int lockWord = shadow$_monitor_;
+        final int lockWordStateMask = 0xC0000000;  // Top 2 bits.
+        final int lockWordStateHash = 0x80000000;  // Top 2 bits are value 2 (kStateHash).
+        final int lockWordHashMask = 0x0FFFFFFF;  // Low 28 bits.
+        if ((lockWord & lockWordStateMask) == lockWordStateHash) {
+            return lockWord & lockWordHashMask;
+        }
+        return System.identityHashCode(this);
+    }
+
 代码：
 
     public String toString() {

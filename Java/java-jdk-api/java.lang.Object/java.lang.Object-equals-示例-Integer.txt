@@ -1,0 +1,15 @@
+
+    /**
+     * Compares this instance with the specified object and indicates if they
+     * are equal. In order to be equal, {@code o} must be an instance of
+     * {@code Integer} and have the same integer value as this object.
+     *
+     * @param o
+     *            the object to compare this integer with.
+     * @return {@code true} if the specified object is equal to this
+     *         {@code Integer}; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        return (o instanceof Integer) && (((Integer) o).value == value);
+    }

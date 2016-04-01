@@ -1,0 +1,20 @@
+https://zh.wikipedia.org/wiki/Google_Web_Toolkit
+
+Google Web Toolkit（简称GWT，读作/ˈɡwɪt/），
+是一个前端使用JavaScript，后端使用Java的AJAX framework，
+以Apache许可证2.0版本开放源始码。
+GWT通过编译器将Java代码编译成JavaScript，
+可让开发人员使用Java程序设计语言，
+快速建置与维护复杂但高性能的JavaScript前端应用程序，
+借此减轻开发人员负担。
+
+2010年8月，Google买下Instantiations公司，
+并免费发布该公司旗下所有产品，
+当中包括GWT Designer。
+GWT Designer是Eclipse的插件，
+为GWT提供WYSIWYG（所见即所得）的AJAX设计接口。
+Google亦正在计划为GWT Designer增加UiBinder支持。
+
+http://baike.baidu.com/view/1134286.htm
+您只需使用 Java 编程语言编写您的前端，
+GWT 编译器会将您的 Java 类转换为与浏览器兼容的 JavaScript 和 HTML
