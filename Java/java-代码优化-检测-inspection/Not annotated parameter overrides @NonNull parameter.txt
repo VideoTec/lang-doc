@@ -1,0 +1,29 @@
+代码：
+    @Override
+    public int compareTo(Object another) {
+        //if(another instanceof CallLogCombineItem) {
+            CallLogCombineItem anotherItem = (CallLogCombineItem)another;
+            long l = anotherItem.getLatestCallTime();
+            long r = getLatestCallTime();
+            return l < r ? -1 : (l == r ? 0 : 1);
+       //}
+       //return 0;
+    }
+    
+提示：
+Not annotated parameter overrides @NonNull parameter
+
+解决方法：在参数上增加注解
+@NonNull
+
+不影响运行时，
+They are tools for static analysis. Runtime behavior is not altered at all.
+
+http://stackoverflow.com/questions/24728627/meaning-of-android-studio-error-not-annotated-parameter-overrides-nonnull-para
+
+The @NonNull annotation can be used to indicate that a given parameter can not be null.
+
+If a local variable is known to be null (
+for example because some earlier code checked whether it was null), 
+and you pass that as a parameter to a method where that parameter is marked as @NonNull, 
+the IDE will warn you that you have a potential crash.

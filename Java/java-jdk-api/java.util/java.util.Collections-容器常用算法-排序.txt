@@ -1,0 +1,8 @@
+http://stackoverflow.com/questions/16252269/how-to-sort-a-list-arraylist-in-java
+
+Collections.sort(testList);
+Collections.reverse(testList);
+
+That will do what you want. Remember to import Collections though!
+
+Here is the documentation for Collections.

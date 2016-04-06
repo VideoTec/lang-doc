@@ -1,0 +1,16 @@
+workboard[英]['wɜ:kbɔ:d] [美]['wɜ:kbɔ:d]
+n.工作（台）板
+
+https://www.mediawiki.org/wiki/Phabricator/Project_management#Boards
+
+Typical uses of workboards[edit]
+
+Workflow
+Typical columns would be along the lines of TODO, DOING, DONE
+This supports both Scrum-style sprint iterations, and Kanban-style continuous work
+
+Roadmap
+Each column might represent a target release, or general timeframe (e.g. "2016")
+
+Categories
+Columns might group Tasks by component, functional area, or even complexity

@@ -1,0 +1,46 @@
+http://my.oschina.net/leoson/blog/131904
+
+第一种是list中的对象实现Comparable接口，如下：
+
+/**
+* 根据order对User排序
+*/
+public class User implements Comparable{
+    private String name;
+    private Integer order;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public Integer getOrder() {
+        return order;
+    }
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+    public int compareTo(User arg0) {
+        return this.getOrder().compareTo(arg0.getOrder());
+    }
+}
+
+public class Test{
+ 
+    public static void main(String[] args) {
+        User user1 = new User();
+        user1.setName("a");
+        user1.setOrder(1);
+        User user2 = new User();
+        user2.setName("b");
+        user2.setOrder(2);
+        List list = new ArrayList();
+        //此处add user2再add user1
+        list.add(user2);
+        list.add(user1);
+        Collections.sort(list);
+        for(User u : list){
+            System.out.println(u.getName());
+        }
+    }
+}

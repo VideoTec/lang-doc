@@ -1,0 +1,16 @@
+Local variable 'items' is redundant
+
+redundant[英][rɪˈdʌndənt] [美][rɪˈdʌndənt]
+adj.多余的，累赘的；（因人员过剩）被解雇的，失业的；重沓；衍
+
+代码：
+    @Override
+    public List<CallLogCombineItem> search(String words, int limit,int isFriend) {
+        List<CallLogCombineItem> items = RFDialMgr.getInstance().callLogSearch(words, limit);
+        return items;
+    }
+修改为：
+    @Override
+    public List<CallLogCombineItem> search(String words, int limit,int isFriend) {
+        return RFDialMgr.getInstance().callLogSearch(words, limit);
+    }

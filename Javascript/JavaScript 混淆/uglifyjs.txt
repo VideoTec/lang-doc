@@ -1,0 +1,6 @@
+https://github.com/mishoo/UglifyJS
+
+JavaScript parser / mangler / compressor / beautifier library for NodeJS http://marijn.haverbeke.nl/uglifyjs
+
+在线工具：
+http://marijnhaverbeke.nl//uglifyjs

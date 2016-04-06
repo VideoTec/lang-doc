@@ -1,0 +1,10 @@
+https://www.zhihu.com/question/20306249
+
+所谓 JavaScript 混淆，基本就是
+重命名局部变量（YUI Compressor 也可以配置参数，拒绝变量重命名）
+移除代码空白（Space、Tab、Line-Feed）
+在相同语义的情况下压缩代码，
+比如去掉末尾分号（Remove Terminator Semicolons），常量替换（Constant Propagation）
+
+不赞同@赵望野，正常的混淆不等于编译，更不会让效果不同。
+而全局变量（比如 LocalStorage）他是不会更名的。

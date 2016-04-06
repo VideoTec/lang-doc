@@ -1,0 +1,16 @@
+代码：
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof CallLogCombineItem) {
+            if (hashCode() != o.hashCode()) return false;  -- 这里提示更简单的方法是 
+                                                              return hashCode() != o.hashCode()
+            else return true;
+
+        } else {
+            return false;
+        }
+    }

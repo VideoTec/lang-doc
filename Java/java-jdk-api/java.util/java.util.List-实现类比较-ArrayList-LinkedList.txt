@@ -1,0 +1,34 @@
+http://stackoverflow.com/questions/10656471/performance-differences-between-arraylist-and-linkedlist
+
+问：
+ArrayList is faster than LinkedList 
+if I randomly access its elements. 
+I think random access means "give me the nth element". 
+Why ArrayList is faster?
+答：
+ArrayList has direct references to every element in the list, 
+so it can get the n-th element in constant time. 
+LinkedList has to traverse the list from the beginning to get to the n-th element.
+
+问：
+LinkedList is faster than ArrayList for deletion. 
+I understand this one. 
+ArrayList's slower since the internal backing-up array needs to be reallocated.
+答：
+ArrayList is slower because it needs to copy part of the array 
+in order to remove the slot that has become free. 
+If the deletion is done using the ListIterator.remove() API, 
+LinkedList just has to manipulate a couple of references; 
+if the deletion is done by value or by index, 
+LinkedList has to potentially scan the entire list first to find the element(s) to be deleted.
+
+问：
+If it means move some elements back and then 
+put the element in the middle empty spot, 
+ArrayList should be slower.
+答：
+Yes, this is what it means. 
+ArrayList is indeed slower than LinkedList because 
+it has to free up a slot in the middle of the array. 
+This involves moving some references around and in the worst case reallocating the entire array. 
+LinkedList just has to manipulate some references.

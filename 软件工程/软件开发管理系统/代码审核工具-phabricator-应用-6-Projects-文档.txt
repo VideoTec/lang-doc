@@ -1,0 +1,25 @@
+https://secure.phabricator.com/book/phabricator/
+
+User Guide: Project Tone Article
+Explains why Phabricator uses a lighthearted tone.
+https://secure.phabricator.com/book/phabricator/article/tone/
+
+Profile Menu User Guide Article
+Master profile menus for projects and other objects.
+https://secure.phabricator.com/book/phabricator/article/profile_menu/
+
+Projects User Guide Article
+Organize users and objects with projects.
+https://secure.phabricator.com/book/phabricator/article/projects/
+
+Arcanist User Guide: Configuring a New ProjectArticle
+Explains how to configure Arcanist projects with `.arcconfig` files.
+https://secure.phabricator.com/book/phabricator/article/arcanist_new_project/
+
+Arcanist Quick Start Article
+Quick guide to getting Arcanist working for a new project.
+https://secure.phabricator.com/book/phabricator/article/arcanist_quick_start/
+
+Introduction Article
+This document provides a high-level overview of the Phabricator project.
+https://secure.phabricator.com/book/phabricator/article/introduction/

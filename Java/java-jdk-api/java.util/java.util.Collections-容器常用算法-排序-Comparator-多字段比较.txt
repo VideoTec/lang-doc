@@ -1,0 +1,20 @@
+http://my.oschina.net/leoson/blog/131904
+
+Collections.sort(list,new Comparator(){
+            public int compare(User arg0, User arg1) {
+ //            第一次比较专业
+                int i = arg0.getOrder().compareTo(arg1.getOrder());
+ 
+//            如果专业相同则进行第二次比较
+            if(i==0){
+//                第二次比较
+                int j=arg0.getXXX().compareTo(arg1.getXXX());
+//                如果学制相同则返回按年龄排序
+                if(j==0){
+                    return arg0.getCCC().compareTo(arg1.getCCC());
+                }
+                return j;
+            }
+            return i;
+            }
+        });

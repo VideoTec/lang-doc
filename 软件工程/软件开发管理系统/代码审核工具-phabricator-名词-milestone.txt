@@ -1,0 +1,24 @@
+milestone[英][ˈmaɪlstəʊn] [美][ˈmaɪlstoʊn]
+
+n.里程碑；划时代事件
+
+里程碑，是一个子工程
+
+https://secure.phabricator.com/book/phabricator/article/projects/#milestones
+
+Milestones
+Milestones are simple subprojects for tracking sprints, iterations, versions, or other similar blocks of work. Milestones make it easier to create and manage a large number of similar subprojects (for example: Sprint 1, Sprint 2, Sprint 3, etc).
+
+Milestones can not have direct members or policies. Instead, the membership and policies of a milestones are always the same as the milestone's parent project. This makes large numbers of milestones more manageable when changes occur.
+
+Milestones can not have subprojects, and can not have their own milestones.
+
+By default, Milestones do not have their own hashtags.
+
+Milestones can have normal workboards.
+
+Objects may not be tagged with two different milestones of the same parent project. For example, a task may not be tagged with both Stonework → Iteration III and Stonework → Iteration V.
+
+When a milestone tag is added to an object which already has a tag from the same series of milestones, the old tag is removed. For example, adding the Stonework → Iteration V tag to a task which already has the Stonework → Iteration III tag will remove the Iteration III tag.
+
+This restriction does not apply to milestones which are not part of the same series. For example, a task may be tagged with both Stonework → Iteration V and Heraldry → Iteration IX.

@@ -3,7 +3,3 @@ http://www.oschina.net/question/191440_125562
 Maniphest（用作创建任务）
 在项目开发或者审核过程中，当有任务或者Bug需要指派时，可以在Maniphest创建。
 由于项目的管理及Bug都是提交到JIRA上，这功能用的也不多。
-
-Differential（代码审查） diffusion
-
-Differential是相对Audit的，都可以审查代码，一个是提交到svn之前，一个是提交到svn之后。Differential可以做到对代码的每一行进行备注（功能上强于Audit）。由于需要对提交到svn之前的代码进行审查，需要借助其他工具来生成Diff。官方推荐是使用Arcanist，在ubuntu环境中是随Phabricator一起安装的。但要想在Windows环境中使用，官方说法是有点小麻烦。我也没有尝试，主要是想到试过后，如果使用麻烦，在项目内部推广也会受阻。（这都是借口，主要还是被Phabricator折磨的有点怕了，过些时间这点恐惧心理没了再试试）

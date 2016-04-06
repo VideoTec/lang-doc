@@ -1,0 +1,14 @@
+代码：
+
+public class CallLogItem {
+    private static SimpleDateFormat sDfYMDay = new SimpleDateFormat("yyyy.MM.dd");
+    private static SimpleDateFormat sDfMDay = new SimpleDateFormat("MM.dd");
+    
+提示语：
+
+To get local formatting use `getDateInstance()`, `getDateTimeInstance()`, or `getTimeInstance()`, or use `new SimpleDateFormat(String template, Locale locale)` with for example `Locale.US` for ASCII dates.
+
+修改为：
+
+    private static SimpleDateFormat sDfYMDay = new SimpleDateFormat("yyyy.MM.dd", Locale.CHINA);
+    private static SimpleDateFormat sDfMDay = new SimpleDateFormat("MM.dd", Locale.CHINA);

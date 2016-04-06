@@ -1,0 +1,14 @@
+http://stackoverflow.com/questions/8069370/is-an-arraylist-or-a-linkedlist-better-for-sorting
+
+Up to Java 7, 
+it made no difference because Collections.sort 
+would dump the content of the list into an array.
+
+With Java 8, 
+using an ArrayList should be slightly faster because Collections.sort 
+will call List.sort and ArrayList 
+has a specialised version that sorts the backing array directly, saving a copy.
+
+So bottom line is ArrayList 
+is better as it gives a similar or better performance 
+depending on the version of Java.

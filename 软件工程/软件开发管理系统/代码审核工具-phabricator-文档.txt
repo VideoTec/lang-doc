@@ -1,0 +1,2 @@
+https://secure.phabricator.com/book/phabricator/
+Instructions for installing, configuring, and using Phabricator.
