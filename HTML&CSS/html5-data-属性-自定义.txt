@@ -1,0 +1,8 @@
+用途：
+
+<a data-targetid="#c">C</a>         指定 a 标签的自定义 data 数据
+var id = $(this).data("targetid");  获取 a 标签对应的数据
+
+http://www.vaikan.com/html-5-data-attributes-how-to-use-them-and-why/
+
+HTML 5 的自定义 data-* 属性和jquery的data()方法的使用

@@ -1,0 +1,6 @@
+  $(".sy a").click(function(){
+    var id = $(this).data("targetid");  -- 注意这里取来一个字符串
+    var offset1 = $(id).offset();       -- 把字符串变量传递给 $
+    var offset2 = $("#a").offset();    
+    $(".cx-con").animate({scrollTop:offset1.top - offset2.top}, 1);
+  });

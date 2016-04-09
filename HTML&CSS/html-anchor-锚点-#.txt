@@ -1,0 +1,56 @@
+anchor[英][ˈæŋkə(r)] [美][ˈæŋkɚ]
+n.锚；锚状物；靠山；压阵队员
+
+https://www.w3.org/TR/html401/struct/links.html#h-12.2.3
+Anchors with the id attribute
+The id attribute may be used to create an anchor 
+at the start tag of any element (including the A element).
+
+http://www.w3school.com.cn/tags/att_a_href.asp
+锚 URL - 指向页面中的锚（href="#top"）
+
+http://www.w3schools.com/tags/att_a_name.asp
+HTML <a> name Attribute
+<a name="value">
+
+The <a> name attribute is not supported in HTML5. 
+Use the id attribute instead.
+
+The name attribute specifies the name of an anchor.
+The name attribute is used to create a bookmark inside a document.
+
+http://stackoverflow.com/questions/484719/html-anchors-with-name-or-id
+<h1><a name="foo"/>Foo Title</h1>
+<h1 id="foo">Foo Title</h1>
+They both work, but are they equal, or do they have semantic differences?
+
+For HTML documents (and the text/html MIME type), 
+the following processing model must be followed 
+to determine what the indicated part of the document is.
+
+1）Parse the URL, and let fragid be the <fragment> component of the URL.
+
+2）If fragid is the empty string, 
+then the indicated part of the document is the top of the document.
+
+3）If there is an element in the DOM that has an ID exactly equal to fragid, 
+then the first such element in tree order is the indicated part of the document; 
+stop the algorithm here.
+
+4）If there is an a element in the DOM 
+that has a name attribute whose value is exactly equal to fragid, 
+then the first such element in tree order is the indicated part of the document; 
+stop the algorithm here.
+
+5）Otherwise, there is no indicated part of the document.
+
+http://w3c.github.io/html/browsers.html#scroll-to-fragid
+If parsed URL’s fragment component is not null, 
+then first append a U+0023 NUMBER SIGN character (#) to script source, 
+and then append parsed URL’s fragment component to script source.
+
+Return "#", followed by this Location object’s URL’s fragment.
+
+Returns the Location object’s URL’s fragment (includes leading "#" if non-empty). 
+Can be set, 
+to navigate to the same URL with a changed fragment (ignores leading "#").

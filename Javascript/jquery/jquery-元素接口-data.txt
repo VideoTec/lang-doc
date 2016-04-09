@@ -1,0 +1,2 @@
+http://www.vaikan.com/html-5-data-attributes-how-to-use-them-and-why/
+HTML 5 的自定义 data-* 属性和jquery的data()方法的使用

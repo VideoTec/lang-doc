@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+dl,dt, dd { list-style: none; margin: 0; padding: 0; display: block;}
+
+.cx-div {position: absolute; z-index: 999; padding: 5px; width: auto; top: 100px; right: 60px; border: 1px solid #e3e3e2; background-color: white; display: none;}
+.cx-div .cx-tit {width:100%; position:absolute; height:26px; padding:0; left: 0;}
+.cx-div p { height: 26px; line-height: 26px; width: 220px; float: left; padding: 0; margin: 0; padding-left: 5px; }
+.cx-div p:last-child { margin-left: -18px;}
+.sy { width:16px; float: left; margin-top: 30px;}
+.sy>a { width: 16px; height:16px; line-height: 18px; display: block; font-size: 12px; text-align: center; background-color: #eeeeee;  margin-bottom: 2px; color: #f08300;}
+
+.cx-con, .cx-cx, .cx-xh { float: left; width: 200px; height: 464px; position: relative; overflow-y: auto; border: 1px solid #e3e3e2; margin-left: 5px; margin-top: 30px;}
+dl { line-height: 30px; text-indent: 10px; }
+dt { background: #eeeeee; }
+dd {}
+dd a { display: block; height: 30px;}
+dd a:hover,a:focus { background-color: #f08300; color: white;}
+/*.cx-cx {border-left: 1px solid #e3e3e2; border-right: 1px solid #e3e3e2;}*/
+.cx-xh { width: 310px;}

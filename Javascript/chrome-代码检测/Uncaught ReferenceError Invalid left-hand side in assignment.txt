@@ -1,0 +1,18 @@
+  $(document).click(function() {
+        //$("#cx-div").fadeOut();
+        if(!($(".cx-div").css("display")=="none")){
+        $(".cx-div").css("display")="none";  这一行出错
+        【这行没错，误报，因为之前的错误造成的】【再次确认会出错，运行到这里时出错】
+        }
+    });
+    
+index.html:45 Uncaught ReferenceError: Invalid left-hand side in assignment
+
+这样写应该是没有问题的，原来出错的时候的写法是：
+
+  $(document).click(function() {
+        //$("#cx-div").fadeOut();
+        if(!$(".cx-div").css("display")="none"){ 这一行出错
+        $(".cx-div").css("display")="none";
+        }
+    });

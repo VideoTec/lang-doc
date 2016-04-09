@@ -1,0 +1,8 @@
+http://ask.dcloud.net.cn/question/12845
+
+页面内定位到锚点，总是出现闪屏的现象。
+返回的时候必须按两次，好像当前页面被额外打开了一次
+
+document.location.href="#show_year" 
+就是这一句
+反正所有的a标签，尽量都不要用href

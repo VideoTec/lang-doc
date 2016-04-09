@@ -1,0 +1,10 @@
+http://www.kuqin.com/webpagedesign/20111210/315983.html
+
+在jQuery下实现锚点的平滑跳转关键在于下面这句代码：
+
+$("html,body").animate({scrollTop: $("#comment").offset().top}, 1000);
+
+animate() 是jQuery自定义动画方法
+scrollTop() 返回或设置匹配元素的滚动条的垂直位置
+$("#comment").offset().top 表示id为comment的jQuery对象相对于页面顶部的偏移量
+1000表示平滑滚动动画执行速度为1000毫秒（1秒）
