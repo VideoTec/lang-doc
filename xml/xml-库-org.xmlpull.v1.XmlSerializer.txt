@@ -1,0 +1,24 @@
+org.xmlpull.v1.XmlSerializer
+http://developer.android.com/intl/zh-cn/reference/org/xmlpull/v1/XmlSerializer.html
+
+Class Overview
+
+Define an interface to serialization of XML Infoset. 
+This interface abstracts away if serialized XML is XML 1.0 compatible text 
+or other formats of XML 1.0 serializations 
+(such as binary XML for example with WBXML).
+
+PLEASE NOTE: 
+This interface will be part of XmlPull 1.2 API. 
+It is included as basis for discussion. 
+It may change in any way.
+
+Exceptions that may be thrown are: 
+IOException or runtime exception 
+(more runtime exceptions can be thrown but are not declared 
+and as such have no semantics defined for this interface):
+
+1）IllegalArgumentException - for almost all methods to signal that argument is illegal
+2）IllegalStateException - to signal that call has good arguments but is not expected here (violation of contract) and for features/properties when requesting setting unimplemented feature/property (UnsupportedOperationException would be better but it is not in MIDP)
+
+NOTE: writing CDSECT, ENTITY_REF, IGNORABLE_WHITESPACE, PROCESSING_INSTRUCTION, COMMENT, and DOCDECL in some implementations may not be supported (for example when serializing to WBXML). In such case IllegalStateException will be thrown and it is recommended to use an optional feature to signal that implementation is not supporting this kind of output.

@@ -1,3 +1,5 @@
+"\n" - 不要纠结，这个就是换行转义
+
 http://www.cnblogs.com/zhuYears/archive/2012/02/06/2339574.html
 
 特殊字符

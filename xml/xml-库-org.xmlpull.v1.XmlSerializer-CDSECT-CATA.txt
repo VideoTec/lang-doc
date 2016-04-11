@@ -1,0 +1,24 @@
+NOTE: 
+writing 
+
+CDSECT, 
+ENTITY_REF, 
+IGNORABLE_WHITESPACE, 
+PROCESSING_INSTRUCTION, 
+COMMENT, and 
+DOCDECL 
+in some implementations may not be supported 
+(for example when serializing to WBXML). 
+
+In such case IllegalStateException will be thrown and 
+it is recommended to use an optional feature to signal 
+that implementation is not supporting this kind of output.
+
+---------------------------------------------
+注入 cdata 数据的方法：
+---------------------------------------------
+
+    void cdsect (String text)
+        throws IOException, IllegalArgumentException, IllegalStateException;
+        
+serializer.cdsect(cdata)

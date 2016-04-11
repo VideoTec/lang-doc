@@ -1,0 +1,16 @@
+http://yuanzhifei89.iteye.com/blog/1149151
+
+CDATA section 
+xml规范中规定，这部分的内容不需要（解析器）做任何的处理，
+就按它原来的内容显示。
+只要将这部分的内容需要放入
+<![CDATA[     内容处    ]]>中就可以了。 
+<![CDATA[ <div></div> &lt; &gt; &amp; ]]> 
+里面的内容不会被进行任何的处理。 
+
+注释 
+xml中使用<!-- -->来注释内容。 
+如：<!-- 这里面的内容都是注释 --> 
+
+CDSECT 
+读到CDATA Section就报告该事件 

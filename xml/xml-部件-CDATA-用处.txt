@@ -1,0 +1,8 @@
+http://stackoverflow.com/questions/2784183/what-does-cdata-in-xml-mean
+
+What does <![CDATA[]]> in XML mean?
+
+<![CDATA[]]>
+
+CDATA stands for Character Data and it means that the data in between these tags 
+includes data that could be interpreted as XML markup, but should not be.
