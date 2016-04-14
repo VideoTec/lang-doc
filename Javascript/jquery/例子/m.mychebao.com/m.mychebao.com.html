@@ -1,0 +1,238 @@
+<script src="http://m.mychebao.com:80/newjs/jquery.min.js"></script>
+
+		<div class="carChoose_body">
+			
+
+
+<script type="text/javascript">
+
+	var carBrandName = '';
+	
+	function hotCarClick() {
+		$('.hot_car_div').click(function() {
+			$('#czhibBrandId').val($(this).attr('brandId'));
+			$('#czhibBrandName').val($(this).attr('brandName'));
+			$('#czhibBrandExtCode').val($(this).attr('brandExt'));
+			$(".car_chexing").hide();
+			$(".car_chexi").show(300);
+			var letter = $(this).attr('letter');
+			var id = $('#' + letter).position();
+			$(".hot_car").css("display","none")	;
+			$(".car_lie_box").animate({scrollTop:id.top + $("#"+letter).scrollTop()},1000);
+			$(".czhib_brand").removeClass('hover');
+			var bid = $(this).attr('brandId');
+			$('.czhib_brand[brandId='+bid+']').addClass('hover');
+			carBrandName = $(this).attr('brandName');
+			loadCarModel($(this).attr('brandExt'));
+		});
+	}
+
+	function loadCarBrand() {
+		all_height=(document.body.clientHeight)-44;
+		var win_height = window.screen.height-44;
+		$(".car_lie, .car_lie_abc, .car_lie_box, .car_chexi, .car_chexing").css("height",win_height);
+		$(".czhib_letter").click(function(){
+			 var id = $(this).html().toString();
+			 var ed = $("#"+id).position();
+			 $(".hot_car").css("display","none");
+			 $(".car_lie_box").animate({scrollTop:ed.top + $("#"+id).scrollTop()},1000);
+		});
+		$.ajax({
+			async : true,
+			type : 'POST',
+			dataType : 'json',
+			url : 'assess/carBrand.htm',
+			success : function(data){
+				createBrand(data);
+				hotCarClick();
+				$(".czhib_brand").click(function(){
+					 $('#czhibBrandId').val($(this).attr('brandId'));
+					 $('#czhibBrandName').val($(this).html());
+					 $('#czhibBrandExtCode').val($(this).attr('brandExt'));
+					 $(".car_chexing").hide();
+					 $(".car_chexi").show(300);
+					 var id = $(this).parent().parent();
+					 var ed = id.parent().position();		
+					 $(".hot_car").css("display","none");
+					 $(".car_lie_box").animate({scrollTop:ed.top + $(id).scrollTop()},1000);
+					 $(".czhib_brand").removeClass('hover');
+					 $(this).addClass('hover');
+					 carBrandName = $(this).html();
+					 loadCarModel($(this).attr('brandExt'));
+				});
+			}
+		});
+	}
+	
+	function loadCarModel(brandId) {
+		$.ajax({
+			async : true,
+			type : 'POST',
+			dataType : 'json',
+			url : 'assess/carModel.htm',
+			data : {'brandId' : brandId},
+			success : function(data){
+				 createModel(data);
+				 $(".czhib_model").click(function(){
+					 $('#czhibModelId').val($(this).attr('modelId'));
+					 $('#czhibModelName').val($(this).html());
+					 $('#czhibModelExtCode').val($(this).attr('modelExt'));
+ 					 if(menuName == '预约卖车' || menuName == 'APP检测'){// 预约卖车页面
+ 						 $('.index_body').show();
+ 						 $('.carChoose_body').hide();
+ 						 $('#index_option_car_carTypeName').html(carBrandName + ' ' + $(this).html()).css('color', '#333');
+ 						 $('.car_chexi').hide();
+ 						 $('.car_chexing').hide();
+ 						 $('#car_chexi_dl').html('');
+ 						 $('#car_chexing_dl').html('');
+					 } else {
+						 $(".car_chexing").show(300);
+						 $(".czhib_model").removeClass('hover');
+						 $(this).addClass('hover');
+						 loadCarType($(this).attr('modelExt'));
+					 }
+				});
+			}
+		});
+	}
+	
+	function loadCarType(modelId) {
+		$.ajax({
+			async : true,
+			type : 'POST',
+			dataType : 'json',
+			url : 'assess/carBase.htm',
+			data : {'modelId' : modelId},
+			success : function(data){
+				createType(data);
+				$(".czhib_type").click(function(){
+					$('#czhibCarBaseId').val($(this).attr('typeId'));
+					$('#carBaseName').val($(this).html());
+					$('#czhibCarBaseExtCode').val($(this).attr('typeExt'));
+					$('.index_body').show();
+					$('.carChoose_body').hide();
+					$('#index_option_car_carTypeName').html($(this).html()).css('color', '#333');
+					$('.car_chexi').hide();
+					$('.car_chexing').hide();
+					$('#car_chexi_dl').html('');
+					$('#car_chexing_dl').html('');
+				});
+			}
+		});
+	}
+	
+	function createBrand(carBrand) {
+		var carBrandList = carBrand.data.data;
+		var dl = 'A';
+		var car_pingpai = '<dl id="'+dl+'"><dt><span></span>'+dl+'</dt><dd>';
+		for(var i = 0; i < carBrandList.length; i++) {
+			var carBrandMap = carBrandList[i];
+			var temdl = carBrandMap.letter;
+			if(dl!=temdl){
+				dl = temdl;
+				car_pingpai += '</dd></dl><dl id="'+dl+'"><dt>'+dl+'</dt><dd>';
+			}
+			car_pingpai += '<span><a class="czhib_brand" href="javascript:void(0)" brandId="'+carBrandMap.id+'" brandExt="'+carBrandMap.extcode+'">'+carBrandMap.name+'</a></span>';
+		}
+		car_pingpai += '</dd></dl>';
+		$('#car_pingpai').html(car_pingpai);
+	}
+	
+	function createModel(carModel) {
+		var carModelList = carModel.data.data;
+		var car_chexi_dl = '<dt><span></span>'+carBrandName+'</dt><dd>';
+		for(var i = 0; i < carModelList.length; i++) {
+			var carModelMap = carModelList[i];
+			car_chexi_dl += '<span><a class="czhib_model" href="javascript:void(0)" modelId="'+carModelMap.id+'" modelExt="'+carModelMap.extCode+'">'+carModelMap.name+'</a></span>';
+		}
+		car_chexi_dl += '</dd></dl>';
+		$('#car_chexi_dl').html(car_chexi_dl);
+	}
+	
+	function createType(carType) {
+		var carTypeList = carType.data.data;
+		var dt = carTypeList[0].carbase;
+		var car_chexing_dl = '<dt>'+dt+'</dt><dd>';
+		for(var i = 0; i < carTypeList.length; i++) {
+			var carTypeMap = carTypeList[i];
+			var temdt = carTypeMap.carbase;
+			if(dt!=temdt){
+				dt = temdt;
+				car_chexing_dl += '</dd><dt><span></span>'+dt+'</dt><dd>';
+			}
+			car_chexing_dl += '<span><a class="czhib_type" href="javascript:void(0)" typeId="' + carTypeMap.id + '" typeExt="'+carTypeMap.extCode+'">'+carTypeMap.name+'</a></span>';
+		}
+		car_chexing_dl += '</dd>';
+		$('#car_chexing_dl').html(car_chexing_dl);
+	}
+</script>
+
+<div class="top_box">
+	<div class="top_left_tap" onclick="closeDiv(2)"><img src="newimg/top_left_back.png" /></div>
+	<div class="top_center">选择车型</div>
+</div>
+
+<div class="car_lie">
+	<div class="car_lie_abc">
+		<a href="javascript:void(0);" class="czhib_letter">A</a>
+		<a href="javascript:void(0);" class="czhib_letter">B</a>
+		<a href="javascript:void(0);" class="czhib_letter">C</a>
+		<a href="javascript:void(0);" class="czhib_letter">D</a>
+		<a href="javascript:void(0);" class="czhib_letter">E</a>
+		<a href="javascript:void(0);" class="czhib_letter">F</a>
+		<a href="javascript:void(0);" class="czhib_letter">G</a>
+		<a href="javascript:void(0);" class="czhib_letter">H</a>
+		<a href="javascript:void(0);" class="czhib_letter">I</a>
+		<a href="javascript:void(0);" class="czhib_letter">J</a>
+		<a href="javascript:void(0);" class="czhib_letter">K</a>
+		<a href="javascript:void(0);" class="czhib_letter">L</a>
+		<a href="javascript:void(0);" class="czhib_letter">M</a>
+		<a href="javascript:void(0);" class="czhib_letter">N</a>
+		<a href="javascript:void(0);" class="czhib_letter">O</a>
+		<a href="javascript:void(0);" class="czhib_letter">P</a>
+		<a href="javascript:void(0);" class="czhib_letter">Q</a>
+		<a href="javascript:void(0);" class="czhib_letter">R</a>
+		<a href="javascript:void(0);" class="czhib_letter">S</a>
+		<a href="javascript:void(0);" class="czhib_letter">T</a>
+		<a href="javascript:void(0);" class="czhib_letter">U</a>
+		<a href="javascript:void(0);" class="czhib_letter">V</a>
+		<a href="javascript:void(0);" class="czhib_letter">W</a>
+		<a href="javascript:void(0);" class="czhib_letter">X</a>
+		<a href="javascript:void(0);" class="czhib_letter">Y</a>
+		<a href="javascript:void(0);" class="czhib_letter">Z</a>
+	</div>
+	
+	<div class="car_lie_box">
+		<div class="hot_car">
+			<h3>热门品牌</h3>
+			<div class="hot_car_div" letter="D" brandId="1" brandExt="1" brandName="大众"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_dazhong.png" /><br />大众</div>
+			<div class="hot_car_div" letter="B" brandId="10" brandExt="15" brandName="宝马"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_bmw.png" /><br />宝马</div>
+			<div class="hot_car_div" letter="A" brandId="19" brandExt="33" brandName="奥迪"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_ad.png" /><br />奥迪</div>
+			<div class="hot_car_div" letter="B" brandId="22" brandExt="36" brandName="奔驰"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_bc.png" /><br />奔驰</div>
+			<div class="hot_car_div" letter="F" brandId="2" brandExt="3" brandName="丰田"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_ft.png" /><br />丰田</div>
+			<div class="hot_car_div" letter="N" brandId="49" brandExt="63" brandName="日产"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_ns.png" /><br />日产</div>
+			<div class="hot_car_div" letter="B" brandId="24" brandExt="38" brandName="别克"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_bk.png" /><br />别克</div>
+			<div class="hot_car_div" letter="X" brandId="7" brandExt="12" brandName="现代"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_xd.png" /><br />现代</div>
+			<div class="hot_car_div" letter="B" brandId="9" brandExt="14" brandName="本田"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_ftian.png" /><br />本田</div>
+			<div class="hot_car_div" letter="F" brandId="3" brandExt="8" brandName="福特"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_fut.png" /><br />福特</div>
+			<div class="hot_car_div" letter="X" brandId="58" brandExt="72" brandName="雪铁龙"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_xtl.png" /><br />雪铁龙</div>
+			<div class="hot_car_div" letter="B" brandId="8" brandExt="13" brandName="标致"><img src="http://m.mychebao.com:80/newimg/car_logo/car_logo_bz.png" /><br />标致</div>
+		</div>
+		<div class="clear"></div>
+		
+		<div class="car_name_box">
+			<div class="car_name_ner">
+				<div class="car_pingpai" id="car_pingpai"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="car_chexi" style="display: none;">
+		<dl id="car_chexi_dl"></dl>		
+	</div>
+	
+	<div class="car_chexing" style="display: none;">
+		<dl id="car_chexing_dl"></dl>
+	</div>
+</div>
+		</div>

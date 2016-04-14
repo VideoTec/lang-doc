@@ -1,0 +1,5 @@
+http://www.cnblogs.com/youngdze/p/3827251.html
+
+发现了个不错的 jQuery 幻灯片插件 flexslider，
+有 接近 3000 Star，应该说是很靠谱的，
+下面是简单使用教程。
