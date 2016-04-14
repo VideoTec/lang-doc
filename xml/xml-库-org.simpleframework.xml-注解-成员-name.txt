@@ -1,0 +1,51 @@
+
+-------------------------------------
+注解，Element的源码：
+-------------------------------------
+package org.simpleframework.xml;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Element {
+    String name() default "";
+
+    boolean data() default false;
+
+    boolean required() default true;
+
+    Class type() default void.class;
+}
+
+
+http://simple.sourceforge.net/download/stream/doc/tutorial/tutorial.php#start
+
+用法示例：
+
+@Root(name="root")
+public class Example {
+
+   @Element(name="message")
+   private String text;
+
+   @Attribute(name="id")
+   private int index;
+
+   public Example() {
+      super();
+   }  
+
+   public Example(String text, int index) {
+      this.text = text;
+      this.index = index;
+   }
+
+   public String getMessage() {
+      return text;
+   }
+
+   public int getId() {
+      return index;
+   }
+}

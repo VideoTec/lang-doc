@@ -1,0 +1,30 @@
+http://simple.sourceforge.net/download/stream/doc/examples/examples.php
+
+Constructor injection with nested path elements
+In this example constructor injection is performed on two elements which also have Path annotations. As can be seen if there is no ambiguity there is no need to specify the path annotations on the constructor. This reduces the clutter that can occur with excessive annotations.
+
+@Root
+public class Point {
+
+   @Path("a/b[1]")
+   @Element
+   private final int x;
+
+   @Path("a/b[1]")
+   @Element
+   private final int y;
+
+   public Point(@Element(name="x") int x, @Element(name="y") int y) {
+      this.x = x;
+      this.y = y;
+   }
+}
+The below snippet shows an example of the resulting XML, both the x and y values will be injected in to the annotated constructor.
+<point>
+  <a>
+    <b>
+      <x>2</x>
+      <y>7</y>
+    </b>
+  </a>
+</point>

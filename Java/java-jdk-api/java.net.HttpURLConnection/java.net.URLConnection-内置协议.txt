@@ -1,0 +1,32 @@
+http://developer.android.com/intl/zh-cn/reference/java/net/URLConnection.html
+
+---------------------------------
+File
+---------------------------------
+
+Resources from the local file system can be loaded using file: URIs. 
+File connections can only be used for input.
+
+---------------------------------
+FTP
+---------------------------------
+
+File Transfer Protocol (RFC 959) is supported, 
+but with no public subclass. 
+FTP connections can be used for input or output but not both.
+
+By default, FTP connections will be made 
+using anonymous as the username and the empty string as the password. 
+Specify alternate usernames and passwords in the URL: ftp://username:password@host/path.
+
+---------------------------------
+HTTP and HTTPS
+---------------------------------
+
+Refer to the HttpURLConnection and HttpsURLConnection subclasses.
+
+---------------------------------
+Jar
+---------------------------------
+
+Refer to the JarURLConnection subclass.

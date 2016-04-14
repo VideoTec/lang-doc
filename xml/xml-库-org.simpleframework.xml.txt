@@ -1,0 +1,30 @@
+http://simple.sourceforge.net/
+http://simple.sourceforge.net/download/stream/doc/javadoc/
+
+Simple is a high performance XML serialization and configuration framework for Java. 
+Its goal is to provide an XML framework 
+that enables rapid development of XML configuration and communication systems. 
+This framework aids the development of XML systems with minimal effort and reduced errors. 
+It offers full object serialization and deserialization, 
+maintaining each reference encountered. 
+In essence it is similar to C# XML serialization for the Java platform, 
+but offers additional features for interception and manipulation.
+
+Maven
+Add the following snippet to your Maven project descriptor and 
+you should have access to the latest release of the framework. 
+Each release is synchronized with the Maven central repository.
+
+<dependency>
+    <groupId>org.simpleframework</groupId>
+    <artifactId>simple-xml</artifactId>
+    <version>2.7.1</version>
+</dependency>
+
+https://github.com/ngallagher/simplexml
+git@github.com:ngallagher/simplexml.git
+
+This is an initial check in of code for the library hosted at http://simple.sourceforge.net. 
+It contains quite a bit of rubbish, 
+however the core is structured in a fairly standard manner 
+where all source code and tests live under the src directory.

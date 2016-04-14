@@ -1,0 +1,10 @@
+http://simple.sourceforge.net/download/stream/doc/javadoc/
+
+populate[英][ˈpɒpjuleɪt] [美][ˈpɑpjuleɪt]
+vt.居住于；生活于；移民于；落户于
+
+read(T value, String source, boolean strict) 
+
+This read method will read the contents of the XML document 
+from the provided source and 
+populate （填充） the object with the values deserialized.

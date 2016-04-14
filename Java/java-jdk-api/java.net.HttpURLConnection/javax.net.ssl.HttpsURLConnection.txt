@@ -1,0 +1,11 @@
+http://developer.android.com/intl/zh-cn/reference/javax/net/ssl/HttpsURLConnection.html
+
+java.lang.Object
+   ↳	java.net.URLConnection
+ 	   ↳	java.net.HttpURLConnection
+ 	 	   ↳	javax.net.ssl.HttpsURLConnection
+
+An HttpURLConnection for HTTPS (RFC 2818). 
+A connected HttpsURLConnection allows access to the negotiated cipher suite, 
+the server certificate chain, 
+and the client certificate chain if any.

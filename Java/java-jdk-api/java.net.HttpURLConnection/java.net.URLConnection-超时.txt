@@ -1,0 +1,7 @@
+http://developer.android.com/intl/zh-cn/reference/java/net/URLConnection.html
+
+URLConnection supports two timeouts: 
+a connect timeout and 
+a read timeout. 
+
+By default, operations never time out.

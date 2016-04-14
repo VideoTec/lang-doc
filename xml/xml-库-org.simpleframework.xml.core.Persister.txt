@@ -1,0 +1,25 @@
+persister[英][pə'sɪstər] [美][pə'sɪstər]
+冷持管
+
+persist[英][pəˈsɪst] [美][pərˈsɪst]
+v.坚持；固执；存留；继续存在
+
+public class Persister implements Serializer {
+
+http://simple.sourceforge.net/download/stream/doc/javadoc/
+
+The Persister object is used to provide an implementation of a serializer. 
+This implements the Serializer interface and enables objects to be persisted and 
+loaded from various sources. 
+This implementation makes use of Filter objects 
+to replace template variables within the source XML document. 
+It is fully thread safe and can be shared by multiple threads without concerns.
+
+Deserialization is performed 
+by passing an XML schema class into one of the read methods along with the source of an XML stream. 
+The read method then reads the contents of the XML stream and 
+builds the object using annotations within the XML schema class.
+
+Serialization is performed by passing an object and an XML stream into one of the write methods. 
+The serialization process will use the class of the provided object as the schema class. 
+The object is traversed and all fields are marshalled to the result stream.

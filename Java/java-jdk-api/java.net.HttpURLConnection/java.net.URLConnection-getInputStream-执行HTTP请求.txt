@@ -1,0 +1,14 @@
+public InputStream getInputStream ()
+
+Added in API level 1
+Returns an InputStream for reading data 
+from the resource pointed by this URLConnection. 
+
+It throws an UnknownServiceException by default. 
+This method must be overridden by its subclasses.
+
+Returns
+InputStream	the InputStream to read data from.
+
+Throws
+IOException	if no InputStream could be created.
