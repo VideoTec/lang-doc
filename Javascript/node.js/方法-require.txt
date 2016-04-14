@@ -1,0 +1,35 @@
+var  http = require("http"); 
+
+http://www.infoq.com/cn/articles/nodejs-module-mechanism
+Node.js自身实现了require方法作为其引入模块的方法，
+同时NPM也基于CommonJS定义的包规范，
+实现了依赖管理和模块自动安装等功能。
+这里我们将深入一下Node.js的require机制和NPM基于包规范的应用
+
+将这个文件存为circle.js，
+并新建一个app.js文件，并写入以下代码：
+
+var circle = require('./circle.js');
+console.log( 'The area of a circle of radius 4 is ' + circle.area(4));
+
+可以看到模块调用也十分方便，
+只需要require需要调用的文件即可。
+
+在require了这个文件之后，定义在exports对象上的方法便可以随意调用。
+Node.js将模块的定义和调用都封装得极其简单方便，
+从API对用户友好这一个角度来说，
+Node.js的模块机制是非常优秀的。
+
+http://stackoverflow.com/questions/17508815/node-js-referenceerror
+
+require() doesn't work like #include or import does in other languages.
+
+require() returns a reference to the resolved module. That reference must be assigned to a variable.
+
+var http = require('http'); //the variable doesn't necessarily have to be named http
+http.createServer(function(req, res) {});
+
+Or
+
+require('http').createServer(function(req, res) {
+});

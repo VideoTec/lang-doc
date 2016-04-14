@@ -1,0 +1,16 @@
+https://nodejs.org/docs/v0.4.11/api/http.html
+
+To use the HTTP server and client one must require('http').
+
+The HTTP interfaces in Node are designed to support many features of the protocol which have been traditionally difficult to use. In particular, large, possibly chunk-encoded, messages. The interface is careful to never buffer entire requests or responses--the user is able to stream data.
+
+HTTP message headers are represented by an object like this:
+
+{ 'content-length': '123',
+  'content-type': 'text/plain',
+  'connection': 'keep-alive',
+  'accept': '*/*' }
+  
+Keys are lowercased. Values are not modified.
+
+In order to support the full spectrum of possible HTTP applications, Node's HTTP API is very low-level. It deals with stream handling and message parsing only. It parses a message into headers and body but it does not parse the actual headers or the body.

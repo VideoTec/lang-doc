@@ -1,0 +1,11 @@
+http://stackoverflow.com/questions/12853595/how-to-add-elements-of-a-string-array-to-a-string-array-list
+
+You already have built-in method for that: -
+
+List<String> species = Arrays.asList(speciesArr);
+
+Arrays.asList returns a different ArrayList -> java.util.Arrays.ArrayList 
+which cannot be typecasted to java.util.ArrayList.
+
+Then you would have to use addAll method, which is not so good. 
+So just use List<String>

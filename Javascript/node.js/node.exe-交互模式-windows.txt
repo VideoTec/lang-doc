@@ -1,0 +1,1 @@
+在cmd里直接输入node,即可进入node.js交互模式

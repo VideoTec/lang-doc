@@ -1,0 +1,47 @@
+https://nodejs.org/docs/v0.4.11/api/http.html#http.request
+
+var options = {
+  host: 'www.google.com',
+  port: 80,
+  path: '/upload',
+  method: 'POST'
+};
+
+var req = http.request(options, function(res) {
+  console.log('STATUS: ' + res.statusCode);
+  console.log('HEADERS: ' + JSON.stringify(res.headers));
+  res.setEncoding('utf8');
+  res.on('data', function (chunk) {
+    console.log('BODY: ' + chunk);
+  });
+});
+
+req.on('error', function(e) {
+  console.log('problem with request: ' + e.message);
+});
+
+// write data to request body
+req.write('data\n');
+req.write('data\n');
+req.end();
+
+错误信息：
+
+E:\doc\lang\Javascript\node.js\example\http.request-example.js:8
+var req = http.request(options, function(res) {
+          ^
+
+ReferenceError: http is not defined
+    at Object.<anonymous> (E:\doc\lang\Javascript\node.js\example\http.request-e
+xample.js:8:11)
+    at Module._compile (module.js:409:26)
+    at Object.Module._extensions..js (module.js:416:10)
+    at Module.load (module.js:343:32)
+    at Function.Module._load (module.js:300:12)
+    at Function.Module.runMain (module.js:441:10)
+    at startup (node.js:139:18)
+    at node.js:968:3
+    
+解决方法：
+var http = require('http')
+http://stackoverflow.com/questions/17508815/node-js-referenceerror

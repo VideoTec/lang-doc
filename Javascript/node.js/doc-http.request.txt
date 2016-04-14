@@ -1,0 +1,19 @@
+https://nodejs.org/docs/v0.4.11/api/http.html#http.request
+
+http.request(options, callback)
+Node maintains several connections per server to make HTTP requests. This function allows one to transparently issue requests.
+
+Options:
+
+host: A domain name or IP address of the server to issue the request to.
+port: Port of remote server.
+method: A string specifying the HTTP request method. 
+Possible values: 'GET' (default), 'POST', 'PUT', and 'DELETE'.
+path: Request path. Should include query string and fragments if any. E.G. '/index.html?page=12'
+headers: An object containing request headers.
+agent: Controls Agent behavior. Possible values:
+undefined (default): use default Agent for this host and port.
+Agent object: explicitly use the passed in Agent.
+false: explicitly generate a new Agent for this host and port. Agent will not be re-used.
+
+http.request() returns an instance of the http.ClientRequest class. The ClientRequest instance is a writable stream. If one needs to upload a file with a POST request, then write to the ClientRequest object.

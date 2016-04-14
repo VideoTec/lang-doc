@@ -4,3 +4,47 @@ public static String format(String pattern, Object... arguments);
 
 http://my.oschina.net/victorHomePage/blog/67731
 java使用省略号代替多参数
+
+例子： java.util.Formatter
+
+    private void doFormat(String format, Object... args) {
+        checkNotClosed();
+
+        FormatSpecifierParser fsp = new FormatSpecifierParser(format);
+        int currentObjectIndex = 0;
+        Object lastArgument = null;
+        boolean hasLastArgumentSet = false;
+
+        int length = format.length();
+        int i = 0;
+        while (i < length) {
+            // Find the maximal plain-text sequence...
+            int plainTextStart = i;
+            int nextPercent = format.indexOf('%', i);
+            int plainTextEnd = (nextPercent == -1) ? length : nextPercent;
+            // ...and output it.
+            if (plainTextEnd > plainTextStart) {
+                outputCharSequence(format, plainTextStart, plainTextEnd);
+            }
+            i = plainTextEnd;
+            // Do we have a format specifier?
+            if (i < length) {
+                FormatToken token = fsp.parseFormatToken(i + 1);
+
+                Object argument = null;
+                if (token.requireArgument()) {
+                    int index = token.getArgIndex() == FormatToken.UNSET ? currentObjectIndex++ : token.getArgIndex();
+                    argument = getArgument(args, index, fsp, lastArgument, hasLastArgumentSet);
+                    lastArgument = argument;
+                    hasLastArgumentSet = true;
+                }
+
+                CharSequence substitution = transform(token, argument);
+                // The substitution is null if we called Formattable.formatTo.
+                if (substitution != null) {
+                    outputCharSequence(substitution, 0, substitution.length());
+                }
+                i = fsp.i;
+            }
+        }
+    }

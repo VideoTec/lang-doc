@@ -1,0 +1,12 @@
+https://www.npmjs.com/package/node-rest-client
+
+$ npm install node-rest-client
+
+安装后，运行出错：
+Cannot find module 'node-rest-client'
+
+问题，必须安装在 【工程所在目录】。
+工程所在目录，即，js 文件所在目录。
+要把当前目录切换到 【工程所在目录】。
+
+http://stackoverflow.com/questions/9023672/nodejs-how-to-resolve-cannot-find-module-error

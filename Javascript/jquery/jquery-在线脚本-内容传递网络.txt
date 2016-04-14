@@ -1,0 +1,25 @@
+https://zh.wikipedia.org/wiki/JQuery
+
+加载jQuery[编辑]
+使用内容传递网络（Content Delivery Network）
+加载jQuery的好处是若不同的网站使用同样的链接时可以不用重复下载，
+另外也可不用在自己的服务器上部署jQuery文件。
+
+以jQuery 1.10.2版为例
+
+From Microsoft Ajax Content Delivery Network
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.10.2.min.js"></script>
+
+From Google Libraries API
+其中1.10.2若改为1.10，可获取1.10.x最新版本
+改为1，可获取1.x.x最新版本
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+或
+<script src="https://www.google.com/jsapi"></script>
+<script>
+    google.load("jquery", "1.10.2");
+</script>
+
+From cdnjs.cloudflare.com
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

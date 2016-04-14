@@ -1,0 +1,3 @@
+http://www.infoq.com/cn/articles/nodejs-module-mechanism
+
+深入浅出Node.js（三）：深入Node.js的模块机制

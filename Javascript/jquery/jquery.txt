@@ -1,0 +1,28 @@
+https://zh.wikipedia.org/wiki/JQuery
+
+jQuery是一套跨浏览器的JavaScript库，
+简化HTML与JavaScript之间的操作。[2]
+由约翰·雷西格（John Resig）在2006年1月的BarCamp NYC上发布第一个版本。
+目前是由Dave Methvin领导的开发团队进行开发。
+全球前10,000个访问最高的网站中，有65%使用了jQuery，
+是目前最受欢迎的JavaScript库
+
+jQuery是开源软件，使用MIT许可证授权。[5] 
+jQuery的语法设计使得许多操作变得容易，
+如操作文档对象（document）、选择文档对象模型（DOM）元素、创建动画效果、处理事件、以及开发Ajax程序。
+jQuery也提供了给开发人员在其上创建插件的能力。
+这使开发人员可以对底层交互与动画、高级效果和高级主题化的组件进行抽象化。
+模块化的方式使jQuery函数库能够创建功能强大的动态网页以及网络应用程序。
+
+微软和诺基亚已宣布在他们的平台上绑定jQuery。[6]
+微软最初在Visual Studio中集成了jQuery[7]
+以便在微软自己的ASP.NET AJAX框架和ASP.NET MVC Framework中使用，
+而诺基亚则在他的Web运行时组件开发平台中集成了jQuery[8]。
+MediaWiki自从1.16版本后也开始使用jQuery[9]。
+
+jQuery 1.3版以后，
+引入全新的层叠样式表（CSS）选择器引擎Sizzle。[10] 
+同时不再提供Packed版本，因为解压缩的消耗的时间，
+远大于所节省的下载时间，且不利于除错，
+且已有Google AJAX Libraries API等公开站台提供jQuery的js的引用服务，
+故Packed版本原本的优点已荡然无存

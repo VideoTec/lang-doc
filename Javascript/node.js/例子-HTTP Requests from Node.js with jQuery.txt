@@ -1,0 +1,1 @@
+http://snipplr.com/view/71625/http-requests-from-nodejs-with-jquery/

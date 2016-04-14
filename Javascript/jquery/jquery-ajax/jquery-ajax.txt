@@ -1,0 +1,16 @@
+http://www.w3school.com.cn/jquery/ajax_ajax.asp
+
+jQuery.ajax([settings])
+
+settings
+可选。用于配置 Ajax 请求的键值对集合。
+可以通过 $.ajaxSetup() 设置任何选项的默认值
+
+ajax() 方法通过 HTTP 请求加载远程数据。
+该方法是 jQuery 底层 AJAX 实现。
+简单易用的高层实现见 $.get, $.post 等。
+$.ajax() 返回其创建的 XMLHttpRequest 对象。
+大多数情况下你无需直接操作该函数，
+除非你需要操作不常用的选项，以获得更多的灵活性。
+最简单的情况下，$.ajax() 可以不带任何参数直接使用。
+注意：所有的选项都可以通过 $.ajaxSetup() 函数来全局设置。

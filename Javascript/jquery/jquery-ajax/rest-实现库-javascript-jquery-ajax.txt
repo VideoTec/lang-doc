@@ -1,0 +1,15 @@
+http://stackoverflow.com/questions/921942/javascript-rest-client-library
+
+You don't really need a specific client, 
+it's fairly simple with most libraries. 
+For example in jQuery you can 
+just call the generic $.ajax function with the type of request you want to make:
+
+$.ajax({
+    url: 'http://example.com/',
+    type: 'PUT',
+    data: 'ID=1&Name=John&Age=10', // or $('#myform').serializeArray()
+    success: function() { alert('PUT completed'); }
+});
+
+You can replace PUT with GET/POST/DELETE or whatever.
