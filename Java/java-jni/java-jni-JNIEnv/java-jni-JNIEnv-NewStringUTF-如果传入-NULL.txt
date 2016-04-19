@@ -1,0 +1,3 @@
+jstring     (*NewStringUTF)(JNIEnv*, const char*); 传入 null， 会？
+
+返回的 jstring 到 java 层是 null
