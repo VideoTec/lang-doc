@@ -1,0 +1,3 @@
+http://developer.android.com/intl/zh-cn/reference/java/io/StringReader.html
+
+A specialized Reader that reads characters from a String in a sequential manner.

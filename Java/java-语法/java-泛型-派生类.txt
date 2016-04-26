@@ -1,0 +1,13 @@
+
+http://blog.csdn.net/guoying252166655/article/details/39960639
+
+// 定义泛型父接口时，指定其泛型形参上限为Number  
+public interface Product<T extends Number>{}  
+  
+错误写法：
+// 定义子类时，没有为其泛型形参指定上限，则默认的上限为Object  
+public class Computer<K> implements Product<K>{}  
+
+正确写法
+// 子类泛型形参的上限和父类的相同  
+public class Computer<K extends Number> implements Product<K>{}  

@@ -1,0 +1,4 @@
+ProtocolVersion protocolVersion = new ProtocolVersion("HTTP", 1, 1);
+
+StatusLine responseStatus = new BasicStatusLine(protocolVersion,
+                connection.getResponseCode(), connection.getResponseMessage());

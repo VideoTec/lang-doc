@@ -1,0 +1,25 @@
+    /**
+     * Converts the byte array to a string using the named charset.
+     *
+     * <p>The behavior when the bytes cannot be decoded by the named charset
+     * is unspecified. Use {@link java.nio.charset.CharsetDecoder} for more control.
+     *
+     * @throws NullPointerException
+     *             if {@code data == null}.
+     * @throws UnsupportedEncodingException
+     *             if {@code charsetName} is not supported.
+     */
+    public String(byte[] data, String charsetName) throws UnsupportedEncodingException {
+        throw new UnsupportedOperationException("Use StringFactory instead.");
+    }
+    
+    调用方法：
+    
+    InputStream is = connection.getInputStream();
+    int len = connection.getContentLength();
+    String responseStr = "noBody";
+    if (len > 0) {
+        byte[] content = new byte[len];
+        is.read(content);
+        responseStr = new String(content, "ISO-8859-1");
+    }

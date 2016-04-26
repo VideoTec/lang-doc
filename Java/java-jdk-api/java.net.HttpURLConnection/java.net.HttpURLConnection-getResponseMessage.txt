@@ -1,7 +1,25 @@
 返回的值是：
 
-HTTP/1.1 200 OK  其中的  200
+HTTP/1.1 200 OK  其中的  OK
 
+    /**
+     * Returns the response message returned by the remote HTTP server.
+     *
+     * @return the response message. {@code null} if no such response exists.
+     * @throws IOException
+     *             if there is an error during the retrieval.
+     * @see #getResponseCode()
+     */
+    public String getResponseMessage() throws IOException {
+        if (responseMessage != null) {
+            return responseMessage;
+        }
+        getResponseCode();
+        return responseMessage;
+    }
+    
+    见 getResponseCode 设置的消息值：
+    
     /**
      * Returns the response code returned by the remote HTTP server.
      *

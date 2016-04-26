@@ -1,0 +1,25 @@
+http://www.man7.org/linux/man-pages/man3/fmemopen.3.html
+
+NAME         top
+
+       fmemopen -  open memory as stream
+SYNOPSIS         top
+
+       #include <stdio.h>
+
+       FILE *fmemopen(void *buf, size_t size, const char *mode);
+
+   Feature Test Macro Requirements for glibc (see feature_test_macros(7)):
+
+       fmemopen():
+           Since glibc 2.10:
+               _POSIX_C_SOURCE >= 200809L
+           Before glibc 2.10:
+               _GNU_SOURCE
+               
+http://blog.sina.com.cn/s/blog_b2e97e5a0101gmv4.html
+
+https://github.com/j-jorge/android-stdioext
+【android-ndk 中没有这个方法，这是个开源的实现。】
+This repository contains C functions to access a memory buffer as a FILE, 
+such as fmemopen() and open_memstream().

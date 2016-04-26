@@ -1,0 +1,44 @@
+如果可以预测，或者，只取输入流的固定部分，可以简单写
+
+byte[] data = new byte[BUFFER_SIZE];  // 读取固定大小
+in.read(buffer)
+
+http://blog.csdn.net/cjjky/article/details/6892443
+
+public static String InputStreamTOString(InputStream in) throws Exception{  
+      
+    ByteArrayOutputStream outStream = new ByteArrayOutputStream();  
+    byte[] data = new byte[BUFFER_SIZE];  
+    int count = -1;  
+    while((count = in.read(data,0,BUFFER_SIZE)) != -1)  
+        outStream.write(data, 0, count);  
+      
+    data = null;  
+    return new String(outStream.toByteArray(),"ISO-8859-1");  
+}  
+
+public static String InputStreamTOString(InputStream in,String encoding) throws Exception{  
+          
+    ByteArrayOutputStream outStream = new ByteArrayOutputStream();  
+    byte[] data = new byte[BUFFER_SIZE];  
+    int count = -1;  
+    while((count = in.read(data,0,BUFFER_SIZE)) != -1)  
+        outStream.write(data, 0, count);  
+      
+    data = null;  
+    return new String(outStream.toByteArray(),"ISO-8859-1");  
+} 
+
+ /**  
+     * 将String转换成InputStream  
+ * @param in  
+ * @return  
+ * @throws Exception  
+ */  
+public static InputStream StringTOInputStream(String in) throws Exception{  
+      
+    ByteArrayInputStream is = new ByteArrayInputStream(in.getBytes("ISO-8859-1"));  
+    return is;  
+} 
+
+http://unmi.cc/java-convert-inputstream-to-string/

@@ -1,0 +1,37 @@
+
+    /**
+     * Adds the given property to the request header. Existing properties with
+     * the same name will not be overwritten by this method.
+     *
+     * @param field
+     *            the request property field name to add.
+     * @param newValue
+     *            the value of the property which is to add.
+     * @throws IllegalStateException
+     *             if the connection has been already established.
+     * @throws NullPointerException
+     *             if the property name is {@code null}.
+     * @since 1.4
+     */
+    public void addRequestProperty(String field, String newValue) {
+        checkNotConnected();
+        if (field == null) {
+            throw new NullPointerException("field == null");
+        }
+    }
+
+-----------------------------------------
+volley 中的调用示例：
+-----------------------------------------
+
+    private static void addBodyIfExists(HttpURLConnection connection, Request<?> request)
+            throws IOException, AuthFailureError {
+        byte[] body = request.getBody();
+        if (body != null) {
+            connection.setDoOutput(true);
+            connection.addRequestProperty(HEADER_CONTENT_TYPE, request.getBodyContentType());
+            DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+            out.write(body);
+            out.close();
+        }
+    }

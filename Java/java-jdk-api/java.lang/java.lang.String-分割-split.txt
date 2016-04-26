@@ -1,0 +1,55 @@
+http://stackoverflow.com/questions/14414582/java-split-string-to-array
+
+This behavior is explicitly documented 
+in String.split(String regex) (emphasis mine):
+
+This method works as if by invoking the two-argument 
+split method with the given expression and a limit argument of zero. 
+Trailing empty strings are therefore not included in the resulting array.
+
+If you want those trailing empty strings included, 
+you need to use String.split(String regex, int limit) 
+with a negative value for the second parameter (limit):
+
+String[] array = values.split("\\|", -1);
+
+http://www.rgagnon.com/javadetails/java-0438.html
+
+public class StringSplit {
+  public static void main(String args[]) throws Exception{
+    String testString = "Real-How-To";
+    System.out.println
+      (java.util.Arrays.toString(testString.split("-")));
+    // output : [Real, How, To]
+  }
+}
+
+public class StringSplit {
+  public static void main(String args[]) throws Exception{
+    String testString = "Real.How.To";
+    // bad
+    System.out.println
+       (java.util.Arrays.toString(testString.split(".")));
+    // output : []
+
+    // good
+    System.out.println
+       (java.util.Arrays.toString(testString.split("\\.")));
+    // output : [Real, How, To]
+  }
+}
+
+public class StringSplit {
+  public static void main(String args[]) throws Exception{
+    String testString = "Real|How|To";
+    // bad
+    System.out.println
+       (java.util.Arrays.toString(testString.split("|")));
+    // output : [, R, e, a, l, |, H, o, w, |, T, o]
+
+    // good
+    System.out.println
+       (java.util.Arrays.toString(testString.split("\\|")));
+    // output : [Real, How, To]
+  }
+}

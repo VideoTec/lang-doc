@@ -1,0 +1,20 @@
+    /**
+     * Sets the value of the specified request header field. The value will only
+     * be used by the current {@code URLConnection} instance. This method can
+     * only be called before the connection is established.
+     *
+     * @param field
+     *            the request header field to be set.
+     * @param newValue
+     *            the new value of the specified property.
+     * @throws IllegalStateException
+     *             if the connection has been already established.
+     * @throws NullPointerException
+     *             if the parameter {@code field} is {@code null}.
+     */
+    public void setRequestProperty(String field, String newValue) {
+        checkNotConnected();
+        if (field == null) {
+            throw new NullPointerException("field == null");
+        }
+    }

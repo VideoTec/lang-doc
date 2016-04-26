@@ -1,0 +1,18 @@
+openConnection: http://221.179.192.69:8080/webrtcserver/v1/tel:+8615801239008/deleteSession
+返回 404
+
+            int responseCode1 = connection.getResponseCode();
+            if (-1 != responseCode1) {
+                InputStream is = connection.getInputStream();  这句异常
+
+异常信息：
+doRequest exception: 
+java.io.FileNotFoundException: http://221.179.192.69:8080/webrtcserver/v1/tel:+8615801239008/deleteSession
+    at libcore.net.http.HttpURLConnectionImpl.getInputStream(HttpURLConnectionImpl.java:186)
+    at com.feinno.rongfly.core.modules.vowifi.RFVoWifiHttpHelper.doRequest(RFVoWifiHttpHelper.java:247)
+    at com.feinno.rongfly.core.modules.vowifi.RFVoWifiHttpHelper.access$100(RFVoWifiHttpHelper.java:61)
+    at com.feinno.rongfly.core.modules.vowifi.RFVoWifiHttpHelper$2.run(RFVoWifiHttpHelper.java:237)
+    at android.os.Handler.handleCallback(Handler.java:730)
+    at android.os.Handler.dispatchMessage(Handler.java:92)
+    at android.os.Looper.loop(Looper.java:176)
+    at android.os.HandlerThread.run(HandlerThread.java:61)
