@@ -1,0 +1,36 @@
+http://www.cnblogs.com/skywang12345/p/3308556.html
+
+// Collection中定义的API
+boolean             add(E object)
+boolean             addAll(Collection<? extends E> collection)
+void                clear()
+boolean             contains(Object object)
+boolean             containsAll(Collection<?> collection)
+boolean             equals(Object object)
+int                 hashCode()
+boolean             isEmpty()
+Iterator<E>         iterator()
+boolean             remove(Object object)
+boolean             removeAll(Collection<?> collection)
+boolean             retainAll(Collection<?> collection)
+int                 size()
+<T> T[]             toArray(T[] array)
+Object[]            toArray()
+
+// AbstractCollection中定义的API
+void                add(int location, E object)
+boolean             addAll(int location, Collection<? extends E> collection)
+E                   get(int location)
+int                 indexOf(Object object)
+int                 lastIndexOf(Object object)
+ListIterator<E>     listIterator(int location)
+ListIterator<E>     listIterator()
+E                   remove(int location)
+E                   set(int location, E object)
+List<E>             subList(int start, int end)
+
+// ArrayList新增的API
+Object               clone()
+void                 ensureCapacity(int minimumCapacity)
+void                 trimToSize()
+void                 removeRange(int fromIndex, int toIndex)

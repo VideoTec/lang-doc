@@ -1,0 +1,4 @@
+http://www.vaikan.com/integer-getinteger-are-you-kidding-me/
+
+Update:结果我又发现了更糟糕的一个： 
+Boolean.getBoolean("true") 得出的结果会等于 Boolean.FALSE

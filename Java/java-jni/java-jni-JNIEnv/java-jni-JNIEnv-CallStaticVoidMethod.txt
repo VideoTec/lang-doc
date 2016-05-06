@@ -1,0 +1,4 @@
+
+    void        (*CallStaticVoidMethod)(JNIEnv*, jclass, jmethodID, ...);
+    void        (*CallStaticVoidMethodV)(JNIEnv*, jclass, jmethodID, va_list);
+    void        (*CallStaticVoidMethodA)(JNIEnv*, jclass, jmethodID, jvalue*);

@@ -1,0 +1,10 @@
+http://www.cnblogs.com/skywang12345/p/3308556.html
+
+// 默认构造函数
+ArrayList()
+
+// capacity是ArrayList的默认容量大小。当由于增加数据导致容量不足时，容量会添加上一次容量大小的一半。
+ArrayList(int capacity)
+
+// 创建一个包含collection的ArrayList
+ArrayList(Collection<? extends E> collection)

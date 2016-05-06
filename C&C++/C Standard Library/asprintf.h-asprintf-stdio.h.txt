@@ -1,0 +1,14 @@
+asprintf.h
+
+http://baike.baidu.com/view/8507235.htm
+
+asprintf()可以说是一个增强版的sprintf(),在不确定字符串的长度时，
+能够根据格式化的字符串长度，申请足够的内存空间。
+
+int asprintf(char **strp, const char *fmt, ...);
+
+asprintf()可以说是一个增强版的sprintf(),在不确定字符串的长度时，
+非常灵活方便，能够根据格式化的字符串长度，申请足够的内存空间。
+此外，使用完后，必须通过free()释放空间。
+不过，这是GNU扩展的C函数库，不是标准C函数库或者POSIX
+

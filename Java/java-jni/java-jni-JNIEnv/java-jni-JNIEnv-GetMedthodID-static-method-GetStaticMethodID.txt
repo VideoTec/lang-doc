@@ -1,0 +1,29 @@
+必须调用 GetStaticMethodID
+
+    jmethodID GetStaticMethodID(jclass clazz, const char* name, const char* sig)
+    { return functions->GetStaticMethodID(this, clazz, name, sig); }
+
+参考：
+http://journals.ecs.soton.ac.uk/java/tutorial/native1.1/implementing/method.html
+
+---------------------------------------------------
+16:29 2016/4/27 错误信息
+---------------------------------------------------
+
+java 中的定义：
+
+public static void logCallBack(int level, String msg) {
+}
+
+C 中调用方法：
+
+g_method_log_callback = (*env)->GetMethodID(env, clazz, "logCallBack", "(ILjava/lang/String;)V");
+
+错误信息：
+
+java.lang.NoSuchMethodError: 
+no method with name='logCallBack' signature='(ILjava/lang/String;)V' 
+in class Lcom/feinno/v6sdk/SdkAPI;
+
+参考下面的文档
+E:\doc\Computer software\Java\java-jni\java-jni-JNIEnv-GetObjectClass-static-class.txt

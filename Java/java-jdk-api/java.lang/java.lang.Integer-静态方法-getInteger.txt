@@ -1,0 +1,15 @@
+http://www.yiibai.com/javalang/integer_getinteger_integer.html
+java.lang.Integer.getInteger(String nm, Integer val) 
+方法确定具有指定名称的系统属性的整数值。参数val是默认值。
+如果没有指定名称的属性，如果该属性不具有正确的数字格式，
+或者指定名称为空或null，则返回默认值.
+
+http://www.vaikan.com/integer-getinteger-are-you-kidding-me/
+
+Integer.valueOf(String) 
+通过假设 String 表达的是一个数值而把 String 转化成数字。
+也就是说， Integer.valueOf("12345") 得到数字 12345。
+
+Integer.getInteger(String) 
+通过假设 String 是一个系统属性数值的名称而把 String 转换成一个数字。
+也就是说， Integer.getInteger("12345") 应该是得到 null。
