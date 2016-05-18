@@ -1,0 +1,14 @@
+为什么一秒要走两三秒呢
+
+05-17 19:45:00.970 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：5371; 开始时间：4427
+05-17 19:45:01.975 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：5640; 开始时间：4427
+05-17 19:45:02.975 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：5781; 开始时间：4427
+05-17 19:45:03.975 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：5889; 开始时间：4427
+05-17 19:45:04.975 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：6028; 开始时间：4427
+05-17 19:45:05.980 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：6143; 开始时间：4427
+05-17 19:45:06.980 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：6296; 开始时间：4427
+05-17 19:45:07.980 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：6432; 开始时间：4427
+05-17 19:45:08.985 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：6555; 开始时间：4427
+05-17 19:45:09.985 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：6697; 开始时间：4427
+05-17 19:45:10.985 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：6847; 开始时间：4427
+05-17 19:45:11.985 9210-9210/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：6973; 开始时间：4427

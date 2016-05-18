@@ -1,0 +1,32 @@
+代码：
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                ToneGenerator t = new ToneGenerator(AudioManager.STREAM_VOICE_CALL, 80);
+                t.startTone(ToneGenerator.TONE_SUP_CALL_WAITING);
+                try {
+                    wait(Integer.MAX_VALUE - 20);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                t.release();
+            }
+        };
+        thread.start();
+        
+错误信息：
+
+05-09 21:30:05.238 19261-19383/com.feinno.demo E/AndroidRuntime: FATAL EXCEPTION: Thread-3700
+  java.lang.IllegalMonitorStateException: object not locked by thread before wait()
+      at java.lang.Object.wait(Native Method)
+      at java.lang.Object.wait(Object.java:401)
+      at com.example.wangxiangfx.demo.DemoACT$3.run(DemoACT.java:107)
+      
+--------------------------------------------
+只需要锁住，wait，对象就可以了。
+--------------------------------------------
+
+synchronized (this) {
+    wait(Integer.MAX_VALUE - 20);
+}

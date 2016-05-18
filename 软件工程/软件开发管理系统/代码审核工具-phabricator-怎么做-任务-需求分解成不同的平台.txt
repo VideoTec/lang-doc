@@ -1,0 +1,46 @@
+phabricator 
+
+可以创建子任务来解决：
+任务页面 的 左侧菜单中有创建子任务命令。
+
+-------------------------------------------------------------------
+http://stackoverflow.com/questions/26933690/in-phabricator-how-do-i-assign-a-parent-to-an-existing-task-changing-it-from-t
+-------------------------------------------------------------------
+子任务的概念
+
+I accomplish this by going to the parent task and then "Edit Blocking Tasks."
+
+elationships in Phabricator are expressed by edges. 
+Subtasks or blocking tasks are UI words 
+to convey the presence of such an edge between two tasks. 
+You can get more information on the Edge concept at 
+secure.phabricator.com/book/phabcontrib/article/using_edges
+
+-------------------------------------------------------------------
+https://secure.phabricator.com/T8106
+Allow a task to be assigned to multiple people
+-------------------------------------------------------------------
+
+We don't plan to support this. 
+There are various technical/product/priority reasons, 
+but philosophically I think it's important that ownership be unambiguous. 
+I'm also not aware of any task systems which support this.
+
+Among other tasks systems, JIRA also doesn't support this, and suggests some workarounds here:
+
+https://confluence.atlassian.com/display/JIRA/How+do+I+assign+issues+to+multiple+users
+
+Including reasonable approaches like:
+
+1) Split the task into multiple subtasks, 
+each describing the work an individual is responsible for.
+
+2) And creative approaches like:
+Create a shared user account that both users have the password for.
+
+3/4 of JIRA's workarounds are really about group ownership, 
+although it sounds like that isn't your use case.
+
+For these "group ownership" use cases, 
+things like shared queues may be available in Phabricator after Nuance. 
+We might let tasks be owned by projects eventually

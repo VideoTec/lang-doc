@@ -1,0 +1,15 @@
+05-17 19:55:55.845 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：1463486155848; 开始时间：1463486153832
+05-17 19:55:55.845 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiVoiceCallActivity: 拔打时长：2017
+05-17 19:55:56.855 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：1463486156859; 开始时间：1463486153832
+05-17 19:55:56.860 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiVoiceCallActivity: 拔打时长：3029
+05-17 19:55:57.870 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：1463486157872; 开始时间：1463486153832
+05-17 19:55:57.875 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiVoiceCallActivity: 拔打时长：4042
+05-17 19:55:58.890 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：1463486158892; 开始时间：1463486153832
+05-17 19:55:58.895 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiVoiceCallActivity: 拔打时长：5063
+05-17 19:55:59.905 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：1463486159907; 开始时间：1463486153832
+05-17 19:55:59.905 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiVoiceCallActivity: 拔打时长：6076
+05-17 19:56:00.910 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：1463486160914; 开始时间：1463486153832
+05-17 19:56:00.910 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiVoiceCallActivity: 拔打时长：7083
+05-17 19:56:01.915 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：1463486161919; 开始时间：1463486153832
+05-17 19:56:01.915 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiVoiceCallActivity: 拔打时长：8089
+05-17 19:56:02.925 10072-10072/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: 当前时间：1463486162926; 开始时间：1463486153832

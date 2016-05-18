@@ -1,0 +1,9 @@
+
+代码：
+            URL uri = new URL(restURI);
+            HttpURLConnection connection = (HttpURLConnection) uri.openConnection();
+            
+异常：
+            java.net.ConnectException: 
+            failed to connect to /221.179.192.69 (port 8080) after 2500ms: 
+            connect failed: ENETUNREACH (Network is unreachable)

@@ -1,0 +1,2 @@
+        long duration = (System.currentTimeMillis() - mCallStartTime) / 1000;
+        String durationString = String.format("%d:%02d:%02d", duration / 3600, (duration % 3600) / 60, duration % 60);

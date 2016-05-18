@@ -1,0 +1,20 @@
+public static final Locale CHINA = new Locale(true, "zh", "CN");
+public static final Locale CHINESE = new Locale(true, "zh", "");
+
+https://developer.android.com/reference/java/util/Locale.html
+
+Locale represents a language/country/variant combination. 
+Locales are used to alter the presentation of information 
+such as numbers or dates to suit the conventions in the region they describe.
+
+The language codes are two-letter lowercase ISO language codes (such as "en") 
+as defined by ISO 639-1. 
+The country codes are two-letter uppercase ISO country codes (such as "US") 
+as defined by ISO 3166-1. The variant codes are unspecified.
+
+Note that Java uses several deprecated two-letter codes. 
+The Hebrew ("he") language code is rewritten as "iw", Indonesian ("id") as "in", 
+and Yiddish ("yi") as "ji". 
+
+This rewriting happens even if you construct your own Locale object, 
+not just for instances returned by the various lookup methods.

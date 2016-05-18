@@ -1,3 +1,5 @@
+https://developer.android.com/reference/java/lang/String.html
+
 -----------------------------------------------------------------------------------
 public static String format (Locale locale, String format, Object... args)
 -----------------------------------------------------------------------------------
@@ -9,7 +11,8 @@ Returns a formatted string, using the supplied format and arguments, localized t
 Parameters
 locale	the locale to apply; null value means no localization.
 format	the format string (see format(String, Object...))
-args	the list of arguments passed to the formatter. If there are more arguments than required by format, additional arguments are ignored.
+args	the list of arguments passed to the formatter. 
+If there are more arguments than required by format, additional arguments are ignored.
 
 Returns
 the formatted string.
@@ -24,13 +27,17 @@ public static String format (String format, Object... args)
 
 Added in API level 1
 
-Returns a localized formatted string, using the supplied format and arguments, using the user's default locale.
+Returns a localized formatted string, 
+using the supplied format and arguments, using the user's default locale.
 
-If you're formatting a string other than for human consumption, you should use the format(Locale, String, Object...) overload and supply Locale.US. See "Be wary of the default locale".
+If you're formatting a string other than for human consumption, 
+you should use the format(Locale, String, Object...) overload 
+and supply Locale.US. See "Be wary of the default locale".
 
 Parameters
 format	the format string (see format(String, Object...))
-args	the list of arguments passed to the formatter. If there are more arguments than required by format, additional arguments are ignored.
+args	the list of arguments passed to the formatter. 
+If there are more arguments than required by format, additional arguments are ignored.
 
 Returns
 the formatted string.

@@ -1,0 +1,34 @@
+String format (Locale locale, 
+                String format, 
+                Object... args)
+                
+Returns a formatted string, using the supplied format and arguments, 
+localized to the given locale.
+
+locale
+Locale: the locale to apply; null value means no localization.
+举例：
+Locale.CHINESE
+
+format
+String: the format string (see format(String, Object...))
+
+args
+Object: the list of arguments passed to the formatter. 
+If there are more arguments than required by format, additional arguments are ignored.
+
+https://developer.android.com/reference/java/util/Locale.html
+
+http://itlab.idcquan.com/Java/base/38294.html
+
+国际化: 理解Java平台上的Locale
+
+语言和地理环境对我们的文化产生重要影响.
+我们同他人之间的交流以及生活中的事件都发生在语言和地理环境所产生的一个系统里.
+由于语言和环境的不同,
+以至需要我们来制定一个适合的方式来达到向他人表述我们自己或者我们的想法的目的.
+为了有效地与他人交流,需要考虑对方的文化,环境以及使用对方的语言.
+　　
+类似地,一套有实效的软件系统也要考虑用户的语言和地理区域.
+语言和区域形成了本地环境,描述了软件本地化的配置和上下文.在Java平台上,
+通过java.util.Locale对象来描述本地化

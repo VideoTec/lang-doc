@@ -1,0 +1,8 @@
+https://secure.phabricator.com/book/phabricator/article/remarkup/
+
+Mentioning Users
+In Differential and Maniphest, you can mention another user by writing:
+
+@username
+When you submit your comment, 
+this will add them as a CC on the revision or task if they aren't already CC'd.

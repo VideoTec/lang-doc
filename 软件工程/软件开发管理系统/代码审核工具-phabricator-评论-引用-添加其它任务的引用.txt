@@ -1,0 +1,33 @@
+phabricator 评论中引用其它任务的方法
+
+{T1872} 
+注意1：前后加空格
+
+https://secure.phabricator.com/book/phabricator/article/remarkup/
+
+第一种方法：
+Linking to Objects
+You can link to Phabricator objects, such as 
+Differential revisions, 
+Diffusion commits and 
+Maniphest tasks, by mentioning the name of an object:
+
+D123          # Link to Differential revision D123
+rX123         # Link to SVN commit 123 from the "X" repository
+rXaf3192cd5   # Link to Git commit "af3192cd5..." from the "X" repository.
+              # You must specify at least 7 characters of the hash.
+T123          # Link to Maniphest task T123
+You can also link directly to a comment in Maniphest and Differential:
+
+T123#4        # Link to comment #4 of T123
+
+See the Phabricator configuraton setting remarkup.ignored-object-names to modify this behavior.
+
+第二种方法：
+Embedding Objects
+You can also generate full-name references to some objects by using braces:
+
+{D123}        # Link to Differential revision D123 with the full name
+{T123}        # Link to Maniphest task T123 with the full name
+These references will also show when an object changes state 
+(for instance, a task or revision is closed). Some types of objects support rich embedding.
