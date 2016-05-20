@@ -1,0 +1,6 @@
+https://www.ibm.com/developerworks/cn/java/j-lo-enum/
+
+enum 类型不支持 public 和 protected 修饰符的构造方法，
+因此构造函数一定要是 private 或 friendly 的。
+也正因为如此，
+所以枚举对象是无法在程序中通过直接调用其构造方法来初始化的。

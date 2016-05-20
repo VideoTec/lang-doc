@@ -1,0 +1,37 @@
+https://www.ibm.com/developerworks/cn/java/j-lo-enum/
+
+由于 enum 类型的值实际上是通过运行期构造出对象来表示的，
+所以在 cluster 环境下，
+每个虚拟机都会构造出一个同义的枚举对象。
+因而在做比较操作时候就需要注意，
+如果直接通过使用等号 ( ‘ == ’ ) 操作符，
+这些看似一样的枚举值一定不相等，因为这不是同一个对象实例。
+
+服务器端：序列化枚举值
+oos.writeObject(WeekDayEnum.Fri);
+
+客户端：返序列化枚举值 
+WeekDayEnum day = (WeekDayEnum) ois.readObject(); 
+
+此时：
+‘ == ’进行比较的话会出现不等的情况
+‘ equal ’进行比较的话会出现不等的情况 （注意： switch 使用 equal 进行比较）
+
+其中使用的枚举值定义：
+
+ // 定义一个一周七天的枚举类型
+ package example.enumeration.codes; 
+
+ public enum WeekDayEnum { 
+    Mon(1), Tue(2), Wed(3), Thu(4), Fri(5), Sat(6), Sun(7); 
+
+    private int index; 
+
+    WeekDayEnum(int idx) { 
+        this.index = idx; 
+    } 
+
+    public int getIndex() { 
+        return index; 
+    } 
+ } 

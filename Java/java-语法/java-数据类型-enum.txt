@@ -1,0 +1,3 @@
+https://www.ibm.com/developerworks/cn/java/j-lo-enum/
+
+5.0 版本 SDK 发布时候，在语言层面上增加了枚举类型
