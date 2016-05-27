@@ -2,7 +2,8 @@ http://stackoverflow.com/questions/2367398/what-is-the-ellipsis-for-in-this-meth
 
 public MessageBuilder withRecipientJids(JID... recipientJids)
 
-Those are Java varargs. They let you pass any number of objects of a specific type (in this case they are of type JID).
+Those are Java varargs. They let you pass any number of objects of a specific type 
+(in this case they are of type JID).
 
 In your example, the following function calls would be valid:
 

@@ -1,0 +1,6 @@
+http://stackoverflow.com/questions/5200192/convert-64-bit-windows-number-to-time-java
+
+hat time is probably representing 100 nanosecond units since Jan 1. 1601. 
+There's 116444736000000000 100ns between 1601 and 1970.
+
+Date date = new Date((129407978957060010-116444736000000000)/10000);

@@ -1,0 +1,41 @@
+http://nodatime.org/1.2.x/userguide/core-types.html
+
+An Instant is a point on notional a global time-line, 
+regardless of calendar system and time zone. 
+
+It's simply a number of "ticks" since some arbitrary epoch, 
+where a tick in Noda Time is 100 nanoseconds 
+(a definition inherited from the BCL). 
+
+Noda Time always uses the Unix epoch, 
+which corresponds to midnight on January 1st 1970 UTC. 
+
+(This is merely one way of expressing the epoch - 
+it would be equally valid to express it using other calendar systems and time zones; 
+the epoch itself has no notion of a time zone or calendar system.)
+
+https://docs.oracle.com/cd/E29587_01/DeveloperStudio.60x/ds_help/src/cds_using_time_datetime_and_duration_property_types.html
+
+Using the .NET framework's DateTime structure
+The .NET framework uses the DateTime structure to represent an instant in time. 
+In the DateTime structure, time values are measured in 100-nanosecond units called ticks. 
+To load data created with the DateTime structure into the MDEX Engine, 
+you must convert from ticks to nanoseconds, 
+and then from nanoseconds to milliseconds. 
+Conversely, to work with data returned from the MDEX Engine using the DateTime structure, 
+you must convert it from milliseconds to nanoseconds, 
+and then from nanoseconds to ticks.
+
+The conversions work as follows:
+
+1 second = 1,000 milliseconds
+
+1 second = 1,000,000,000 nanoseconds
+
+1,000 milliseconds = 1,000,000,000 nanoseconds
+
+1 millisecond = 1,000,000 nanoseconds
+
+1,000,000 nanoseconds * (1 tick / 100 nanoseconds) = 10,000 ticks
+
+10,000 ticks = 1 millisecond

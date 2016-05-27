@@ -1,0 +1,83 @@
+代码
+
+    public enum SessionState {
+        UNKNOWN("未知状态"),
+        Idle("空闲中"),
+        InHttpBye("主动结束会话中"), //http bye
+        InVideoToAudioOffer("请求视频转音频中", CallerInCall, CalleeInCall), //http putOffer  ---  这行错了
+        InVideoToAudioAnswer("应答视频转音频中"), //http putAnswer
+        InAudioToVideoOffer("请求音频转视频中"), //http putOffer
+        InAudioToVideoAnswer("应答音频转视频中"), //http putAnswer
+
+        //主叫状态
+        CallerInviting("主叫邀请会话中"), //http invite
+        CallerRinging("主叫振铃中"),  //mqtt notify/RingingNotify
+        CallerInCall("主叫通话中"),   //mqtt notify/AcceptNotify
+
+        //被叫状态
+        CalleeRinging("被叫响铃中"),     //mqtt notify/InviteNotify
+        CalleeAnswering("被叫应答邀请中"),   //http putAnswerSdp
+        CalleeConnecting("被叫设置连接状态中"),  //http putSessionStatus Connected
+        CalleeInCall("被叫通话中");
+        
+错误描述：
+Illegal forward reference
+
+修改方法：【错误的修改方法 fine in Java 5 but not Java 6】
+InVideoToAudioOffer("请求视频转音频中", SessionState.CallerInCall, SessionState.CalleeInCall), //http putOffer
+问题这样修改会出错吗？ 编码时不动态(lint)提示错误，但是编译时，仍然出错。
+
+正确的修改方法：
+You can do this which is not as intuitive.
+
+public enum Edge {
+    TOP, BOTTOM, LEFT, RIGHT;
+    private Edge opposite;
+
+    static {
+        TOP.opposite = BOTTOM;
+        BOTTOM.opposite = TOP;
+        LEFT.opposite = RIGHT;
+        RIGHT.opposite = LEFT;
+    }
+    public Edge opposite(){
+        return this.opposite;
+    }
+}
+
+http://stackoverflow.com/questions/9098862/why-is-this-enum-code-an-illegal-reference-to-a-static-field
+
+http://www.coderanch.com/t/547451/java/java/Enum-illegal-reference-compiles-Java
+For some reason the following code compiles fine in Java 5 but not Java 6. 
+
+http://javaconceptoftheday.com/illegal-forward-reference-error-java/
+
+http://stackoverflow.com/questions/5678309/illegal-forward-reference-and-enums
+
+intuitive[英][ɪnˈtju:ɪtɪv] [美][ɪnˈtuɪtɪv]
+adj.直觉的；凭直觉获知的；直观的
+
+You can do this which is not as intuitive.
+
+public enum Edge {
+    TOP, BOTTOM, LEFT, RIGHT;
+    private Edge opposite;
+
+    static {
+        TOP.opposite = BOTTOM;
+        BOTTOM.opposite = TOP;
+        LEFT.opposite = RIGHT;
+        RIGHT.opposite = LEFT;
+    }
+    public Edge opposite(){
+        return this.opposite;
+    }
+}
+
+http://stackoverflow.com/questions/1746758/illegal-forward-reference-in-java
+
+"Illegal forward reference" means that you are trying to use a variable before it is defined.
+
+In this case, you are trying to invoke a method on wb in the declaration of wb.
+
+Workbook wb = wb.getWorkbook(...);

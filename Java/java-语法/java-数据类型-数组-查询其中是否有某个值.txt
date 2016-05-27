@@ -1,0 +1,15 @@
+http://stackoverflow.com/questions/1128723/how-can-i-test-if-an-array-contains-a-certain-value
+
+Arrays.asList(yourArray).contains(yourValue)
+Warning: this doesn't work for arrays of primitives (see the comments).
+
+Since java-8
+
+You can now use a Stream to check 
+whether an array of int, double or long contains a value 
+(by respectively using a IntStream, DoubleStream or LongStream)
+
+Example
+
+int[] a = {1,2,3,4};
+boolean contains = IntStream.of(a).anyMatch(x -> x == 4);

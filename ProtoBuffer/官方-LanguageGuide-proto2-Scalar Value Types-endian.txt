@@ -1,0 +1,9 @@
+https://developers.google.com/protocol-buffers/docs/encoding#signed-integers
+
+Non-varint Numbers
+
+Non-varint numeric types are simple – double and fixed64 have wire type 1, 
+which tells the parser to expect a fixed 64-bit lump of data; 
+similarly float and fixed32 have wire type 5, 
+which tells it to expect 32 bits. 
+In both cases the values are stored in little-endian byte order.

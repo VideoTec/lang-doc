@@ -1,0 +1,6 @@
+https://developers.google.com/protocol-buffers/docs/encoding#simple
+
+This document describes the binary wire format for protocol buffer messages. 
+You don't need to understand this to use protocol buffers in your applications, 
+but it can be very useful to know how different protocol buffer formats 
+affect the size of your encoded messages.

@@ -1,0 +1,10 @@
+https://developers.google.com/protocol-buffers/docs/proto#simple
+
+This guide describes how to use the protocol buffer language to structure your protocol buffer data, 
+including .proto file syntax and how to generate data access classes from your .proto files. 
+It covers the proto2 version of the protocol buffers language: 
+for information on the newer proto3 syntax, see the Proto3 Language Guide.
+
+This is a reference guide – 
+for a step by step example that uses many of the features described in this document, 
+see the tutorial for your chosen language.
