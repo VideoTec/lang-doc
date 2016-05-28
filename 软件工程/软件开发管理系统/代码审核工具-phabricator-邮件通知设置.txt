@@ -1,0 +1,14 @@
+------------------------------------------
+工程中邮件通知的设置：
+------------------------------------------
+Projects | 和飞信_手机 | Members
+Mail to Members
+Disabled	When mail is sent to project members, you will not receive a copy.
+
+------------------------------------------
+不接收自己的消息
+------------------------------------------
+If you disable Self Actions, Phabricator will not notify you about actions you take.
+
+Settings | Email Preferences
+Self Actions ： 设置成不发送
