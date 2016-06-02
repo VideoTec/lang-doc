@@ -1,0 +1,31 @@
+http://stackoverflow.com/questions/14763079/what-are-the-xms-and-xmx-parameters-when-starting-jvms?rq=1
+
+The flag Xmx specifies the maximum memory allocation pool for a Java Virtual Machine (JVM), 
+while Xms specifies the initial memory allocation pool.
+
+This means that your JVM will be started with Xms amount of memory and 
+will be able to use a maximum of Xmx amount of memory. 
+For example, starting a JVM like below will start it with 256MB of memory, 
+and will allow the process to use up to 2048MB of memory:
+
+java -Xmx2048m -Xms256m
+
+The memory flag can also be specified in multiple sizes, 
+such as kilobytes, megabytes, and so on.
+
+-Xmx1024k
+-Xmx512m
+-Xmx8g
+
+The Xms flag has no default value, 
+and Xmx typically has a default value of 256MB. 
+A common use for these flags is when you encounter a java.lang.OutOfMemoryError.
+
+When using these settings, keep in mind that these settings are for the JVM's heap, 
+and that the JVM can/will use more memory than just the size allocated to the heap. 
+From Oracle's Documentation:
+
+Note that the JVM uses more memory than just the heap. 
+For example Java methods, thread stacks and native handles 
+are allocated in memory separate from the heap, 
+as well as JVM internal data structures.

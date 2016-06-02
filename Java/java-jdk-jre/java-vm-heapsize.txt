@@ -1,0 +1,45 @@
+http://stackoverflow.com/questions/4667483/how-is-the-default-java-heap-size-determined
+
+You can use the following command to 
+find out the defaults on the system where your applications runs.
+
+java -XX:+PrintFlagsFinal -version | findstr HeapSize
+
+Look for the options MaxHeapSize (for -Xmx) and InitialHeapSize for -Xms.
+
+On a Unix/Linux system, you can do
+
+java -XX:+PrintFlagsFinal -version | grep HeapSize
+
+initial heap size:
+
+Larger of 1/64th of the machine's physical memory on the machine or 
+some reasonable minimum. 
+Before J2SE 5.0, the default initial heap size was a reasonable minimum, 
+which varies by platform. 
+You can override this default using the -Xms command-line option.
+
+maximum heap size:
+
+Smaller of 1/4th of the physical memory or 1GB. 
+Before J2SE 5.0, the default maximum heap size was 64MB. 
+You can override this default using the -Xmx command-line option.
+
+UPDATE:
+
+As pointed out by Tom Anderson in his comment, 
+the above is for server-class machines. 
+From Ergonomics in the 5.0 JavaTM Virtual Machine:
+
+In the J2SE platform version 5.0 a class of machine 
+referred to as a server-class machine has been defined as a machine with
+
+2 or more physical processors
+2 or more Gbytes of physical memory
+with the exception of 32 bit platforms running a version of the Windows operating system. 
+On all other platforms the default values are the same as the default values for version 1.4.2.
+
+In the J2SE platform version 1.4.2 by default the following selections were made
+
+initial heap size of 4 Mbyte
+maximum heap size of 64 Mbyte

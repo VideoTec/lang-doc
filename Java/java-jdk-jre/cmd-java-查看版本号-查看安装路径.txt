@@ -1,0 +1,14 @@
+查看版本时提示出错：
+
+C:\Users\wangxiangfx>java -version
+Error: could not open `C:\Program Files\Java\jre1.8.0_77\lib\amd64\jvm.cfg'
+
+解决方法：
+Delete the “java.exe” file from “c:\windows” and “c:\windows\system32″. 
+That should fix it.
+http://stackoverflow.com/questions/9051103/java-path-error-of-jvm-cfg
+
+http://jingyan.baidu.com/article/f71d603766f36a1ab641d1cd.html
+
+java -version
+java -verbose 运行后，最后两行就是SDK的安装路径

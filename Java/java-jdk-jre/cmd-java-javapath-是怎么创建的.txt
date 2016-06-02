@@ -1,0 +1,38 @@
+C:\ProgramData\Oracle\Java
+
+这个文件夹里有：
+java.exe
+javaw.exe
+javaws.exe  
+
+创建快捷方式：（和普通的快捷方式不同）
+You don't need the /d switch for a file symlink,
+  mklink java.exe "C:\Program Files\Java\jdk1.8.0_20\bin\java.exe"
+  mklink javaw.exe "C:\Program Files\Java\jdk1.8.0_20\bin\javaw.exe"
+  mklink javaws.exe "C:\Program Files\Java\jdk1.8.0_20\bin\javaws.exe"
+  
+操作记录：
+c:\ProgramData\Oracle\Java\javapath>mklink java.exe "C:\Program Files\Java\jdk1.
+7.0_60\jre\bin\java.exe"
+为 java.exe <<===>> C:\Program Files\Java\jdk1.7.0_60\jre\bin\java.exe 创建的符
+号链接
+
+c:\ProgramData\Oracle\Java\javapath>mklink javaw.exe "C:\Program Files\Java\jdk1
+.7.0_60\jre\bin\javaw.exe"
+为 javaw.exe <<===>> C:\Program Files\Java\jdk1.7.0_60\jre\bin\javaw.exe 创建的
+符号链接
+
+c:\ProgramData\Oracle\Java\javapath>mklink javaws.exe "C:\Program Files\Java\jdk
+1.7.0_60\jre\bin\javaws.exe"
+为 javaws.exe <<===>> C:\Program Files\Java\jdk1.7.0_60\jre\bin\javaws.exe 创建
+的符号链接
+
+http://stackoverflow.com/questions/26864662/how-to-solve-the-error-the-system-cannot-find-the-file-c-programdata-oracle-ja
+
+I've found that the Java installer 
+doesn't change the javapath or update the system path, 
+at least when going from 1.8 to 1.7. 
+In my case changing the shortcuts only led to a problem with Eclipse on startup.
+
+这里说，升级和安装，不会更这个路径。
+那是谁更改的呢？（可能现在升级包更改了吧）

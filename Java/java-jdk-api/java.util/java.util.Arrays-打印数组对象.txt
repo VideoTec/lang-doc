@@ -1,1 +1,3 @@
+LogFeinno.i("AudioRecordInputStream", Arrays.toString(audioData));
+
 http://java67.blogspot.com/2014/03/how-to-print-array-in-java-example-tutorial.html

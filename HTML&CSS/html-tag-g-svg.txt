@@ -1,0 +1,19 @@
+示例：
+https://developer.android.com/reference/android/media/MediaCodec.html
+
+文档：
+https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g
+The g element is a container used to group other SVG elements. 
+Transformations applied to the g element are performed on all of its child elements, 
+nd any of its attributes are inherited by its child elements. 
+It can also group multiple elements to be referenced later with the <use> element.
+
+<svg viewBox="0 0 95 50"
+     xmlns="http://www.w3.org/2000/svg">
+   <g stroke="green" fill="white" stroke-width="5">
+     <circle cx="25" cy="25" r="15"/>
+     <circle cx="40" cy="25" r="15"/>
+     <circle cx="55" cy="25" r="15"/>
+     <circle cx="70" cy="25" r="15"/>
+   </g>
+</svg>
