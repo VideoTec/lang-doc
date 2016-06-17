@@ -1,0 +1,35 @@
+https://en.wikipedia.org/wiki/Visual_C%2B%2B
+
+Although the product originated as an IDE for the C programming language, 
+for many years the compiler's support 
+for that language conformed only to the original edition of the C standard, dating from 1989. 
+
+The later revisions of the standard, C99 and C11, 
+were not supported at all[45] until Visual C++ 2012, 
+which added support for various C99 features in its C mode 
+(including designated initializers, compound literals, and the _Bool type). 
+
+Visual C++ 2013 significantly improved the C99 support, 
+though it is still not complete.[46]
+ 
+Visual C++ 2015 further improves the C99 support, 
+with full support of the C99 Standard Library, 
+except for features that require C99 language features not yet supported by the compiler.
+
+https://msdn.microsoft.com/en-us/library/hh409293(v=vs.140).aspx
+
+C99 Conformance Visual Studio 2015 fully implements the C99 Standard Library, 
+with the exception of any library features 
+that depend on compiler features not yet supported by the Visual C++ compiler 
+(for example, <tgmath.h> is not implemented).
+
+https://www.infoq.com/news/2015/06/VS2015CPP
+http://www.infoq.com/cn/news/2015/07/VS2015CPP?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global
+
+Alongside the inclusion of these new C++ items, Lavavej says that Visual Studio’s implementation of the C99 standard library is considered complete, with the only omissions being tgmath.h and the CX_LIMITED_RANGE/FP_CONTRACT pragma macros
+
+据Lavavej介绍，除了包含这些新的C++特性，Visual Studio中C99标准库的实现也被认为已经完成，只差tgmath.h和CX_LIMITED_RANGE/FP_CONTRACT编译指示宏。
+
+https://visualstudio.uservoice.com/forums/121579-visual-studio-2015/suggestions/2089423-c99-support
+
+Support missing C99 features in plain C - stdint.h, declaration in the middle of the block, struct initializers with labels. C99 support is 12 years too late already.

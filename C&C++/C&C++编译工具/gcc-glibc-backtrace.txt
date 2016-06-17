@@ -1,0 +1,25 @@
+http://github.dudukr.com/VWiki/2013/02/21/tombstone-on-android.html
+
+Linux 栈调用回溯
+
+对 Linux 应用程序而言， 因为有 glibc 库的支持， 
+所以构造程序的函数调用链相对容易。
+在 glibc 库提供的关于堆栈回朔的一系列库函数中，
+其核心函数是 backtrace()。
+它负责遍历从程序入口点到当前调用点的所有堆栈帧，
+然后生成函数调用的地址序列。
+为了完成函数地址和函数名称的转换，
+函数 backtrace_symbols() 负责将 backtrace()生成的地址序列转换成一系列字符串列表，
+在每个字符串列表中包括了函数名称，
+当前指令在函数中的偏移量和函数的返回地址。
+由于 backtrace_symbols() 需要动态申请空间以保存字符串列表，
+如果应用程序 crash 时破坏了系统内存，
+可能导致 backtrace_symbols()结果错误。
+为此，glibc库还提供了一个更安全的地址转换函数：backtrace_symbols_fd() 。
+该函数将生成的字符串直接输出到外部文件，
+而不再需要申请新的内存空间。
+对于 backtrace() 的详细使用方法可以通过 man backtrace 查看。
+
+在Andrid中，由于谷歌没有使用glibc库，
+而是使用了精简版本的bionic库，
+其中并没有 backtrace() 可用。获取调用堆栈还需要采用其他方法。

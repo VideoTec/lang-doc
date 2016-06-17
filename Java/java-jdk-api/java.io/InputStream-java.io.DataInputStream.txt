@@ -1,0 +1,13 @@
+https://developer.android.com/reference/java/io/DataInputStream.html
+
+java.lang.Object
+   ↳	java.io.InputStream
+ 	   ↳	java.io.FilterInputStream
+ 	 	   ↳	java.io.DataInputStream
+
+A data input stream lets an application 
+read primitive Java data types from an underlying input stream in a machine-independent way. 
+An application uses a data output stream to write data that can later be read by a data input stream.
+
+DataInputStream is not necessarily safe for multithreaded access. 
+Thread safety is optional and is the responsibility of users of methods in this class.

@@ -1,0 +1,7 @@
+http://blog.csdn.net/lastsweetop/article/details/4292179
+
+根据 Java API, 所谓 shutdown hook 就是已经初始化但尚未开始执行的线程对象。在
+Runtime 注册后，如果 jvm 要停止前，这些 shutdown hook 便开始执行。
+
+http://stackoverflow.com/questions/2541597/how-to-gracefully-handle-the-sigkill-signal-in-java
+

@@ -1,0 +1,19 @@
+参考：
+E:\doc\android\android-ndk\android-ndk-崩溃日志-dump分析-android-打印当前进程的堆栈的方法-unwind-ucontext.txt
+
+http://stackoverflow.com/questions/2663456/how-to-write-a-signal-handler-to-catch-sigsegv
+The ucontext structure is defined in <ucontext.h>. 
+Within the ucontext the field uc_mcontext contains the machine context, 
+and within that, 
+the array gregs contains the general register context. 
+So in your signal handler:
+
+ucontext *u = (ucontext *)unused;
+unsigned char *pc = (unsigned char *)u->uc_mcontext.gregs[REG_RIP];
+
+will give you the pc where the exception occurred. 
+You can read it to figure out what instruction it was that faulted, and do something different.
+
+As far as the portability of calling mprotect in the signal handler is concerned, 
+any system that follows either the SVID spec or the BSD4 spec should be safe -- 
+they allow calling any system call (anything in section 2 of the manual) in a signal handler.
