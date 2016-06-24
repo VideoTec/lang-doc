@@ -1,0 +1,6 @@
+iterator[英][ɪtə'reɪtə] [美][ɪtə'reɪtə]
+[计] 迭代器，迭代程序
+
+java.util.Iterator
+
+https://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html

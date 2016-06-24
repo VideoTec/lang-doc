@@ -1,0 +1,42 @@
+代码：
+    public RFVoWifiSession findSessionByID(String id) {
+        for(RFVoWifiSession session : mSessions) {
+            if (session.isIdle()) {
+                mSessions.remove(session);
+                continue;
+            }
+            if (session.getSessionID().equals(id))
+                return session;
+        }
+        return null;
+    }
+    
+异常：
+java.util.ConcurrentModificationException at 
+
+http://www.cnblogs.com/dolphin0520/p/3933551.html
+关键点就在于：调用list.remove()方法导致modCount和expectedModCount的值不一致。
+
+http://stackoverflow.com/questions/5113016/getting-a-concurrentmodificationexception-thrown-when-removing-an-element-from-a
+Getting a ConcurrentModificationException thrown 
+when removing an element from a java.util.List during list iteration?
+
+I believe this is the purpose behind the Iterator.remove() method, 
+to be able to remove an element from the collection while iterating.
+
+For example:
+
+Iterator<String> iter = li.iterator();
+while(iter.hasNext()){
+    if(iter.next().equalsIgnoreCase("str3"))
+        iter.remove();
+}
+
+The Java 8 way to remove it from the List without Iterator is:
+li.removeIf(<predicate>)
+
+i.e.
+
+List<String> li = new ArrayList<String>();
+// ...
+li = li.removeIf(st -> !st.equalsIgnoreCase("str3"));

@@ -1,0 +1,34 @@
+http://stackoverflow.com/questions/11345061/why-must-a-final-variable-be-initialized-before-constructor-completes
+
+Because final prevents you from modifying variables, 
+but it has to be initialized at some point, 
+and the constructors is the right place to do so.
+
+In your case, 
+it would be called a blank final because it is not initialized when declared.
+
+https://en.wikipedia.org/wiki/Final_%28Java%29#Blank_final
+
+Blank final
+
+The blank final, 
+which was introduced in Java 1.1, 
+is a final variable whose declaration lacks an initializer.
+
+A blank final can only be assigned once and must be unassigned when an assignment occurs. 
+In order to do this, 
+a Java compiler runs a flow analysis to ensure that, 
+for every assignment to a blank final variable, 
+the variable is definitely unassigned before the assignment; 
+otherwise a compile-time error occurs.
+
+http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.3.1.2
+
+A field can be declared final (§4.12.4). 
+Both class and instance variables (static and non-static fields) may be declared final.
+
+It is a compile-time error if a blank final (§4.12.4) class variable is not definitely assigned (§16.8) by a static initializer (§8.7) of the class in which it is declared.
+
+A blank final instance variable must be definitely assigned (§16.9) 
+at the end of every constructor (§8.8) of the class in which it is declared; 
+otherwise a compile-time error occurs.
