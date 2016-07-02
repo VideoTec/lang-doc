@@ -1,0 +1,11 @@
+https://zh.wikipedia.org/wiki/%E8%BB%9F%E4%BB%B6%E7%89%88%E6%9C%AC%E8%99%9F
+
+混合使用各种订定方式[编辑]
+有些软件会混合使用各种版本编号订定方式，即不同的版本分别采用不同的订定方式。
+
+例如Windows，曾采用普通小数方式（Windows 1.0至Windows 3.11），年份（Windows 95、Windows 98、Windows 2000），缩写（Windows Me、Windows XP）和英文字（Windows Vista）。
+
+同时拥有两个版本编号[编辑]
+有些软件会同时拥用两个版本编号，即是以两种不同的订定方式，赋予同一个版本两个编号。
+
+例如Windows：Windows 95亦即Windows 4.0，Windows 98亦即Windows 4.10，Windows Me亦即Windows 4.90，Windows 2000亦即NT 5.0，Windows XP亦即NT 5.1，Windows Vista亦即NT 6.0，Windows 7亦即NT 6.1。[4]
