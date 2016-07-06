@@ -1,0 +1,9 @@
+构建历史有下列选项：
+
+状态集
+变更记录
+Console Output       ---  可以查看构建LOG
+编辑编译信息
+删除本次生成
+Git Build Data
+No Tags

@@ -1,0 +1,12 @@
+配置 | 构建 | 增加构建步骤：
+
+Invoke Gradle script
+
+-----------------------------------------
+Tasks -- 要执行的任务 build 执行所有任务
+-----------------------------------------
+Specify a list of Gradle tasks to be invoked
+
+例子：
+build 执行所有任务
+assembleDevRelease 打指定的包

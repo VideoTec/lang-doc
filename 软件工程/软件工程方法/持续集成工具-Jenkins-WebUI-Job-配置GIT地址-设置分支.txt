@@ -1,0 +1,6 @@
+http://jayfeng.com/2015/10/22/%E4%BD%BF%E7%94%A8jenkins%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BAandroid%E5%92%8Cios%E5%BA%94%E7%94%A8/
+
+如果安装了git插件，在源码管理会出现Git，选中之后：
+
+Repositories -> https://github.com/openproject/ganchai, 如果是ssh还要配置Credentials。
+Branch -> */master，选定一个要编译的分支代码。

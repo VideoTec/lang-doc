@@ -1,0 +1,43 @@
+概念：
+
+用户/组
+
+权限列表：
+Overall
+    Administer
+    ConfigureUpdateCenter
+    Read
+    RunScripts
+    UploadPlugins
+Credentials
+    Create
+    Delete
+    ManageDomains
+    Update
+    View
+Agent
+    Build
+    Configure
+    Connect
+    Create
+    Delete
+    Disconnect
+Job
+    Build
+    Cancel
+    Configure
+    Create
+    Delete
+    Discover
+    Read
+    Workspace
+Run
+    Delete
+    Update
+View
+    Configure
+    Create
+    Delete
+    Read
+SCM
+    Tag

@@ -1,0 +1,10 @@
+https://wiki.jenkins-ci.org/display/JENKINS/Standard+Security+Setup
+
+Immediately after installation, 
+Jenkins will allow anyone to run anything as user jenkins, which is bad.  
+This page shows you how to set up basic security using the Configure Global Security page.
+
+The Configure Global Security page has two sections in which you:
+
+Set the security realm to determine who is allowed access
+Set the authorization to determine what each user is allowed to do

@@ -1,0 +1,17 @@
+https://wiki.jenkins-ci.org/display/JENKINS/Gradle+Plugin
+
+Gradle configuration is performed in the 
+Configure System (before Jenkins 2.0) or 
+Global Tool Configuration (starting in Jenkins 2.0). 
+In both cases these options reside in the Manage Jenkins section.
+
+In the Gradle section provided by this plugin, 
+several installations can be configured:
+
+The system provides both automatic installation, 
+which can be performed by directly downloading from the Gradle web site, 
+extracting a compressed final or executing some shell commands.
+Besides, 
+for nodes which already has Gradle installed, the tool can by manually configured, 
+by unchecking the Install automatically checkbox and 
+providing the base path (GRADLE_HOME) of the installation.

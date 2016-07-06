@@ -1,0 +1,23 @@
+supplementary[英][ˌsʌplɪˈmentri] [美][ˌsʌplɪˈmentri]
+adj.增补的，追加的；supplementary
+n.补充者；增补物
+
+Multilingual
+adj.使用多种语言的
+
+http://stackoverflow.com/questions/12127817/android-ics-4-0-ndk-newstringutf-is-crashing-down-the-app
+These NDK functions do not convert Supplementary Unicode characters 
+(i.e., Unicode characters with a value of U+10000 and above) correctly
+Emoticon characters lie in the Supplementary Unicode character range.
+
+https://en.wikipedia.org/wiki/Plane_(Unicode)#Supplementary_Multilingual_Plane
+Plane 1, the Supplementary Multilingual Plane (SMP), 
+contains 
+historic scripts such as Linear B, 
+Egyptian hieroglyphs, and 
+cuneiform scripts; 
+historic and modern musical notation; 
+mathematical alphanumerics; 
+Emoji and other pictographic sets; 
+reform orthographies like Shavian and Deseret; 
+and game symbols for playing cards, Mah Jongg, and dominoes.

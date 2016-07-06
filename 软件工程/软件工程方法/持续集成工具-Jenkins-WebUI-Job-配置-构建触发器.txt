@@ -1,0 +1,4 @@
+http://jayfeng.com/2015/10/22/%E4%BD%BF%E7%94%A8jenkins%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BAandroid%E5%92%8Cios%E5%BA%94%E7%94%A8/
+
+设置Poll SCM，设置定时器，定时检查代码更新，有更新则编译，否则不编译（我暂时用的是这个）
+Build periodically，周期性的执行编译任务

@@ -1,0 +1,5 @@
+主页点，创建，设置名字就可以了。
+
+接着就到 配置页面了。
+
+https://github.com/codepath/android_guides/wiki/Building-Gradle-Projects-with-Jenkins-CI#create-the-build-job

@@ -1,0 +1,23 @@
+在 $HOME 目录下的 .jenkins 文件夹下的 jobs
+C:\Documents and Settings\AAA\.jenkins
+
+.jenkins
+├─jobs
+│
+└─JavaHelloWorld
+│ ├─builds 
+│ │ ├─2011-11-03_16-48-17 
+│ │ ├─2011-11-03_16-49-05 
+│ │ ├─2011-11-03_16-49-29 
+│ │ ├─2011-11-03_17-01-49 
+│ │ └─2011-11-03_17-11-42 
+│ └─workspace                       ---  这里保存从GIT服务器下载下来的所有代码
+│   ├─build 
+│   │ ├─classes 
+│   │ │ └─oata 
+│   │ └─jar 
+│   └─src 
+│     └─oata 
+├─plugins 
+├─usercontent 
+├─war

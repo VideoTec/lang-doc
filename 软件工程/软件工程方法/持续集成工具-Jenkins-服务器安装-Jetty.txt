@@ -1,0 +1,9 @@
+https://wiki.jenkins-ci.org/display/JENKINS/Jetty
+
+Jenkins 1.535 and above bundles Jetty (rather than Winstone) 
+so you can just run java -jar jenkins.war.
+
+有些服务器是单独安装 jetty 然后把 jenkins.war 放到下面目录里：
+$JETTY_HOME/webapps
+
+注：$JETTY_HOME 查看方法 - 终端中执行命令 jetty.sh -d

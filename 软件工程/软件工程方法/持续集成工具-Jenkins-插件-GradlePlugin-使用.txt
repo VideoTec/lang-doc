@@ -1,0 +1,17 @@
+https://wiki.jenkins-ci.org/display/JENKINS/Gradle+Plugin
+
+The first configuration option is 
+whether to use one of the installation configured 
+in Jenkins (see previous section) of use the Gradle Wrapper
+which is the Gradle-provided mechanism to "embed" the use of a specific Gradle version in a build, 
+installing it if neccessary.
+
+Other configuration options include:
+
+1）A description to use for the build step.
+2）Switches (options) to provide to the Gradle execution.
+3）Tasks to execute (if blanck the defaults tasks of the build will be invoked).
+4）Path to the build script if different from the root directory of the build.
+5）Name of the build script if different from build.gradle.
+
+http://my.oschina.net/uboluo/blog/157483

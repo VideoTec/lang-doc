@@ -1,0 +1,50 @@
+1. 安装后在主界面会有个 “系统管理” 的界面。
+2. 安装后直接进入界面，不用登录【即 匿名用户】。
+3. 设置用户权限
+系统管理 | Configure Global Security | 启用安全
+1) 安全域： 选择 Jenkins专用数据库 并且 允许用户注册
+2) 授权策略：选择安全矩阵 设置用户权限
+
+注解一：
+默认地Jenkins不包含任何的安全检查，
+任何人可以修改Jenkins设置，job和启动build等
+
+注解二：
+选中安全矩阵设置后，匿名用户 权限全部禁止的情况下
+刷新网页时会要求登录
+
+注解三：
+选中安全矩阵设置后，且矩阵中用户列表为空，即，未创建任何的情况下
+刷新网页，提示要求登录，这时可创建一个用户，即第一个用户。
+这个用户默认拥有： Overall / Administer 权限
+
+http://www.cnblogs.com/itech/archive/2011/11/15/2249457.html
+
+http://127.0.0.1:8080/manage
+
+1. 忘记或不知道 管理员用户名，密码的情况
+http://blog.csdn.net/shagoo/article/details/10630407
+首先，进入 .jenkins 目录（比如/home/jenkins/.jenkins）。
+先备份 config.xml 为 config.xml.bak，而后打开 config.xml 配置文件，
+修改“<useSecurity>true</useSecurity>”为“<useSecurity>false</useSecurity>”；
+同时把“<authorizationStrategy ...>...</authorizationStrategy>”配置删除。
+【这个方法不好用】
+
+2. 默认管理员账号 -- 没有默认管理员账号 
+
+如果没有添加任何账号，且授权策略是任何用户任意操作，
+即 匿名用户 权限
+1. 本机不用登录即可使用 【匿名用户】
+2. 远程不用登录即可使用 【匿名用户】
+3. 且默认可做任何操作
+
+
+http://www.cnblogs.com/zz0412/p/jenkins_jj_14.html
+
+Jenkins专有用户数据库的配置，和一些常用的权限配置
+
+http://www.cnblogs.com/itech/archive/2011/11/15/2249457.html
+简单地设置一个管理员账号，用来管理jenkins设置，修改job和执行build等。
+其他的匿名访问的用户将只有只读的权限，不能修改Jenkins的设置，
+不能修改job，且不能运行build，
+但是可以访问build的结构，查看build的log等。

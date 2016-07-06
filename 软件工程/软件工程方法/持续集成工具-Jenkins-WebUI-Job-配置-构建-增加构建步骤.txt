@@ -1,0 +1,10 @@
+工程页面
+
+配置 | 构建 | 增加构建步骤 下列选项：
+Execute Windows batch command
+Execute Shell
+Import developer profile
+Invoke Ant
+Invoke Gradle script
+Invoke top-level Maven targets
+Xcode

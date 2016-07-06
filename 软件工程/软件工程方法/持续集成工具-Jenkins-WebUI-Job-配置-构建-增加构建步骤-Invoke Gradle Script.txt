@@ -1,0 +1,62 @@
+文档参考：
+E:\doc\lang\软件工程\软件工程方法\持续集成工具-Jenkins-插件-Gradle.txt
+
+配置 | 构建 | 增加构建步骤：
+
+Invoke Gradle script
+
+For projects that use Gradle as the build system. 
+This causes Jenkins to invoke Gradle with the given switches and tasks. 
+Andy no-zero exit code causes Jenkins to mark the build as a failure.
+
+-----------------------------------------
+指定 gradle 命令 二先一
+-----------------------------------------
+1）Invoke Gradle  需要指定 Gradle Version
+2）Use Gradle Wrapper
+   复选1： Make gradlew executable
+   复选2： From Root Build Script Dir
+   
+-----------------------------------------
+Switches
+-----------------------------------------
+Specify a list of Gradle switches to be invoked, or leave it empty。
+
+注：默认的 Android Studio 工程文件目录，不用配置这一项
+
+-----------------------------------------
+Tasks -- 要执行的任务 build 执行所有任务
+-----------------------------------------
+Specify a list of Gradle tasks to be invoked。
+
+-----------------------------------------
+Root Build script 
+-----------------------------------------
+If your workspace has the top-level build.gradle in somewhere other than the module root directory,
+specify the path (relative to the module root) here, 
+such as ${workspace}/parent/instead of just ${workspace}。
+If left empty, defaults to build.gralde
+
+注：默认的 Android Studio 工程文件目录，不用配置这一项
+
+-----------------------------------------
+Build File   APP工程的build.gradle
+-----------------------------------------
+If your gradle build script is not named build.gradle, specify the gradle build name script。
+
+注：默认的 Android Studio 工程文件目录，不用配置这一项注：默认的 Android Studio 工程文件目录，不用配置这一项
+
+-----------------------------------------
+Force GRADLE_USER_HOME to use workspace
+-----------------------------------------
+Gradle will write to $HOME/.gradle by default for GRADLE_USER_HOME. 
+For multi-executor slave in Jenkins,
+setting the environment variable localized files to the workspace avoid collisions accessing gradle cache.
+jenkins
+
+资料：
+
+http://jayfeng.com/2015/10/22/%E4%BD%BF%E7%94%A8jenkins%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BAandroid%E5%92%8Cios%E5%BA%94%E7%94%A8/
+
+如果安装gradle插件成功的话，
+应该会出现下图的 Invoke Gradle script

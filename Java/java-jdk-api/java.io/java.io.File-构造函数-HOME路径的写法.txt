@@ -1,0 +1,16 @@
+new File(
+    '~/',                            这样写HOME路径可以吗？~ 这个是shell脚本的写法
+    "RCS1.X_Android_"
+            + variant.flavorName +"_v"
+            + defaultConfig.versionName + "_"
+            + getDateTimeStr()
+            + "_v"
+            + versionCode + "_"
+            + variant.buildType.name + ".apk");
+            
+http://stackoverflow.com/questions/21059085/how-can-i-create-a-file-in-the-current-users-home-directory-using-java
+
+First, use System.getProperty("user.home") to get the "user" directory...
+
+String path = System.getProperty("user.home") + File.separator + "Documents";
+File customDir = new File(path);

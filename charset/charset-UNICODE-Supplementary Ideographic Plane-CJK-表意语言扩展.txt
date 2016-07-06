@@ -1,0 +1,12 @@
+https://en.wikipedia.org/wiki/Plane_(Unicode)#Supplementary_Multilingual_Plane
+
+Plane 2, the Supplementary Ideographic Plane (SIP), is used for CJK Ideographs, 
+mostly CJK Unified Ideographs, that were not included in earlier character encoding standards.
+
+As of Unicode 9.0, the SIP comprises the following five blocks:
+
+CJK Unified Ideographs Extension B (20000–2A6DF)
+CJK Unified Ideographs Extension C (2A700–2B73F)
+CJK Unified Ideographs Extension D (2B740–2B81F)
+CJK Unified Ideographs Extension E (2B820-2CEAF)
+CJK Compatibility Ideographs Supplement (2F800–2FA1F)

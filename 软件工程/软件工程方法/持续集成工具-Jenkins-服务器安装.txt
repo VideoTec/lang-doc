@@ -1,0 +1,93 @@
+程序和服务器配置是分开的。
+程序文件 --- jenkins.war
+服务器配置 --- $HOME目录下
+
+http://blog.nswebfrog.com/2013/12/31/jenkins-ios-ci/
+
+第一步：
+下载对应平台的 jenkins.war
+注1：windows 下是一个安装包
+注2：mac 也是个 pkg 安装包
+
+第二步：
+下载完成后，打开terminal，进入到war包所在目录，执行命令：
+java -jar jenkins.war --httpPort=8888 默认端口号是 8080
+
+httpPort指定的就是Jenkins所使用的http端口，这里指定8888，可根据具体情况修改。
+待Jenkins启动后，打开浏览器输入地址：
+http://localhost:8888/
+便可以打开Jenkins的管理界面了。
+
+--------------------------------------------------------
+分析 jenkins.war 启动的日志文件
+--------------------------------------------------------
+bogon:~ yanlina$ java -jar jenkins/jenkins.war
+Running from: /Users/yanlina/jenkins/jenkins.war
+webroot: $user.home/.jenkins
+七月 06, 2016 2:06:01 下午 org.eclipse.jetty.util.log.JavaUtilLog info
+信息: Logging initialized @582ms
+七月 06, 2016 2:06:01 下午 winstone.Logger logInternal
+信息: Beginning extraction from war file
+七月 06, 2016 2:06:03 下午 org.eclipse.jetty.util.log.JavaUtilLog warn
+警告: Empty contextPath
+七月 06, 2016 2:06:03 下午 org.eclipse.jetty.util.log.JavaUtilLog info
+信息: jetty-9.2.z-SNAPSHOT
+七月 06, 2016 2:06:04 下午 org.eclipse.jetty.util.log.JavaUtilLog info
+信息: NO JSP Support for /, did not find org.eclipse.jetty.jsp.JettyJspServlet
+Jenkins home directory: /Users/yanlina/.jenkins found at: $user.home/.jenkins
+七月 06, 2016 2:06:11 下午 org.eclipse.jetty.util.log.JavaUtilLog info
+信息: Started w.@1d8062d2{/,file:/Users/yanlina/.jenkins/war/,AVAILABLE}{/Users/yanlina/.jenkins/war}
+七月 06, 2016 2:06:12 下午 org.eclipse.jetty.util.log.JavaUtilLog info
+信息: Started ServerConnector@5b7ea70d{HTTP/1.1}{0.0.0.0:8080}
+七月 06, 2016 2:06:12 下午 org.eclipse.jetty.util.log.JavaUtilLog info
+信息: Started @11597ms
+七月 06, 2016 2:06:12 下午 winstone.Logger logInternal
+信息: Winstone Servlet Engine v2.0 running: controlPort=disabled
+七月 06, 2016 2:06:12 下午 jenkins.InitReactorRunner$1 onAttained
+信息: Started initialization
+七月 06, 2016 2:06:14 下午 jenkins.InitReactorRunner$1 onAttained
+信息: Listed all plugins
+七月 06, 2016 2:06:14 下午 com.sic.plugins.kpp.KPPPlugin start
+信息: starting kpp plugin
+七月 06, 2016 2:06:19 下午 jenkins.InitReactorRunner$1 onAttained
+信息: Prepared all plugins
+七月 06, 2016 2:06:19 下午 jenkins.InitReactorRunner$1 onAttained
+信息: Started all plugins
+七月 06, 2016 2:06:19 下午 jenkins.InitReactorRunner$1 onAttained
+信息: Augmented all extensions
+七月 06, 2016 2:06:23 下午 jenkins.InitReactorRunner$1 onAttained
+信息: Loaded all jobs
+七月 06, 2016 2:06:23 下午 hudson.model.AsyncPeriodicWork$1 run
+信息: Started Download metadata
+七月 06, 2016 2:06:24 下午 org.jenkinsci.main.modules.sshd.SSHD start
+信息: Started SSHD at port 49201
+七月 06, 2016 2:06:24 下午 jenkins.InitReactorRunner$1 onAttained
+信息: Completed initialization
+七月 06, 2016 2:06:25 下午 org.springframework.context.support.AbstractApplicationContext prepareRefresh
+信息: Refreshing org.springframework.web.context.support.StaticWebApplicationContext@584c0d38: display name [Root WebApplicationContext]; startup date [Wed Jul 06 14:06:25 CST 2016]; root of context hierarchy
+七月 06, 2016 2:06:25 下午 org.springframework.context.support.AbstractApplicationContext obtainFreshBeanFactory
+信息: Bean factory for application context [org.springframework.web.context.support.StaticWebApplicationContext@584c0d38]: org.springframework.beans.factory.support.DefaultListableBeanFactory@3d96e496
+七月 06, 2016 2:06:25 下午 org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
+信息: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3d96e496: defining beans [authenticationManager]; root of factory hierarchy
+七月 06, 2016 2:06:25 下午 org.springframework.context.support.AbstractApplicationContext prepareRefresh
+信息: Refreshing org.springframework.web.context.support.StaticWebApplicationContext@5c868c57: display name [Root WebApplicationContext]; startup date [Wed Jul 06 14:06:25 CST 2016]; root of context hierarchy
+七月 06, 2016 2:06:25 下午 org.springframework.context.support.AbstractApplicationContext obtainFreshBeanFactory
+信息: Bean factory for application context [org.springframework.web.context.support.StaticWebApplicationContext@5c868c57]: org.springframework.beans.factory.support.DefaultListableBeanFactory@3d609ab3
+七月 06, 2016 2:06:25 下午 org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
+信息: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3d609ab3: defining beans [filter,legacy]; root of factory hierarchy
+七月 06, 2016 2:06:28 下午 hudson.WebAppMain$3 run
+信息: Jenkins is fully up and running
+七月 06, 2016 2:06:31 下午 hudson.model.UpdateSite updateData
+信息: Obtained the latest update center data file for UpdateSource default
+七月 06, 2016 2:06:32 下午 hudson.model.DownloadService$Downloadable load
+信息: Obtained the updated data file for hudson.tasks.Maven.MavenInstaller
+七月 06, 2016 2:06:33 下午 hudson.model.DownloadService$Downloadable load
+信息: Obtained the updated data file for hudson.tasks.Ant.AntInstaller
+七月 06, 2016 2:06:34 下午 hudson.model.DownloadService$Downloadable load
+信息: Obtained the updated data file for hudson.plugins.gradle.GradleInstaller
+七月 06, 2016 2:06:36 下午 hudson.model.DownloadService$Downloadable load
+信息: Obtained the updated data file for hudson.tools.JDKInstaller
+七月 06, 2016 2:06:36 下午 hudson.model.AsyncPeriodicWork$1 run
+信息: Finished Download metadata. 13,586 ms
+七月 06, 2016 2:09:03 下午 javax.jmdns.impl.DNSIncoming readAnswer
+警告: There was an OPT answer. Not currently handled. Option code: 65002 data: ACBAC94F9E9256C0

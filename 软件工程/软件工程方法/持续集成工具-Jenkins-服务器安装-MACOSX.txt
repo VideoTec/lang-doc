@@ -1,0 +1,47 @@
+
+---------------------------------------------
+安装 jenkins 2.12.war， Weekly Release 版本
+---------------------------------------------
+下载下来是个 jenkins.war
+java -jar jenkins.war --httpPort=8888
+
+编写随机启动脚本：
+
+#!/bin/sh
+cd ~/jenkins
+java -jar jenkins.war
+
+把启动脚本添加到，偏好设置|用户和群组|登录项里
+
+---------------------------------------------
+安装 jenkins-1.651.3.pkg
+---------------------------------------------
+下载下来是个 pkg 安装包
+
+安装后的目录有：
+/Applications/Jenkins
+/Library/Application Support/Jenkins
+/Library/Documentation/Jenkins
+
+其它目录：
+/Users/Shared/Jenkins
+/var/log/jenkins
+/etc/newsyslog.d/jenkins.conf
+
+安装后，在应用程序文件夹里有：
+Jenkins/jenkins.war
+
+怎么开机运行的？
+会创建下面的启动项
+/Library/LaunchDaemons/org.jenkins-ci.plist
+指定运行命令 /Library/Application Support/Jenkins/jenkins-runner.sh
+指定环境变量 JENKINS_HOME
+
+删除脚本：
+/Library/Application Support/Jenkins/Uninstall.command
+
+安装后，会创建一个 jenkins 用户，密码不知道。
+查看 系统管理 | 系统设置 | 主目录 
+    /Users/Shared/Jenkins/Home(不是 $HOME/.jenkins 目录)
+    org.jenkins-ci.plist 指定了JENKINS_HOME
+    参考：持续集成工具-Jenkins-WebUI-系统管理配置-系统设置-修改主目录.txt

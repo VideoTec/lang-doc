@@ -1,0 +1,7 @@
+http://www.unicode.org/
+
+Recent Releases:
+
+New Unicode 9.0 Released (2016.06.21)
+New Unicode Emoji Technical Report, Version 3 (2016.06.06)
+CLDR Version 29 Released (2016.03.16)
