@@ -1,0 +1,3 @@
+系统管理 | Global Tool Configuration
+
+JDK 安装

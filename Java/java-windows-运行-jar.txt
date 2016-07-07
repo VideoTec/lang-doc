@@ -1,3 +1,34 @@
+13:07 2016/7/7
+指定 classpath
+
+http://www.zeali.net/entry/15
+java -Xbootclasspath/a:/usrhome/thirdlib.jar: -jar yourJarExe.jar
+分隔符与classpath参数类似，unix使用:号,windows使用;号，这里以unix为例
+
+Java 命令行提供了如何扩展bootStrap 级别class的简单方法.
+-Xbootclasspath:     完全取代基本核心的Java class 搜索路径.
+                                   不常用,否则要重新写所有Java 核心class
+-Xbootclasspath/a: 后缀在核心class搜索路径后面.常用!!
+-Xbootclasspath/p: 前缀在核心class搜索路径前面.不常用,避免
+                                   引起不必要的冲突.
+
+http://sddhn.blog.163.com/blog/static/128187792011102454152790/
+如果单个jar文件，没有引用到其他jar文件，而且指定了Main-Class，可以这样运行：
+    java -jar hello.jar
+    
+如果执行的jar文件引用了其他jar文件
+1,
+java -cp lib\log4j-1.2.14.jar;hello.jar com.dhn.Hello    （com.dhn.Hello为主类）
+2,
+通过MANIFEST.MF中的Class-Path 来指定运行时需要用到的其他jar
+Manifest-Version: 1.0
+    Main-Class: com.ibm.portalnews.entrance.Main
+    Class-Path: lib\commons-collections-3.2.jar lib\commons-configuration-1.5.jar lib\commons-lang-2.3.jar lib\commons-logging.jar lib\dom4j-1.6.1.jar lib\jaxen-1.1-beta-7.jar lib\jdom.jar lib\log4j-1.2.14.jar
+Main-Class 是jar文件的主类，程序的入口
+    Class-Path 指定需要的jar，多个jar必须要在一行上，多个jar之间以空格隔开，如果引用的jar在当前目录的子目录下，windows下使用\来分割，linux下用/分割
+    文件的冒号后面必须要空一个空格，否则会出错
+    文件的最后一行必须是一个回车换行符，否则也会出错
+    
 http://stackoverflow.com/questions/394616/running-jar-file-in-windows
 
 I have a "helloworld.jar" file. For running a JAR file I am using a command-line window and executing the following command:

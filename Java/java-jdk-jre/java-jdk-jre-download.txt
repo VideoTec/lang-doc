@@ -1,3 +1,6 @@
+https://www.oracle.com/webfolder/s/digest/7u80checksum.html
+所有安装包的核验码
+
 http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
 Java SE Development Kit 8 Downloads
@@ -13,3 +16,9 @@ Java SE Development Kit 8u65
 Java SE Development Kit 8u66
 
 http://www.oracle.com/technetwork/cn/java/javase/downloads/jdk7-downloads-1880260.html
+
+jdk-7u80-macosx-x64.dmg md5 f280136f455a53d65d9de420fc28f53d 
+//
+// File Checksum Integrity Verifier version 2.05.
+//
+f280136f455a53d65d9de420fc28f53d e:\baiduyundownload\jdk-7u80-macosx-x64.dmg

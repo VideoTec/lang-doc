@@ -1,0 +1,28 @@
+2113 [main] ERROR com.feinno.serialization.protobuf.generator.ProtoHelperBuilder  - com.feinno.androidprotocol.protobuffer.args.vowifi.AcceptNotify create failed in JavaEval,details:
+com.feinno.serialization.protobuf.util.JavaEvalException: Compiler Java Soruce Error! Please Check Source. Error Reason:
+string:///com/feinno/androidprotocol/protobuffer/args/vowifi/AcceptNotifyProtoBuilder.java:3: 无法访问 java.io.IOException
+错误的类文件： java/io/IOException.class(java/io:IOException.class)
+类文件具有错误的版本 52.0，应为 50.0
+请删除该文件或确保该文件位于正确的类路径子目录中。
+import java.io.IOException;
+              ^
+
+	at com.feinno.serialization.protobuf.util.JavaEval.compile(JavaEval.java:187)
+	at com.feinno.serialization.protobuf.util.JavaEval.compile(JavaEval.java:141)
+	at com.feinno.serialization.protobuf.generator.ProtoHelperBuilder.buildFactory(ProtoHelperBuilder.java:42)
+	at com.feinno.serialization.protobuf.PBChecker.check(PBChecker.java:86)
+	at com.feinno.serialization.protobuf.util.AntBuilder.main(AntBuilder.java:14)
+    
+http://blog.sina.com.cn/s/blog_6e0c17b90100p2b8.html
+
+这种情况是用高版本的jdk编译的东西
+用低版本的jre来跑
+可以试着改变jdk的版本，改为最高级别的（相对于现有的而言)
+
+http://stackoverflow.com/questions/28180915/class-file-has-wrong-version-52-0-should-be-50-0
+it means your java runtime version is 1.8, 
+but your compiler version (javac) is 1.6. 
+To simply solve it, just retreat the java version from 1.8 to 1.6.
+
+To simply solve it, just retreat the java version from 1.8 to 1.6."
+Did you get the solution? In my case I switched to using java 7 and everything works. 
