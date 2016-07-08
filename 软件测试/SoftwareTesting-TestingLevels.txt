@@ -1,0 +1,8 @@
+https://en.wikipedia.org/wiki/Software_testing
+
+4	Testing levels
+4.1	Unit testing
+4.2	Integration testing
+4.3	Component interface testing
+4.4	System testing
+4.5	Operational Acceptance testing

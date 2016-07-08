@@ -1,0 +1,7 @@
+https://en.wikipedia.org/wiki/Software_testing
+
+6	Testing process
+6.1	Traditional waterfall development model
+6.2	Agile or Extreme development model
+6.3	Top-down and bottom-up
+6.4	A sample testing cycle

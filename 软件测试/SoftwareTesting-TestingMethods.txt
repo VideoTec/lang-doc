@@ -1,0 +1,9 @@
+https://en.wikipedia.org/wiki/Software_testing
+
+Testing methods
+3.1	Static vs. dynamic testing
+3.2	The box approach
+3.2.1	White-box testing
+3.2.2	Black-box testing
+3.2.2.1	Visual testing
+3.2.3	Grey-box testing

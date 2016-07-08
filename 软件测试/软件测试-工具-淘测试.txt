@@ -1,0 +1,5 @@
+https://www.zhihu.com/question/20188761
+在平安，我们做的是iOS的，用的是UIAutomation，
+后来团队全部转用淘宝的测试框架了
+
+http://test.taobao.com/index.htm

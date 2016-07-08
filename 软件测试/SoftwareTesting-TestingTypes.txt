@@ -1,0 +1,24 @@
+5	Testing types
+5.1	Installation testing
+5.2	Compatibility testing
+5.3	Smoke and sanity testing
+
+5.4	Regression testing
+regression[英][rɪˈgreʃn] [美][rɪˈɡrɛʃən]
+n.衰退；（尤指因催眠或精神疾患，或为逃避目前忧虑）回到从前；回归；（统计学） 回归
+
+5.5	Acceptance testing
+5.6	Alpha testing
+5.7	Beta testing
+5.8	Functional vs non-functional testing
+5.9	Continuous testing
+5.10	Destructive testing
+5.11	Software performance testing
+5.12	Usability testing
+5.13	Accessibility testing
+5.14	Security testing
+5.15	Internationalization and localization
+5.16	Development testing
+5.17	A/B testing
+5.18	Concurrent testing
+5.19	Conformance testing or type testing
