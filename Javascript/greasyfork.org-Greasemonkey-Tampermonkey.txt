@@ -20,4 +20,13 @@ Greasemonkey
 组合来自不同网页的数据、或者数繁不及备载的其他功能。
 写的好的Greasemonkey脚本甚至可让其输出与被修改的页面集成得天衣无缝，像是原本网页里的一部分
 
-Chrome可直接安装脚本，但兼容性需要使用Tampermonkey、Blank Canvas Script Handler加强
+Chrome可直接安装脚本，但兼容性需要使用 Tampermonkey、Blank Canvas Script Handler加强
+
+下载脚本：
+https://greasyfork.org
+Greasy Fork 账户
+jssd
+2498382401@qq.com 1-0
+挊
+
+
