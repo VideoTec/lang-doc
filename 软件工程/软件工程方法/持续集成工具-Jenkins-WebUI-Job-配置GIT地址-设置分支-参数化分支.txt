@@ -1,0 +1,8 @@
+http://www.sourceprojects.org/jenkins-and-the-git-branch-selection
+
+We're using Jenkins 1.488 and start by installing some of the required plugins 
+which are at least 
+"Jenkins Parameterized Trigger plugin", 
+"Git Plugin", 
+"Git Parameter Plug-In", 
+"Extended Choice Parameter Plug-In".
