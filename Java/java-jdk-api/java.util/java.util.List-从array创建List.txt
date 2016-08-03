@@ -9,3 +9,26 @@ which cannot be typecasted to java.util.ArrayList.
 
 Then you would have to use addAll method, which is not so good. 
 So just use List<String>
+
+http://stackoverflow.com/questions/4042434/converting-arrayliststring-to-string-in-java
+
+List<String> list = ..;
+String[] array = list.toArray(new String[0]);
+
+For example:
+
+List<String> list = new ArrayList<String>();
+//add some stuff
+list.add("android");
+list.add("apple");
+String[] stringArray = list.toArray(new String[0]);  指明了数组类型
+
+The toArray() method without passing any argument returns Object[]. 
+So you have to pass an array as an argument, 
+which will be filled with the data from the list, and returned. 
+You can pass an empty array as well, 
+but you can also pass an array with the desired size.
+
+Important update: 
+Originally the code above used new String[list.size()]. 
+However, this blogpost reveals that due to JVM optimizations, using new String[0] is better now.
