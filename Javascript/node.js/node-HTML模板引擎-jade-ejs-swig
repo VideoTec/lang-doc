@@ -1,0 +1,13 @@
+http://paularmstrong.github.io/swig/
+
+http://naltatis.github.io/jade-syntax-docs/
+https://segmentfault.com/a/1190000000357534
+Jade —— 源于 Node.js 的 HTML 模板引擎
+
+jade是面向后台开发员的模板语言，体验过各种语言各种模板之后，
+个人认为jade最佳应用场景就是小型开发，就是从后台到前台一脚踢的情况，
+它能以最少的代码量最快的速度构建出一个像模像样的网页架构，对于大部分不具备美工技能的coder来说，这就足够了。
+除此之外，放弃jade吧。jade只是个单人play的玩具罢了。
+
+http://expressjs.jser.us/jade.html
+Jade 是一个高性能的模板引擎，它深受Haml影响，它是用javascript实现的,并且可以供node使用.

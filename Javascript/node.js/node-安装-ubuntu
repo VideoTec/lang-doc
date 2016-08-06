@@ -1,0 +1,33 @@
+http://taobaofed.org/blog/2015/11/17/nvm-or-n/
+
+https://linux.cn/article-5766-1.html
+
+1) 从源代码安装Node.JS
+
+2) 利用包管理器安装Node.JS
+
+3) 从Github远程库安装Node.JS
+
+4) 通过NVM安装Node.JS
+在最后一种方法中我们我们将用NVM来比较容易安装Node.JS。
+安装和配制Node.JS，这是最好的方法之一，它可以供我们选择要安装的版本。
+
+root@ubuntu-15:~# apt-get install build-essential libssl-dev
+root@ubuntu-15:~# curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh
+
+另外一种安装方法：直接从官网上下载二进制包
+https://nodejs.org/zh-cn/
+解压出来，直接运行
+wangxiang@wangxiang-M68MT-S2P:~$ cd node-v4.4.7-linux-x64/
+wangxiang@wangxiang-M68MT-S2P:~/node-v4.4.7-linux-x64$ cd bin
+wangxiang@wangxiang-M68MT-S2P:~/node-v4.4.7-linux-x64/bin$ ./node
+> a = [1,2,3,4]
+[ 1, 2, 3, 4 ]
+> typeof a
+'object'
+> 6 + 5
+11
+> 
+(To exit, press ^C again or type .exit)
+> 
+
