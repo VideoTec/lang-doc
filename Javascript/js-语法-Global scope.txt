@@ -1,0 +1,47 @@
+http://stackoverflow.com/questions/22822952/javascript-is-the-windows-object-a-default-object
+In Javascript, 
+there is something called the Global scope. 
+
+On Browsers, 
+the global scope object is window. 
+If you create a variable outside of a function, 
+it goes by default into the global scope, which is window.
+
+When invoking a method or referencing a variable on the window object, 
+it's optional to include window.
+
+http://stackoverflow.com/questions/4862193/javascript-global-variables
+
+window.a = 0;
+
+This creates a property on the global object explicitly, 
+using the window global that refers to the global object 
+(on browsers; some non-browser environments have an equivalent global variable, such as global on NodeJS). 
+As it's a normal property, you can delete it.
+
+This property is enumerable, on IE8 and earlier, 
+and on every other browser I've tried.
+
+http://stackoverflow.com/questions/4862193/javascript-global-variables
+Keeping it simple :
+
+a = 0
+The code above gives a global scope variable
+
+var a = 0;
+This code will give a variable to be used in the current scope, and under it
+
+window.a = 0;
+This generally is same as the global variable.
+
+http://stackoverflow.com/questions/6679635/is-window-really-global-in-javascript
+
+The reason why you can access "out of scope" or "free" variables 
+in ECMAscript is the such called Scope chain. 
+
+The scope chain is a special property from each Execution context. 
+As mentioned several times before, a context object looks at least like:
+
+[[scope]]
+Variable / Activation Object
+"this" context value

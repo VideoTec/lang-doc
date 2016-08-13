@@ -1,0 +1,30 @@
+abc://username:password@example.com:123/path/data?key=value&key2=value2#fragid1
+
+authority 部分是 username:password@example.com:123
+schemes 是 abc://
+
+http://en.wikipedia.org/wiki/URI#Examples_of_URI_references
+"http"                  指定协议名, 
+
+"en.wikipedia.org"      是“典据”, 
+naming authority 名称机构
+更合适的是翻译是 当局
+
+"/wiki/URI"             是指向英文维基页面的“路径”，而
+"#Examples_of_URI_references"   是指向英文维基页面相应片段的“片段”
+
+A generic URI is of the form:
+scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]
+
+https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
+
+In information technology, 
+a Uniform Resource Identifier (URI) is a string of characters used to identify a resource. 
+Such identification enables interaction with representations of the resource over a network, 
+typically the World Wide Web, using specific protocols. 
+Schemes specifying a concrete syntax and associated protocols define each URI. 
+The most common form of URI is the Uniform Resource Locator (URL), 
+frequently referred to informally as a web address. 
+More rarely seen in usage is the Uniform Resource Name (URN), 
+which was designed to complement URLs 
+by providing a mechanism for the identification of resources in particular namespaces.

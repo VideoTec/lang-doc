@@ -1,0 +1,46 @@
+http://stackoverflow.com/questions/7524585/how-do-i-get-the-information-from-a-meta-tag-with-javascript
+
+function getVideoContent() { 
+   var metas = document.getElementsByTagName('meta'); 
+
+   for (var i=0; i<metas.length; i++) { 
+      if (metas[i].getAttribute("property") == "video") { 
+         return metas[i].getAttribute("content"); 
+      } 
+   } 
+
+    return "";
+} 
+
+http://stackoverflow.com/questions/29124579/get-meta-data-attribute-in-javascript
+
+meta elements aren't special, you can query for them and get their attributes in the normal way.
+
+In this case, here's how you'd get the content attribute value from the first meta[property="og:image"] element:
+
+var element = document.querySelector('meta[property="og:image"]');
+var content = element && element.getAttribute("content");
+querySelector is supported by all modern browsers, and also IE8.
+
+http://forums.macrumors.com/threads/using-dom-to-get-description-meta-tag.569947/
+
+#1
+Can anyone suggest a Javascript one-liner to get the description meta tag from a page's DOM?
+
+Doesn't need to work in anything but Safari...
+
+The best I've managed so far is as follows, 
+but it seems to be case sensitive (in other words, doesn't work if the meta tag is named "Description", or "DESCRIPTION"):
+Code:
+document.getElementsByName('description')[0].content
+
+正确的解法：
+
+var description;
+var metas = document.getElementsByTagName('meta');
+for (var x=0,y=metas.length; x<y; x++) {
+  if (metas[x].name.toLowerCase() == "description") {
+    description = metas[x];
+  }
+}
+alert(description.content); // output content of description

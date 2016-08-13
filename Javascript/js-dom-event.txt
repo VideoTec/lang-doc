@@ -1,0 +1,7 @@
+https://developer.mozilla.org/en-US/docs/Web/API/Event
+
+The Event interface represents any event of the DOM. 
+It contains common properties and methods to any event.
+
+A lot of other interfaces implement the Event interface, 
+either directly or by implementing another interface which does so:

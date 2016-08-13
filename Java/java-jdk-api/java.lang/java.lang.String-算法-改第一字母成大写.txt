@@ -1,0 +1,14 @@
+http://stackoverflow.com/questions/17026190/make-string-first-letter-capital-in-java
+
+String output = Character.toUpperCase(input.charAt(0)) + input.substring(1);
+
+或者
+
+You should have a look at StringUtils class from Apache Commons Lang lib - it has method .capitalize()
+
+capitalize[英][ˈkæpɪtəlaɪz] [美][ˈkæpɪtlˌaɪz]
+vt.用大写字母写或印刷；使…资本化；估计…的价值；把…定为首都
+
+org.apache.commons.lang.StringUtils
+String StringUtils.capitalize(String str) 
+Capitalizes a String changing the first letter to title case as per Character.toTitleCase(char).

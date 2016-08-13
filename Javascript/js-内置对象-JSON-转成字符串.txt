@@ -1,0 +1,24 @@
+http://stackoverflow.com/questions/4162749/convert-js-object-to-json-string
+
+Modern browsers (IE8, FF3, Chrome etc.) 
+have native JSON support built in (Same API as with JSON2).
+
+So as long you're not dealing with IE6/7 you can do it just as easily as that:
+
+var j={"name":"binchen"};
+JSON.stringify(j); // '{"name":"binchen"}'
+
+But to add support for the oldie's, 
+you should also include the json2 script
+
+例子：
+var json = JSON.stringify({'description': getMetaData('description'), 'icon': getIcon()});
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+
+概述
+
+JSON.stringify() 方法可以将任意的 JavaScript 值序列化成 JSON 字符串。
+若转换的函数被指定，则被序列化的值的每个属性都会经过该函数的转换和处理；
+若转换的数组被指定，
+只有包含在这个数组中的属性名才会被序列化到最终的 JSON 字符串中。

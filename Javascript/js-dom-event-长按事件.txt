@@ -1,0 +1,22 @@
+http://stackoverflow.com/questions/11735245/html-5-canvas-detect-long-click
+
+​<canvas id="myCanvas"></canvas>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+You can simply set a Timeout on the mousedown event of the canvas, 
+then clear it on the mouseup event.
+
+Here's a Demo
+
+​var canvas = document.getElementById('myCanvas');
+var timer = null;
+
+​canvas.onmousedown = function(){
+  timer = setTimeout( doStuff, 2000 );
+};
+
+canvas.onmouseup = function(){
+  clearTimeout( timer );
+};
+
+function doStuff() {
+  alert('hello, you just pressed the mousebutton for two seconds.')
+}

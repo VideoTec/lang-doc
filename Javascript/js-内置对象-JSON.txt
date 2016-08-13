@@ -1,0 +1,12 @@
+http://www.json.org/js.html
+
+http://stackoverflow.com/questions/4162749/convert-js-object-to-json-string
+
+Modern browsers (IE8, FF3, Chrome etc.) 
+have native JSON support built in (Same API as with JSON2).
+
+So as long you're not dealing with IE6/7 
+you can do it just as easily as that:
+
+var j={"name":"binchen"};
+JSON.stringify(j); // '{"name":"binchen"}'

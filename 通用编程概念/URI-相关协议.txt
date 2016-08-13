@@ -1,0 +1,43 @@
+https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
+
+RFC 1630
+https://tools.ietf.org/html/rfc1630
+Universal Resource Identifiers in WWW
+
+RFC 1738
+https://tools.ietf.org/html/rfc1738
+Uniform Resource Locators (URL)
+
+RFC 2141
+https://tools.ietf.org/html/rfc2141
+URN Syntax
+
+RFC 2396
+https://tools.ietf.org/html/rfc2396
+Uniform Resource Identifiers (URI): Generic Syntaxs
+
+RFC 2616
+https://tools.ietf.org/html/rfc2616
+Hypertext Transfer Protocol -- HTTP/1.1
+
+RFC 2732 provided a minor update to RFC 2396
+https://tools.ietf.org/html/rfc2732
+Format for Literal IPv6 Addresses in URL's
+
+RFC 3305
+https://tools.ietf.org/html/rfc3305
+Report from the Joint W3C/IETF URI Planning Interest Group:
+Uniform Resource Identifiers (URIs), 
+URLs, and 
+Uniform Resource Names (URNs): Clarifications and Recommendations
+
+RFC 3986
+https://tools.ietf.org/html/rfc3986
+Uniform Resource Identifier (URI): Generic Syntax
+
+https://tools.ietf.org/html/rfc6874
+Representing IPv6 Zone Identifiers in
+Address Literals and Uniform Resource Identifiers
+
+https://tools.ietf.org/html/rfc7320
+URI Design and Ownership

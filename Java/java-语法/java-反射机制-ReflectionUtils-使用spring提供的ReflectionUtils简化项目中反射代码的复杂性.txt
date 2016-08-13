@@ -1,0 +1,55 @@
+http://www.cnblogs.com/jiaoyiping/p/4629052.html
+
+使用spring提供的ReflectionUtils简化项目中反射代码的复杂性
+在项目中有时候我们会使用到反射的功能,
+如果使用最原始的方法来开发反射的功能的话肯能会比较复杂，
+需要处理一大堆异常以及访问权限等问题。
+spring中提供了 ReflectionUtils
+
+这个反射的工具类，如果项目使用spring框架的话，
+使用这个工具可以简化反射的开发工作。
+
+http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/util/ReflectionUtils.html
+
+org.springframework.util
+Class ReflectionUtils
+
+java.lang.Object
+org.springframework.util.ReflectionUtils
+
+public abstract class ReflectionUtils
+extends Object
+Simple utility class for working with the reflection API and handling reflection exceptions.
+Only intended for internal use.
+
+https://github.com/spring-projects/spring-android/blob/master/spring-android-core/src/main/java/org/springframework/util/ReflectionUtils.java
+
+findGetterForProperty ReflectionUtils
+
+ReflectivePropertyAccessor.java
+
+312     /**
+313      * Find a getter method for the specified property. A getter is defined as a method whose name start with the prefix
+314      * 'get' and the rest of the name is the same as the property name (with the first character uppercased).
+315      */
+316     protected Method findGetterForProperty(String propertyName, Class<?> clazz, boolean mustBeStatic) {
+317         Method[] ms = clazz.getMethods();
+318         // Try "get*" method...
+319         String getterName = "get" + StringUtils.capitalize(propertyName);
+320         for (Method method : ms) {
+321             if (method.getName().equals(getterName) && method.getParameterTypes().length == 0 &&
+322                     (!mustBeStatic || Modifier.isStatic(method.getModifiers()))) {
+323                 return method;
+324             }
+325         }
+326         // Try "is*" method...
+327         getterName = "is" + StringUtils.capitalize(propertyName);
+328         for (Method method : ms) {
+329             if (method.getName().equals(getterName) && method.getParameterTypes().length == 0 &&
+330                     boolean.class.equals(method.getReturnType()) &&
+331                     (!mustBeStatic || Modifier.isStatic(method.getModifiers()))) {
+332                 return method;
+333             }
+334         }
+335         return null;
+336     }

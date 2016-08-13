@@ -1,0 +1,14 @@
+http://stackoverflow.com/questions/10282939/how-to-get-favicons-url-from-a-generic-webpage-in-javascript
+
+var getFavicon = function(){
+    var favicon = undefined;
+    var nodeList = document.getElementsByTagName("link");
+    for (var i = 0; i < nodeList.length; i++)
+    {
+        if((nodeList[i].getAttribute("rel") == "icon")||(nodeList[i].getAttribute("rel") == "shortcut icon"))
+        {
+            favicon = nodeList[i].getAttribute("href");
+        }
+    }
+    return favicon;        
+}

@@ -1,0 +1,3 @@
+https://wiki.whatwg.org/wiki/URL_schemes#javascript:_URLs
+
+https://tools.ietf.org/html/draft-hoehrmann-javascript-scheme-03

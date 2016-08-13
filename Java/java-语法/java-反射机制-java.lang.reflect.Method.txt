@@ -1,0 +1,23 @@
+http://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Method.html
+
+java.lang.reflect 
+Class Method
+
+java.lang.Object
+  extended by java.lang.reflect.AccessibleObject
+      extended by java.lang.reflect.Method
+      
+All Implemented Interfaces:
+AnnotatedElement, GenericDeclaration, Member
+
+public final class Method
+extends AccessibleObject
+implements GenericDeclaration, Member
+
+A Method provides information about, and access to, 
+a single method on a class or interface. 
+The reflected method may be a class method or an instance method (including an abstract method).
+
+A Method permits widening conversions to occur 
+when matching the actual parameters to invoke with the underlying method's formal parameters, 
+but it throws an IllegalArgumentException if a narrowing conversion would occur

@@ -1,0 +1,45 @@
+http://www.java2s.com/Code/Java/Reflection/Findasettermethodforthegiveobjectspropertyandtrytocallit.htm
+
+    private static synchronized Method findMethod(Object obj,
+            String property, Object value) {
+        Method m = null;
+        Class<?> theClass = obj.getClass();
+        String setter = String.format("set%C%s",
+                property.charAt(0), property.substring(1));
+        Class paramType = value.getClass();
+        while (paramType != null) {
+            try {
+                m = theClass.getMethod(setter, paramType);
+                return m;
+            } catch (NoSuchMethodException ex) {
+                // try on the interfaces of this class
+                for (Class iface : paramType.getInterfaces()) {
+                    try {
+                        m = theClass.getMethod(setter, iface);
+                        return m;
+                    } catch (NoSuchMethodException ex1) {
+                    }
+                }
+                paramType = paramType.getSuperclass();
+            }
+        }
+        return m;
+    }
+    
+http://stackoverflow.com/questions/15115072/how-to-identify-setter-method-using-property-name
+
+capitalize[英][ˈkæpɪtəlaɪz] [美][ˈkæpɪtlˌaɪz]
+vt.用大写字母写或印刷；使…资本化；估计…的价值；把…定为首都
+
+org.apache.commons.lang.StringUtils
+String StringUtils.capitalize(String str) 
+Capitalizes a String changing the first letter to title case as per Character.toTitleCase(char).
+
+Reflection API is what you need. 
+Let's assume that you know the property name and you have an object a of type A:
+
+ String propertyName = "name";
+ String methodName = "set" + StringUtils.capitalize(propertyName);
+ a.getClass().getMethod(methodName, newObject.getClass()).invoke(a, newObject);
+ 
+Ofcourse, you will be asked to handle some exceptions.

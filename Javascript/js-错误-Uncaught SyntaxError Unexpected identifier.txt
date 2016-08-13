@@ -1,0 +1,20 @@
+代码：
+ 
+ function addLongPressEventForImages() {
+        var images = doc.getElementsByTagName('img');
+        for (int i = 0; i < images.length; i++) {
+            console.log('add event for img' + images[0]);
+            images[i].addEventListener("onclick", function() {
+                console.log('touch image start');
+            }, false);
+        }
+    }
+    
+Uncaught SyntaxError: Unexpected identifier
+
+正确写法：
+
+for (var i=0;i<cars.length;i++)
+{
+document.write(cars[i] + "<br>");
+}

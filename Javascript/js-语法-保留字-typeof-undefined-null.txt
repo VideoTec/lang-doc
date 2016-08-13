@@ -1,0 +1,45 @@
+receiveMessageQueue = null;
+
+   //提供给native调用,receiveMessageQueue 在会在页面加载完后赋值为null,所以
+    function _handleMessageFromNative(messageJSON) {
+        console.log(messageJSON);
+        if (receiveMessageQueue) {
+            receiveMessageQueue.push(messageJSON);
+        } else {
+            _dispatchMessageFromNative(messageJSON);
+        }
+    }
+
+http://stackoverflow.com/questions/5101948/javascript-checking-for-null-vs-undefined-and-difference-between-and
+
+---------------------------------------
+Is the variable null:
+---------------------------------------
+
+if (a === null)
+// or
+if (a == null) // but see note below
+
+---------------------------------------
+Is it undefined:
+---------------------------------------
+
+if (typeof a === "undefined")
+// or
+if (a === undefined)
+// or
+if (a == undefined) // but see note below
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof
+typeof 用法
+
+// 从JavaScript一开始出现就是这样的，历史遗留问题
+typeof null === 'object';
+
+// Numbers
+typeof 37 === 'number';
+typeof 3.14 === 'number';
+typeof Math.LN2 === 'number';
+typeof Infinity === 'number';
+typeof NaN === 'number'; // 尽管NaN是"Not-A-Number"的缩写,意思是"不是一个数字"
+typeof Number(1) === 'number'; // 不要这样使用!
