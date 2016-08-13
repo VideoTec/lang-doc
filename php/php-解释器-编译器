@@ -1,0 +1,12 @@
+https://zh.wikipedia.org/wiki/PHP
+
+PHP一直被当作解释器使用。
+PHP编译器则将PHP从解释器中分离，为加快运行和改善与以其他编程语言编写部分的互通性，
+
+例如
+Phalanger将PHP编译成通用中间语言和
+Hiphop for PHP把PHP源代码编译成C++等。
+
+Facebook因应其网站大量的用户，
+集成了HPHPc、HPHPi、HPHPd以及HHVM这四种脚本引擎，
+开发出 HipHop for PHP，以加强网站性能。

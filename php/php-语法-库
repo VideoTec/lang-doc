@@ -1,0 +1,96 @@
+https://zh.wikipedia.org/wiki/PHP
+
+自带多样化的函数是PHP主要的特点之一，这些开放代码的函数提供了各种不同的功能，
+例如文件处理、FTP、字符串处理、等等。
+这些函数的使用方法和C语言相近（例如printf），这也是PHP广为流行的原因之一。
+
+除了自带的函数之外，PHP也提供了很多扩展库（extension），
+像是各种数据库连接函数、数据压缩函数、图形处理等等。
+有些延伸库需要从PECL（PHP Extension Community Library）获取。
+
+以下是PHP编程语言提供的库列表
+
+Apache
+BCMath
+Bzip2
+Calendars
+CCVS
+COM
+ClibPDF
+cURL
+Cybercash
+DB2
+dBase
+DBM
+dbx
+DB++
+DOM XML
+.NET
+FileMaker Pro
+FrontBase
+filePro
+FriBiDi
+FTP
+Gettext
+GD Graphics Library
+GNU Multi-Precision Library
+Hyperwave
+iconv
+IMAP，POP3 and NNTP
+Informix
+Ingres II
+InterBase
+IRC
+LDAP
+Lotus Notes
+mailparse
+MCAL
+Mcrypt
+MCVE
+Mhash
+MIME Functions
+MS-SQL
+Ming
+mnoGoSearch
+mSQL
+MySQL
+Mowhawk
+muscat
+Ncurses
+ODBC
+Oracle
+OpenSSL
+Ovrimos SQL
+PDF
+PayFlow Pro
+PDO
+POSIX
+PostgreSQL
+Printer
+Pspell
+GNU Readline
+GNU Recode
+Regular expressions
+QT-Dom
+Semaphores
+SESAM
+Session Handling
+Shared memory
+SMTP
+SNMP
+Sockets
+SimpleXML
+SQLite
+Streams
+Sybase
+Token
+vpopmail
+WDDX
+Win32 API
+XML（Xpath）
+XML-RPC
+XSLT
+YAZ
+Yellow Pages / 网络信息服务（NIS）
+ZIP
+Zlib

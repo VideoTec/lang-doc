@@ -1,0 +1,5 @@
+https://zh.wikipedia.org/wiki/PHP
+
+php包管理器[编辑]
+Composer是php社区用来管理依赖关系的工具，
+一般在php项目中通过composer.json声明依赖的外部php库，然后就可以使用Composer管理包依赖。

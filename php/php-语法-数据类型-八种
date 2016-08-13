@@ -1,0 +1,15 @@
+https://zh.wikipedia.org/wiki/PHP
+
+PHP主要有八种基本数据类型[45]，其中包括：
+
+四种变量类型
+	整数型（integer）
+	浮点数型（float）
+	布尔型（boolean）
+	字符串（string）
+两种复合类型
+	数组（array）
+	对象（object）
+两种特殊类型
+	NULL
+	资源 （resource）
