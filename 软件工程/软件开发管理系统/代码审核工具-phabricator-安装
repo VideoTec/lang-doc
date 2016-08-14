@@ -1,0 +1,71 @@
+----------------------------------------------------------------------------------
+ubuntu 安装脚本
+----------------------------------------------------------------------------------
+https://secure.phabricator.com/diffusion/P/browse/master/scripts/install/install_ubuntu.sh
+
+----------------------------------------------------------------------------------
+下载代码：
+git clone https://github.com/phacility/phabricator.git
+----------------------------------------------------------------------------------
+
+下载依赖库
+$ cd somewhere/ # pick some install directory
+somewhere/ $ git clone https://github.com/phacility/libphutil.git
+somewhere/ $ git clone https://github.com/phacility/arcanist.git
+
+不需要修改php配置文件来添加include的路径
+/usr/local/php/php.ini
+include_path = .:/usr/local/lib/php:./include
+arcanist[英]['ɑ:kənɪst] [美]['ɑkənɪst] n.巧匠，拥有陶磁器制造秘方的人
+
+查看
+/home/wangxiang/nginx/phabricator/scripts
+  $include_path = ini_get('include_path');
+  ini_set(
+    'include_path',
+    $include_path.PATH_SEPARATOR.dirname(__FILE__).'/../../');
+  @include_once 'libphutil/scripts/__init_script__.php';
+  if (!@constant('__LIBPHUTIL__')) {
+    echo "ERROR: Unable to load libphutil. Update your PHP 'include_path' to ".
+      "include the parent directory of libphutil/.\n";
+    exit(1);
+  }
+
+  phutil_load_library('arcanist/src');
+  phutil_load_library(dirname(__FILE__).'/../src/');
+可知道，只需把 libphutil arcanist 文件夹放在 phabricator 同级目录，ph 运行时就可找到了
+
+Install these PHP extensions:
+openssl         --with-openssl[=DIR]
+mbstring        --with-libmbfl[=DIR] --enable-mbstring
+curl            --with-curl[=DIR]
+
+----------------------------------------------------------------------------------
+https://secure.phabricator.com/book/phabricator/article/installation_guide/
+----------------------------------------------------------------------------------
+
+Overview
+
+Phabricator is a LAMP (Linux, Apache, MySQL, PHP) application. 
+To install Phabricator, you will need:
+
+1. a normal computer to install it on 
+(shared hosts and unusual environments are not supported) 
+running some flavor of Linux or a similar OS;
+
+2. a domain name (like phabricator.mycompany.com);
+
+3. basic sysadmin skills;
+
+4. Apache, nginx, or another webserver;
+
+5. PHP, MySQL, and Git.
+
+The remainder of this document details these requirements.
+
+目录：
+
+第一章 Installation Requirements
+第二章 Level Requirements
+第三章 Installing Required Components
+第四章 Installing APC (Optional)
