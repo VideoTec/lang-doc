@@ -1,0 +1,5 @@
+http://stackoverflow.com/questions/11171520/get-src-of-img-element-from-div
+
+var someimage = document.getElementById('this_one');
+var myimg = someimage.getElementsByTagName('img')[0];
+var mysrc = myimg.src;
