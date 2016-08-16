@@ -1,0 +1,16 @@
+function f1() {       --- typeof 是 function
+}
+
+var f2 = function() {       --- typeof 是 function
+}
+
+var functionObj = new function() {       --- typeof 是 object
+}
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
+
+he Function constructor creates a new Function object. 
+In JavaScript every function is actually a Function object.
+
+Syntax
+new Function ([arg1[, arg2[, ...argN]],] functionBody)

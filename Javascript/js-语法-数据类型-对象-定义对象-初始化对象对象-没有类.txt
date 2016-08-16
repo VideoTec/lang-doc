@@ -1,0 +1,79 @@
+javascript 中没有类的概念。
+直接定义一个对象，类似声明一个 map, 数组。
+
+与其说 定义对象， 不如说初始化对象合适些
+
+例如：
+    var WebViewJavascriptBridge = window.WebViewJavascriptBridge = {
+        init: init,
+        send: send,
+        registerHandler: registerHandler,
+        callHandler: callHandler,
+        _fetchQueue: _fetchQueue,
+        _handleMessageFromNative: _handleMessageFromNative
+    };
+    
+    
+var apple = {
+    type: "macintosh",
+    color: "red",
+    getInfo: function () {
+        return this.color + ' ' + this.type + ' apple';
+    }
+}
+    
+http://www.phpied.com/3-ways-to-define-a-javascript-class/
+
+It's important to note that there are no classes in JavaScript. 
+Functions can be used to somewhat simulate classes, 
+but in general JavaScript is a class-less language. 
+Everything is an object. 
+And when it comes to inheritance, 
+objects inherit from objects, 
+not classes from classes as in the "class"-ical languages.
+
+通过 function 模拟类：
+
+function Apple (type) {
+    this.type = type;
+    this.color = "red";
+    this.getInfo = getAppleInfo;
+}
+ 
+// anti-pattern! keep reading...
+function getAppleInfo() {
+    return this.color + ' ' + this.type + ' apple';
+}
+
+使用：
+
+var apple = new Apple('macintosh');  相当于 new function
+apple.color = "reddish";
+alert(apple.getInfo());
+
+
+使用 object 属性定义对象。
+
+var apple = {
+    type: "macintosh",
+    color: "red",
+    getInfo: function () {
+        return this.color + ' ' + this.type + ' apple';
+    }
+}
+
+In this case you don't need to (and cannot) 
+create an instance of the class, it already exists. 
+So you simply start using this instance.
+
+apple.color = "reddish";
+alert(apple.getInfo());
+
+Such an object is also sometimes called singleton. 
+In "classical" languages such as Java, 
+singleton means that you can have 
+only one single instance of this class at any time, 
+you cannot create more objects of the same class. 
+
+In JavaScript (no classes, remember?) 
+this concept makes no sense anymore since all objects are singletons to begin with.

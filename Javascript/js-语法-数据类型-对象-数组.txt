@@ -23,3 +23,25 @@ toString()	把数组转换为字符串，并返回结果。
 toLocaleString()	把数组转换为本地数组，并返回结果。
 unshift()	向数组的开头添加一个或更多元素，并返回新的长度。
 valueOf()	返回数组对象的原始值
+
+http://www.phpied.com/3-ways-to-define-a-javascript-class/
+
+Literals are shorter way to define objects and arrays in JavaScript. 
+To create an empty object using you can do:
+
+var o = {};
+instead of the "normal" way:
+var o = new Object();
+
+For arrays you can do:
+var a = [];
+instead of:
+var a = new Array();
+
+var apple = {
+    type: "macintosh",
+    color: "red",
+    getInfo: function () {
+        return this.color + ' ' + this.type + ' apple';
+    }
+}

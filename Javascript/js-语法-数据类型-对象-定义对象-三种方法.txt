@@ -1,0 +1,23 @@
+http://www.phpied.com/3-ways-to-define-a-javascript-class/
+
+1. Using a function
+    1.1. Methods defined internally
+    1.2. Methods added to the prototype
+    
+2. Using object literals
+3. Singleton using a function
+
+function Apple (type) {
+    this.type = type;
+    this.color = "red";
+    this.getInfo = getAppleInfo;
+}
+ 
+// anti-pattern! keep reading...
+function getAppleInfo() {
+    return this.color + ' ' + this.type + ' apple';
+}
+
+var apple = new Apple('macintosh');
+apple.color = "reddish";
+alert(apple.getInfo());

@@ -1,3 +1,6 @@
+获取网页图标: /images/logo-icon.png
+怎么补全？
+
 http://stackoverflow.com/questions/10282939/how-to-get-favicons-url-from-a-generic-webpage-in-javascript
 
 var getFavicon = function(){

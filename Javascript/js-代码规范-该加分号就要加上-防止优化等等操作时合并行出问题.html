@@ -1,0 +1,16 @@
+<script>
+    function fetchWebPageInfo() {
+        var json = JSON.stringify({'description': getMetaData('description'), 'icon': getIcon()});
+        //RFNativeObj.onWebPageInfo(json);
+        console.log('[javascript] 返回的网页信息: ' + json);
+    }var RFJsObject = window.RFJsObject = {
+        fetchWebPageInfo: fetchWebPageInfo
+    }/*;[这里不加分号，会出错：javascript Unexpected token var]*/ var jumppublicplatforminfo = window.jumppublicplatforminfo = {
+        jumpPublicPlatformInfo: function(sid) {
+            console.log('[javascript] 调起公众平台号详情页: ' + sid);
+        }
+    }
+
+    jumppublicplatforminfo.jumpPublicPlatformInfo('900');
+</script>
+

@@ -1,0 +1,10 @@
+代码： 
+
+    var jumppublicplatforminfo = window.jumppublicplatforminfo = {
+        jumpPublicPlatformInfo: function(sid) {
+            console.log('[javascript] 调起公众平台号详情页: ' + sid);
+        }
+    }
+
+调用时：
+    window.jumppublicplatforminfo.jumpPublicPlatformInfo(sid);

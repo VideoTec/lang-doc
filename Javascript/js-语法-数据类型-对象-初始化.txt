@@ -1,0 +1,31 @@
+例如：
+    var WebViewJavascriptBridge = window.WebViewJavascriptBridge = {
+        init: init,
+        send: send,
+        registerHandler: registerHandler,
+        callHandler: callHandler,
+        _fetchQueue: _fetchQueue,
+        _handleMessageFromNative: _handleMessageFromNative
+    };
+    
+http://www.phpied.com/3-ways-to-define-a-javascript-class/
+
+Literals are shorter way to define objects and arrays in JavaScript. 
+To create an empty object using you can do:
+
+var o = {};
+instead of the "normal" way:
+var o = new Object();
+
+For arrays you can do:
+var a = [];
+instead of:
+var a = new Array();
+
+var apple = {
+    type: "macintosh",
+    color: "red",
+    getInfo: function () {
+        return this.color + ' ' + this.type + ' apple';
+    }
+}

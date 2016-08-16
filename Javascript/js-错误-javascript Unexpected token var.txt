@@ -1,0 +1,27 @@
+出错：javascript Unexpected token var
+
+代码： 
+    var RFJsObject = window.RFJsObject = {
+        fetchWebPageInfo: fetchWebPageInfo
+    }
+
+    var jumppublicplatforminfo = window.jumppublicplatforminfo = {
+        jumpPublicPlatformInfo: function(sid) {
+            console.log('[javascript] 调起公众平台号详情页: ' + sid);
+        }
+    }
+
+    //jumppublicplatforminfo.jumpPublicPlatformInfo('900');
+    
+代码执行没有问题，但是，这个js通过java代码，合成一行，注入到网页。
+合成一行后，下面这段就出问题了：
+
+    var RFJsObject = window.RFJsObject = {
+        fetchWebPageInfo: fetchWebPageInfo
+    }var jumppublicplatforminfo = window.jumppublicplatforminfo = {
+        jumpPublicPlatformInfo: function(sid) {
+            console.log('[javascript] 调起公众平台号详情页: ' + sid);
+        }
+    }
+    
+所在，语句后，应该加逗号，标准写法就没问题了

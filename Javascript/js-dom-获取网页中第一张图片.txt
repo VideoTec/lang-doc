@@ -1,3 +1,19 @@
+/images/logo-icon.png
+怎么补全？
+
+http://stackoverflow.com/questions/3496491/getting-the-absolute-path-of-a-img
+Just do .src.
+
+$('img')[0].src = '/images/foo.gif'
+"/images/foo.gif"
+$('img')[0].src
+"http://stackoverflow.com/images/foo.gif"
+$('img')[0].getAttribute('src')
+"/images/foo.gif"
+
+To clarify - .src actually does convert relative paths to absolute. 
+Example: var a = new Image(); a.src = '/a/../b'; alert(a.src) will resolve correctly
+
 http://stackoverflow.com/questions/11171520/get-src-of-img-element-from-div
 
 var someimage = document.getElementById('this_one');
