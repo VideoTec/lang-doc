@@ -1,0 +1,27 @@
+http://www.w3school.com.cn/js/js_loop_for.asp
+
+不同类型的循环
+
+JavaScript 支持不同类型的循环：
+for - 循环代码块一定的次数
+for/in - 循环遍历对象的属性
+while - 当指定的条件为 true 时循环指定的代码块
+do/while - 同样当指定的条件为 true 时循环指定的代码块
+
+for (var i=0; i<5; i++)
+  {
+  x=x + "The number is " + i + "<br>";
+  }
+  
+  var i=0,len=cars.length;
+for (; i<len; )
+{
+document.write(cars[i] + "<br>");
+i++;
+}
+
+var person={fname:"John",lname:"Doe",age:25};
+for (x in person)
+  {
+  txt=txt + person[x];
+  }

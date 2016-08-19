@@ -3,6 +3,9 @@ http://developer.android.com/reference/java/io/BufferedInputStream.html
 outweigh[英][ˌaʊtˈweɪ] [美][aʊtˈwe]
 vt.在重量上超过；比…重要；胜过，强过；比…有价值
 
+contained[英][kən'teɪnd] [美][kən'teɪnd]
+v.控制( contain的过去式和过去分词 )；克制；牵制；包含
+
 java.lang.Object
    ↳	java.io.InputStream
  	   ↳	java.io.FilterInputStream
@@ -17,3 +20,16 @@ when filling that buffer, but this is usually outweighed by the performance bene
 A typical application pattern for the class looks like this:
 
  BufferedInputStream buf = new BufferedInputStream(new FileInputStream("file.java"));
+ 
+A BufferedInputStream adds functionality to another input stream-namely, 
+the ability to buffer the input and to support the mark and reset methods. 
+When the BufferedInputStream is created, 
+an internal buffer array is created. 
+
+As bytes from the stream are read or skipped, 
+the internal buffer is refilled as necessary from the contained input stream, many bytes at a time. 
+
+The mark operation remembers a point in the input stream and 
+the reset operation causes all the bytes read 
+since the most recent mark operation to be reread 
+before new bytes are taken from the contained input stream.

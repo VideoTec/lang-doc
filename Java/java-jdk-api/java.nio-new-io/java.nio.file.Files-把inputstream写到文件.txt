@@ -1,0 +1,20 @@
+
+http://stackoverflow.com/questions/43157/easy-way-to-write-contents-of-a-java-inputstream-to-an-outputstream
+
+If you are using Java 7, Files (in the standard library) is the best approach:
+
+/* You can get Path from file also: file.toPath() */
+Files.copy(InputStream in, Path target)
+Files.copy(Path source, OutputStream out)
+
+Edit: Of course it's just useful 
+when you create one of InputStream or OutputStream from file. 
+Use file.toPath() to get path from file.
+
+To write into an existing file (e.g. one created with File.createTempFile()), 
+you'll need to pass the REPLACE_EXISTING copy option 
+(otherwise FileAlreadyExistsException is thrown):
+
+Files.copy(in, target, StandardCopyOption.REPLACE_EXISTING)
+
+Is there a reason you're avoiding IOUtils?

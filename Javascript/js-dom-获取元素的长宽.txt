@@ -1,0 +1,14 @@
+http://stackoverflow.com/questions/1310378/determining-image-file-size-dimensions-via-javascript
+
+To get the current in-browser pixel size of a DOM element 
+(in your case IMG elements) excluding the border and margin, 
+you can use the clientWidth and clientHeight properties.
+
+var img = document.getElementById('imageId'); 
+
+var width = img.clientWidth;
+var height = img.clientHeight;
+
+Now to get the file size, 
+now I can only think about the fileSize property 
+that Internet Explorer exposes for document and IMG elements...

@@ -1,0 +1,14 @@
+http://stackoverflow.com/questions/24869323/android-import-java-nio-file-files-cannot-be-resolved
+
+Android does not offer all classes that "conventional java" has to offer. 
+Files is one of the classes, that Android doesn't offer.
+
+You can have a look at the classes available in Android here: 
+http://developer.android.com/reference/classes.html
+
+So unfortunately you have to use other functions / classes 
+to implement the same functionality.
+
+PS: The class is shown in your screenshot 
+because you browse the classes of java installed on your PC, 
+not those that are be available on the Android phone / tablet.

@@ -1,0 +1,43 @@
+http://stackoverflow.com/questions/4875114/android-save-image-from-url-onto-sd-card
+
+try
+{   
+  URL url = new URL("Enter the URL to be downloaded");
+  HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+  urlConnection.setRequestMethod("GET");
+  urlConnection.setDoOutput(true);                   
+  urlConnection.connect();                  
+  File SDCardRoot = Environment.getExternalStorageDirectory().getAbsoluteFile();
+  String filename="downloadedFile.png";   
+  Log.i("Local filename:",""+filename);
+  File file = new File(SDCardRoot,filename);
+  if(file.createNewFile())
+  {
+    file.createNewFile();
+  }                 
+  FileOutputStream fileOutput = new FileOutputStream(file);
+  InputStream inputStream = urlConnection.getInputStream();
+  int totalSize = urlConnection.getContentLength();
+  int downloadedSize = 0;   
+  byte[] buffer = new byte[1024];
+  int bufferLength = 0;
+  while ( (bufferLength = inputStream.read(buffer)) > 0 ) 
+  {                 
+    fileOutput.write(buffer, 0, bufferLength);                  
+    downloadedSize += bufferLength;                 
+    Log.i("Progress:","downloadedSize:"+downloadedSize+"totalSize:"+ totalSize) ;
+  }             
+  fileOutput.close();
+  if(downloadedSize==totalSize) filepath=file.getPath();    
+} 
+catch (MalformedURLException e) 
+{
+  e.printStackTrace();
+} 
+catch (IOException e)
+{
+  filepath=null;
+  e.printStackTrace();
+}
+Log.i("filepath:"," "+filepath) ;
+return filepath;

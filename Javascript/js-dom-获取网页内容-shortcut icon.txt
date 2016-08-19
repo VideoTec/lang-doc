@@ -1,6 +1,22 @@
 获取网页图标: /images/logo-icon.png
 怎么补全？
 
+http://www.cnblogs.com/littledu/articles/2710234.html
+//html
+<a href="ooxx.html">ooxx</a>
+             
+//script
+var a = document.getElementsByTagName('a')[0];
+             
+//无兼容问题，均返回href的绝对路径，形如http://www.ooxx.com/ooxx.html
+alert(a.href);
+             
+//标准浏览器返回相对路径，即ooxx.html
+//IE67返回绝对路径，形如http://www.ooxx.com/ooxx.html
+alert(a.getAttribute('href');
+
+https://stackoverflow.com/questions/26441184/php-how-to-get-absolute-link-of-href-attribute
+
 http://stackoverflow.com/questions/10282939/how-to-get-favicons-url-from-a-generic-webpage-in-javascript
 
 var getFavicon = function(){

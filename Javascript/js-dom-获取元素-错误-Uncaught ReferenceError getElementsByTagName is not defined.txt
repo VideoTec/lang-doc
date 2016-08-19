@@ -1,0 +1,17 @@
+<script>
+    function getImg() {
+        var images = getElementsByTagName('img');
+        错误：Uncaught ReferenceError: getElementsByTagName is not defined
+        原因：document.getElementsByTagName 没有写 document 对象名
+        for (var image in images) {
+            console.log(image.src + ';' + image.clientWidth);
+            imgUrl = image.src;
+        }
+
+        console.log('[javascript] 获取网页图片: ' + imgUrl);
+        return imgUrl;
+    }
+    window.onload = function() {
+        getImg();
+    }
+</script>

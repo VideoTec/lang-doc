@@ -1,0 +1,19 @@
+https://developer.android.com/reference/java/net/HttpURLConnection.html?hl=zh-cn
+
+Read the response. 
+Response headers typically include metadata 
+such as the response body's content type and length, modified dates and session cookies. 
+The response body may be read from the stream returned by getInputStream(). 
+If the response has no body, 
+that method returns an empty stream.
+
+For example, to retrieve the webpage at http://www.android.com/:
+
+   URL url = new URL("http://www.android.com/");
+   HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+   try {
+     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+     readStream(in);
+   } finally {
+     urlConnection.disconnect();
+   }

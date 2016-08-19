@@ -2,6 +2,7 @@
 
 1）int responseCode1 = connection.getResponseCode(); （GT-I9308）
 2）DataOutputStream out = new DataOutputStream(connection.getOutputStream()); (红米 2a)
+3）connection.connect(); 报异常
 
  mTag = crash, thread = Thread[main,5,main]
 va.lang.RuntimeException: Unable to start activity ComponentInfo{com.feinno.rongfly/com.feinno.rongfly.ui.vowifi.RFVoWifiVoiceCallActivity}: android.os.NetworkOnMainThreadException

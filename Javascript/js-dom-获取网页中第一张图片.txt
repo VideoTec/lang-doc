@@ -1,6 +1,20 @@
 /images/logo-icon.png
 怎么补全？
 
+http://www.cnblogs.com/littledu/articles/2710234.html
+//html
+<script type="text/jvascript" src="ooxx.js"></script>
+               
+//script
+var script = document.getElementsByTagName('script')[0];
+               
+//标准浏览器返回 http://www.ooxx.com/ooxx.js 即返回绝对路径
+//IE67，src的字符串为什么则返回什么，这里是ooxx.js
+alert(script.src);
+               
+//无兼容问题，均返回src所填字符串，这里为ooxx.js
+alert(script.getAttribute('src'));
+
 http://stackoverflow.com/questions/3496491/getting-the-absolute-path-of-a-img
 Just do .src.
 

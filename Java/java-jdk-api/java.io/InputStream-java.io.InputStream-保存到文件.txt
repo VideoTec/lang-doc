@@ -12,3 +12,37 @@ public void inputstreamtofile(InputStream ins,File file){
 }
 
 http://www.baeldung.com/convert-input-stream-to-a-file
+
+http://stackoverflow.com/questions/43157/easy-way-to-write-contents-of-a-java-inputstream-to-an-outputstream
+
+As WMR mentioned, org.apache.commons.io.IOUtils from Apache 
+has a method called copy(InputStream,OutputStream) 
+which does exactly what you're looking for.
+
+So, you have:
+
+InputStream in;
+OutputStream out;
+IOUtils.copy(in,out);
+in.close();
+out.close();
+...in your code.
+
+------------------------------------------
+java.nio.file.Files - android sdk 没有提供
+------------------------------------------
+
+If you are using Java 7, Files (in the standard library) is the best approach:
+
+/* You can get Path from file also: file.toPath() */
+Files.copy(InputStream in, Path target)
+Files.copy(Path source, OutputStream out)
+Edit: Of course it's just useful when you create one of InputStream or OutputStream from file. Use file.toPath() to get path from file.
+
+To write into an existing file (e.g. one created with File.createTempFile()), 
+you'll need to pass the REPLACE_EXISTING copy option 
+(otherwise FileAlreadyExistsException is thrown):
+
+Files.copy(in, target, StandardCopyOption.REPLACE_EXISTING)
+
+Is there a reason you're avoiding IOUtils?

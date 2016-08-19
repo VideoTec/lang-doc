@@ -1,0 +1,18 @@
+<script>
+    function getImg() {
+        var images = document.getElementsByTagName('img');
+        
+        for (var i = 0; i < images.length; i++) {
+            var image = images[i];
+            console.log(image.src + ';' + image.clientWidth);
+            imgUrl = image.src;
+        }
+
+        console.log('[javascript] »ñÈ¡ÍøÒ³Í¼Æ¬: ' + imgUrl);
+        return imgUrl;
+    }
+    window.onload = function() {
+        getImg();
+    }
+</script>
+<img src="http://dict.baidu.com/asset/img/logo-index.png" />
