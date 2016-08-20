@@ -1,0 +1,27 @@
+    public void onDownloadImage(View v) {
+        HandlerThread downloadImgThread = new HandlerThread("downloadImgThread");
+        downloadImgThread.start();
+        new Handler(downloadImgThread.getLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream(new File("/sdcard/download.png"));
+                    URL url = new URL("http://dict.baidu.com/asset/img/logo-index.png");
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    问题：301重定向到 404 页面怎么办？
+                    禁止重定向：connection.setInstanceFollowRedirects(false);
+                    需要判断下，reponse-code？
+                    connection.connect();  ---  不存在也不会异常，需要判断 response-code connection.getResponseCode()
+                    InputStream is = new BufferedInputStream(connection.getInputStream());
+                    byte[] buffer = new byte[1024];
+                    int readedBytes;
+                    while((readedBytes = is.read(buffer)) > 0) {
+                        fileOutputStream.write(buffer, 0, readedBytes);
+                    }
+                    fileOutputStream.close();
+                } catch (Exception e) {
+                    Log.e(TAG, e.getMessage());
+                }
+            }
+        });
+    }

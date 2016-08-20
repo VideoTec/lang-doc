@@ -1,0 +1,10 @@
+Method Detail
+
+getMessage
+
+public String getMessage()
+
+Returns the detail message string of this throwable.
+
+Returns:
+the detail message string of this Throwable instance (which may be null).

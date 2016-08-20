@@ -1,0 +1,9 @@
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String
+
+对原始字符串和 String 对象的区分
+
+var s_prim = "foo";
+var s_obj = new String(s_prim);
+
+console.log(typeof s_prim); // Logs "string"
+console.log(typeof s_obj);  // Logs "object"

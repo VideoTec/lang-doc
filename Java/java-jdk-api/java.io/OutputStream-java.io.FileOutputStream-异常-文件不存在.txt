@@ -1,0 +1,15 @@
+这个异常的原因是：文件夹不存在。
+
+OutputStream fileOutputStream = new BufferedOutputStream(new FileOutputStream(new File(imgPath)));
+
+异常：机器 gt-i9308 另外一机器不会出错，mx4-Pro
+/storage/emulated/0/Fetion/rongfly/pictures/1471689175496.png: open failed: ENOENT (No such file or directory)
+
+new FileOutputStream(new File("/storage/emulated/0/Fetion/rongfly/pictures/44147168614258788899.png"));
+异常：
+/storage/emulated/0/Fetion/rongfly/pictures/44147168614258788899.png: open failed: ENOENT (No such file or directory)
+
+http://stackoverflow.com/questions/11620641/android-error-open-failed-enoent
+final File dir = new File(context.getFilesDir() + "/nfs/guille/groce/users/nicholsk/workspace3/SQLTest");
+dir.mkdirs(); //create folders where write files
+final File file = new File(dir, "BlockForTest.txt");

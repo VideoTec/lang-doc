@@ -1,0 +1,2 @@
+void Void
+int Integer

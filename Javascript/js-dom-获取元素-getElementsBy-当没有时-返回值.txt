@@ -1,3 +1,10 @@
+
+<script>
+var imgs = document.getElementsByTagName('img'); 没有 img 标签的情况下
+alert(typeof imgs); 这个返回 object
+alert(imgs.length); 这个返回 0
+</script>
+
 https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getElementsByTagName
 
 Element.getElementsByTagName() 

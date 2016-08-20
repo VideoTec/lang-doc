@@ -1,0 +1,8 @@
+    /**
+     * Opens a connection to the resource. This method will <strong>not</strong>
+     * reconnect to a resource after the initial connection has been closed.
+     *
+     * @throws IOException
+     *             if an error occurs while connecting to the resource.
+     */
+    public abstract void connect() throws IOException;

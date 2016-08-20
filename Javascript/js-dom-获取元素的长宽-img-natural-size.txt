@@ -1,0 +1,10 @@
+http://stackoverflow.com/questions/1944280/determine-original-size-of-image-cross-browser
+
+Images (on Firefox at least) have a naturalWidth/height property 
+so you can use img.naturalWidth to get the original width
+
+var img = document.getElementsByTagName("img")[0];
+img.onload=function(){
+    console.log("Width",img.naturalWidth);
+    console.log("Height",img.naturalHeight);
+}

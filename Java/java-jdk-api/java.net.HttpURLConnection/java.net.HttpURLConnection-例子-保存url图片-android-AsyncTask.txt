@@ -1,0 +1,40 @@
+
+    public void onDownloadImage(View v) {
+        String dataDir = this.getApplicationInfo().dataDir;
+        DownloadImageTask imageTask = new DownloadImageTask();
+        imageTask.execute("/sdcard/download.png", "http://dict.baidu.com/asset/img/logo-index.png34");
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                URL url = new URL(params[1]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setInstanceFollowRedirects(false);
+                connection.connect();
+                if (connection.getResponseCode() == 200) {
+                    InputStream inputStream = new BufferedInputStream(connection.getInputStream());
+                    OutputStream fileOutputStream = new BufferedOutputStream(new FileOutputStream(new File(params[0])));
+
+                    byte[] buffer = new byte[1024];
+                    int readBytes;
+                    while ((readBytes = inputStream.read(buffer)) > 0) {
+                        fileOutputStream.write(buffer, 0, readBytes);
+                    }
+                    fileOutputStream.close();
+                    return params[0];
+                }
+                return null;
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Log.i(TAG, "保存的图片" + s);
+        }
+    }

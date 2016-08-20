@@ -1,0 +1,22 @@
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String
+
+Note that JavaScript distinguishes between 
+String objects and 
+primitive string values.
+
+String literals (denoted by double or single quotes) and strings 
+returned from String calls in a non-constructor context 
+(i.e., without using the new keyword) are primitive strings. 
+
+JavaScript automatically converts primitives to String objects, 
+so that it's possible to use String object methods for primitive strings. 
+In contexts where a method is to be invoked on a primitive string or a property lookup occurs, 
+JavaScript will automatically wrap the string primitive and call the method or perform the property lookup.
+
+对原始字符串和 String 对象的区分
+
+var s_prim = "foo";
+var s_obj = new String(s_prim);
+
+console.log(typeof s_prim); // Logs "string"
+console.log(typeof s_obj);  // Logs "object"

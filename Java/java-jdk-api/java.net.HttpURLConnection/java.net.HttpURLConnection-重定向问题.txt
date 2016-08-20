@@ -1,0 +1,17 @@
+http://stackoverflow.com/questions/1378199/how-to-check-if-a-url-exists-or-returns-404-with-java
+
+You may want to add
+
+HttpURLConnection.setFollowRedirects(false);
+// note : or
+//        huc.setInstanceFollowRedirects(false)
+if you don't want to follow redirection (3XX)
+
+Instead of doing a "GET", a "HEAD" is all you need.
+
+测试网址：http://dict.baidu.com/asset/img/logo-index.png34
+注意：添加 connection.setRequestMethod("GET"); 也会重定向
+      添加 connection.setRequestMethod("HEAD"); 也会重定向 
+
+huc.setRequestMethod("HEAD");
+return (huc.getResponseCode() == HttpURLConnection.HTTP_OK);

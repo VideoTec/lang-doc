@@ -1,15 +1,19 @@
 <script>
     function getImg() {
         var images = document.getElementsByTagName('img');
-        
+        var imageUrl = '';
         for (var i = 0; i < images.length; i++) {
             var image = images[i];
-            console.log(image.src + ';' + image.clientWidth);
-            imgUrl = image.src;
+            var imageSrc = image.src;
+            if (imageSrc.indexOf("http:") !== 0) continue;
+            if (image.naturalHeight > 300 && image.naturalHeight > 300) {
+                imageUrl = imageSrc;
+                break;
+            }
         }
 
-        console.log('[javascript] ªÒ»°Õ¯“≥Õº∆¨: ' + imgUrl);
-        return imgUrl;
+        console.log('[javascript] ªÒ»°Õ¯“≥Õº∆¨: ' + imageUrl);
+        return imageUrl;
     }
     window.onload = function() {
         getImg();
