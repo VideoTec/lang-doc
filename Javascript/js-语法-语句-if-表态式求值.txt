@@ -1,0 +1,57 @@
+evaluate[英][ɪˈvæljueɪt] [美][ɪˈvæljuˌet]
+vt.评价；求…的值（或数）；对…评价；[数学、逻辑学]求…的数值
+vi.评价，估价
+
+semantics[英][sɪˈmæntɪks] [美][sɪˈmæntɪks]
+n.语义学；词义学
+
+异常情况：
+<script>
+if (abc) xxx; abc 之前未定义，会异常：Uncaught ReferenceError: abc is not defined
+</script>
+
+The difference is, 
+that only typeof operator can handle non-existing references to names (e.g. variables). 
+All other language constructs throw ReferenceError 
+when encountering reference that cannot be resolved. 
+typeof returns the string "undefined" for this case.
+
+http://es5.github.io/#x12.5
+
+12.5 The if Statement # Ⓣ Ⓡ Ⓖ
+Syntax
+IfStatement :
+    if ( Expression ) Statement else Statement
+    if ( Expression ) Statement
+
+Each else for which the choice of associated if is ambiguous 
+shall be associated with the nearest possible 
+if that would otherwise have no corresponding else.
+
+Semantics
+
+The production IfStatement : if ( Expression ) Statement else Statement is evaluated as follows:
+
+1. Let exprRef be the result of evaluating Expression.
+2. If ToBoolean(GetValue(exprRef)) is true, then
+    a. Return the result of evaluating the first Statement.
+3. Else,
+    a. Return the result of evaluating the second Statement.
+
+The production IfStatement : if ( Expression ) Statement is evaluated as follows:
+
+1. Let exprRef be the result of evaluating Expression.
+2. If ToBoolean(GetValue(exprRef)) is false, return (normal, empty, empty).
+3. Return the result of evaluating Statement.
+
+http://13521308103.iteye.com/blog/1989215
+
+在JavaScript中，对于单独作为判断式里的一个表达式if(aaa)这样的条件判断时，
+会先把aaa转换成布尔型true或false，再判断其真假。
+其他类型转换布尔型的规则是： 
+
+对于只定义未赋值的变量var aaa,其值为 undefined ，为false.    
+字符串：空字符串""转换布尔型为false，其它为true；  
+数字：数字0转换为布尔值为false，其它为true；    
+对象：为null的对象转换为布尔型为false，其它为true；    
+对象属性值：未声明的属性值、属性值为0或空串""或false或null的，转换布尔值为false,其余为true； 

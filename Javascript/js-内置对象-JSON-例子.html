@@ -1,0 +1,24 @@
+<script>
+    function getMetaData(metaName) {
+        return 'metaName';
+    }
+    function getImg() {
+        return 'img';
+    }
+    function fetchWebPageInfo() {
+        var publicPlatformNumber = '';
+        if (window.num400) {
+            publicPlatformNumber = window.num400;
+        }
+        var pageInfo = {};
+        pageInfo.description = getMetaData('description');
+        pageInfo.thumbLink = getImg();
+        pageInfo.author = publicPlatformNumber;//publicPlatformNumber(); 这里写错了，是个变量不是函数
+        var json = JSON.stringify(pageInfo);
+        //RFNativeObj.onWebPageInfo(json);
+        console.log('[javascript] 返回的网页信息: ' + json);
+    }
+    window.onload = function() {
+        fetchWebPageInfo();
+    }
+</script>

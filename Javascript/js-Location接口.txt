@@ -1,0 +1,9 @@
+https://developer.mozilla.org/zh-CN/docs/Web/API/Location
+
+Location接口表示其关联的对象所展示的页面的地址等信息，
+对该对象的修改会反映到关联的对象上。 
+
+Document 和 Window 接口都有一个关联的Location，
+可以分别用
+Document.location和
+Window.location来访问它们对应的Location。

@@ -1,0 +1,33 @@
+evaluate[英][ɪˈvæljueɪt] [美][ɪˈvæljuˌet]
+vt.评价；求…的值（或数）；对…评价；[数学、逻辑学]求…的数值
+vi.评价，估价
+//Uncaught ReferenceError: title is not defined
+
+结论：undefined 的变量，转成 boolean 是 false
+异常的原因是：（that only typeof operator can handle） non-existing references to names
+
+http://stackoverflow.com/questions/19357346/uncaught-referenceerror-var-is-undefined-when-testing-for-truthy
+
+Evaluate the if statement [if ( Expression ) Statement]
+    1) This involves evaluating Expression, which returns a reference, as per 10.3.1
+    2) Call GetValue on the returned reference
+        If the reference is not resolvable (it's value is undefined), throw a reference error
+    3) Coerce the value of the reference to a boolean value
+    
+http://es5.github.io/#x12.5
+    
+http://es5.github.io/#x10.3.1
+
+10.3.1 Identifier Resolution
+
+Identifier resolution is the process of 
+determining the binding of an Identifier 
+using the LexicalEnvironment of the running execution context. 
+During execution of ECMAScript code, 
+the syntactic production PrimaryExpression : 
+Identifier is evaluated using the following algorithm:
+
+Let env be the running execution context’s LexicalEnvironment.
+If the syntactic production that is being evaluated is contained in a strict mode code, then let strict be true, else let strict be false.
+Return the result of calling GetIdentifierReference function passing env, Identifier, and strict as arguments.
+The result of evaluating an identifier is always a value of type Reference with its referenced name component equal to the Identifier String.

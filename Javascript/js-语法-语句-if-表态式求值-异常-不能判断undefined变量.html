@@ -1,0 +1,10 @@
+<script>
+//if(title) console.log('test'); //这里会出错，Uncaught ReferenceError: title is not defined
+//if ((typeof title !== undefined) console.log('dd'); //Uncaught SyntaxError: Unexpected identifier 少写了个括号
+if (typeof title == 'string' && title) console.log('test'); //可以通过
+if (typeof title !== undefined) console.log('test'); //这个可以通过
+//if (title == null) console.log('test'); //Uncaught ReferenceError: title is not defined
+//alert(typeof window.num400);
+if (window.num400) console.log('test'); //好奇怪这样就不报错
+//对象属性值：未声明的属性值、属性值为0或空串""或false或null的，转换布尔值为false
+</script>

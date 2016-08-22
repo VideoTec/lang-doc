@@ -1,0 +1,27 @@
+例子：
+
+if (abc) xxx; 异常：Uncaught ReferenceError: abc is not defined
+
+http://stackoverflow.com/questions/28997504/uncaught-referenceerror-myvarible-is-not-defined-in-if-statement-comparing-to-u
+
+The difference is, 
+that only typeof operator can handle non-existing references to names (e.g. variables). 
+All other language constructs throw ReferenceError 
+when encountering reference that cannot be resolved. 
+typeof returns the string "undefined" for this case.
+
+So, in your case, 
+you should use the typeof operator or check existence 
+of the variable property on global object.
+
+if (window.myVarible) {}
+
+http://stackoverflow.com/questions/19317943/why-referencing-non-existent-propery-of-an-object-in-javascript-doesnt-return-a
+
+alert(a);
+ReferenceError: a is not defined //error is thrown
+alert({}.a)
+undefined //no error
+
+Accessing an undeclared variable is always an error, 
+which legitimates throwing ReferenceErrors

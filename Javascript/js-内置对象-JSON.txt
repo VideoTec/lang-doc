@@ -1,3 +1,9 @@
+重点理解下面这句：
+That's not JSON. 
+It's just Javascript objects, and has nothing at all to do with JSON.
+
+var obj = { name : value, anotherName : anotherValue };
+
 http://www.json.org/js.html
 
 http://stackoverflow.com/questions/4162749/convert-js-object-to-json-string
@@ -10,3 +16,29 @@ you can do it just as easily as that:
 
 var j={"name":"binchen"};
 JSON.stringify(j); // '{"name":"binchen"}'
+
+http://stackoverflow.com/questions/14002300/how-to-add-key-and-a-value-to-a-json-using-javascript-or-jquery
+
+Like this
+
+jsondata.FDamount = 'false';
+// or
+jsondata['FDamount'] = 'false';
+
+http://stackoverflow.com/questions/4071499/dynamically-add-variable-name-value-pairs-to-json-object
+
+That's not JSON. 
+It's just Javascript objects, and has nothing at all to do with JSON.
+
+You can use brackets to set the properties dynamically. Example:
+
+var obj = {};
+obj['name'] = value;
+obj['anotherName'] = anotherValue;
+This gives exactly the same as creating the object with an object literal like this:
+
+var obj = { name : value, anotherName : anotherValue };
+
+ips[ipId] = {}; 【定义子对象】
+ips[ipId]['name'] = value;
+ips[ipId]['anotherName'] = anotherValue;
