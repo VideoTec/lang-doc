@@ -1,0 +1,40 @@
+
+        private List<ContactInfo> mContactInfos = Collections.synchronizedList(new ArrayList<ContactInfo>());
+        private Handler mContactInfoHandler;
+        private static final long DELAYED_TIME = 20;
+        private void sendContactInfo(ContactInfo info) {
+            if (mContactInfoCallback == null) {
+                LogFeinno.e(TAG, "返回用户信息查询结果时，回调对象为空");
+                return;
+            }
+            if (mContactInfoHandler == null) {
+                HandlerThread contactInfoCallbackThread = new HandlerThread("contact_info_callback_thread");
+                contactInfoCallbackThread.start();
+                mContactInfoHandler = new Handler(contactInfoCallbackThread.getLooper());
+            }
+            mContactInfos.add(info);
+            mContactInfoHandler.removeCallbacks(mContactInfoCallbackRunnable);
+            mContactInfoHandler.postDelayed(mContactInfoCallbackRunnable, DELAYED_TIME);
+        }
+        // 下面对容器数据的处理是错误的，
+        // 已经处理的数据量 和 删除的数据量不一致
+        private Runnable mContactInfoCallbackRunnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (mContactInfoCallback != null) {
+                        mContactInfoCallback.onContactInfoCallback(new Gson().toJson(mContactInfos));
+                    } else {
+                        LogFeinno.e(TAG, "返回用户信息查询结果时，回调对象为空");
+                    }
+                } catch (Exception e) {
+                    LogFeinno.e(TAG, "返回用户信息查询结果时异常", e);
+                } finally {
+                    mContactInfos.clear();
+                }
+            }
+        };
+        
+        解决方法一： 使用 synchronized (mContactInfos) 同步代码块
+        Synchronization on a non-final field 'mContactInfos' --- 改成 final 变量
+        解决方法二： mContactInfos 取出一块，删除同样的一块

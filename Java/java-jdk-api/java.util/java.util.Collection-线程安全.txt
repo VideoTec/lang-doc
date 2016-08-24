@@ -1,0 +1,46 @@
+两个点：
+
+1. 同步容器 类型
+SynchronizedCollection
+SynchronizedList
+SynchronizedMap
+SynchronizedSet
+SynchronizedSortedMap
+SynchronizedSortedSet
+
+2. Collections 方法
+synchronizedCollection
+synchronizedList
+synchronizedMap
+synchronizedSet
+synchronizedSortedMap
+synchronizedSortedSet
+
+    /**
+     * Returns a wrapper on the specified List which synchronizes all access to
+     * the List.
+     *
+     * @param list
+     *            the List to wrap in a synchronized list.
+     * @return a synchronized List.
+     */
+    public static <T> List<T> synchronizedList(List<T> list) {
+        if (list == null) {
+            throw new NullPointerException("list == null");
+        }
+        if (list instanceof RandomAccess) {
+            return new SynchronizedRandomAccessList<T>(list);
+        }
+        return new SynchronizedList<T>(list);
+    }
+
+http://stackoverflow.com/questions/2444005/how-do-i-make-my-arraylist-thread-safe-another-approach-to-problem-in-java
+
+Use Collections.synchronizedList().
+
+Ex:
+
+Collections.synchronizedList(new ArrayList<YourClassNameHere>())
+
+示例：
+private List<ContactInfo> mContactInfos = Collections.synchronizedList(new ArrayList<ContactInfo>());

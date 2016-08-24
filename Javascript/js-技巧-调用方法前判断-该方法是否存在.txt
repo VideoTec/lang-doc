@@ -1,0 +1,18 @@
+http://stackoverflow.com/questions/1042138/javascript-check-if-function-exists/1042154#1042154
+
+Try something like this:
+
+if (typeof me.onChange !== "undefined") { 
+    // safe to use the function
+}
+or better yet (as per UpTheCreek upvoted comment)
+
+if (typeof me.onChange === "function") { 
+    // safe to use the function
+}
+
+https://css-tricks.com/snippets/javascript/check-if-function-exists-before-calling/
+
+if (typeof yourFunctionName == 'function') { 
+  yourFunctionName(); 
+}

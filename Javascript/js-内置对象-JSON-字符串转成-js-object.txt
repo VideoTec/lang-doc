@@ -1,0 +1,36 @@
+JSON.parse(jsonString);
+
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
+
+JSON.parse(text[, reviver])
+
+JSON.parse() 方法可以将一个 JSON 字符串
+解析成为一个 JavaScript 值。
+在解析过程中，还可以选择性的修改某些属性的原始解析值。
+
+JSON.parse('{}');              // {}
+JSON.parse('true');            // true
+JSON.parse('"foo"');           // "foo"
+JSON.parse('[1, 5, "false"]'); // [1, 5, "false"]
+JSON.parse('null');            // null
+
+JSON.parse() 不允许用逗号作为结尾
+// both will throw a SyntaxError
+JSON.parse("[1, 2, 3, 4, ]");
+JSON.parse('{"foo" : 1, }');
+
+-----------------------------------------------
+reviver 可选
+一个函数，用来转换解析出的属性值
+-----------------------------------------------
+
+JSON.parse('{"p": 5}', function (k, v) {
+    if(k === '') return v;     // 如果到了最顶层，则直接返回属性值，
+    return v * 2;              // 否则将属性值变为原来的 2 倍。
+});                            // { p: 10 }
+
+JSON.parse('{"1": 1, "2": 2,"3": {"4": 4, "5": {"6": 6}}}', function (k, v) {
+    console.log(k); // 输出当前的属性名，从而得知遍历顺序是从内向外的，
+                    // 最后一个属性名会是个空字符串。
+    return v;       // 返回原始属性值，相当于没有传递 reviver 参数。
+});

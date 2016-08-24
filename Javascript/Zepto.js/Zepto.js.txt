@@ -1,0 +1,6 @@
+Zepto是一个轻量级的针对现代高级浏览器的JavaScript库， 
+它与jquery有着类似 .... 
+Zepto集合是一个类似数组的对象，
+它具有链式方法来操作它指向的DOM节点
+
+http://zeptojs.com/

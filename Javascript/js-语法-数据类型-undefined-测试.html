@@ -1,0 +1,11 @@
+<script>
+var test;
+
+//这样写会出错： Uncaught TypeError: Cannot read property 'title' of undefined
+//if (test.title) console.log('test'); 
+//if (typeof test.title === string) console.log('test');
+
+// 这样写才行的
+if (test && typeof test.title === string) console.log('test');
+else console.log('test abc');
+</script>

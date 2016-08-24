@@ -1,0 +1,19 @@
+https://developer.android.com/reference/java/util/Timer.html
+java.util.Timer
+
+cancel()
+Terminates this timer, discarding any currently scheduled tasks.
+
+purge()
+purge[英][pɜ:dʒ] [美][pɜrdʒ]
+vt.清除，（使）净化；（使）通便；肃清
+Removes all cancelled tasks from this timer's task queue.
+
+TimerTask task = new TimerTask(){
+    public void run(){
+    //execute the task 
+    }
+};
+
+Timer timer = new Timer();
+timer.schedule(task, delay);

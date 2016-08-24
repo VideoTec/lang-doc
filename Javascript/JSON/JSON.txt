@@ -1,0 +1,2 @@
+参考：
+E:\doc\lang\Javascript\js-内置对象-JSON.txt

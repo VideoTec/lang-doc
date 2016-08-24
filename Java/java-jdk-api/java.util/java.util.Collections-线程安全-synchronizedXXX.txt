@@ -1,0 +1,26 @@
+1. 同步容器 类型
+SynchronizedCollection
+SynchronizedList
+SynchronizedMap
+SynchronizedSet
+SynchronizedSortedMap
+SynchronizedSortedSet
+
+2. Collections 方法
+synchronizedCollection
+synchronizedList
+synchronizedMap
+synchronizedSet
+synchronizedSortedMap
+synchronizedSortedSet
+
+http://stackoverflow.com/questions/2444005/how-do-i-make-my-arraylist-thread-safe-another-approach-to-problem-in-java
+
+Use Collections.synchronizedList().
+
+Ex:
+
+Collections.synchronizedList(new ArrayList<YourClassNameHere>())
+
+示例：
+private List<ContactInfo> mContactInfos = Collections.synchronizedList(new ArrayList<ContactInfo>());
