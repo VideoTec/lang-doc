@@ -1,0 +1,43 @@
+代码：
+RFBrowserActivity.createReplyableMsg(this,Integer.valueOf(groupId) , displayName);
+
+异常：
+mTag = RF_CrashHandler, thread = Thread[main,5,main]
+         java.lang.NumberFormatException: Invalid int: "group:30452667"
+             at java.lang.Integer.invalidInt(Integer.java:138)
+             at java.lang.Integer.parse(Integer.java:375)
+             at java.lang.Integer.parseInt(Integer.java:366)
+             at java.lang.Integer.parseInt(Integer.java:332)
+             at java.lang.Integer.valueOf(Integer.java:490)
+             at com.feinno.rongfly.ui.session.activity.RFBaseChatActivity.clickMultimedia(RFBaseChatActivity.java:1650)
+             at com.feinno.rongfly.ui.session.view.MultimediaViewPager.onItemClick(MultimediaViewPager.java:227)
+             at android.widget.AdapterView.performItemClick(AdapterView.java:301)
+             at android.widget.AbsListView.performItemClick(AbsListView.java:1510)
+             at android.widget.AbsListView$PerformClick.run(AbsListView.java:3339)
+             at android.os.Handler.handleCallback(Handler.java:730)
+             at android.os.Handler.dispatchMessage(Handler.java:92)
+             at android.os.Looper.loop(Looper.java:176)
+             at android.app.ActivityThread.main(ActivityThread.java:5454)
+             at java.lang.reflect.Method.invokeNative(Native Method)
+             at java.lang.reflect.Method.invoke(Method.java:525)
+             at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:1209)
+             at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1025)
+             at dalvik.system.NativeStart.main(Native Method)
+
+这次碰到的问题，不是越界，是要转的字符串，开头不是数字：
+"group:30452667"
+             
+http://stackoverflow.com/questions/13536941/integer-valueof-invalid-int
+
+Java's integer covers values from -2^31 to 2^31-1 (2147483647). 
+Your value is (4281297749) in decimal which is too big for java's integer.
+
+Java's long covers a much higher range of -2^63 to 2^63-1. 
+Which includes your value, so a suggestion would be to use Long.valueOf(colorStr, 16) 
+and switch to using longs. 
+(A suggestion that comes into play 
+when the values that you are working with are outside of the range of integer values).
+
+It seemed to me that you were aware, but in case you were not; 
+the 0x should be removed if it is part of the string value, 
+as it will give an invalid format exception if left in.

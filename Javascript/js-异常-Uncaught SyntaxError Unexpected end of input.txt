@@ -1,0 +1,10 @@
+{"action":"setBrowserTitleLeftView","data":"backToTopic"} -- From line 54 of http://220.231.2.29:7668/replyable/v6/statics/js/sendReply.js
+[from js: NativeObject]{"action":"setBrowserTitleLeftView","data":"backToTopic"}
+[from js: NativeObject]{"action":"setBrowserTitleRightView","data":"sendTopic","script":"window.platform.nativeCallbacks.cb1472184159142Func"}
+cb1472184159142Func -- From line 49 of http://220.231.2.29:7668/replyable/v6/statics/js/sendReply.js
+{"action":"setBrowserTitleRightView","data":"sendTopic","script":"window.platform.nativeCallbacks.cb1472184159142Func"} -- From line 54 of http://220.231.2.29:7668/replyable/v6/statics/js/sendReply.js
+网页加载完成: http://220.231.2.29:7668/replyable/v6/index/100497583/new?autherName=%E7%8E%8B%E7%BF%94%E7%9A%84%E6%B5%8B%E8%AF%95%E5%8F%B73188&referGroupId=123456referGroupSubject=%E8%9E%8D%E9%A3%9E
+call js code: javascript:window.platform.nativeCallbacks.cb1472184159142Func();
+Uncaught SyntaxError: Unexpected end of input -- From line 1 of http://220.231.2.29:7668/replyable/v6/index/100497583/new?autherName=%E7%8E%8B%E7%BF%94%E7%9A%84%E6%B5%8B%E8%AF%95%E5%8F%B73188&referGroupId=123456referGroupSubject=%E8%9E%8D%E9%A3%9E
+
+最后发现，是一个 json 串，误用了 双引号。
