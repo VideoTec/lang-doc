@@ -1,0 +1,20 @@
+http://stackoverflow.com/questions/51165/how-do-you-do-string-comparison-in-javascript
+
+http://stackoverflow.com/questions/1179366/is-there-a-javascript-strcmp
+str1.localeCompare(str2)
+
+http://stackoverflow.com/questions/2167602/optimum-way-to-compare-strings-in-javascript
+
+http://stackoverflow.com/questions/3586775/what-is-the-correct-way-to-check-for-string-equality-in-javascript
+
+If you know they are strings, then there's no need to check for type.
+
+"a" == "b"
+
+However, note that string objects will not be equal.
+new String("a") == new String("a")
+will return false.
+
+Call the valueOf() method to convert it to a primitive for String objects,
+new String("a").valueOf() == new String("a").valueOf()
+will return true

@@ -1,0 +1,13 @@
+<script>
+var a = {"245":"number"};
+console.log(a[234]); // undefined
+var a = {245:"number"}; // undefined
+console.log(a[234]); // undefined
+var jsonStr = '{"234":"number", "456":"number3"}';
+var obj = JSON.parse(jsonStr);
+console.log(obj); //{234:"number"}
+console.log(obj[234]);// 可以正常输出 number
+console.log(obj[456]);
+//console.log(obj.234); //Uncaught SyntaxError: missing ) after argument list
+//http://stackoverflow.com/questions/4949523/json-keys-as-numbers
+</script>

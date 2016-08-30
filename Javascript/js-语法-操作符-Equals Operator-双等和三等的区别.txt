@@ -1,0 +1,25 @@
+http://stackoverflow.com/questions/3586775/what-is-the-correct-way-to-check-for-string-equality-in-javascript
+
+Until you fully understand the differences and 
+implications of using the == and === operators, 
+use the === operator since it will save you from obscure (non-obvious) bugs and WTFs. 
+The "regular" == operator can have very unexpected results due to the type-coercion internally, 
+so using === is always the recommended approach
+
+To boil down a whole lot of details to a few simple takeaways, 
+and help you know whether to use == or === in various situations, 
+here are my simple rules:
+
+1) If either value (aka side) in a comparison could be the true or false value, 
+avoid == and use ===.
+
+2) If either value in a comparison 
+could be of these specific values (0, "", or [] -- empty array), 
+avoid == and use ===.
+
+3) In all other cases, you're safe to use ==. 
+Not only is it safe, 
+but in many cases it simplifies your code in a way that improves readability.
+
+https://www.youtube.com/watch?v=hQVTIJBZook
+JavaScript: The Good Parts

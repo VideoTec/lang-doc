@@ -1,0 +1,25 @@
+http://ecma262-5.com/ELS5_HTML.htm <js-语法-Ecma-262.pdf>
+
+Section 11.9.4   The Strict Equals Operator ( === )
+
+The production EqualityExpression : EqualityExpression === RelationalExpression
+is evaluated as follows: 
+- Let lref be the result of evaluating EqualityExpression.
+- Let lval be GetValue(lref).
+- Let rref be the result of evaluating RelationalExpression.
+- Let rval be GetValue(rref).
+- Return the result of performing the strict equality comparison 
+  rval === lval. (See 11.9.6)
+  
+11.9.6   The Strict Equality Comparison Algorithm
+
+The comparison x === y, where x and y are values, produces true or false. 
+Such a comparison is performed as follows: 
+- If Type(x) is different from Type(y), return false.
+- If Type(x) is Undefined, return true.
+- If Type(x) is Null, return true.
+- If Type(x) is Number, then
+...
+- If Type(x) is String, then return true if x and y are exactly the 
+  same sequence of characters (same length and same characters in 
+  corresponding positions); otherwise, return false.

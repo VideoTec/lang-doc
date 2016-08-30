@@ -1,0 +1,56 @@
+http://stackoverflow.com/questions/3123349/why-does-int-num-integer-getinteger123-throw-nullpointerexception
+
+public static Integer getInteger(String nm): 
+Determines the integer value of the system property with the specified name. 
+If there is no property with the specified name, 
+if the specified name is empty or null, or 
+if the property does not have the correct numeric format, then null is returned.
+
+    /**
+     * Returns the {@code Integer} value of the system property identified by
+     * {@code string}. Returns {@code null} if {@code string} is {@code null}
+     * or empty, if the property can not be found or if its value can not be
+     * parsed as an integer.
+     *
+     * @param string
+     *            the name of the requested system property.
+     * @return the requested property's value as an {@code Integer} or
+     *         {@code null}.
+     */
+    public static Integer getInteger(String string) {
+        if (string == null || string.length() == 0) {
+            return null;
+        }
+        String prop = System.getProperty(string);
+        if (prop == null) {
+            return null;
+        }
+        try {
+            return decode(prop);
+        } catch (NumberFormatException ex) {
+            return null;
+        }
+    }
+    
+http://www.vaikan.com/integer-getinteger-are-you-kidding-me/
+
+第一个参数将被认为是系统属性的名称。
+系统属性可以通过 System.getProperty(java.lang.String)方法访问得到。
+属性值字符串将被解释成一个整数，并且以表示这个值的Integer对象形式返回。
+可能出现的数字格式的详细说明可以在 getProperty 的定义说明里找到
+
+http://www.yiibai.com/javalang/integer_getinteger_integer.html
+java.lang.Integer.getInteger(String nm, Integer val) 
+方法确定具有指定名称的系统属性的整数值。参数val是默认值。
+如果没有指定名称的属性，如果该属性不具有正确的数字格式，
+或者指定名称为空或null，则返回默认值.
+
+http://www.vaikan.com/integer-getinteger-are-you-kidding-me/
+
+Integer.valueOf(String) 
+通过假设 String 表达的是一个数值而把 String 转化成数字。
+也就是说， Integer.valueOf("12345") 得到数字 12345。
+
+Integer.getInteger(String) 
+通过假设 String 是一个系统属性数值的名称而把 String 转换成一个数字。
+也就是说， Integer.getInteger("12345") 应该是得到 null。

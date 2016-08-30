@@ -1,0 +1,18 @@
+代码：
+long a = 0;
+byte[] imgData = new byte[a];
+
+错误：
+Incompatible types. Found: 'long', required: 'int'
+
+例子：
+http://stackoverflow.com/questions/14169661/read-complete-file-without-using-loop-in-java
+If the file is small, you can read the whole data once:
+
+File file = new File("a.txt");
+FileInputStream fis = new FileInputStream(file);
+byte[] data = new byte[(int) file.length()];
+fis.read(data);
+fis.close();
+
+String str = new String(data, "UTF-8");

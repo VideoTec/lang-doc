@@ -1,0 +1,17 @@
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Grammar_and_types
+
+JavaScript 是大小写敏感的，使用 Unicode 字符集
+
+在应用程序中，使用变量来为值命名。
+变量的名称称为 identifiers，需要遵守一定的规则。
+
+在 JavaScript 语言中，
+一个标识符(identifier)必须以字母、下划线（_）或者美元（$）符号开头；
+后续的字符可以包含数字（0-9）。
+因为 JavaScript 语言是区分大小写的，
+这里所指的字母可以是（大写的）“A”到“Z”和（小写的）“a”到“z”。
+
+从 JavaScript 1.5版开始，你可以使用 ISO 8859-1 或 Unicode 编码的字符作标识符，例如å和ü。
+你也可以使用\uXXXX字样的转义序列 Unicode escape sequences作标识符。
+
+合法的标识符示例：Number_hits，temp99 和 _name

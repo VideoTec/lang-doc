@@ -1,0 +1,25 @@
+参考：
+E:\doc\android\android-3rdParty\com.google.gson\com.google.gson.Gson-反序列化-fromJson-map.txt
+
+代码示例：
+注意，map，会转换成 键/值对，即 javascript 对象。
+
+                 * 返回结果：
+                 *
+                 * {
+                     *      'msg': 'success' or 'error:...', //成功或失败
+                     *      'data': {
+                     *          <用户ID>: <图片地址>,
+                     *          ...
+                     *      }
+                     * }
+                 */
+                platform.nativeInvoke(requestUsersThumbParam, function (result) {
+                    var resultData = JSON.parse(result);
+                    if (resultData && resultData.msg == 'success') {
+                        userImgs = $.extend(resultData.data || {});
+                        $.map(userImgs, function (value, key) {
+                            $('#user_thumb_' + key).attr('src', value);
+                        });
+                    }
+                });

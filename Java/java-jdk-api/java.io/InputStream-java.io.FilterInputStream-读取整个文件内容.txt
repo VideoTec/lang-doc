@@ -1,0 +1,11 @@
+例子：
+http://stackoverflow.com/questions/14169661/read-complete-file-without-using-loop-in-java
+If the file is small, you can read the whole data once:
+
+File file = new File("a.txt");
+FileInputStream fis = new FileInputStream(file);
+byte[] data = new byte[(int) file.length()];    注意这里的 转型
+fis.read(data);
+fis.close();
+
+String str = new String(data, "UTF-8");
