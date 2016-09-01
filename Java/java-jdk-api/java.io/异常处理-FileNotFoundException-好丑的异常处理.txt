@@ -1,0 +1,33 @@
+
+        mOnHoldWave = mCtx.getApplicationInfo().dataDir + "/on_cs_call.wav";
+        // 复制录音文件到 data 目录
+        File waveFile = new File(mOnHoldWave);
+        if (!waveFile.exists()) {
+            InputStream is = null;
+            OutputStream os = null;
+            try {
+                is = mCtx.getResources().openRawResource(R.raw.on_cs_call);
+                os = new FileOutputStream(waveFile);
+                byte[] temp = new byte[1024 * 100];
+                int bytes;
+                while ((bytes = is.read(temp)) > 0) {
+                    os.write(temp, 0, bytes);
+                }
+            } catch (Exception e) {
+                LogFeinno.e(TAG, "复制挂起录音文件时异常", e);
+            } finally {
+                if (is != null) {
+                    try {
+                        is.close();
+                    } catch (Exception e) {
+                        LogFeinno.e(TAG, "关闭文件时异常", e);
+                    }
+                }
+                if (os != null) {
+                    try {
+                        os.close();
+                    } catch (Exception e) {
+                        LogFeinno.e(TAG, "关闭文件时异常", e);
+                    }
+                }
+            }

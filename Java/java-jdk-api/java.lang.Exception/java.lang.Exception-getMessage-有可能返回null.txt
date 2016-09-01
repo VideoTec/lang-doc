@@ -1,0 +1,1 @@
+E:\doc\android\android-sdk\android.util.Log\android.util.Log-异常-java.lang.NullPointerException println needs a message.txt
