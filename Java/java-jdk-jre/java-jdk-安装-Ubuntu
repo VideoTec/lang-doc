@@ -1,0 +1,55 @@
+下载：
+jdk1.8.0-91_1.8.091-1_amd64.deb
+jdk-8u91-linux-x64.rpm
+
+http://www.cnblogs.com/a2211009/p/4265225.html
+
+-------------------------------------------
+ubuntu 安装jdk 的两种方式:
+-------------------------------------------
+
+1:通过ppa(源) 方式安装.
+2:通过官网下载安装包安装.
+
+这里推荐第1种,因为可以通过 apt-get upgrade 方式方便获得jdk的升级
+
+-------------------------------------------
+通过ppa(源) 方式安装
+-------------------------------------------
+提供 jdk 的用户 AlinAndrei
+https://launchpad.net/~webupd8team
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+
+出错：
+The team named '~webupd8team' has no PPA named 'ubuntu/java'
+Please choose from the following available PPAs:
+ * 'atom':  Atom text editor
+ * 'atraci':  Atraci
+ * 'brackets':  Brackets
+ * 'experiments':  Experiments
+ * 'gnome3':  GNOME 3 WebUpd8 PPA
+ * 'gthumb':  gThumb
+ * 'haguichi':  Haguichi
+ * 'java':  Oracle Java (JDK) 7 / 8 / 9 Installer PPA
+
+
+　jdk7
+sudo apt-get install oracle-java7-installer
+
+　jdk8
+sudo apt-get install oracle-java8-installer
+
+-------------------------------------------
+设置系统默认jdk
+-------------------------------------------
+
+sudo update-java-alternatives -s java-7-oracle
+sudo update-java-alternatives -s java-8-oracle
+
+dk8 切换到jdk7
+sudo update-java-alternatives -s java-7-oracle
+　　
+jdk7 切换到jdk8
+sudo update-java-alternatives -s java-8-oracle
