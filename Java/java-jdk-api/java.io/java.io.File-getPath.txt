@@ -4,6 +4,7 @@ Added in API level 1
 Returns the path of this file.
 
 http://stackoverflow.com/questions/1099300/whats-the-difference-between-getpath-getabsolutepath-and-getcanonicalpath
+
 canonical[英][kəˈnɒnɪkl] [美][kəˈnɑ:nɪkl] adj.权威的；见于<圣经>正经篇目的；大教堂教士的；按照教规的
 What's the difference between getPath(), getAbsolutePath(), and getCanonicalPath() in Java?
 
@@ -17,4 +18,8 @@ C:\temp\myapp\bin\..\\..\file.txt - This is a path and an absolute path. It's no
 
 A canonical path is always an absolute path.
 
-Converting from a path to a canonical path makes it absolute (usually tack on the current working directory so e.g. ./file.txt becomes c:/temp/file.txt). The canonical path of a file just "purifies" the path, removing and resolving stuff like ..\ and resolving symlinks (on unixes).
+Converting from a path to a canonical path makes it absolute 
+(usually tack on the current working directory so e.g. ./file.txt becomes c:/temp/file.txt). 
+
+The canonical path of a file just "purifies" the path, 
+removing and resolving stuff like ..\ and resolving symlinks (on unixes).

@@ -21,7 +21,8 @@ substring(0, 1); 返回几个字符？ 1 个字符
 如果参数 start 与 stop 相等，那么该方法返回的就是一个空串（即长度为 0 的字符串）
 
 Added in API level 1
-Returns a string containing the given subsequence of this string. The returned string shares this string's backing array.
+Returns a string containing the given subsequence of this string. 
+The returned string shares this string's backing array.
 
 Parameters
 start	the start offset.
