@@ -1,0 +1,13 @@
+-------------------------------------------
+没有单引号
+-------------------------------------------
+http://stackoverflow.com/questions/24592841/is-there-any-difference-in-json-key-when-using-single-quote-and-double-quote
+
+In JSON only double quotes are valid.
+
+You can find the standard on JSON.org
+
+A value can be a string in double quotes, or a number, or true or false or null, 
+or an object or an array. These structures can be nested.
+
+In other words, no strings in single quotes.

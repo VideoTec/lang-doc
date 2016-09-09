@@ -1,0 +1,5 @@
+<script>
+var jsonStr = '{"value":"name \\\"ok\\\""}'; //这样才能正确转义 GSON 转不出这种的字符串
+var jsonObj = JSON.parse(jsonStr);
+console.log(jsonObj.value);
+</script>
