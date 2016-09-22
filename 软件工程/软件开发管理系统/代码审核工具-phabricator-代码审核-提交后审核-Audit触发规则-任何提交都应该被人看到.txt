@@ -1,0 +1,47 @@
+audit[英][ˈɔ:dɪt] [美][ˈɔdɪt]
+n.审计，查账
+
+http://www.cnblogs.com/TechZi/archive/2013/02/23/2923873.html
+
+在小团队中进行审核
+如果你身处一个小团队并且认为不需要复杂的触发规则，那么你可以创建一个简单的审核工作流，如下所示：
+创建一个新项目：“Code Audits”。
+为代码提交创建一条全局规则："Differential Revision" "does not exist"。
+在这条规则下，“Code Audits”项目的每一次提交都会触发一次审核请求。
+所有工程师加入Code Audits项目。
+     通过这种方式，所有项目成员都将收到每一次代码提交的审核请求，
+     但是，一旦某一位成员认可了这次提交，那么所有的审核请求便会消除。
+     实际上，这种方式强制大家遵守了一条规则：任何提交都应该被人看到。
+     一旦团队壮大，便可改进触发规则使每位开发人员只看到与他们有关的代码修改。
+这段的原文
+https://secure.phabricator.com/book/phabricator/article/audit/
+Create a new global Herald rule for Commits, 
+which triggers an audit by the "Code Audits" project 
+for every commit where "Differential Revision" "does not exist" 
+(this will allow you to transition partly or fully to review later if you want).
+     
+https://www.zhihu.com/question/19977889
+
+Phabricator 有很好的自动检测和拉取机制，
+你推的代码，很快它就能收到，根据你定制的规则去指派给相应的人去审核
+
+http://www.jianshu.com/p/d9957c1d2339
+
+Audit Triggers 触发器
+审核请求可由以下4种方式触发：
+
+1）将“Auditors: username1, username2”写入提交注释中，
+会触发上述用户接到审核请求。
+
+herald[英][ˈherəld] [美][ˈhɛrəld]
+n.使者，先驱，通报者；（旧时的）传令官
+2）可以在Herald工具中，根据提交的属性创建一系列的触发规则。
+如有文件被创建、文本被修改，提交人等。
+
+3）可以在任何提交中，通过提交注释为自己创建审核请求。
+
+4）你可以创建一个包，并且选择“开启审核”，
+这个功能是更强的特性，而且可能对于非常大的团队比较有用
+
+http://www.voidcn.com/blog/Tom_Green/article/p-6084317.html
+此处正则匹配时就是以Auditors:….开始截取的，所以只需要修改此处就可以了

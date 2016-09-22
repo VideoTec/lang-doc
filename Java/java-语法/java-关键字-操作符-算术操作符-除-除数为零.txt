@@ -1,0 +1,14 @@
+float pro = (float) width / height; 
+这里 height 为零，也不会报异常
+
+http://blog.csdn.net/whuslei/article/details/6918214
+
+如果int/int中除数为0，会抛出异常java.lang.ArithmeticException: / by zero
+
+但如果是浮点型，就不会报异常了！
+
+0.0/0.0 得到的结果是NaN(not an number的简称，即"不是数字")。通过Double.isNaN(double x)来判断。
+正数/0.0 得到的结果是正无穷大，即Infenity
+负数/0.0 得到的结果是负无穷大，即Infenity。通过Double.isInfinite(double x)来判断。
+
+http://lavasoft.blog.51cto.com/62575/247030/

@@ -1,0 +1,33 @@
+diffusion[英][dɪ'fju:ʒn] [美][dɪˈfjuʒən]
+n.扩散；<物，化>扩散；传播；<人>（文化等的）传流
+
+创建仓库
+http://ph.feinno.com/diffusion/
+主页 | Diffusion | Create Repository
+
+https://secure.phabricator.com/book/phabricator/article/diffusion_uris/
+Phabricator can create, host, observe, mirror, proxy, and import repositories. 
+
+第一种：observe
+If you have an existing repository hosted on another service (like GitHub, Bitbucket, or a private server) 
+that you want to work with in Phabricator, 
+you can configure Phabricator to observe it.
+
+第二种：mirror
+You can create a read-only mirror of an existing repository. 
+Phabricator will continuously publish the state of the source repository to the mirror, 
+creating an exact copy.
+
+第三种：proxy
+
+第四种：import
+If you have an existing repository that you want to move so it is hosted on Phabricator, 
+there are three ways to do it:
+
+http://share.zuijiao.net/?p=22
+
+Phabricator提供了两种创建仓库的方式，新建和导入外部库
+【实际操作结果:没有看到两种】
+
+http://dcycleproject.org/blog/80/setting-phabricator-track-git-repo
+SETTING UP PHABRICATOR TO TRACK A GIT REPO

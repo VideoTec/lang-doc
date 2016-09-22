@@ -1,0 +1,13 @@
+http://www.zhihu.com/question/38930789
+
+http://share.zuijiao.net/?p=22
+
+第一步：
+首先，我们需要认识Phabricator为我们提供的命令行工具arc。
+添加配置文件”.arcconfig”切换到自己项目的根目录下面，创建一个.arcconfig文件
+
+第二步：
+提交Differential
+
+第三步：
+审查人将状态修改为Accept Revision表示通过，通过后，作者就可以将代码push到代码库里面去了

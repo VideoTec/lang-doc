@@ -1,0 +1,10 @@
+Differential – Review Code：管理 pre-push code review 工作流程
+
+differential[英][ˌdɪfəˈrenʃl] [美][ˌdɪfəˈrɛnʃəl]
+adj.差别的；特意的；[数]微分的；[机，物]差动的
+
+http://share.zuijiao.net/?p=22
+
+之前说过有两种Code Review的方式，
+一种是push前的Differential，
+一种是push后的Audit。

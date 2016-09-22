@@ -1,0 +1,10 @@
+http://share.zuijiao.net/?p=22
+
+Phabricator是一款强大的开源工具，可用于Code Review、任务管理、项目交流。首先认识一下他主导航的几大工具：
+
+Differential – Review Code：管理 pre-push code review 工作流程。
+Maniphest – Task and Bugs：管理成员的所有任务和Bug，可对任务或Bug展开讨论。
+Diffusion – Host and Browse Repositories：管理代码仓库，支持Git/Hg/SVN。
+Audit – Browse and Audit Commits：管理 post-push code review 工作流程，他与Differential的区别可参考文档 Review vs Audit 。
+Phriction – Wiki：文档管理
+Projects – Get Organized：工程管理，可关联Repository。

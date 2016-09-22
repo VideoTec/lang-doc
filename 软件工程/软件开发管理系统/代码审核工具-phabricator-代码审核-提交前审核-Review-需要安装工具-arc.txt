@@ -1,0 +1,23 @@
+http://share.zuijiao.net/?p=22
+
+我们需要认识Phabricator为我们提供的命令行工具arc。
+arc是Arcanist的缩写，官方解释如下，自己翻译吧：
+
+Arcanists provides command-line access to many Phabricator tools (like Differential, Files, and Paste), 
+integrates with static analysis (“lint”) and unit tests, 
+and manages common workflows like getting changes into Differential for review.
+
+简单地说就是提供了一组命令使我们更方便地使用Phabricator，
+比如使用diff arc提交修改至Differential做Code Review。
+
+提交Differential
+1）首先安装证书，运行`arc install-certificate`，
+它会提示你用浏览器打开一个链接，获取一个Token，
+然后粘贴获得的Token按回车即可。
+2）修复项目的Bug(也就是对你的项目做一些改变)。
+3）运行`git commit -am “修复了 XX BUG”` ，commit你的改动
+4）运行`arc diff`，提交Differential，它会提醒你填写一些信息：
+    Test Plan - 必填，详细说明你的测试计划；
+    Reviewers - 必填，审查人的账户，多个使用","隔开；
+    Subscribers - 非必填订阅人，多个使用","隔开。
+提交成功后，审查人就能在Differential收到通知。

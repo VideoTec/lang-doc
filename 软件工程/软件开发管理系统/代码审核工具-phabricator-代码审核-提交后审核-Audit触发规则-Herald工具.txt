@@ -1,0 +1,22 @@
+
+http://www.jianshu.com/p/d9957c1d2339
+
+herald[英][ˈherəld] [美][ˈhɛrəld]
+n.使者，先驱，通报者；（旧时的）传令官
+2）可以在Herald工具中，根据提交的属性创建一系列的触发规则。
+如有文件被创建、文本被修改，提交人等。
+
+https://laserx.github.io/2015/09/03/using-phabricator/
+
+Herald一开始以为就是为了跑通代码审计流程而设计的, 后来发现不是那么回事, 功能强大的很.
+Audit代表了post-push我称之为代码审计, 需搭配Herald
+Audit轻量很多, 首先, 不需要Arcanist. 
+只需要使用一般的git流程就可以了, 当代码push的时候, 系统会自动触发Audit
+
+https://secure.phabricator.com/book/phabricator/article/audit/
+Create a new global Herald rule for Commits, 
+which triggers an audit by the "Code Audits" project 
+for every commit where "Differential Revision" "does not exist" 
+(this will allow you to transition partly or fully to review later if you want).
+
+https://secure.phabricator.com/book/phabricator/article/herald/

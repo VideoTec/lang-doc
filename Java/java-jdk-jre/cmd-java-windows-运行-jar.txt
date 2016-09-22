@@ -7,3 +7,29 @@ I have a "helloworld.jar" file. For running a JAR file I am using a command-line
 By using this command I can execute the JAR file. But instead of doing it in a command-line window, I want to execute the JAR file if I double click on the JAR file. I did some Google search for this. But I cannot do this.
 
 For this do I need to install any software? Can any one provide me help on this?
+
+-------------------------------
+指定 CLASSPATH
+-------------------------------
+    javaexec {
+        main = "com.feinno.serialization.protobuf.util.AntBuilder"
+        classpath += fileTree(include: '*.jar', dir: 'pbjar')
+        classpath += files(srcClassPath)
+        args = ['com.feinno', srcClassPath]
+    }
+    
+    D:\work\androidrongflysip\rongflymqtt\pbjar>java -jar post-compile-protobuf.jar com.feinno D:\work\androidrongflysip\rongflymqtt\build\intermediates\classes\devexperience
+args:[com.feinno, D:\work\androidrongflysip\rongflymqtt\build\intermediates\classes\devexperience]
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Load package : com/feinno/
+url :jar:file:/D:/work/androidrongflysip/rongflymqtt/pbjar/post-compile-protobuf.jar!/com/feinno/
+
+正确的写法：
+http://stackoverflow.com/questions/219585/setting-multiple-jars-in-java-classpath
+java -cp "Test.jar;lib/*" my.package.MainClass  windows 分号
+java -cp "Test.jar:lib/*" my.package.MainClass  unix 冒号
+适配符， * 不是 *.jar
+
+D:\work\androidrongflysip\rongflymqtt\pbjar>java -cp "D:\work\androidrongflysip\rongflymqtt\pbjar\*;D:\work\androidrongflysip\rongflymqtt\build\intermediates\classes\devexperience\debug" com.feinno.serialization.protobuf.util.AntBuilder com.feinno.androidprotocol.protobuffer.args D:\work\androidrongflysip\rongflymqtt\build\intermediates\classes\devexperience\debug

@@ -1,3 +1,15 @@
+audit[英][ˈɔ:dɪt] [美][ˈɔdɪt]
+n.审计，查账
+
+https://secure.phabricator.com/book/phabricator/article/reviews_vs_audit/
+User Guide: Review vs Audit
+https://secure.phabricator.com/book/phabricator/article/audit/
+Audit User Guide
+Create a new global Herald rule for Commits, which triggers 
+an audit by the "Code Audits" project for every commit 
+where "Differential Revision" "does not exist" 
+(this will allow you to transition partly or fully to review later if you want).
+
 http://www.cnblogs.com/TechZi/archive/2013/02/23/2923873.html
 
 Audit如何工作
@@ -13,7 +25,7 @@ Audit工具主要跟踪两件事：
 审核请求提醒用户去审核一次提交。
 它有多种触发方式。（可见“审核触发器”一节）
 
-在审核工具的主页（位于/audit/）或者phabricator首页
+在审核工具的主页（位于/audit/）或者 phabricator 首页
 可以看到代码的提交和需要你审核的审核请求。如下图所示。
 
 必要的审核（Required Audits）。

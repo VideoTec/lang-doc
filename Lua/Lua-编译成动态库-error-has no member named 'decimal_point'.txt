@@ -1,0 +1,8 @@
+参考：
+
+
+http://blog.csdn.net/stillvxx/article/details/17955945
+
+编译llex.c时，有如下错误：
+D:/SoftWare/lua-5.2.0/jni/llex.c: In function 'trydecpoint':
+D:/SoftWare/lua-5.2.0/jni/llex.c:214:18: error: 'struct lconv' has no member named 'decimal_point'

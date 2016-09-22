@@ -1,0 +1,23 @@
+代码：
+/* Location:              D:\work\androidrongflysip\rongflymqtt\pbjar\post-compile-protobuf.jar!\com\feinno\runtime\bytecode\util\DataInputStreamDecoration.class
+ * Java compiler version: 6 (50.0)
+ * JD-Core Version:       0.7.1
+ */
+ 
+错误：
+错误: 非法的 Unicode 转义
+illegal unicode escape
+
+https://github.com/alibaba/freeline/issues/101
+
+以\uxxxx结尾的貌似误认为是unicode编码
+
+http://stackoverflow.com/questions/17635832/gradle-error-illegal-unicode-escape
+
+http://stackoverflow.com/questions/3949130/comment-illegal-unicode-sequences
+
+http://stackoverflow.com/questions/31739245/why-does-this-code-showing-error-invalid-unicode
+Which means that if you have an illegal Unicode escape sequence in your source, 
+it will be flagged as an error even though it's inside a comment, 
+because at this point the compiler doesn't even know 
+that the particular part of the code it is looking at is a comment.
