@@ -1,0 +1,20 @@
+http://stackoverflow.com/questions/6070350/errorstream-in-httpurlconnection
+HttpURLConnection#getErrorStream() returns null when receiving a 401 or 407, 
+not because the noop implementation in the abstract class,
+but because HttpURLConnection closes/clears the connection immediately 
+if it sees a 401/407 when in streaming mode(i.e., POST). 
+
+ If the connection was not connected, or if the server did not have an error while connecting or 
+ if the server had an error but no error data was sent, this method will return null.
+ 
+示例：读取 http 错误信息
+    int responseCode = connection.getResponseCode();
+    InputStream is = connection.getErrorStream();
+    String errorMsg = "IOException";
+    if (is != null) {
+        byte[] buffer = new byte[1024];
+        int len = is.read(buffer);
+        if (len < 1024) {
+            errorMsg = new String(buffer, 0, len, "UTF8");
+        }
+    }

@@ -1,3 +1,38 @@
+问题，怎么获取 401 返回码呢？
+
+http://stackoverflow.com/questions/23593486/java-httpurlconnection-getinputstream-but-get-401-ioexception
+You need to check for the http status using getResponseCode() to decide if 
+you should use getInputStream() or getErrorStream(). 
+In this case, you need to read the error stream.
+
+http://stackoverflow.com/questions/11735636/how-to-get-401-response-without-handling-it-using-try-catch-in-android
+Whenever the server returns response with status code 401, 
+my app throws IOException with a message stating, "no authentication challenge found"
+
+int status = 0;
+try {
+    status = conn.getResponseCode();
+} catch (IOException e) {
+    // HttpUrlConnection will throw an IOException if any 4XX
+    // response is sent. If we request the status again, this
+    // time the internal status will be properly set, and we'll be
+    // able to retrieve it.
+    status = conn.getResponseCode(); 异常后，再次调用 ，就可以获得这个值了。
+    这时,获取HTTP响应的，body，需要调用 getErrorStream
+}
+if (status == 401) {
+    // ...
+}
+
+About the message, you get different message because 
+your server is not sending WWW-Authenticate header with the response
+
+http://stackoverflow.com/questions/1748374/http-401-whats-an-appropriate-www-authenticate-header-value
+https://www.keakon.net/2010/01/30/%E7%94%A8WWW-Authenticate%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81
+
+HTTP协议 WWW-Authenticate的头字段，可以用于实现登录验证。
+
+
 http://221.179.192.69:8080/webrtcserver/v1/tel:+8615801633188/invite
 
 【2016.8.29】

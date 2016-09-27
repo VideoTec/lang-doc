@@ -1,0 +1,19 @@
+staging[英][ˈsteɪdʒɪŋ] [美][ˈstedʒɪŋ]
+n.分段运输；工作台
+
+proposed[英][prəʊ'pəʊzd] [美][prə'poʊzd]
+adj.被提议的，所推荐的
+
+https://secure.phabricator.com/book/phabricator/article/diffusion_managing/
+
+Staging Area
+The Staging Area panel configures staging areas, 
+used to make proposed changes available to build and continuous integration systems.
+
+For more details, see Harbormaster User Guide.
+
+详细说明：
+To make it easier to run integration tests and builds on code under review, 
+you can configure a Staging Area. 
+When arc creates a diff, 
+it will push a copy of the changes to the configured staging area with a corresponding tag.

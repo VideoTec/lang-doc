@@ -1,0 +1,22 @@
+例子：
+
+URI git@git.feinno.com:ngcc-v2/sims.git 
+
+Credential Restricted
+You do not have permission to view the configured credential.
+只有设置 credential 的用户，自己有查看权限
+
+I/O Observe
+Phabricator will observe changes to this URI and copy them.
+
+Display Visible
+This URI will be shown to users as a clone URI.
+
+https://secure.phabricator.com/book/phabricator/article/diffusion_managing/
+
+The URIs panel allows you to add and manage URIs which Phabricator will 
+fetch from, 
+serve from, and 
+push to.
+
+These options are covered in detail in Diffusion User Guide: URIs.

@@ -1,32 +1,5 @@
-    /**
-     * Converts the byte array to a string using the named charset.
-     *
-     * <p>The behavior when the bytes cannot be decoded by the named charset
-     * is unspecified. Use {@link java.nio.charset.CharsetDecoder} for more control.
-     *
-     * @throws NullPointerException
-     *             if {@code data == null}.
-     * @throws UnsupportedEncodingException
-     *             if {@code charsetName} is not supported.
-     */
-    public String(byte[] data, String charsetName) throws UnsupportedEncodingException {
-        throw new UnsupportedOperationException("Use StringFactory instead.");
-    }
-    
-    调用方法：
-    
-    InputStream is = connection.getInputStream();
-    int len = connection.getContentLength();
-    String responseStr = "noBody";
-    if (len > 0) {
-        byte[] content = new byte[len];
-        is.read(content);
-        responseStr = new String(content, "ISO-8859-1");
-    }
+public String()
 
------------------------------------------------
-    所有的重载
------------------------------------------------
 public String(byte[] data)
 public String(byte[] data, int high)
 public String(byte[] data, int offset, int byteCount)
@@ -36,9 +9,23 @@ public String(byte[] data, String charsetName)
 public String(byte[] data, int offset, int byteCount, Charset charset)
 public String(byte[] data, Charset charset)
 
+public String(char[] data)
+public String(char[] data, int offset, int charCount)
+String(int offset, int charCount, char[] chars)
+
+public String(String toCopy)
+public String(StringBuffer stringBuffer)
+public String(int[] codePoints, int offset, int count)
+public String(StringBuilder stringBuilder)
+
 问题一：会自动判断缓存中字符串长度吗？
 byte[] buffer = new byte[1024];
 new String(buffer, "ISO-8859-1");
+
+byte[] buffer = new byte[1024];
+String str = new String(buffer);
+int len = str.length();
+Log.v("tag", "" + len + ";" + str); 长度为 1024, str 中所有字符的值为 0x0
 
 问题二：String charsetName 的列表
 canonical[英][kəˈnɒnɪkl] [美][kəˈnɑnɪkl] adj.权威的；见于<圣经>正经篇目的；大教堂教士的；按照教规的
@@ -53,4 +40,3 @@ ISO-8859-1 ISO-8859-1 ISO-8859-1, Latin Alphabet No. 1
 
 Extended Encoding Set (contained in lib/charsets.jar)
 GBK GBK GBK, Simplified Chinese
- 

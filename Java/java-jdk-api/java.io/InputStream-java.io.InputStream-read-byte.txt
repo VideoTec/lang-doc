@@ -1,10 +1,54 @@
+重载一：
 public abstract int read ()
 
 Added in API level 1
 
-Reads a single byte from this stream and returns it as an integer in the range from 0 to 255. Returns -1 if the end of the stream has been reached. 
+Reads a single byte from this stream and returns it as an integer in the range from 0 to 255. 
+Returns -1 if the end of the stream has been reached. 
 
 Blocks until 
 1）one byte has been read, 
 2）the end of the source stream is detected or 
 3）an exception is thrown.
+
+重载二：
+public int read(byte[] buffer)
+public int read(byte[] buffer, int byteOffset, int byteCount)
+Returns the number of bytes actually read or -1 if the end of the stream has been reached
+
+示例：读取 http 错误信息
+    int responseCode = connection.getResponseCode();
+    InputStream is = connection.getErrorStream();
+    String errorMsg = "IOException";
+    if (is != null) {
+        byte[] buffer = new byte[1024];
+        int len = is.read(buffer);
+        if (len < 1024) {
+            errorMsg = new String(buffer, 0, len, "UTF8");
+        }
+    }
+
+http://stackoverflow.com/questions/2319395/what-0-returned-by-inputstream-read-means-how-to-handle-this
+
+The only situation in which a InputStream may return 0 from a call to read(byte[]) 
+is when the byte[] passed in has a length of 0:
+
+ byte[] buf = new byte[0];
+ int read = in.read(buf); // read will contain 0
+ 
+As specified by this part of the JavaDoc:
+
+If the length of b is zero, then no bytes are read and 0 is returned
+My guess: you used available() to see how big the buffer should be and it returned 0. Note that this is a misuse of available(). The JavaDoc explicitly states that:
+
+It is never correct to use the return value of this method to allocate a buffer intended to hold all data in this stream.
+
+http://stackoverflow.com/questions/4659659/why-does-inputstreamread-return-an-int-and-not-a-byte
+
+Because a byte can only hold -128 until 127, while it should return 0 until 255 
+(and -1 when there's no byte left (i.e. EOF)). 
+Even if it returned byte, there would be no room to represent EOF.
+
+A more interesting question is why it doesn't return short.
+
+It returns an int because when the stream can no longer be read, it returns -1.

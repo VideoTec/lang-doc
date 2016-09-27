@@ -1,0 +1,15 @@
+https://secure.phabricator.com/book/phabricator/article/diffusion_managing/
+
+The Basics section of the management interface 
+allows you to configure the repository name, description, and identifiers. 
+You can also activate or deactivate the repository here, 
+and configure a few other miscellaneous settings.
+
+Basics: Name
+Basics: Callsigns 呼号
+Basics: Short Name
+Basics: Description
+Basics: Encoding
+Basics: Dangerous Changes
+Basics: Deactivate Repository
+Basics: Delete Repository

@@ -1,0 +1,20 @@
+Visible To androidrongfly (Project) 
+Editable By androidrongfly (Project) 
+Pushable By Not a Hosted Repository
+
+https://secure.phabricator.com/book/phabricator/article/diffusion_managing/
+
+The Policies section of the management interface 
+allows you to review and manage repository access policies.
+
+You can configure granular access policies for each repository to control 
+who can view, clone, administate, and push to the repository.
+
+Policies: View
+
+Policies: Edit
+
+Policies: Push
+This policy has no effect if Phabricator is not hosting the repository, 
+because it can not control 
+who is allowed to make changes to a remote repository it is merely observing.
