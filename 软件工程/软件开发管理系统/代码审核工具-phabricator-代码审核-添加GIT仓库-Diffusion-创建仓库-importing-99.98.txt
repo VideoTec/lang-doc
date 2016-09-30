@@ -1,0 +1,3 @@
+https://secure.phabricator.com/T6922
+
+Diffusion git repository import stuck at 99.99%

@@ -1,0 +1,96 @@
+Diffusion | Create Repository
+
+填写下面属性：
+
+Name:
+
+Callsign:
+The callsign "TestProjectCallsign" is not a valid repository callsign. 
+Callsigns may only contain UPPERCASE letters.
+
+Short Name:
+Description:
+Tags: 指定工程
+
+https://secure.phabricator.com/book/phabricator/article/diffusion_uris/
+创建仓库类型：
+
+1. Host Repositories:
+
+2. Observe Repositories:
+
+3. Mirror Repositories: 镜像 ph 上的仓库
+Phabricator can publish any repository to mirrors, 
+overwiting them with an exact copy of the repository that stays up to date as the source changes. 
+This works with both 
+local repositories that Phabricator is hosting and 
+remote repositories that Phabricator is observing.
+
+4. Proxy Repositories:
+可以通过，ph，开放一个仓库，给其它用户查看
+Phabricator supports granular read permissions, 
+so this can let you open a private repository up a little bit in a flexible way
+
+5. Import Repositories: 导入到本地
+you can observe the remote repository first, 
+then turn the tracking off once the repository fully synchronizes.
+This allows you to copy an existing repository and begin hosting it in Phabricator.
+
+I/O Type 种类：
+I/O Type for the URI to None
+I/O Type for the URI to Observe
+I/O Type for the URI to Mirror
+Read Only
+Read/Write
+
+Builtin Clone URIs
+
+By default, Phabricator automatically exposes and activates HTTP, HTTPS and SSH clone URIs 
+by examining configuration
+SSH: The ssh:// or svn+ssh:// clone URI will be available if these conditions are satisfied:
+phd.user must be configured.
+
+-------------------------------------------------
+问题： set up a hosted repository
+-------------------------------------------------
+https://secure.phabricator.com/book/phabricator/article/diffusion_hosting/
+Phabricator can host repositories and provide authenticated 
+read and write access to them over HTTP and SSH. 
+This document describes how to configure repository hosting.
+
+支持的协议：
+VCS         SSH         HTTP
+Git         Supported   Supported
+Mercurial   Supported   Supported
+Subversion  Supported   Not Supported
+
+If you've already set up a hosted repository, you can try cloning it now.
+
+需要完全，命令行操作，设置 sshd 用户
+
+Creating System User Accounts
+The user the webserver runs as. We'll call this www-user
+The user the daemons run as. We'll call this daemon-user.  即运行 phd 的用户
+The user that humans will connect over SSH as. We'll call this vcs-user.
+
+Configuring Phabricator
+phabricator/ $ ./bin/config set phd.user daemon-user
+phabricator/ $ ./bin/config set diffusion.ssh-user vcs-user
+
+Configuring Sudo
+The www-user and vcs-user need to be able to sudo as the daemon-user 
+so they can interact with repositories.
+
+Additional SSH User Configuration
+/etc/shadow: Open /etc/shadow and find the line for the vcs-user account.
+做相应修改
+/etc/passwd: Open /etc/passwd and find the line for the vcs-user account.
+做相应修改
+
+Configuring SSH
+Choose a Port: These instructions will configure the alternate sshd on port 2222. 
+Configure and Start Phabricator SSHD: Now, you'll configure and start a copy of sshd which will serve Phabricator services, including repositories, over SSH.
+Create phabricator-ssh-hook.sh
+Create sshd_config for Phabricator:
+Start SSHD: Now, start the Phabricator sshd:
+sudo /path/to/sshd -f /path/to/sshd_config.phabricator

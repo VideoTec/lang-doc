@@ -1,0 +1,12 @@
+Update Frequency 15 s · Learn More 
+
+Status
+
+1）Repository Active	
+2）Found Binary git	/home/zhangleiyw/phabricator/support/bin/git
+3）Pull Daemon Not Running	Use bin/phd start to start daemons. See Managing Daemons with phd.
+4）Task Daemon Running	
+5）Storage Directory OK	/var/repo
+6）Working Copy OK	/var/repo/7/
+7）Updates OK	Last updated Fri, Sep 30, 10:40 AM (2 s ago).
+8）Fully Imported

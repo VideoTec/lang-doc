@@ -1,0 +1,31 @@
+1. 已经设置仓库（I/O Type: Observe - Copy from a remote）
+2. 设置全局 Herald 规则 - 提交规则，并指定了审计员。
+   注意：且不用全局规则，只需要指定 Object-仓库 规则就行了
+   When all of these conditions are met:
+   Repository is any of R6 rongflyandroid   ----  因为这个条件设置不正确，造成不生效，这里指定作者就好了
+   Take these actions every time this rule matches:
+   Add auditors: androidrongfly.
+   
+结果： Audit 下没有任何可审计项
+
+可能的原因：
+
+1. 创建 importing 99.98% 就卡住不动了
+
+2. 需要启动 phd - Phabricator Daemon launcher
+https://secure.phabricator.com/book/phabricator/article/managing_daemons/
+Daemons are started and stopped with phd (the Phabricator Daemon launcher). 
+Daemons can be monitored via a web console
+You do not need to run daemons for most parts of Phabricator to work, 
+but some features (principally, repository tracking with Diffusion) 
+require them and several features will benefit in performance or stability if you configure daemons.
+Explains Phabricator daemons and the daemon control program phd
+https://secure.phabricator.com/book/phabricator/article/diffusion/
+For all repositories, you'll need to be running the daemons. 
+If you have not set them up yet, see Managing Daemons with phd.
+
+3. 最终查到原因是，herald 规则写错了
+When any of these conditions are met:
+Author is any of wangxiangfx   ----  这里指定作者就好了
+Take these actions every time this rule matches:
+Add auditors: wangxiangfx.

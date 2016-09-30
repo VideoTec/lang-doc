@@ -5,6 +5,11 @@ n.扩散；<物，化>扩散；传播；<人>（文化等的）传流
 http://ph.feinno.com/diffusion/
 主页 | Diffusion | Create Repository
 
+https://secure.phabricator.com/book/phabricator/article/diffusion_hosting/
+
+https://secure.phabricator.com/book/phabricator/article/diffusion_hooks/
+Phabricator installs pre-receive/pre-commit hooks in hosted repositories automatically. 
+
 https://secure.phabricator.com/book/phabricator/article/diffusion_uris/
 Phabricator can create, host, observe, mirror, proxy, and import repositories. 
 
