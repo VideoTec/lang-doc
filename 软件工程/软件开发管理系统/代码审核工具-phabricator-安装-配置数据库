@@ -10,7 +10,8 @@ Make sure Phabricator and MySQL are correctly configured.
 
 The current Phabricator configuration has these values:
 
-mysql.host	"localhost"   ----- 把这个修改成 127.0.0.1 就可以了
+mysql.host	"localhost"   ----- 把这个修改成 127.0.0.1 就可以了 
+                                问题，在哪里修改的？
 mysql.port	null
 mysql.user	"root"
 mysql.pass	hidden
@@ -21,6 +22,33 @@ phabricator/ $ ./bin/config set mysql.host value
 phabricator/ $ ./bin/config set mysql.port value
 phabricator/ $ ./bin/config set mysql.user value
 phabricator/ $ ./bin/config set mysql.pass value
+
+这个命令 ./bin/config 怎么运行的？它只是引用一个php文件
+../scripts/setup/manage_config.php
+
+注意，这个是 php 与 mysql 的连接问题。
+设置 php.ini
+
+hi i solved the issue very easily after spent 2 days :
+./bin/config set mysql.host 'localhost'
+./bin/config set mysql.user 'root'
+./bin/config set mysql.pass 'pass'
+don't forget the quotes !!!
+
+正确的运行方式：
+E:\ph-src\bin>E:\php-5.6.26-Win32-VC11-x64\php.exe E:\ph-src\scripts\setup\manage_config.php set mysql.host 'localhost'
+Set 'mysql.host' in local configuration.
+
+运行结果，存储在 
+E:\ph-src\conf\local\local.json
+
+{
+  "mysql.port": "'3306'",
+  "mysql.pass": "'mysqlkey123'",
+  "mysql.user": "'root'",
+  "mysql.host": "'127.0.0.1'"
+}
+
 
 --------------------------------------
 Setup MySQL Schema
