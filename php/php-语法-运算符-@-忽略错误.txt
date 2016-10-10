@@ -1,0 +1,4 @@
+http://php.net/manual/zh/language.operators.errorcontrol.php
+
+PHP 支持一个错误控制运算符：@。当将其放置在一个 PHP 表达式之前，
+该表达式可能产生的任何错误信息都被忽略掉。

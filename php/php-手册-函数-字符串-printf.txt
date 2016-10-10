@@ -1,0 +1,6 @@
+http://php.net/manual/zh/function.printf.php
+
+printf — 输出格式化字符串
+
+int printf ( string $format [, mixed $args [, mixed $... ]] )
+依据 format 格式参数产生输出。

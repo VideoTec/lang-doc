@@ -1,3 +1,35 @@
 https://secure.phabricator.com/T6922
 
 Diffusion git repository import stuck at 99.99%
+
+stuck commit.
+stuck[英][stʌk] [美][stʌk]
+adj.动不了的；被卡住的；被…缠住的；被…难住的，不知所措
+
+问题，去哪里看日志？
+
+可能的解决方法：
+1. 先建立 仓库 不激活
+2. 添加 uri ，然后激活
+3. 完全导入完成后，再设置 herald 规则
+
+https://secure.phabricator.com/book/phabricator/article/repository_imports/
+
+Sometimes, the import process may hang or fail to complete. 
+This document can help you understand the import process and troubleshoot problems with it.
+
+Specifically, the import pipeline has four steps:
+1）Message: Parses the commit message and author metadata.
+2）Change: Caches the paths the commit affected.
+3）Owners: Runs Owners rules.
+4）Herald: Runs Herald rules and publishes notifications.
+
+Identifying Missing Steps
+1）Handling Permanent Failures
+2）Handling Temporary Failures
+
+Forced Parsing
+phabricator/ $ ./bin/repository reparse --importing --all rXYZ
+
+Forced Imports
+phabricator/ $ ./bin/repository mark-imported rXYZ

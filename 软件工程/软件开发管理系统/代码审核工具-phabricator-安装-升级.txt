@@ -1,0 +1,14 @@
+https://secure.phabricator.com/book/phabricator/article/upgrading/
+
+phabricator/ $ git checkout stable
+arcanist/ $ git checkout stable
+libphutil/ $ git checkout stable
+
+更新步骤：
+
+Stop the webserver (including php-fpm, if you use it).
+Stop the daemons, with phabricator/bin/phd stop.
+Run git pull in libphutil/, arcanist/ and phabricator/.
+Run phabricator/bin/storage upgrade.
+Start the daemons, with phabricator/bin/phd start.
+Restart the webserver (and php-fpm, if you stopped it earlier).

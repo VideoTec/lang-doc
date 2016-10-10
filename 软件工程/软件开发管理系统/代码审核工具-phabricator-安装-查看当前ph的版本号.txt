@@ -1,0 +1,12 @@
+https://secure.phabricator.com/book/phabcontrib/article/version/
+Go to the Config application. You can type "Config" into the global search box, 
+or navigate to https://your.install.com/config/. 
+You must be an administrator to access this application.
+Click Versions in the left menu.
+Copy and paste all of the information on the page into your report.
+
+http://ph.feinno.com/config/module/versions/
+
+phabricator 3aed39b8b072c8bfa89b3f45183dfa126600ff1d (May 18 2016) 
+arcanist 2234c8cacc21ce61c9c10e8e5918b6a63cc38fc8 (May 16 2016) 
+phutil b25e0477b280ca3e8345bb97cd55e95bcb5023ec (May 11 2016)

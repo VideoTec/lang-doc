@@ -24,7 +24,8 @@ https://secure.phabricator.com/book/phabricator/article/diffusion/
 For all repositories, you'll need to be running the daemons. 
 If you have not set them up yet, see Managing Daemons with phd.
 
-3. 最终查到原因是，herald 规则写错了
+3. 最终查到原因是，herald 规则写错了，
+如果没有导入完成，还是不行
 When any of these conditions are met:
 Author is any of wangxiangfx   ----  这里指定作者就好了
 Take these actions every time this rule matches:

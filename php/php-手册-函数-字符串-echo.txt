@@ -1,0 +1,14 @@
+http://php.net/manual/zh/function.echo.php
+
+void echo ( string $arg1 [, string $... ] )
+
+echo — 输出一个或多个字符串
+
+echo 不是一个函数（它是一个语言结构）， 
+因此你不一定要使用小括号来指明参数，单引号，双引号都可以
+
+// You can use variables inside of an echo statement
+$foo = "foobar";
+$bar = "barbaz";
+
+echo "foo is $foo"; // foo is foobar

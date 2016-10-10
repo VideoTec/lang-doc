@@ -18,6 +18,15 @@ somewhere/ $ git clone https://github.com/phacility/arcanist.git
 include_path = .:/usr/local/lib/php:./include
 arcanist[英]['ɑ:kənɪst] [美]['ɑkənɪst] n.巧匠，拥有陶磁器制造秘方的人
 
+解决方法：修改 php.ini
+include_path = "e:\php-lib" php-lib 目录下有两个子目录 libphutil 和 arcanist
+
+; UNIX: "/path1:/path2"
+include_path = ".:/php/includes:~/code/phplib" -- 错误
+【注意】不能使用 ~ 这个home路径符号，需要写绝对路径
+; UNIX: "/path1:/path2"
+include_path = ".:/php/includes:/home/wangxiang/code/phplib"
+
 查看
 /home/wangxiang/nginx/phabricator/scripts
   $include_path = ini_get('include_path');
@@ -40,6 +49,18 @@ openssl         --with-openssl[=DIR]
 mbstring        --with-libmbfl[=DIR] --enable-mbstring
 curl            --with-curl[=DIR]
 
+配置数据库参数：
+phabricator/ $ ./bin/config set mysql.host 127.0.0.1
+phabricator/ $ ./bin/config set mysql.port 3306
+phabricator/ $ ./bin/config set mysql.user root
+phabricator/ $ ./bin/config set mysql.pass mysqlkey123
+
+创建数据库：
+./bin/storage upgrade
+
+css js 文件找不到的问题
+设置hosts文件，使用域名代替 ip 地址访问
+
 ----------------------------------------------------------------------------------
 https://secure.phabricator.com/book/phabricator/article/installation_guide/
 ----------------------------------------------------------------------------------
@@ -52,6 +73,7 @@ To install Phabricator, you will need:
 1. a normal computer to install it on 
 (shared hosts and unusual environments are not supported) 
 running some flavor of Linux or a similar OS;
+注意：不支持 windows 操作系统
 
 2. a domain name (like phabricator.mycompany.com);
 
@@ -69,3 +91,28 @@ The remainder of this document details these requirements.
 第二章 Level Requirements
 第三章 Installing Required Components
 第四章 Installing APC (Optional)
+
+MySQL: You need MySQL. We strongly recommend MySQL 5.5 or newer.
+PHP: You need PHP 5.2 or newer, but note that PHP 7 is not supported.
+
+支持的Web服务器
+
+Beyond an operating system, you will need a webserver.
+
+Apache: 
+Many installs use Apache + mod_php.
+
+nginx: 
+Many installs use nginx + php-fpm.
+
+lighttpd: 
+lighttpd is less popular than Apache or nginx, 
+but it works fine.
+
+Other: 
+Other webservers which can run PHP are also likely to work fine, 
+although these installation instructions will not cover how to set them up.
+
+PHP Builtin Server: 
+You can use the builtin PHP webserver for development or testing, 
+although it should not be used in production.

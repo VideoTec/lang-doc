@@ -1,6 +1,39 @@
 diffusion[英][dɪ'fju:ʒn] [美][dɪˈfjuʒən]
 n.扩散；<物，化>扩散；传播；<人>（文化等的）传流
 
+所有文档：
+https://secure.phabricator.com/book/phabricator/
+
+Diffusion User Guide Article
+Guide to Diffusion, the Phabricator application for hosting and browsing repositories.
+
+Diffusion User Guide: Autoclose Article
+Explains when Diffusion will close tasks and revisions upon discovery of related commits.
+
+Diffusion User Guide: Commit Hooks Article
+Guide to commit hooks in hosted repositories.
+
+Diffusion User Guide: Existing Repositories Article
+Quick guide for importing or observing existing repositories.
+
+Diffusion User Guide: Managing Repositories Article
+Guide to configuring and managing repositories in Diffusion.
+
+Diffusion User Guide: Repositories API Article
+Managing repositories with the API.
+
+Diffusion User Guide: Repository Hosting Article
+Guide to configuring Phabricator repository hosting.
+
+Diffusion User Guide: Repository Updates Article
+Explains how Diffusion updates repositories to discover new changes.
+
+Diffusion User Guide: Symbol Indexes Article
+Guide to configuring and using the symbol index.
+
+Diffusion User Guide: URIs Article
+Guide to configuring repository URIs for fetching, cloning and mirroring.
+
 创建仓库
 http://ph.feinno.com/diffusion/
 主页 | Diffusion | Create Repository

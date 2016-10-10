@@ -1,0 +1,43 @@
+http://php.net/manual/zh/function.print.php
+
+int print ( string $arg )
+输出 arg。
+
+print 实际上不是一个函数（它是一个语言结构），
+因此你可以不必使用圆括号来括起它的参数列表
+
+// 可以在打印语句中使用变量
+$foo = "foobar";
+$bar = "barbaz";
+
+print "foo is $foo"; // foo is foobar
+
+错误的写法一：
+    print(
+      $host,
+      $user,
+      $pass,
+      $database,
+      $port);
+      
+错误的写法二：
+    print('
+      $host,
+      $user,
+      $pass,
+      $database,
+      $port');  这个输出：
+      
+   $host,
+   $user,
+   $pass,
+   $database,
+   $port
+   
+正确的写法是：
+       print("
+      $host,
+      $user,
+      $pass,
+      $database,
+      $port");

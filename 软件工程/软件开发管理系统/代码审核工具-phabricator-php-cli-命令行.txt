@@ -1,0 +1,6 @@
+
+举例：
+https://secure.phabricator.com/book/phabricator/article/upgrading/
+
+Run phabricator/bin/storage upgrade
+这里的意思是，以命令行方式执行，php脚本文件。
