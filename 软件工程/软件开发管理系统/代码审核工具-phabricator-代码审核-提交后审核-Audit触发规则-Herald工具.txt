@@ -1,4 +1,24 @@
 
+----------------------------------------------
+创建的 herald 规则详情
+----------------------------------------------
+
+Rule Type       Object 
+Applies To      Commits 
+Trigger Object  rARF AndroidRongFly
+
+----------------------------------------------
+规则描述
+----------------------------------------------
+
+条件：
+When all of these conditions are met:
+Author is any of wangxiangfx, chenbaoqiang, wangxiaohong, jinyixinf, wangqiaoqiao, xuechenjiezq, zhangfangmin, wangxiaomin, ganshoucong
+
+动作：添加审计员
+Take these actions every time this rule matches:
+Add auditors: androidrongfly.
+
 http://www.jianshu.com/p/d9957c1d2339
 
 herald[英][ˈherəld] [美][ˈhɛrəld]

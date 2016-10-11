@@ -1,0 +1,25 @@
+目录结构：
+simple
+  - hello.java
+  
+源码：
+
+package simple;
+
+public class Hello {
+    public static void main(String[] args) {
+        for (int i=0; i < args.length; i++) {
+        System.out.println("Hello " + args);
+        }
+    }
+}
+
+编译方法：
+
+javac simple\hello.java
+
+运行方法：
+E:\java-src>java simple.Hello which is good
+Hello [Ljava.lang.String;@ae3865e
+Hello [Ljava.lang.String;@ae3865e
+Hello [Ljava.lang.String;@ae3865e

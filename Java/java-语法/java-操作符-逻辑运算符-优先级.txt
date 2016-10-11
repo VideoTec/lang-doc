@@ -1,0 +1,5 @@
+if(bean.getLoginType() == 1 || bean.getLoginType() == 2 && mMgr.getLoginBean().isFirstLogin())
+
+这个条件是怎么判断的？即 || 和 && 那个优先级高？
+
+&& 高于 ||

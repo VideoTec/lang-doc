@@ -1,0 +1,6 @@
+https://www.zhihu.com/question/34369085
+
+javac.exe是个launcher，
+本质上跟java.exe是一样的——只是
+默认把tools.jar放进了classpath，
+并且固定使用com.sun.tools.javac.Main类为主类而已。

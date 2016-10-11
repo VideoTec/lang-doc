@@ -1,3 +1,8 @@
+concerned[英][kənˈsɜ:nd] [美][kənˈsɜrnd]
+adj.有关（方面），被牵连的；担心的，烦恼的；关心政治的，关心社会的
+vt.涉及；关心；参与，卷入；使担忧
+vi.有关，利害关系；顾虑；装置
+
 http://www.cnblogs.com/TechZi/archive/2013/02/23/2923873.html
 
 Audit如何工作

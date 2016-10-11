@@ -3,7 +3,7 @@ float pro = (float) width / height;
 
 http://blog.csdn.net/whuslei/article/details/6918214
 
-如果int/int中除数为0，会抛出异常java.lang.ArithmeticException: / by zero
+如果int/int中除数为0，会抛出异常 java.lang.ArithmeticException: / by zero
 
 但如果是浮点型，就不会报异常了！
 

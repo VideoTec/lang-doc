@@ -1,0 +1,24 @@
+----------------------------------------------
+创建的 herald 规则详情
+----------------------------------------------
+
+Rule Type       Object 
+Applies To      Commits 
+Trigger Object  rARF AndroidRongFly
+
+----------------------------------------------
+规则描述
+----------------------------------------------
+
+条件：
+When all of these conditions are met:
+Author is any of wangxiangfx, chenbaoqiang, wangxiaohong, jinyixinf, wangqiaoqiao, xuechenjiezq, zhangfangmin, wangxiaomin, ganshoucong
+
+动作：添加审计员
+Take these actions every time this rule matches:
+Add auditors: androidrongfly.
+
+审计员，可以指定 具体的用户 或者 工程[该工程中的所有成员都会成为审计呐]
+区别：
+1）工程中的任何一个成员[除自己外]审计通过了，代表该工程中的其它成员都通过了
+2）审计员，列表，中的所有 “用户”，“工程” 都审计通过了，这个提交才会关闭

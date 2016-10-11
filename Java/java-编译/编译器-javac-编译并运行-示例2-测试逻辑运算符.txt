@@ -1,0 +1,14 @@
+package simple;
+
+public class Test2 {
+    public static void main(String[] args) {
+        System.out.println("²âÊÔÂß¼­ÔËËã·û");
+        int t1 = 1, t2 = 2;
+        boolean bFirst = false;
+        if (t1 == 1 || t2 == 2 && bFirst) {
+            System.out.println("²âÊÔÂß¼­ÔËËã·û true");
+        } else {
+            System.out.println("²âÊÔÂß¼­ÔËËã·û false");
+        }
+    }
+}

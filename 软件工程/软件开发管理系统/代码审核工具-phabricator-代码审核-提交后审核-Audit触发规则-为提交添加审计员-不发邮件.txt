@@ -1,0 +1,17 @@
+https://secure.phabricator.com/T2497
+Settings → Email Preferences should show the new options.
+
+http://ph.feinno.com/settings/panel/emailpreferences/
+
+分别设置下面的情况
+Audits
+ A commit is created.
+ A commit has a concerned raised against it.
+ A commit is accepted.
+ A commit has an auditor resign.
+ A commit is closed.
+ A commit has auditors added.
+ A commit's subscribers change.
+ A commit's projects change.
+ Someone comments on a commit.
+ Other commit activity not listed above occurs.
