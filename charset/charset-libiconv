@@ -1,0 +1,9 @@
+http://baike.baidu.com/subview/3358257/3358257.htm
+
+libiconv库[1]  为需要做转换的应用提供了一个iconv()的函数，
+以实现一个字符编码到另一个字符编码的转换。
+
+GNU的libiconv就是为这两种应用设计的编码转换库
+
+通过将Unicode作为 中间编码，
+所有编码之间都可以相互转换。
