@@ -1,0 +1,4 @@
+https://www.w3.org/TR/css-2010/
+
+This document collects together into one definition all the specs that together form the current state of Cascading Style Sheets (CSS) as of 2010. 
+The primary audience is CSS implementors, not CSS authors, as this definition includes modules by specification stability, not Web browser adoption rate.

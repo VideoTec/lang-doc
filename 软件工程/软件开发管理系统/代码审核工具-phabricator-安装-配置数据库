@@ -48,7 +48,16 @@ E:\ph-src\conf\local\local.json
   "mysql.user": "'root'",
   "mysql.host": "'127.0.0.1'"
 }
+这样子写是不正确的，会造成，数据库连接异常，因为端口号转成字符串了，需要一个整数
 
+应该写成下面的样子：
+E:\ph-src\conf\local\local.json
+{
+  "mysql.port": "3306",
+  "mysql.pass": "mysqlkey123",
+  "mysql.user": "root",
+  "mysql.host": "127.0.0.1"
+}
 
 --------------------------------------
 Setup MySQL Schema

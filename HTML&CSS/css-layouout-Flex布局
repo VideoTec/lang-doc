@@ -1,0 +1,32 @@
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes
+
+定义一个弹性盒子
+display : flex
+display : inline-flex
+这样做将元素定义为弹性容器，其子元素则成为弹性项目。
+值 flex 使弹性容器成为块级元素。
+值 inline-flex 使弹性容器成为单个不可分的行内级元素
+
+弹性容器(Flex container)
+弹性项目(Flex item)
+弹性容器的每个子元素都称为弹性项目。弹性容器直接包含的文本将被包覆成匿名弹性单元
+
+每个弹性框布局包含两个轴。
+弹性项目沿其依次排列的那根轴称为主轴(main axis)。
+垂直于主轴的那根轴称为侧轴(cross axis)
+
+弹性容器的
+主轴起点(main start)/主轴终点(main end)和
+侧轴起点(cross start)/侧轴终点(cross end)描述了弹性项目排布的起点与终点。
+
+根据 flex-wrap 属性，弹性项目可以排布在单个行或者多个行中。
+此属性控制侧轴的方向和新行排列的方向。
+
+根据弹性容器的主轴与侧轴，弹性项目的宽和高中，
+对应主轴的称为主轴尺寸(main size) ，
+对应侧轴的称为 侧轴尺寸(cross size)。
+
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flexible_Box_Layout/%E5%BC%B9%E6%80%A7%E6%A1%86%E7%9A%84%E9%AB%98%E7%BA%A7%E5%B8%83%E5%B1%80
+使用弹性盒子进行高级布局
+使用弹性盒子的意义是在任何尺寸的屏幕上改变其和其子元素的尺寸填充屏幕可用空间。
+一个弹性框容器将延展它的子元素以填充可用空间，并且缩小它的子元素来避免溢出。
