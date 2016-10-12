@@ -1,0 +1,10 @@
+如何将字串 String 转换成整数 int?
+
+int i = Integer.parseInt([String]);
+int i = Integer.parseInt([String],[int radix]);
+
+如何将整数 int 转换成字串 String ?
+
+String s = String.valueOf(i);
+String s = Integer.toString(i);
+String s = "" + i;

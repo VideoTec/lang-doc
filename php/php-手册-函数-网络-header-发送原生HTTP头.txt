@@ -1,0 +1,21 @@
+http://php.net/manual/zh/function.header.php
+
+void header ( string $string [, bool $replace = true [, int $http_response_code ]] )
+header() 用于发送原生的 HTTP 头
+
+协议 Hypertext Transfer Protocol -- HTTP/1.1
+https://tools.ietf.org/html/rfc2616 
+
+使用注意事项：
+请注意 header() 必须在任何实际输出之前调用，
+不管是普通的 HTML 标签，还是文件或 PHP 输出的空行，空格。
+这是个常见的错误，在通过include，require，或者其访问其他文件里面的函数的时候，
+如果在header()被调用之前，其中有空格或者空行。 
+同样的问题也存在于单独的 PHP/HTML 文件中
+
+示例一：
+header("HTTP/1.0 404 Not Found");
+
+示例二：
+header("Location: http://www.example.com/");
+exit;
