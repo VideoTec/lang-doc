@@ -1,0 +1,67 @@
+Audit 审计
+concerned 担忧
+
+《Phabricator-审核问题-提交后审核-工作流程》
+
+-------------------------------------
+1. 审核流程
+-------------------------------------
+
+Audit流程
+举个例子来详细说明一下Audit的流程：
+
+A进行了一次代码提交
+B接收到审核请求
+过了一阵儿，B登录Phabricator并在首页看到审核请求
+B检查A提交的代码。他发现代码中的一些问题，之后他选择了“引发担忧”选项，并且在评论中描述了这些问题
+A收到一封关于B对她的提交表示忧虑的email。她决定过一会儿再处理这个问题
+不久后，A登录Phabricator并在首页“问题提交”下看到提示
+A通过某些方式解决了那些问题（如“找B讨论”、“修复问题并提交”）
+B表示满意，并认可了最初那次提交
+审核请求将从B的待办事项中消失。问题提交也会从A的待办事项里消失
+
+以上就是Audit的标准的流程了。
+
+注意一：
+自己接受提交，不会关闭这个审核项目。
+只有别人接受，才会关闭这个审核项目。
+
+注意二： 
+提出concerned后，提交作者会收到错误提交通知
+经过讨论，修改好后，
+由 提出concerned者 修改成接受，才能关闭这个审核项目。
+
+-------------------------------------
+2. 邮箱通知设置
+-------------------------------------
+http://ph.feinno.com/settings/panel/emailpreferences/
+
+Audits
+ A commit is created.
+ A commit has a concerned raised against it.
+ A commit is accepted.
+ A commit has an auditor resign.
+ A commit is closed.
+ A commit has auditors added.
+ A commit's subscribers change.
+ A commit's projects change.
+ Someone comments on a commit.
+ Other commit activity not listed above occurs.
+ 
+-------------------------------------
+3. 关于GIT提交时附带的评论
+-------------------------------------
+
+第一点：可以关系 PH 中的资源（任务，图片等等）
+
+例如：
+git commit -m '解决xxxBUG {TXXX}'
+
+例子：
+http://ph.feinno.com/rARF79f5b229a91f5f9645279c48219be465e43fd90d
+http://ph.feinno.com/T8756
+
+第二点：评论内容尽量有意义，并且与修改的代码相关
+
+a. Commit Often, Perfect Later, Publish Once: Git Best Practices
+b. 尽量避免不必要的 merge 提交

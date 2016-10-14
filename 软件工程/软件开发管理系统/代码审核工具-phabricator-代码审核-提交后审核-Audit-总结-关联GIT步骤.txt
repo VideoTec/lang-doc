@@ -1,0 +1,68 @@
+《Phabricator-代码审核-提交后审核-Audit 关联git仓库》
+
+准备工作：
+在 ph 中创建一个，包括项目所有开发人员的工程，(如："MyProjectDevTeam")。
+
+第一步：导入GIT仓库
+
+1) 主页 | Diffusion | Create Repository --- 新建代码仓库
+网址：http://ph.feinno.com/diffusion/
+
+2) 选择 create Git Repository
+填写仓库信息，
+Name 必填
+Callsign 必须全部大写，最好选个短的名称，作这这个库的代号
+其它选择，可选 （TAG 栏可输入 "MyProjectDevTeam"）
+点击 "Create Respository" 即可创建代码仓库。
+
+3）设置 URI 关联 GIT 仓库
+进入 http://ph.feinno.com/diffusion/
+选择刚创建的仓库，点击进入详情页，选择 "Manage Repository" 进入 "仓库管理界面"。
+"仓库管理界面" -> URIs -> Add New URI，进入 "Create Repository URI" 页面。
+把要关联的 GIT 仓库地址，填入 URI 中。
+I/O Type 选择 Observe: Copy from a remote。
+Display Type 选择 Hidden: Do not show as a clone URI 。
+点击 "Create Respository URI" 创建URI。
+
+还需要设置 ssh 私钥
+
+4）激活仓库
+进入 "仓库管理界面"，在 "Basics" 页面，右侧有个 "Activate Reposotory"
+激活后，ph，开始导入 GIT 仓库。
+
+5）设置代码仓库的可见范围
+进入 "仓库管理界面"，在 "Policies" 页面，Visible To "MyProjectDevTeam"
+
+遇到的问题：导入状态始终保存在 99.98%
+原因：不明，这个需要查看导入日志，没有找到在那里查看。
+
+解决方法：
+新建仓库，重新导入，可能需要注意的
+先设置 URI，再激活仓库，导入完成前不要设置 herald 规则。
+导入过程中，不要向GIT提交代码。 
+
+第二步：设置 herald 规则
+
+等GIT仓库，完全导入后，进入 herald 页面，创建触发审核的规则
+http://ph.feinno.com/herald/
+
+1）Create Herald Rule
+2）New Rule For 选择 Commits
+3）Rule Type 选择 Object
+4）Object 一栏里填写，第一步创建的仓库对象，rCallsign
+5）创建 herald 规则
+
+创建完成，编辑规则
+
+1. 触发条件
+
+设置 Author(作者) is any of 每个提交者即开发人员
+
+2. 触发动作
+
+添加审计员 填写 "MyProjectDevTeam"
+
+这条规则的意义是：
+1）指定 Author 的每个提交，都会在 "MyProjectDevTeam" 所有成员的 Audit 页面，产生一个等待审核的提交。
+2）"MyProjectDevTeam" 任何一个成员，处理了这个提交（"接受"或者"提出担忧(concern)"）,
+就会从其它所有成员的等待审核列表中去掉。

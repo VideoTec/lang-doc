@@ -1,0 +1,26 @@
+被接听后，主叫没收到接通的通知
+
+主叫：
+I 10-14 14:20:19.254 openConnection: http://server.fetiononline.com:80/webrtcserver/v1/tel:+8613811429570/invite
+I 10-14 14:20:36.150 responseCode: 200
+responseStr: <?xml version="1.0" encoding="UTF-8"?><results><sessionId>125200098340</sessionId></results>
+E 10-14 14:20:36.154 invite success: 125200098340
+
+之后没收到任何通知
+
+被叫：
+10-14 14:20:34.865 306-306/com.feinno.rongfly I/RF_VoWifi_RFVoWifiMgr: onInvite: sessionId: 125200098341;
+10-14 14:20:35.115 openConnection: http://server.fetiononline.com:80/webrtcserver/v1/tel:+8618410079483/putSessionStatus
+10-14 14:20:35.115 with session id: 125200098341
+10-14 14:20:35.115 putSessionStatus: Ringing
+10-14 14:20:35.205 responseCode: 204
+                   responseStr: noBody
+10-14 14:20:40.665 openConnection: http://server.fetiononline.com:80/webrtcserver/v1/tel:+8618410079483/putAnswerSdp
+10-14 14:20:40.665 with session id: 125200098341
+10-14 14:20:42.860 responseCode: 204
+                   responseStr: noBody
+10-14 14:20:42.885 openConnection: http://server.fetiononline.com:80/webrtcserver/v1/tel:+8618410079483/putSessionStatus
+10-14 14:20:42.885 with session id: 125200098341
+10-14 14:20:42.885 putSessionStatus: Connected
+10-14 14:20:43.010 responseCode: 204
+                   responseStr: noBody
