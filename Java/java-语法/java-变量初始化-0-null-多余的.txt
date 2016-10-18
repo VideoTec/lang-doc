@@ -6,6 +6,11 @@ Variable initializer '0' is redundant
 redundant[英][rɪˈdʌndənt] [美][rɪˈdʌndənt]
 adj.多余的，累赘的；（因人员过剩）被解雇的，失业的；重沓；衍
 
+float scaleX = 1f;
+float scaleY = 1f;
+为什么浮点数初始化也是多余的？
+ariable 'scaleX' initializer '1f' is redundant
+
 http://www.javapractices.com/topic/TopicAction.do?Id=14
 
 Initializing fields to 0-false-null is redundant

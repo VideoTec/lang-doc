@@ -1,0 +1,8 @@
+        if (x == y) return;
+        if (x > y) {
+            y = x; 警告： 'x' should probably not be assigned to 'y'
+            x = 1;
+        } else {
+            x = y; 警告： 'y' should probably not be assigned to 'x'
+            y = 1;
+        }

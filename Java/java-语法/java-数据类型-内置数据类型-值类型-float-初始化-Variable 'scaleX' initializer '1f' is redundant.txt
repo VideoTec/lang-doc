@@ -1,0 +1,11 @@
+参考：
+E:\doc\lang\Java\java-语法\java-变量初始化-0-null-多余的.txt
+
+	  float scaleX = 1f;
+	  float scaleY = 1f;
+      
+      lint 检测，构造：
+      Variable 'scaleX' initializer '1f' is redundant
+      
+      redundant[英][rɪˈdʌndənt] [美][rɪˈdʌndənt]
+      adj.多余的，累赘的；（因人员过剩）被解雇的，失业的；重沓；衍
