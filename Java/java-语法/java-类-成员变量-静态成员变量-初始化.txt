@@ -1,0 +1,12 @@
+The preferred ways to initialize static members are either (as mentioned before)
+
+private static final B a = new B(); // consider making it final too
+
+or for more complex initialization code 
+you could use a static initializer block:
+
+private static final B a;
+
+static {  //static initializer block 
+  a = new B();
+}

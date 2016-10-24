@@ -1,0 +1,15 @@
+http://stackoverflow.com/questions/2079830/how-do-i-create-a-static-local-variable-in-java
+
+You can have a static class variable, 
+which will be preserved across all instances of the class. 
+If that's what you want. If not, use an instance variable, 
+which will only be preserved across method calls on this object.
+
+public class Foo {
+   static int bar;
+   //set bar somewhere
+
+   public int baz() {
+      return 3 * bar;
+   }
+} 
