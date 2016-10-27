@@ -1,0 +1,47 @@
+
+创建步骤：
+
+1. 进入owner应用，创建 pagckage
+http://ph.feinno.com/owners/ 
+
+2. 创建完后，编辑 path 路径
+ 
+文档：
+https://secure.phabricator.com/book/phabricator/article/owners/
+
+dominion[英][dəˈmɪniən] [美][dəˈmɪnjən]
+n.统治权；领土，疆土；版图
+
+Create Package 需要填写的信息：
+
+1. Name
+
+2. Owners
+
+3. Dominion - 当多个包，拥有同一个路径、文件时，怎么处理
+The Dominion option allows you to control 
+how ownership cascades when multiple packages own a path.
+
+4. Auto Review
+用于提交前，审核的设置
+
+5. Auditing
+提交后审计设置，规则：
+affect code owned by the package;
+were not authored by a package owner; and
+were not accepted by a package owner.
+
+6. Description
+7. Visible To
+8. Editable By
+
+添加路径：
+a/
+a/b/c.z
+/conf/ios/
+/src/ios/
+/shared/assets/mobile/
+注意一：以 git 工作目录为根目录
+注意二：可以指定路径或者具体的文件
+注意三：当一个文件包含在多个 package 里时，参考： Dominion 设置
+注意三：exclude 规则，可以排除特定的文件
