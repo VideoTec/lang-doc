@@ -1,0 +1,18 @@
+https://developer.android.com/reference/java/io/ObjectOutputStream.html#writeObject(java.lang.Object)
+
+writeObject
+
+Added in API level 1
+void writeObject (Object obj)
+
+Write the specified object to the ObjectOutputStream. 
+The class of the object, the signature of the class, 
+and the values of the non-transient and non-static fields of the class and all of its supertypes are written. 
+Default serialization for a class can be overridden using the writeObject and the readObject methods. 
+Objects referenced by this object are written transitively 
+so that a complete equivalent graph of objects can be reconstructed by an ObjectInputStream.
+
+Exceptions are thrown for problems with the OutputStream and for classes that should not be serialized. 
+All exceptions are fatal to the OutputStream, 
+which is left in an indeterminate state, 
+and it is up to the caller to ignore or recover the stream state.
