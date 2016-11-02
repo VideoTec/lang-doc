@@ -1,3 +1,49 @@
+http://docs.oracle.com/javase/6/docs/api/java/util/Map.html#get%28java.lang.Object%29
+
+get
+
+V get(Object key)
+
+Returns the value to which the specified key is mapped, 
+or null if this map contains no mapping for the key.
+
+More formally, 
+if this map contains a mapping from a key k to a value v such that (key==null ? k==null : key.equals(k)), 
+then this method returns v; otherwise it returns null. (There can be at most one such mapping.)
+
+区分 containsKey 的作用：
+If this map permits null values, 
+then a return value of null does not necessarily indicate that the map contains no mapping for the key; 
+it's also possible that the map explicitly maps the key to null. 
+The containsKey operation may be used to distinguish these two cases.
+
+Parameters:
+key - the key whose associated value is to be returned
+
+Returns:
+the value to which the specified key is mapped, 
+or null if this map contains no mapping for the key
+
+Throws:
+ClassCastException - if the key is of an inappropriate type for this map (optional)
+NullPointerException - if the specified key is null and this map does not permit null keys (optional)
+
+http://docs.oracle.com/javase/tutorial/collections/interfaces/map.html
+        try {
+            Scanner s = new Scanner(new File(args[0]));
+            while (s.hasNext()) {
+                String word = s.next();
+                String alpha = alphabetize(word);
+                List<String> l = m.get(alpha);  get 的返回值
+                if (l == null)
+                    m.put(alpha, l=new ArrayList<String>());
+                l.add(word);
+            }
+        } catch (IOException e) {
+            System.err.println(e);
+            System.exit(1);
+        }
+
 http://stackoverflow.com/questions/1789679/get-string-value-from-hashmap-depending-on-key-name
 
 Object value = map.get(myCode);
