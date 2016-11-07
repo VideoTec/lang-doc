@@ -1,3 +1,38 @@
+    /**
+     * Returns the first index of the given string, or -1. The
+     * search starts at the beginning and moves towards the end
+     * of this string.
+     *
+     * @throws NullPointerException
+     *             if {@code string} is {@code null}.
+     */
+    public int indexOf(String string) {
+        int start = 0;
+        int subCount = string.count;
+        int _count = count;
+        if (subCount > 0) {
+            if (subCount > _count) {
+                return -1;
+            }
+            char firstChar = string.charAt(0);
+            while (true) {
+                int i = indexOf(firstChar, start);
+                if (i == -1 || subCount + i > _count) {
+                    return -1; // handles subCount > count || start >= count
+                }
+                int o1 = i, o2 = 0;
+                while (++o2 < subCount && charAt(++o1) == string.charAt(o2)) {
+                    // Intentionally empty
+                }
+                if (o2 == subCount) {
+                    return i;
+                }
+                start = i + 1;
+            }
+        }
+        return start < _count ? start : _count;
+    }
+
 http://stackoverflow.com/questions/2615749/java-method-to-get-position-of-a-match-in-a-string
 
 The family of methods that does this are:
