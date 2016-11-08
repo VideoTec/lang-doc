@@ -2,4 +2,13 @@
 var jsonStr = '{"value":"name \\\"ok\\\""}'; //这样才能正确转义 GSON 转不出这种的字符串
 var jsonObj = JSON.parse(jsonStr);
 console.log(jsonObj.value);
+
+//Uncaught SyntaxError: Unexpected token E in JSON at position 95
+//var ssoToken = '{"paUuid":"125200024010484125@nfas01azx.pa.rcs1.chinamobile.com","token":"feinno-sso identity=\"E/LNm0XO6UN7ZHmKcRWTOtOTjKY=\",credential=\"fL4nd1RTCiexDXKdqjPSFKk7GXoIh+gFGXmX+eK7TPEgNFhPwGDd7ALfItbFd+XpOarXPzaAt2uhZtUuM3q0PxTcpFEJNM3eyPQWvg/wqtQ=\"","type":"Android-1.X","userId":"tel:+8618410079483"}';
+
+//参考 D:\doc\android\android-3rdParty\com.google.gson\com.google.gson-转义符-引号问题.txt
+var ssoToken = '{"paUuid":"125200024010484125@nfas01azx.pa.rcs1.chinamobile.com","token":"feinno-sso identity=\\\"E/LNm0XO6UN7ZHmKcRWTOtOTjKY=\\\",credential=\\\"fL4nd1RTCiexDXKdqjPSFKk7GXoIh+gFGXmX+eK7TPEgNFhPwGDd7ALfItbFd+XpOarXPzaAt2uhZtUuM3q0PxTcpFEJNM3eyPQWvg/wqtQ=\\\"","type":"Android-1.X","userId":"tel:+8618410079483"}';
+
+var ssoTokenObj = JSON.parse(ssoToken);
+console.log(ssoTokenObj.token);
 </script>
