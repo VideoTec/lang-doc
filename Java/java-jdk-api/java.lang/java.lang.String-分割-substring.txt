@@ -3,7 +3,8 @@ public String substring (int start)
 ----------------------------------------------
 
 Added in API level 1
-Returns a string containing a suffix of this string starting at start. The returned string shares this string's backing array.
+Returns a string containing a suffix of this string starting at start. 
+The returned string shares this string's backing array.
 
 Throws
 IndexOutOfBoundsException	if start < 0 or start > length().
@@ -12,6 +13,10 @@ IndexOutOfBoundsException	if start < 0 or start > length().
 ----------------------------------------------
 public String substring (int start, int end)
 ----------------------------------------------
+
+包括 第start个 字符
+不包括 第end个 字符
+注：以0为基数
 
 问题：
 substring(0, 0); 返回几个字符？ 0 个字符 - 空字符串 ""

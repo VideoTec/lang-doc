@@ -1,0 +1,42 @@
+代码
+    public void invite(String participantTel, String sdpString, OnHttpResult r) {
+        mSessionId = null;
+        mParticipantTels.clear();
+        mParticipantTels.add(participantTel);
+        processHttp(r, API.Invite, sdpString);
+    }
+
+异常：
+
+mTag = RF_CrashHandler, thread = Thread[main,5,main]
+    ava.lang.UnsupportedOperationException
+       at java.util.AbstractList.remove(AbstractList.java:638)
+       at java.util.AbstractList$SimpleListIterator.remove(AbstractList.java:75)
+       at java.util.AbstractList.removeRange(AbstractList.java:658)
+       at java.util.AbstractList.clear(AbstractList.java:466)
+       at com.feinno.rongfly.core.modules.vowifi.RFVoWifiHttpHelper.invite(RFVoWifiHttpHelper.java:201)
+       at com.feinno.rongfly.core.modules.vowifi.RFFreeCallSession.add(RFFreeCallSession.java:66)
+       at com.feinno.rongfly.core.modules.vowifi.RFVoWifiMgr.freeCallAddUser(RFVoWifiMgr.java:305)
+       at com.feinno.rongfly.ui.vowifi.RFVoWifiMultiFreeCallActivity.setRFMultSelectInfos(RFVoWifiMultiFreeCallActivity.java:200)
+       at com.feinno.rongfly.ui.vowifi.RFVoWifiMultiFreeCallActivity.onNewIntent(RFVoWifiMultiFreeCallActivity.java:117)
+       at android.app.Instrumentation.callActivityOnNewIntent(Instrumentation.java:1215)
+       at android.app.Instrumentation.callActivityOnNewIntent(Instrumentation.java:1227)
+       at android.app.ActivityThread.deliverNewIntents(ActivityThread.java:2573)
+       at android.app.ActivityThread.performNewIntents(ActivityThread.java:2585)
+       at android.app.ActivityThread.handleNewIntent(ActivityThread.java:2594)
+       at android.app.ActivityThread.access$1700(ActivityThread.java:165)
+       at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1441)
+	   
+原因：
+在调用Arrays.asList()方法时把一个数组转化成List列表时，
+对得到的List列表进行add()和remove()操作时出现java.lang.UnsupportedOperationException异常。
+
+异常分析：    
+java.lang.UnsupportedOperationException是指请求的方法不被支持的异常。
+在从Arrays.asList()转化过来的List的不支持add()和remove()方法，
+这是由于从Arrays.asList()返回的是返回java.util.Arrays$ArrayList，而不是ArrayList。
+Arrays$ArrayList和ArrayList都是继承AbstractList，add() 和remove()等方法
+在AbstractList中默认throw UnsupportedOperationException而不做任何操作。
+ArrayList重写这些方法对List进行操作，
+而Arrays$ArrayList却没有重写add()和 remove()等方法，所以对从Arrays.asList()转化过来的List进行add()和remove()
+会出现UnsupportedOperationException异常。

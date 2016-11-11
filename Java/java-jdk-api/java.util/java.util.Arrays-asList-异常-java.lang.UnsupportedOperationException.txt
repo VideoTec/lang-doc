@@ -1,0 +1,2 @@
+参考：
+D:\doc\lang\Java\java-jdk-api\java.util\java.util.List-异常-java.lang.UnsupportedOperationException.txt

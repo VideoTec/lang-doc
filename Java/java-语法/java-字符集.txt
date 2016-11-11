@@ -1,0 +1,33 @@
+https://www.ibm.com/developerworks/cn/java/j-lo-chinesecoding/
+
+Java 中用 String 表示字符串，所以 String 类就提
+1）供转换到字节的方法，也支持将字节
+2）转换为字符串的构造函数
+
+String s = "这是一段中文字符串"; 
+byte[] b = s.getBytes("UTF-8"); 
+String n = new String(b,"UTF-8");
+
+已经被被废弃的 ByteToCharConverter 和 CharToByteConverter 类
+
+下面我们以“I am 君山”这个字符串为例介绍 Java 中如何把它以 
+ISO-8859-1、GB2312、GBK、UTF-16、UTF-8 编码格式进行编码的
+
+ public static void encode() { 
+        String name = "I am 君山"; 
+        toHex(name.toCharArray()); 
+        try { 
+            byte[] iso8859 = name.getBytes("ISO-8859-1"); 
+            toHex(iso8859); 
+            byte[] gb2312 = name.getBytes("GB2312"); 
+            toHex(gb2312); 
+            byte[] gbk = name.getBytes("GBK"); 
+            toHex(gbk); 
+            byte[] utf16 = name.getBytes("UTF-16"); 
+            toHex(utf16); 
+            byte[] utf8 = name.getBytes("UTF-8"); 
+            toHex(utf8); 
+        } catch (UnsupportedEncodingException e) { 
+            e.printStackTrace(); 
+        } 
+ }

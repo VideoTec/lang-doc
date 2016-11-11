@@ -20,6 +20,17 @@ a - the array by which the list will be backed
 Returns:
 a list view of the specified array
 
+如果修改返回的对象，会出现异常：
+
+异常：
+mTag = RF_CrashHandler, thread = Thread[main,5,main]
+    ava.lang.UnsupportedOperationException
+       at java.util.AbstractList.remove(AbstractList.java:638)
+       at java.util.AbstractList$SimpleListIterator.remove(AbstractList.java:75)
+       at java.util.AbstractList.removeRange(AbstractList.java:658)
+       at java.util.AbstractList.clear(AbstractList.java:466)
+       at com.feinno.rongfly.core.modules.vowifi.RFVoWifiHttpHelper.invite(RFVoWifiHttpHelper.java:201)
+
 http://stackoverflow.com/questions/5554217/google-gson-deserialize-listclass-object-generic-type
 asList 限制 - 返回的 list 不能修改
 

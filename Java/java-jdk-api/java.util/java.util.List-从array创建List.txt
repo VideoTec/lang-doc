@@ -3,12 +3,25 @@ http://stackoverflow.com/questions/12853595/how-to-add-elements-of-a-string-arra
 You already have built-in method for that: -
 
 List<String> species = Arrays.asList(speciesArr);
+注意：
+这种方式创建的对象，不能修改，否则会异常：
+mTag = RF_CrashHandler, thread = Thread[main,5,main]
+    ava.lang.UnsupportedOperationException
+       at java.util.AbstractList.remove(AbstractList.java:638)
+       at java.util.AbstractList$SimpleListIterator.remove(AbstractList.java:75)
+       at java.util.AbstractList.removeRange(AbstractList.java:658)
+       at java.util.AbstractList.clear(AbstractList.java:466)
+       at com.feinno.rongfly.core.modules.vowifi.RFVoWifiHttpHelper.invite(RFVoWifiHttpHelper.java:201)
+
 
 Arrays.asList returns a different ArrayList -> java.util.Arrays.ArrayList 
 which cannot be typecasted to java.util.ArrayList.
 
 Then you would have to use addAll method, which is not so good. 
 So just use List<String>
+
+http://stackoverflow.com/questions/157944/create-arraylist-from-array
+new ArrayList<Element>(Arrays.asList(array))
 
 http://stackoverflow.com/questions/4042434/converting-arrayliststring-to-string-in-java
 
