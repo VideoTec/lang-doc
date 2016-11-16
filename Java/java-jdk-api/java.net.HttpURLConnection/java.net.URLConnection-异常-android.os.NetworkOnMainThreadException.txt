@@ -1,3 +1,12 @@
+会产生这个异常的方法：
+connection.getOutputStream()
+connection.getResponseCode
+
+不会产生这个异常的方法：
+HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+connection.setRequestProperty("Accept", "application/json");
+connection.setRequestProperty("Content-Type", "application/json");
+
 在主线程中，调用下面的方法，会引发异常：
 
 1）int responseCode1 = connection.getResponseCode(); （GT-I9308）

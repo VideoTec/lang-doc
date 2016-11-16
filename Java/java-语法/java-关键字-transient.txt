@@ -1,0 +1,18 @@
+例子：
+
+public class Date implements Serializable, Cloneable, Comparable<Date> {
+
+    private static final long serialVersionUID = 7523967970034938905L;
+
+    // Used by parse()
+    // Keep in a static inner class to allow compile-time initialization of Date.
+    private static class CreationYear {
+        private static final int VALUE = new Date().getYear();
+    }
+
+    private transient long milliseconds;
+	
+http://www.blogjava.net/fhtdy2004/archive/2009/06/20/286112.html
+Volatile修饰的成员变量在每次被线程访问时，都强迫从主内存中重读该成员变量的值。
+而且，当成员变量发生变化时，强迫线程将变化值回写到主内存。
+这样在任何时刻，两个不同的线程总是看到某个成员变量的同一个值。  

@@ -1,0 +1,12 @@
+    /**
+     * Returns the current time in milliseconds since January 1, 1970 00:00:00.0 UTC.
+     *
+     * <p>This method always returns UTC times, regardless of the system's time zone.
+     * This is often called "Unix time" or "epoch time".
+     * Use a {@link java.text.DateFormat} instance to format this time for display to a human.
+     *
+     * <p>This method shouldn't be used for measuring timeouts or
+     * other elapsed time measurements, as changing the system time can affect
+     * the results. Use {@link #nanoTime} for that.
+     */
+    public static native long currentTimeMillis();

@@ -1,0 +1,2 @@
+public static long round(double d)
+public static int round(float f)

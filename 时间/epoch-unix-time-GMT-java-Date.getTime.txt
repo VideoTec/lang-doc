@@ -1,0 +1,22 @@
+java.util.Date
+
+    /**
+     * Initializes this {@code Date} instance using the specified millisecond value. The
+     * value is the number of milliseconds since Jan. 1, 1970 GMT.
+     *
+     * @param milliseconds
+     *            the number of milliseconds since Jan. 1, 1970 GMT.
+     */
+    public Date(long milliseconds) {
+        this.milliseconds = milliseconds;
+    }
+	
+    /**
+     * Returns this {@code Date} as a millisecond value. The value is the number of
+     * milliseconds since Jan. 1, 1970, midnight GMT.
+     *
+     * @return the number of milliseconds since Jan. 1, 1970, midnight GMT.
+     */
+    public long getTime() {
+        return milliseconds;
+    }

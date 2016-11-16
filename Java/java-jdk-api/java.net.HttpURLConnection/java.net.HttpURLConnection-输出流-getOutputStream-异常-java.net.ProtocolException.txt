@@ -1,0 +1,14 @@
+代码：
+
+connection.getOutputStream().write(json.toString().getBytes());
+
+原因：没有指定 请求方法，默认是GET方法。
+指定为 POST
+connection.setRequestMethod("POST");
+
+异常：
+
+11-14 12:24:44.688 16275-16924/com.feinno.rongfly E/RF_VoWifi_RFVoWifiMgr: 获取免费时长异常
+         java.net.ProtocolException: method does not support a request body: GET
+             at com.android.okhttp.internal.huc.HttpURLConnectionImpl.getOutputStream(HttpURLConnectionImpl.java:249)
+             at com.feinno.rongfly.core.modules.vowifi.RFVoWifiMgr$1.run(RFVoWifiMgr.java:358)
