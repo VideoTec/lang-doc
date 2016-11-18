@@ -1,0 +1,13 @@
+    public String getToken(String as) {
+        bindService();
+        try {
+            return mService.getToken(as);
+        } catch (Exception e) {
+            if (e instanceof DeadObjectException) {   处理特定异常
+                mService = null;
+                bindService();
+            }
+            Log.e(TAG, "调用服务：获取token异常", e); 处理所有异常
+        }
+        return "";
+    }
