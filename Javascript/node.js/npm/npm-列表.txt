@@ -1,0 +1,3 @@
+https://docs.npmjs.com/cli/ls
+
+npm ls [[<@scope>/]<pkg> ...]

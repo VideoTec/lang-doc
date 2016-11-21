@@ -1,0 +1,28 @@
+    public void onUrlReadTimeOut(View v) {
+        try {
+            URL url = new URL("192.168.3.227:3000/readtimeout");
+			这里异常：
+			java.net.MalformedURLException: Protocol not found: 192.168.3.227:3000/readtimeout
+			需要，加上 http://
+			
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(15 * 1000);
+            conn.setReadTimeout(2000);
+            conn.getResponseCode();
+        } catch (MalformedURLException e) {
+            Log.e(TAG, "构建url异常 ", e);
+        }  catch (SocketTimeoutException e) {
+            Log.e(TAG, "访问网址超时异常 ", e);
+        }  catch (IOException e) {
+            Log.e(TAG, "访问网址异常 ", e);
+        }
+    }
+	
+	执行时出现下面的异常：
+	Caused by: android.system.ErrnoException: socket failed: EACCES (Permission denied)
+	需要权限：
+	<uses-permission android:name="android.permission.INTERNET" />
+	
+	执行时异常：
+	Caused by: android.os.NetworkOnMainThreadException
+	需要在子进程里执行

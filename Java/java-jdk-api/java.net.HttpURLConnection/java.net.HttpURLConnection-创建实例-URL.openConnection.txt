@@ -1,0 +1,16 @@
+    /**
+     * Returns a new connection to the resource referred to by this URL.
+     *
+     * @throws IOException if an error occurs while opening the connection.
+     */
+    public URLConnection openConnection() throws IOException {
+        return streamHandler.openConnection(this);
+    }
+	
+	参考：
+	D:\doc\lang\Java\java-jdk-api\java.net.HttpURLConnection\java.net.URL-工具类.txt
+	
+	String restURI = mUriWithTelNumber + api.toString();
+	LogFeinno.i(TAG, "openConnection: " + restURI);
+	URL uri = new URL(restURI);
+	HttpURLConnection connection = (HttpURLConnection) uri.openConnection();

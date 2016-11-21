@@ -6,3 +6,9 @@ Returns a new connection to the resource referred to by this URL.
 Throws
 IOException
 if an error occurs while opening the connection.
+
+示例：
+	String restURI = mUriWithTelNumber + api.toString();
+	LogFeinno.i(TAG, "openConnection: " + restURI);
+	URL uri = new URL(restURI);
+	HttpURLConnection connection = (HttpURLConnection) uri.openConnection();

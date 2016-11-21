@@ -1,0 +1,50 @@
+Dalvik/2.1.0 (Linux; U; Android 5.1.1; vivo X7 Build/LMY47V)
+
+这个手机，会在读超时后，第二次请求服务器。
+
+奇怪的是，fiddler 抓包工具，第二个请求捕获不到
+
+http://stackoverflow.com/questions/27094544/android-java-httpurlconnection-silent-retry-on-read-timeout
+
+http://stackoverflow.com/questions/24417817/stopping-silent-retries-in-httpurlconnection
+System.setProperty("sun.net.http.retryPost", "false")
+httpURLConnection.setChunkedStreamingMode(0);
+https://code.google.com/p/android/issues/detail?id=163595
+
+http://stackoverflow.com/questions/27094544/android-java-httpurlconnection-silent-retry-on-read-timeout/37675253#37675253
+
+
+    /**
+     * Stream a request body whose length is not known in advance. Old HTTP/1.0
+     * only servers may not support this mode.
+     *
+     * <p>When HTTP chunked encoding is used, the stream is divided into
+     * chunks, each prefixed with a header containing the chunk's size.
+     * A large chunk length requires a large internal buffer, potentially
+     * wasting memory. A small chunk length increases the number of
+     * bytes that must be transmitted because of the header on every chunk.
+     *
+     * <p>Implementation details: In some releases the {@code chunkLength} is
+     * treated as a hint: chunks sent to the server may actually be larger or
+     * smaller. To force a chunk to be sent to the server call
+     * {@link java.io.OutputStream#flush()}.
+     *
+     * @see #setFixedLengthStreamingMode
+     * @param chunkLength the length to use, or {@code 0} for the default chunk
+     *     length.
+     * @throws IllegalStateException if already connected or another mode
+     *     already set.
+     */
+    public void setChunkedStreamingMode(int chunkLength) {
+        if (super.connected) {
+            throw new IllegalStateException("Already connected");
+        }
+        if (fixedContentLength >= 0) {
+            throw new IllegalStateException("Already in fixed-length mode");
+        }
+        if (chunkLength <= 0) {
+            this.chunkLength = DEFAULT_CHUNK_LENGTH;
+        } else {
+            this.chunkLength = chunkLength;
+        }
+    }

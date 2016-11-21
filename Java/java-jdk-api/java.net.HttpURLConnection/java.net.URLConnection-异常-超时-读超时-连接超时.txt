@@ -1,0 +1,20 @@
+参考：
+
+D:\doc\lang\Java\java-jdk-api\java.net.HttpURLConnection\java.net.HttpURLConnection-设置-超时时间-setReadTimeout.txt
+D:\doc\lang\Java\java-jdk-api\java.net.HttpURLConnection\java.net.HttpURLConnection-设置-超时时间-setConnectTimeout.txt
+
+setConnectTimeout：设置连接主机超时（单位：毫秒）
+setReadTimeout：设置从主机读取数据超时（单位：毫秒）
+
+例如：
+HttpURLConnection urlCon = (HttpURLConnection)url.openConnection();
+urlCon.setConnectTimeout(30000);
+urlCon.setReadTimeout(30000);
+
+http://stackoverflow.com/questions/24554342/understanding-urlconnection-setreadtimeout
+
+According to oracle docs, if no data is available 
+for the read timeout period, exception can be thrown
+
+A SocketTimeoutException can be thrown when reading from 
+the returned input stream if the read timeout expires before data is available for read.

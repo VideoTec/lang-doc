@@ -1,0 +1,1 @@
+Calling Connection.setRequestProperty( "Accept-Encoding", "" );

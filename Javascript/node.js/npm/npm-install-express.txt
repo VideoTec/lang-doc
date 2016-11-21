@@ -1,0 +1,30 @@
+安装完后，执行 express 代码，出错：
+Error: Cannot find module 'express'
+    at Function.Module._resolveFilename (module.js:469:15)
+    at Function.Module._load (module.js:417:25)
+    at Module.require (module.js:497:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (D:\node\express.js:1:77)
+    at Module._compile (module.js:570:32)
+    at Object.Module._extensions..js (module.js:579:10)
+    at Module.load (module.js:487:32)
+    at tryModuleLoad (module.js:446:12)
+    at Function.Module._load (module.js:438:3)
+	
+Globally installed modules aren't accessible without full path. 
+You need to install express in your project directory or it parents. 
+http://stackoverflow.com/questions/17162308/node-js-error-cannot-find-module-express
+You need to install Express locally 
+into the context of your application (node_modules folder):
+
+总结一句：
+npm install express 
+插件会被安装到当前目录的 node_modules 子文件夹里。
+
+http://expressjs.com/zh-cn/
+
+在 app 目录中安装 Express，然后将其保存在依赖项列表中。
+$ npm install express --save
+
+要暂时安装 Express 而不将其添加到依赖项列表中，请省略 --save 选项：
+$ npm install express

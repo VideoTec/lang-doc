@@ -13,3 +13,10 @@ Class Overview
 
 A Uniform Resource Locator that identifies 
 the location of an Internet resource as specified by RFC 1738.
+
+异常：
+
+URL url = new URL("192.168.3.227:3000/readtimeout");
+这里异常：
+java.net.MalformedURLException: Protocol not found: 192.168.3.227:3000/readtimeout
+需要，加上 http://

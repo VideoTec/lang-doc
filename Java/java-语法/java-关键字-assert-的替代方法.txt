@@ -1,0 +1,8 @@
+使用判断语句，如果条件不正确，throw 运行时异常。
+
+public class RFAssert {
+    static public void rfAssert(boolean b){
+        if(!b)
+            throw new RuntimeException();
+    }
+}

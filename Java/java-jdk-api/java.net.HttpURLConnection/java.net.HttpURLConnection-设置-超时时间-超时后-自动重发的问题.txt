@@ -1,0 +1,24 @@
+http://www.cnblogs.com/cnsoft/archive/2006/04/18/377967.html
+
+
+System.setProperty("sun.net.client.defaultConnectTimeout", "30000");
+System.setProperty("sun.net.client.defaultReadTimeout", "30000");
+
+JDK 1.5以前的版本，只能通过设置这两个系统属性来控制网络超时。
+
+需要注意的是，笔者在JDK1.4.2环境下，
+发现在设置了defaultReadTimeout的情况下，如果发生网络超时，
+HttpURLConnection会自动重新提交一次请求，出现一次请求调用，请求服务器两次的问题（Trouble）。
+
+我认为这是JDK1.4.2的一个bug。
+在JDK1.5.0中，此问题已得到解决，不存在自动重发现象。out", "30000");
+
+JDK 1.5以前的版本，只能通过设置这两个系统属性来控制网络超时。
+
+在1.5中，还可以使用HttpURLConnection的父类URLConnection的以下两个方法：
+setConnectTimeout：设置连接主机超时（单位：毫秒）
+setReadTimeout：设置从主机读取数据超时（单位：毫秒）
+
+HttpURLConnection urlCon = (HttpURLConnection)url.openConnection();
+urlCon.setConnectTimeout(30000);
+urlCon.setReadTimeout(30000);

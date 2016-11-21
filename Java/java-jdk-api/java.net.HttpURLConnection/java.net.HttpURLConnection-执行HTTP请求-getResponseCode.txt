@@ -1,0 +1,35 @@
+返回的值是：
+
+HTTP/1.1 200 OK  其中的  200
+
+    /**
+     * Returns the response code returned by the remote HTTP server.
+     *
+     * @return the response code, -1 if no valid response code.
+     * @throws IOException
+     *             if there is an IO error during the retrieval.
+     * @see #getResponseMessage
+     */
+    public int getResponseCode() throws IOException {
+        // Call getInputStream() first since getHeaderField() doesn't return
+        // exceptions
+        getInputStream();
+        String response = getHeaderField(0);
+        if (response == null) {
+            return -1;
+        }
+        response = response.trim();
+        int mark = response.indexOf(" ") + 1;
+        if (mark == 0) {
+            return -1;
+        }
+        int last = mark + 3;
+        if (last > response.length()) {
+            last = response.length();
+        }
+        responseCode = Integer.parseInt(response.substring(mark, last));
+        if (last + 1 <= response.length()) {
+            responseMessage = response.substring(last + 1);
+        }
+        return responseCode;
+    }

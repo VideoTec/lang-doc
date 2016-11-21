@@ -1,0 +1,6 @@
+http://arthennala.blog.51cto.com/287631/56996
+
+http://lavasoft.blog.51cto.com/62575/43735
+assert既然是为了调试测试程序用，不在正式生产环境下用，
+那应该考虑更好的测试JUint来代替其做用，
+JUint相对assert关键的所提供的功能是有过之而无不及
