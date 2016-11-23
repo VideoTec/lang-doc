@@ -1,0 +1,28 @@
+@Retention用来声明注解的保留策略，
+有CLASS、RUNTIME和SOURCE这三种，
+分别表示注解保存在
+
+类文件 			
+JVM运行时刻		
+源代码			
+
+retention[英][rɪˈtenʃn] [美][rɪˈtɛnʃən]
+n.保留；记忆力，保持力；滞留，扣留；闭尿
+
+http://www.openhome.cc/Gossip/JavaGossip-V2/AnnotationRetention.htm
+
+java.lang.annotation.Retention可以在您定義Annotation型態時，
+指示編 譯器如何對待您的自定義 Annotation，
+預設上編譯器會將Annotation資訊留在class檔案中，
+但不被虛擬機器讀取，而僅用於編譯器或工具程式運行時提供資訊。
+
+在使用Retention型態時，
+需要提供java.lang.annotation.RetentionPolicy的列舉型態：
+
+package java.lang.annotation;
+
+public enum RetentionPolicy {
+    SOURCE, // 編譯器處理完Annotation資訊後就沒事了
+    CLASS, // 編譯器將Annotation儲存於class檔中，預設
+    RUNTIME // 編譯器將Annotation儲存於class檔中，可由VM讀入
+} 

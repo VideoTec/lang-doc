@@ -1,0 +1,17 @@
+Toast.makeText(MainActivity.this, "", 2);
+
+错误提示：
+Must be one of: Toast.LENGTH_SHORT, Toast.LENGTH_LONG
+
+实现代码：
+
+public class Toast {
+    static final String TAG = "Toast";
+    static final boolean localLOGV = false;
+
+    /** @hide */
+    @IntDef({LENGTH_SHORT, LENGTH_LONG})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Duration {}
+	
+	public static Toast makeText(Context context, CharSequence text, @Duration int duration) 
