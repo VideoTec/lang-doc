@@ -1,0 +1,65 @@
+参考：
+D:\doc\software\工具软件\版本控制\git-统计代码行数.txt
+
+cloc counts blank lines, comment lines, 
+and physical lines of source code in many programming languages.
+
+cloc - count line of code ???
+
+https://github.com/AlDanial/cloc
+
+统计文件
+cloc hello.c
+
+统计目录
+cloc gcc-5.2.0/gcc/c
+
+统计压缩包
+cloc master.zip
+
+统计压缩包问题：
+D:\tools>cloc C:\Users\wangxiangfx\Downloads\andro.zip
+系统找不到指定的路径。
+Unable to expand C:\Users\wangxiangfx\Downloads\andro.zip because external
+utility '"C:\Program Files\WinZip\WinZip32.exe"' is not available.
+Another possibility is to use the --extract-with option.
+
+例子：
+
+D:\tools>cloc C:\Users\wangxiangfx\Downloads\androidrongflysip
+    3259 text files.
+    3031 unique files.
+     953 files ignored.
+
+github.com/AlDanial/cloc v 1.70  T=10.00 s (300.0 files/s, 49658.9 lines/s)
+--------------------------------------------------------------------------------
+
+Language                      files          blank        comment           code
+
+--------------------------------------------------------------------------------
+
+Java                           1878          45706          67813         273426
+
+XML                             983           8242           6493          63718
+
+Lua                             106           3077           4892          20608
+
+Groovy                           13             91             46            562
+
+Prolog                            5             55              0            510
+
+HTML                              9             30             41            483
+
+JavaScript                        2             34             16            235
+
+Markdown                          2             97              0            164
+
+Bourne Again Shell                1             19             20            121
+
+DOS Batch                         1             24              2             64
+
+--------------------------------------------------------------------------------
+
+SUM:                           3000          57375          79323         359891
+
+--------------------------------------------------------------------------------
