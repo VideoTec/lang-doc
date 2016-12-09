@@ -1,0 +1,76 @@
+--------------------------------------------------------------
+示例一：connection.getInputStream()
+--------------------------------------------------------------
+
+if (connection.getResponseCode() == 200) {
+	int len = connection.getContentLength();
+	if (len > 0) {
+		byte[] content = new byte[len];
+		int ret = connection.getInputStream().read(content);
+		if (ret != len) {
+			LogFeinno.e(TAG, "读取字节数据: " + ret + "; 内容长度: " + len);
+		}
+		String contentStr = new String(content, "UTF8");
+		LogFeinno.i(TAG, "返回的字符串: " + contentStr);
+		JSONObject obj = new JSONObject(contentStr);
+		JSONArray result = obj.getJSONArray("result");
+		LogFeinno.i(TAG, "version: " + obj.optString("Version")
+				+ "; Retncode: " + obj.optString("Retncode")
+				+ "; Accout: " + obj.optString("Accout")
+				+ "; result len: " + result.length());
+		if (result.length() > 0) {
+			JSONObject obj1 = result.getJSONObject(0);
+			LogFeinno.i(TAG, "type: " + obj1.optInt("type")
+					+ "; Leftbalance: " + obj1.optInt("Leftbalance")
+					+ "; expirydate: " + obj1.optString("expirydate"));
+			SharedPreferenceUtils sp =
+					SharedPreferenceUtils.getSharedPreference(
+							RFApplication.getApplication().getApplicationContext(),
+							SharedPreferencesConfig.SHARED_KEY_SETTING);
+			sp.setValue(
+					SharedPreferencesConfig.RF_FREE_CALL_TIME_REMAINING,
+					obj1.optInt("Leftbalance"));
+		}
+
+	} else {
+		LogFeinno.e(TAG, "获取免费时长的返回内容不对: " + len);
+	}
+}
+
+--------------------------------------------------------------
+示例二：InputStream in
+--------------------------------------------------------------
+
+    /** Reads the contents of HttpEntity into a byte[]. */
+    private byte[] entityToBytes(HttpEntity entity) throws IOException, ServerError {
+        PoolingByteArrayOutputStream bytes =
+                new PoolingByteArrayOutputStream(mPool, (int) entity.getContentLength());
+        byte[] buffer = null;
+        try {
+            InputStream in = entity.getContent();
+            if (in == null) {
+                throw new ServerError();
+            }
+            buffer = mPool.getBuf(1024);
+            int count;
+            while ((count = in.read(buffer)) != -1) {
+                bytes.write(buffer, 0, count);
+            }
+            return bytes.toByteArray();
+        } finally {
+            try {
+                // Close the InputStream and release the resources by "consuming the content".
+                entity.consumeContent();
+            } catch (IOException e) {
+                // This can happen if there was an exception above that left the entity in
+                // an invalid state.
+                VolleyLog.v("Error occured when calling consumingContent");
+            }
+            mPool.returnBuf(buffer);
+            bytes.close();
+        }
+    }
+
+--------------------------------------------------------------
+示例三： 
+--------------------------------------------------------------

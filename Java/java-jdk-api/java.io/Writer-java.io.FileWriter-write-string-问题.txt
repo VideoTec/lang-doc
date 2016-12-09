@@ -1,0 +1,16 @@
+String content
+
+                new FileWriter(file, isAppend).write(content);
+				这个写不进去文件
+				
+				和下面的代码有什么区别？ 找到原因，没有 flush
+				
+//                br = new BufferedReader(new StringReader(content));
+//                bw = new BufferedWriter(new FileWriter(file, isAppend));
+//                buffer = new char[1024];
+//                int len = 0;
+//                while ((len = br.read(buffer, 0, 1024)) != -1) {
+//                    bw.write(buffer, 0, len);
+//                    count += len;
+//                }
+//                bw.flush();

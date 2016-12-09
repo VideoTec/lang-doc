@@ -1,0 +1,12 @@
+http://stackoverflow.com/questions/8672473/is-there-type-long-in-sqlite
+
+From the SQLite docs
+
+INTEGER. The value is a signed integer, stored in 1, 2, 3, 4, 6, or 8 bytes 
+depending on the magnitude of the value.
+
+Since long is 8 byte and INTEGER can also save values of 8 bytes, you can use INTEGER.
+
+INTEGER. 
+The value is a signed integer, 
+stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of the value.

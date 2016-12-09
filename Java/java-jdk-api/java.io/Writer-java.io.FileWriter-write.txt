@@ -1,0 +1,13 @@
+继承至 java.io.Writer
+
+    /**
+     * Writes the characters from the specified string to the target.
+     *
+     * @param str
+     *            the non-null string containing the characters to write.
+     * @throws IOException
+     *             if this writer is closed or another I/O error occurs.
+     */
+    public void write(String str) throws IOException {
+        write(str, 0, str.length());
+    }

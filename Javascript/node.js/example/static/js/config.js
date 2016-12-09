@@ -1,0 +1,1 @@
+var config={serverHost:"http://220.231.2.38:8093/replyable/v6/",h5Host:"http://10.10.202.129:90/res/rep/",sendHost:"http://10.10.202.129:90/replyable/v6/topics/"};

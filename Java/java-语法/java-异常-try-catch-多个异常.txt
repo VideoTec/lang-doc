@@ -1,0 +1,40 @@
+
+                try {
+                    String url = h5NavUrl + "?serverName=" + repName;
+                    HttpURLConnection connection =
+                            (HttpURLConnection) new URL(h5NavUrl).openConnection();
+                    if (200 == connection.getResponseCode()) {
+                        InputStream is = connection.getInputStream();
+                        byte[] content = new byte[1024];
+                        int len = is.read(content);
+                        if (len != -1 && len < 1024) {
+                            String jsonContent = new String(content, 0, len, "UTF8");
+                            JSONObject obj = new JSONObject(jsonContent);
+                        }
+                    }
+                } catch (IOException | JSONException e) {
+                    LogFeinno.e(TAG, "获取可回复H5导航异常", e);
+                }
+            }
+			
+			另一种写法
+			这种有个警告：
+			'catch' branch identical to 'IOException' branch
+			try {
+				String url = h5NavUrl + "?serverName=" + repName;
+				HttpURLConnection connection =
+						(HttpURLConnection) new URL(h5NavUrl).openConnection();
+				if (200 == connection.getResponseCode()) {
+					InputStream is = connection.getInputStream();
+					byte[] content = new byte[1024];
+					int len = is.read(content);
+					if (len != -1 && len < 1024) {
+						String jsonContent = new String(content, 0, len, "UTF8");
+						JSONObject obj = new JSONObject(jsonContent);
+					}
+				}
+			} catch (IOException e) {
+				LogFeinno.e(TAG, "获取可回复H5导航异常", e);
+			} catch (JSONException e) {
+				LogFeinno.e(TAG, "获取可回复H5导航异常", e);
+			}
