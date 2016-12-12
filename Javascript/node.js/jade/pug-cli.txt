@@ -1,0 +1,9 @@
+https://github.com/pugjs/pug
+
+Command Line
+
+After installing the latest version of Node.js, install with:
+$ npm install pug-cli -g
+
+and run with
+$ pug --help
