@@ -1,8 +1,12 @@
 Dalvik/2.1.0 (Linux; U; Android 5.1.1; vivo X7 Build/LMY47V)
 
-这个手机，会在读超时后，第二次请求服务器。
-
+这个手机，会在读超时后，第二次请求服务器
 奇怪的是，fiddler 抓包工具，第二个请求捕获不到
+
+这个重发，不是所有的手机，都这样，请求正常的手机：
+Mozilla/5.0 (Linux; Android 6.0; Nexus 6 Build/MRA58K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.133 Mobile Safari/537.36
+
+Mozilla/5.0 (Linux; Android 4.3; zh-cn; SAMSUNG-GT-I9308_TD/1.0 Android/4.3 Release/11.15.2013 Browser/AppleWebKit534.30 Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30
 
 http://stackoverflow.com/questions/27094544/android-java-httpurlconnection-silent-retry-on-read-timeout
 

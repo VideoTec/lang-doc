@@ -2,6 +2,8 @@
 
 D:\doc\lang\Java\java-jdk-api\java.net.HttpURLConnection\java.net.HttpURLConnection-设置-超时时间-setReadTimeout.txt
 D:\doc\lang\Java\java-jdk-api\java.net.HttpURLConnection\java.net.HttpURLConnection-设置-超时时间-setConnectTimeout.txt
+D:\doc\lang\Java\java-jdk-api\java.net.HttpURLConnection\java.net.HttpURLConnection-设置-超时时间-超时后-自动重发的问题.txt
+D:\doc\lang\Java\java-jdk-api\java.net.HttpURLConnection\java.net.URLConnection-异常-超时-读超时-造成两请求.txt
 
 setConnectTimeout：设置连接主机超时（单位：毫秒）
 setReadTimeout：设置从主机读取数据超时（单位：毫秒）

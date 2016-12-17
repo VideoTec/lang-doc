@@ -1,0 +1,40 @@
+    /**
+     * Returns a new instance of {@code MessageDigest} that utilizes the
+     * specified algorithm.
+     *
+     * @param algorithm
+     *            the name of the algorithm to use
+     * @return a new instance of {@code MessageDigest} that utilizes the
+     *         specified algorithm
+     * @throws NoSuchAlgorithmException
+     *             if the specified algorithm is not available
+     * @throws NullPointerException
+     *             if {@code algorithm} is {@code null}
+     */
+    public static MessageDigest getInstance(String algorithm)
+            throws NoSuchAlgorithmException {
+        if (algorithm == null) {
+            throw new NullPointerException("algorithm == null");
+        }
+        Engine.SpiAndProvider sap = ENGINE.getInstance(algorithm, null);
+        Object spi = sap.spi;
+        Provider provider = sap.provider;
+        if (spi instanceof MessageDigest) {
+            MessageDigest result = (MessageDigest) spi;
+            result.algorithm = algorithm;
+            result.provider = provider;
+            return result;
+        }
+        return new MessageDigestImpl((MessageDigestSpi) sap.spi, sap.provider, algorithm);
+    }
+	
+	可选的参数：
+	https://developer.android.com/reference/java/security/MessageDigest.htmlName	
+	Supported (API Levels)
+	MD5			1+
+	SHA-1		1+
+	SHA-224		1–8,22+
+	SHA-256		1+
+	SHA-384		1+
+	SHA-512		1+
+	
