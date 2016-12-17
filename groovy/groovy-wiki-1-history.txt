@@ -1,0 +1,47 @@
+https://en.wikipedia.org/wiki/Groovy_(programming_language)
+
+James Strachan first talked about the development of Groovy on his blog in August 2003.[5] 
+Several versions were released between 2004 and 2006. 
+
+After the Java Community Process (JCP) standardization process began, 
+the version numbering changed and a version called "1.0" was released on January 2, 2007. 
+After various betas and release candidates numbered 1.1, on December 7, 2007, 
+Groovy 1.1 Final was released and immediately rebranded 
+as Groovy 1.5 as a reflection of the many changes made.
+
+In 2007, Groovy won the first prize at JAX 2007 innovation award.[6] 
+In 2008, Grails, a Groovy web framework, won the second prize at JAX 2008 innovation award.[7]
+
+In November 2008, SpringSource acquired the Groovy and Grails company (G2One).[8] 
+In August 2009 VMWare acquired SpringSource.[9]
+
+Strachan had left the project silently a year before the Groovy 1.0 release in 2007.[citation needed] 
+In July 2009, Strachan wrote on his blog, 
+"I can honestly say if someone had shown me the Programming in Scala book 
+by Martin Odersky, Lex Spoon & Bill Venners back in 2003 I'd probably have never created Groovy.".[10] 
+
+In Oct 2016, Strachan's views had changed as he stated 
+"I still love groovy (jenkins pipelines are so groovy!), java, go, typescript and kotlin. 
+I don’t use scala any more".[11]
+
+解释：
+Scala（发音为/ˈskɑːlə, ˈskeɪlə/）是一门多范式的编程语言，
+设计初衷是要整合面向对象编程和函数式编程的各种特性
+
+In March 2004, 
+Groovy had been submitted to the JCP as JSR 241[12] and accepted by ballot. 
+After 8 years of inactivity, 
+the Spec Lead changed its status to dormant in April 2012.
+
+On July 2, 2012, 
+Groovy 2.0 was released, which, among other new features, 
+added static compilation and a static type checker to Groovy.
+
+When the Pivotal joint venture was spun-off by EMC and VMware in April 2013, 
+Groovy and Grails formed part of its product portfolio. 
+Pivotal ceased sponsoring Groovy and Grails from April 2015.[3] 
+
+That same month, 
+Groovy changed its governance structure from a Codehaus repository 
+to a Project Management Committee (PMC) in the Apache Software Foundation via its incubator.[4] 
+Groovy graduated from Apache's incubator and become a top-level project in November 2015

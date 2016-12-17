@@ -1,0 +1,41 @@
+https://en.wikipedia.org/wiki/Groovy_(programming_language)
+
+implicitly 隐式
+
+GroovyBeans are Groovy's version of JavaBeans. 
+Groovy implicitly generates getters and setters. 
+In the following code, 
+setColor(String color) and getColor() are implicitly generated; 
+and the last two lines, 
+which appear to access color directly, are actually calling the implicitly generated methods
+
+···
+class AGroovyBean {
+  String color
+}
+
+def myGroovyBean = new AGroovyBean()
+
+myGroovyBean.setColor('baby blue')
+assert myGroovyBean.getColor() == 'baby blue'
+
+myGroovyBean.color = 'pewter'
+assert myGroovyBean.color == 'pewter'
+···
+
+consistent 一致的
+
+Groovy offers simple, consistent syntax for handling lists and maps, 
+reminiscent of Java's array syntax.
+
+···
+def movieList = ['Dersu Uzala', 'Ran', 'Seven Samurai']  //looks like an array, but is a list
+assert movieList[2] == 'Seven Samurai'
+movieList[3] = 'Casablanca'  // adds an element to the list
+assert movieList.size() == 4
+
+def monthMap = [ 'January' : 31, 'February' : 28, 'March' : 31 ]  //declares a map
+assert monthMap['March'] == 31  // accesses an entry
+monthMap['April'] = 30  // adds an entry to the map
+assert monthMap.size() == 4
+···

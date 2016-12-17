@@ -1,0 +1,22 @@
+https://en.wikipedia.org/wiki/Groovy_(programming_language)
+
+Apache Groovy is an object-oriented programming language for the Java platform. 
+It is a dynamic language with features similar to those of Python, Ruby, Perl, and Smalltalk. 
+
+It can be used as a scripting language for the Java Platform, 
+is dynamically compiled to Java Virtual Machine (JVM) bytecode, 
+and interoperates with other Java code and libraries. 
+
+Groovy uses a Java-like curly-bracket syntax. 
+Most Java code is also syntactically valid Groovy, 
+although semantics may be different.
+
+Groovy 1.0 was released on January 2, 2007, and 
+
+Groovy 2.0 in July, 2012. 
+Since version 2, Groovy can also be compiled statically, 
+offering type inference and performance very close to that of Java.[1][2] 
+
+Groovy 2.4 was the last major release under Pivotal Software's sponsorship which ended in March 2015.[3] 
+Groovy has since changed its governance structure 
+to a Project Management Committee (PMC) in the Apache Software Foundation.

@@ -1,0 +1,2 @@
+Gradle is an open-source build automation tool for the Age of Continuous Delivery (CD). 
+持续交付（英语：Continuous delivery，缩写为 CD）

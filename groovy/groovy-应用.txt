@@ -1,0 +1,47 @@
+https://en.wikipedia.org/wiki/Groovy_(programming_language)#Adoption
+
+eXo Platform, 
+an Open Source Enterprise Social Collaboration Platform uses Groovy.
+
+Wired.com 
+uses Groovy and Grails for the Product Reviews standalone section of the website.[33]
+
+Though Groovy can be integrated into any JVM environment, 
+the JBoss Seam framework provides Groovy, besides Java, as a development language, out of the box.[34]
+
+The European Patent Office (EPO) 
+developed a Data Flow Language in Groovy "to leverage similarities in the processes for communicating with each individual country’s patent office, and transform them into a single, universal process."[citation needed]
+
+Linkedin 
+uses Groovy and Grails for some of their subsystems.[35]
+
+XWiki SAS 
+uses Groovy as scripting language in their collaborative open-source product.[36]
+
+SoapUI 
+provides Groovy as a language for webservice tests development.[37]
+
+Sky.com 
+uses Groovy and Grails to serve massive online media content.[38]
+
+DataMelt 
+integrates Groovy into a numeric and statistic data-analysis framework
+
+vCalc.com 
+uses Groovy for all of the user defined mathematics in its math crowd-sourcing engine.[39]
+
+Eucalyptus, a cloud management system, 
+uses a significant amount of Groovy.
+
+Apache OFBiz, 
+the open source enterprise resource planning (ERP) system, uses Groovy.[40][41]
+
+SmartThings, 
+an open platform for smart homes and the consumer Internet of Things, uses a security-oriented subset of Groovy[42]
+
+Survata, 
+a market research startup, 
+uses Groovy and Grails.[citation needed]
+
+Jenkins, a platform for continuous integration. 
+With version 2, Jenkins includes a Pipeline plugin that allows for build instructions to be written in Groovy.[43]

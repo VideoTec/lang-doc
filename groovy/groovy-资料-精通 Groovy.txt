@@ -1,0 +1,21 @@
+http://www.ibm.com/developerworks/cn/education/java/j-groovy/j-groovy.html
+
+本教程适合于不熟悉 Groovy，
+但想快速轻松地了解其基础知识的 Java™ 开发人员。
+
+了解 Groovy 对 Java 语法的简化变形，学习 Groovy 的核心功能，
+例如本地集合、内置正则表达式和闭包。
+
+编写第一个 Groovy 类，
+然后学习如何使用 JUnit 轻松地进行测试。
+借助功能完善的 Groovy 开发环境和使用技能，您将轻松完成本教程的学习。
+最重要的是，您将学会如何在日常 Java 应用程序开发中联合使用 Groovy 和 Java 代码。
+
+Groovy 的松散的 Java 语法允许省略分号和修改符。
+除非另行指定，Groovy 的所有内容都为 public。
+Groovy 允许定义简单脚本，同时无需定义正规的 class 对象。
+Groovy 在普通的常用 Java 对象上增加了一些独特的方法和快捷方式，使得它们更容易使用。
+Groovy 语法还允许省略变量类型。
+
+编译，运行 示例：
+c:>groovy MyFirstExample.groovy

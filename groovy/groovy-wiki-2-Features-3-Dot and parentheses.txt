@@ -1,0 +1,19 @@
+https://en.wikipedia.org/wiki/Groovy_(programming_language)
+
+parentheses 圆括号
+
+Groovy's syntax permits omitting parentheses and dots in some situations. 
+The following groovy code
+
+···
+take(coffee).with(sugar, milk).and(liquor)
+···
+
+can be written as
+
+···
+take coffee with sugar, milk and liquor
+···
+
+enabling the development of domain-specific languages (DSLs) 
+which look like plain English.

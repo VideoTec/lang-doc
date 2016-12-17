@@ -1,0 +1,28 @@
+Traits 特点
+
+According to Groovy's documentation, 
+"Traits are a structural construct of the language which allow: 
+composition of behaviors, 
+runtime implementation of interfaces, 
+behavior overriding, and 
+compatibility with static type checking/compilation."
+
+Traits can be seen as interfaces carrying both default implementations and state. 
+A trait is defined using the trait keyword:
+
+···
+trait FlyingAbility { /* declaration of a trait */
+    String fly() { "I'm flying!" } /* declaration of a method inside a trait */
+}
+···
+
+Then it can be used like a normal interface using the implements keyword:
+
+···
+class Bird implements FlyingAbility {} /* Adds the trait FlyingAbility to the Bird class capabilities */
+def b = new Bird() /* instantiate a new Bird */
+assert b.fly() == "I'm flying!" /* the Bird class automatically gets the behavior of the FlyingAbility trait */
+···
+
+Traits allow a wide range of capabilities, 
+from simple composition to testing.

@@ -1,0 +1,27 @@
+
+编译，运行 示例：
+c:>groovy MyFirstExample.groovy
+
+编译，运行 示例：
+c:>groovy -e "println 'Hello World!'"
+
+http://www.ibm.com/developerworks/cn/education/java/j-groovy/j-groovy.html
+
+您可能注意到了，我不必编译 .groovy 文件。这是因为 Groovy 属于脚本语言。
+脚本语言的一个特点就是能够在运行时进行解释。
+
+（在 Java 中，要从源代码编译生成字节码，然后才能进行解释。
+区别在于脚本语言能够直接 解释源代码。）
+
+Groovy 允许完全省略编译步骤，
+不过仍然可以 进行编译。
+如果想要编译代码，可以使用 Groovy 编译器 groovyc。
+用 groovyc 编译 Groovy 代码会产生标准的 Java 字节码，
+然后可以通过 java 命令运行生成的字节码。
+
+这是 Groovy 的一项经常被忽略的关键特性：
+用 Groovy 编写的所有代码都能够通过标准 Java 运行时编译和运行。
+
+至于运行代码，如果我希望更加简洁，我甚至还能输入
+c:>groovy -e "println 'Hello World!'"
+这会生成相同的结果，而且甚至无需定义任何文件！

@@ -1,0 +1,63 @@
+XML and JSON processing[edit]
+On XML and JSON processing Groovy employs the Builder pattern, 
+making the production of the data structure less verbose. 
+
+For example, the following XML:
+
+···
+<languages>
+  <language year="1995">
+    <name>java</name>
+    <paradigm>Object oriented</paradigm>
+    <typing>Static</typing>
+  </language>
+  <language year="1995">
+    <name>ruby</name>
+    <paradigm>Object oriented, Functional</paradigm>
+    <typing>Dynamic, duck typing</typing>
+  </language>  
+  <language year="2003">
+    <name>groovy</name>
+    <paradigm>Object oriented, Functional</paradigm>
+    <typing>Dynamic, Static, Duck typing</typing>
+  </language>
+</languages>
+···
+
+Can be generated through the following Groovy code:
+
+···
+def writer = new StringWriter()
+def builder = new groovy.xml.MarkupBuilder(writer)
+builder.languages {
+  language(year: 1995) {
+    name "java"
+    paradigm "Object oriented"
+    typing "Static"
+  }
+  language (year: 1995) {
+    name "ruby"
+    paradigm "Object oriented, Functional"
+    typing "Dynamic, Duck typing"
+  }
+  language (year: 2003) {
+    name "groovy"
+    paradigm "Object oriented, Functional"
+    typing "Dynamic, Static, Duck typing"
+  }
+}
+···
+
+And also can be processed in a streaming way through StreamingMarkupBuilder. 
+To change the implementation to JSON, we can just swap the MarkupBuilder to JsonBuilder.[30]
+
+To parse it and search for a functional language we can use Groovy's findAll method:
+
+···
+def languages = new XmlSlurper().parseText writer.toString()
+
+// Here we employ groovy's regex syntax for a matcher (=~) which will be coerced to a boolean value: 
+// either true if the value contains our string, or false otherwise.
+def functional = languages.language.findAll { it.paradigm =~ "functional" }
+assert functional.collect { it.name } == ["ruby", "groovy"]
+···

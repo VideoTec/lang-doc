@@ -1,0 +1,30 @@
+参考：
+D:\doc\android\android-studio\Gradle\Gradle-文档-Getting Started With Gradle.txt
+
+https://zh.wikipedia.org/wiki/Groovy
+
+Groovy是Java平台上设计的面向对象编程语言。
+这门动态语言拥有类似Python、Ruby和Smalltalk中的一些特性，
+可以作为Java平台的脚本语言使用。
+
+Groovy的语法与Java非常相似，
+以至于多数的Java代码也是正确的Groovy代码。
+
+Groovy代码动态的被编译器转换成Java字节码。
+由于其运行在JVM上的特性，Groovy可以使用其他Java语言编写的库。
+
+http://www.groovy-lang.org/
+
+领域专用语言（Domain Specific Language/DSL）
+
+Apache Groovy is a powerful, 
+optionally typed and dynamic language, 
+with static-typing and static compilation capabilities, 
+for the Java platform aimed at improving developer productivity thanks to a concise, 
+familiar and easy to learn syntax. 
+
+It integrates smoothly with any Java program, and immediately delivers to your application powerful features, 
+including scripting capabilities, 
+Domain-Specific Language authoring, 
+runtime and 
+compile-time meta-programming and functional programming.

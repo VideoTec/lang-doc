@@ -1,0 +1,15 @@
+http://www.infoq.com/cn/articles/dsl-discussion
+
+2008年6月10日
+
+所谓领域专用语言（Domain Specific Language/DSL），
+其基本思想是“求专不求全”，
+不像通用目的语言那样目标范围涵盖一切软件问题，
+而是专门针对某一特定问题的计算机语言。
+
+DSL之于程序员正如伽南地之于以色列人，是最初也是最终的梦想。
+几乎自计算机发明伊始，
+人们就开始谈论DSL使用DSL了。
+而前几年随着被誉为“Web开发领域专用语言”的Ruby on Rails迅速走红，
+DSL又一次成为人们讨论的热点话题。
+很多人都认为，DSL将会是软件业的“next big thing”。

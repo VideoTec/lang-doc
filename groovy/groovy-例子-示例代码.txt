@@ -1,0 +1,30 @@
+https://zh.wikipedia.org/wiki/Groovy
+
+class Foo {
+  doSomething() {
+    data = ["name": "James", "location": "London"]
+    for (e in data) {
+      println("entry ${e.key} is ${e.value}")
+    }
+  }
+
+  closureExample(collection) {
+    collection.each { println("value ${it}") }
+  }
+
+  static void main(args) {
+    values = [1, 2, 3, "abc"]
+    foo = new Foo()
+    foo.closureExample(values)
+    foo.doSomething()
+  }
+}
+
+D:\doc\lang\groovy\example>groovy class-foo.groovy
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+D:\doc\lang\groovy\example\class-foo.groovy: 2: unexpected token: doSomething @
+line 2, column 3.
+     doSomething() {
+     ^
+
+1 error

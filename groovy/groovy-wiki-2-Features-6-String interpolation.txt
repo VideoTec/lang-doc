@@ -1,0 +1,38 @@
+interpolation 插值
+
+String interpolation[edit]
+In Groovy we can interpolate the string with variables and expressions by using GStrings:[31]
+
+···
+BigDecimal account = 10.0
+def text = "Your account shows currently a balance of $account"
+assert text == "Your account shows currently a balance of 10.0"
+···
+
+GStrings containing variables and expressions must be declared using double quotes.
+
+A complex expression must be enclosed in curly brackets. 
+This prevents parts of it from being interpreted as belonging to the surrounding string instead of to the expression:
+
+···
+BigDecimal minus = 4.0
+text = "Your account shows currently a balance of ${account - minus}"
+assert text == "Your account shows currently a balance of 6.0"
+
+// Without the brackets to isolate the expression, we would have the following:
+text = "Your account shows currently a balance of $account - minus"
+assert text == "Your account shows currently a balance of 10.0 - minus"
+···
+
+Expression evaluation can be deferred by employing arrow syntax:
+
+···
+BigDecimal tax = 0.15
+text = "Your account shows currently a balance of ${->account - account * tax}"
+tax = 0.10
+
+// The tax value was changed AFTER declaration of the GString. The expression 
+// variables are bound only when the expression must actually be evaluated:
+
+assert text == "Your account shows currently a balance of 9.000"
+···

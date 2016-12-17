@@ -1,0 +1,21 @@
+AST (Abstract Syntax Tree) Transformation[edit]
+
+According to Groovy's own documentation, 
+"When the Groovy compiler compiles Groovy scripts and classes, 
+at some point in the process, 
+the source code will end up being represented in memory in the form of a Concrete Syntax Tree, 
+then transformed into an Abstract Syntax Tree. 
+The purpose of AST Transformations is to 
+let developers hook into the compilation process 
+to be able to modify the AST before it is turned into bytecode that will be run by the JVM. 
+AST Transformations provides Groovy 
+with improved compile-time metaprogramming capabilities allowing powerful flexibility at the language level, 
+without a runtime performance penalty.".[32]
+
+Examples of ASTs in Groovy are:
+
+Singleton transformation;
+Category and Mixin transformation;
+Immutable AST Macro;
+Newify transformation;
+Among others.
