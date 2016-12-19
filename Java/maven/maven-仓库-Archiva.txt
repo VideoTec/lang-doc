@@ -1,0 +1,82 @@
+https://archiva.apache.org/index.cgi
+https://github.com/apache/archiva
+
+Apache Archiva™ is an extensible repository management software 
+that helps taking care of your own personal or enterprise-wide build artifact repository. 
+It is the perfect companion for build tools such as Maven, Continuum, and ANT
+
+文档
+http://archiva.apache.org/docs/2.2.1/tour/index.html
+Archiva is a feature rich repository manager. 
+Below is a short tour of some of the features that are available.
+
+下载地址
+http://archiva.apache.org/download.cgi
+
+http://archiva.apache.org/docs/2.2.1/adminguide/installing.html
+Whether you choose to install Archiva 
+as a standalone application or 
+as a web application in your preferred Java EE application server, 
+only a minimal amount of configuration is necessary.
+
+第一种安装方法：
+Installing as a Service on Windows
+
+On Windows, to use the start and stop commands 
+you must first install it as a service. 
+This is done by running:
+
+.\bin\archiva.bat install
+安装的服务执行的命令：
+D:\tools\apache-archiva-2.2.1\bin\wrapper-windows-x86-64.exe -s D:\tools\apache-archiva-2.2.1\conf\wrapper.conf
+安装完后：
+http://localhost:8080/
+http://localhost:8080/repository/internal/
+
+You can then use the start and stop commands 
+as well as the traditional Windows service management console to manage the Archiva service.
+
+This procedure installs the service to run as the local system user. 
+You must ensure that it has access to read the installation, 
+and to write to the logs and data directories.
+
+Note on last Windows version, 
+you need to configure correctly path to your java executable. 
+In wrapper.conf file:
+
+wrapper.java.command=fullpath to your java executable
+
+You can later remove the service with:
+
+.\bin\archiva.bat remove
+
+第二种安装方法：
+Installing Apache Archiva as a Web Application
+To deploy Archiva on Apache Tomcat 5.5, 6.0 and 7.0.x
+
+http://www.avajava.com/tutorials/lessons/what-is-archiva-and-how-do-i-install-it.html
+
+ArchivaS is referred to as a "Build Artifact Repository Manager". 
+It is basically a web application 
+that provides useful functionality in conjunction with mavenSW repositories. 
+
+One of the great things that it can do it serve 
+as an on-demand mirror of the maven central repository. 
+
+Rather than making requests for artifacts from the maven central repository, 
+you ask the Archiva 'repository' for the central repository artifact. 
+
+Archiva will then retrieve the artifact and accompanying metadata files 
+from the maven central repository and store these files in its repository, 
+and it will return the requested artifact to the user. 
+
+If another developer makes a request of Archiva for the same artifact, 
+Archiva will return the artifact to the user. 
+
+Archiva doesn't need to make a request to the central repository 
+since it already has the resource. 
+
+Thus, it can provide "on-demand" mirroring capabilities of the maven central repository. 
+It's a great way to minimize long-distance network communication and 
+replace it with an in-house repository mirror server 
+that only mirrors the artifacts that your team is using.

@@ -1,0 +1,20 @@
+参考：
+D:\doc\android\android-studio\Gradle\Gradle-学习资料-Gradle_Recipes_for_Android.pdf
+
+There are no “primitives” in Groovy. 
+All variables use the wrapper classes, 
+like java.lang.Integer, java.lang.Character, and java.lang.Double. 
+
+The native data type for integer literals, like 3, is Integer. 
+The native data type for floating point literals,
+like 3.5, is java.math.BigDecimal.
+
+Example A-2. Some basic data types in Groovy
+assert 3.class == Integer
+assert (3.5).class == BigDecimal
+assert 'abc' instanceof String
+assert "abc" instanceof String
+String name = 'Dolly'
+assert "Hello, ${name}!" == 'Hello, Dolly!'
+assert "Hello, $name!" == 'Hello, Dolly!'
+assert "Hello, $name!" instanceof GString

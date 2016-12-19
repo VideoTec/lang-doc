@@ -13,3 +13,10 @@ http://repository.codehaus.org/
 http://snapshots.repository.codehaus.org/
 http://people.apache.org/repo/m2-snapshot-repository
 http://people.apache.org/repo/m2-incubating-repository/
+
+国内镜像仓库：
+
+http://maven.oschina.net/content/groups/public/
+
+设置仓库地址的方法：
+D:\doc\android\android-studio\Gradle\Gradle-依赖管理-仓库-repositories-写法.txt

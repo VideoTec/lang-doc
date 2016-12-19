@@ -1,0 +1,2 @@
+参考：
+D:\doc\android\android-studio\Gradle\Gradle-学习资料-Gradle_Recipes_for_Android.pdf

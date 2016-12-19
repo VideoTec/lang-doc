@@ -1,0 +1,30 @@
+http://www.philosophicalhacker.com/2015/01/18/build-apps-smarter-with-archiva-and-gradle/
+
+After archiva finishes loading (which could be a while), 
+you can load up the interface by pointing your browser to localhost:8080.
+
+1）create an admin user by clicking the ‘Create admin’ button at the top right corner of the screen
+admin、admin123
+
+2）you can click the ‘Manage’ menu item 添加一个用户
+This is the user that gradle will use to publish artifacts to the repo, 
+so remember the username and password you enter here for later.
+wangxiang/feinno83
+
+发布AAR示例脚本
+
+```
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: 'http://localhost:8080/repository/internal/') {
+            authentication (userName: 'wangxiang', password: 'feinno83')
+        }
+        pom.version = '1.0'
+        pom.artifactId = 'login'
+        pom.groupId = 'com.feinno.rongfly'
+    }
+}
+```

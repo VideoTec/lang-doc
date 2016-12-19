@@ -1,0 +1,64 @@
+
+artifact	英['ɑ:təˌfækt]
+美[ˈɑrtəˌfækt]
+n.	人工制品，手工艺品，加工品; 石器;
+
+https://maven.apache.org/repository-management.html
+
+Available Repository Managers
+
+The following list (alphabetical order) of 
+open source and commercial repository managers 
+are known to support the repository format used by Maven. 
+
+Please refer to the respective linked web sites for further information 
+about repository management in general and the features provided by these products.
+
+仓库管理系统列表：
+
+1）Apache Archiva (open source)
+
+jcenter()
+2）JFrog Artifactory Open Source (open source)
+3）JFrog Artifactory Pro (commercial)
+
+mavenCentral()
+4）Sonatype Nexus OSS (open source)
+5）Sonatype Nexus Pro (commercial)
+
+创建管理系统的作用：
+
+dedicated	英[ˈdedɪkeɪtɪd]
+美[ˈdɛdɪˌketɪd]
+adj.	专用的; 专注的，投入的; 献身的;
+v.	奉献(dedicate的过去式和过去分词);
+
+A repository manager is a dedicated server application 
+designed to manage repositories of binary components. 
+The usage of a repository manager 
+is considered an essential best practice for any significant usage of Maven.
+
+1）act as dedicated proxy server for public Maven repositories
+2）provide repositories as a deployment destination for your Maven project outputs
+
+Using a repository manager provides the following benefits and features:
+
+1）significantly reduced number of downloads off remote repositories, 
+saving time and bandwidth resulting in increased build performance
+
+2）improved build stability 
+due to reduced reliance on external repositories
+
+3）increased performance 
+for interaction with remote SNAPSHOT repositories
+
+4）potential for control of consumed and provided artifacts
+
+5）creates a central storage and access to artifacts and 
+meta data about them exposing build outputs to consumer 
+such as other projects and developers, 
+but also QA or operations teams or even customers
+
+6）provides an effective platform for 
+exchanging binary artifacts within your organization 
+and beyond without the need for building artifact from source

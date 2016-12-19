@@ -1,0 +1,25 @@
+示例
+
+println 'Hello, World!'
+
+解释
+
+Semicolons are optional. If you add them, they work, but they’re not required
+
+Parentheses are optional until they’re not. 
+If the compiler guesses correctly where they should have gone, everything works. 
+Otherwise, add them back in. 
+The println method takes a String argument. 
+Here the parentheses are left out.
+
+There are two types of strings in Groovy: 
+1) single-quoted strings, like Hello, are instances of java.lang.String. 
+2) Double-quoted strings are Groovy strings and allow interpolation, shown in Example A-2.
+
+semicolon	英[ˌsemiˈkəʊlən] 美[ˈsemikoʊlən]
+分号;
+
+parentheses	英[pəˈrenθəsi:z]美[pə'renθəsi:z]
+圆括号，插入语，插曲（ parenthesis的名词复数 ）;
+原型： parenthesis
+parenthesis	英[pəˈrenθəsɪs] 美[pəˈrɛnθɪsɪs]

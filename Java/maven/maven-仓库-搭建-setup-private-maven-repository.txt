@@ -1,0 +1,34 @@
+https://inthecheesefactory.com/blog/how-to-setup-private-maven-repository/en
+
+Yesterday I got a question: 
+"In the end, there will be ton of library modules placed inside the android project. 
+What is the best and sustainable way to organize these libraries for both current and future uses?".
+
+Well, I think the question was quite great and 
+I believe that many of you might have the same doubtfulness in mind so 
+I decide to write this blog giving you an instruction 
+how to "setup your own Private Maven Repository" for the internal use.
+
+-------------------------------------------------------------
+Why should we setup a Private Maven Repository?
+-------------------------------------------------------------
+
+It's true that an Android Library module 
+is actually just a bunch of source codes grouped in the same directory. 
+If you want to let other developers use your library, 
+you could simply send them the whole directory and let them include it in their project.
+
+Alright, I will give you an instruction 
+how to set up our own Private Maven Repository as a dedicated server. 
+
+The open source software I choose is Artifactory 
+since it is incredibly easy to install despite its countless promising features and its stability.
+
+https://www.jfrog.com/open-source/
+
+
+-------------------------------------------------------------
+How to distribute your own Android library through jCenter and Maven Central from Android Studio
+-------------------------------------------------------------
+
+https://inthecheesefactory.com/blog/how-to-upload-library-to-jcenter-maven-central-as-dependency/en

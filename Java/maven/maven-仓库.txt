@@ -1,0 +1,17 @@
+Maven repositories
+
+https://en.wikipedia.org/wiki/Apache_Maven
+
+Maven dynamically downloads Java libraries and Maven plug-ins 
+from one or more repositories such as the Maven 2 Central Repository, 
+and stores them in a local cache.[4] 
+This local cache of downloaded artifacts can also be updated with artifacts created by local projects. 
+Public repositories can also be updated.
+
+Alternative technologies like gradle and sbt as build tools do not rely on XML, 
+but keep the key concepts Maven introduced. 
+With Apache Ivy, a dedicated dependency manager was developed as well 
+that also supports Maven repositories
+
+Maven 2 Central Repository[4] is used by default to search for libraries, 
+but one can configure the repositories to be used (e.g., company-private repositories) within the POM.
