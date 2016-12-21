@@ -1,0 +1,7 @@
+http://getbootstrap.com/getting-started/#template
+
+Build on the basic template above with Bootstrap's many components. 
+We encourage you to customize and adapt Bootstrap to suit your individual project's needs.
+
+Get the source code for every example below by downloading the Bootstrap repository. 
+Examples can be found in the docs/examples/ directory.

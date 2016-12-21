@@ -1,0 +1,19 @@
+http://stackoverflow.com/questions/7568931/full-body-background-with-twitter-bootstrap
+
+You need to either add this:
+
+html { background: transparent }
+Or, set the "page background" (background: black) on html instead, which is fine to do.
+
+Why? Inside Bootstrap, there's this:
+
+html,body{background-color:#ffffff;}
+(bear in mind the default background value is transparent)
+
+For more information on why this matters, see: What is the difference between applying css rules to html compared to body?
+
+Note that this is no longer an issue with Bootstrap 3+.
+
+http://stackoverflow.com/questions/10768891/how-to-change-the-default-background-color-white-to-something-else-in-twitter-bo
+
+body { background: #000000 !important;}

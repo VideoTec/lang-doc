@@ -1,0 +1,16 @@
+http://getbootstrap.com/getting-started/
+
+1) Download
+2) What's included
+3) Compiling CSS and JavaScript
+4) Basic template
+5) Examples
+6) Tools
+7) Community
+8) Disabling responsiveness
+9) Migrating from 2.x to 3.0
+10) Browser and device support
+11) Third party support
+12) Accessibility
+13) License FAQs
+14) Translations
