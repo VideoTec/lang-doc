@@ -1,0 +1,4 @@
+Use this and divide by 1000
+
+long epoch = System.currentTimeMillis();
+System.out.println("Epoch : " + (epoch / 1000));

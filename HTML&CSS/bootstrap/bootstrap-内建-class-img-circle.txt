@@ -1,0 +1,11 @@
+参考：
+D:\doc\lang\HTML&CSS\bootstrap\bootstrap-学习-指定圆角.txt
+
+<img class="img-circle"> 
+<img src="img/test.jpg" class="img-circle" />
+
+bootstrap.css
+
+.img-circle {
+  border-radius: 50%;
+}

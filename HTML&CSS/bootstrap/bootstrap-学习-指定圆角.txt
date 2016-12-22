@@ -1,0 +1,13 @@
+http://stackoverflow.com/questions/12084121/correct-way-to-create-rounded-corners-in-twitter-bootstrap
+
+As per bootstrap 3.0 documentation. there is no rounded corners class or id for div tag.
+
+you can use circle behavior for image by using
+
+<img class="img-circle"> 
+or just use custom border-radius css3 property in css
+
+for only bottom rounded coner use following
+
+border-bottom-left-radius:25%; // i use percentage  u can use pix.
+border-bottom-right-radius:25%;// i use percentage  u can use pix.
