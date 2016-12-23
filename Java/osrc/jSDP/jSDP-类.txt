@@ -1,0 +1,14 @@
+net.sourceforge.jsdp.SDPFactory
+
+net.sourceforge.jsdp.Field
+net.sourceforge.jsdp.Description
+
+net.sourceforge.jsdp.SDPException
+net.sourceforge.jsdp.SDPParseException
+
+net.sourceforge.jsdp.util.ZoneAdjustment
+net.sourceforge.jsdp.util.TypedTime 
+net.sourceforge.jsdp.util.Contact
+
+net.sourceforge.jsdp.util.Address
+net.sourceforge.jsdp.util.Resource

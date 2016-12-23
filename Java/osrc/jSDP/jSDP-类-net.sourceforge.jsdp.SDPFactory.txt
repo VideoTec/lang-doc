@@ -1,0 +1,3 @@
+net.sourceforge.jsdp.SDPFactory
+
+The SDPFactory enables to encode and decode SDP messages.

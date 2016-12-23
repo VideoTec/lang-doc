@@ -1,0 +1,28 @@
+-----------------------------------------------------------
+net.sourceforge.jsdp.Field 的派生类
+-----------------------------------------------------------
+
+net.sourceforge.jsdp.Attribute		a=<field value>
+net.sourceforge.jsdp.Bandwith		b=<field value>
+net.sourceforge.jsdp.Connection 	c=<field value> 
+net.sourceforge.jsdp.Email			e=<field value>
+net.sourceforge.jsdp.Information	i=<field value>
+net.sourceforge.jsdp.Key 			k=<field value> 
+net.sourceforge.jsdp.Media			m=<field value>
+net.sourceforge.jsdp.Origin			o=<field value> 
+net.sourceforge.jsdp.Phone			p=<field value> 
+net.sourceforge.jsdp.RepeatTime		r=<field value>
+net.sourceforge.jsdp.SessionName	s=<field value>
+net.sourceforge.jsdp.Time			t=<field value> 
+net.sourceforge.jsdp.TimeZone		z=<field value>
+net.sourceforge.jsdp.Uri 			u=<field value> 
+net.sourceforge.jsdp.Version		v=<field value>
+
+-----------------------------------------------------------
+net.sourceforge.jsdp.Field 的派生类
+-----------------------------------------------------------
+
+A field is a line of text in the SDP message. 
+Each field contain information specific some aspect of the session. 
+There are several field types: 
+each field type is identified by a unique character and has a fixed format for its content.

@@ -1,0 +1,30 @@
+
+    示例：
+    private String sdpStr = "v=0\r\n" +
+            "o=uid:378970761 8147390 8147390 IN IP4 10.10.220.121\r\n" +
+            "s=RTM\r\n" +
+            "c=IN IP4 10.10.220.121\r\n" +
+            "t=0 0\r\n" +
+            "m=audio 30658 RTP/AVP 104\r\n" +
+            "a=rtpmap:104 AMR-WB/16000\r\n" +
+            "a=fmtp:104 octet-align=1\r\n" +
+            "a=ptime:20\r\n" +
+            "a=maxptime:400\r\n" +
+            "a=ssrc:25820\r\n" +
+            "m=video 30656 RTP/AVPF 121\r\n" +
+            "a=rtpmap:121 H264/90000\r\n" +
+            "a=fmtp:121 profile-level-id=64801E; packetization-mode=1\r\n" +
+            "a=imageattr:121 send * recv [x=[128:8:480],y=[96:8:272],par=[1.7647-1.7648]] [br=[30-500]] [fr=[1-15]]\r\n" +
+            "a=ssrc:25821";
+			
+		问题一：行结束符是 \r\n
+		问题二：行结束不能有空格
+			
+		解析：
+		
+        try {
+            SessionDescription sd = SDPFactory.parseSessionDescription(sdpStr);
+            Log.i(TAG, "SessionDescription: " + sd);
+        } catch (SDPParseException e) {
+            e.printStackTrace();
+        }

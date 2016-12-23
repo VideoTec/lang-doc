@@ -1,0 +1,22 @@
+-----------------------------------------------------------
+net.sourceforge.jsdp.Description 的派生类
+-----------------------------------------------------------
+
+net.sourceforge.jsdp.SessionDescription
+A SessionDescription represents the data defined by the Session Description Protocol.
+The session description holds information about the originator of a session, the media types that a client can support and the host and port on which the client will listen for that media. It also holds timing information for the session (e.g. start, end, repeat, time zone) and bandwidth supported for the session.
+
+net.sourceforge.jsdp.MediaDescription
+
+net.sourceforge.jsdp.TimeDescription
+
+-----------------------------------------------------------
+net.sourceforge.jsdp.Description
+-----------------------------------------------------------
+
+aggregation
+英[ˌæɡrɪ'ɡeɪʃn]
+美[ˌæɡrɪˈɡeʃən]
+n.	聚集; 集结; 集成; 聚集体;
+
+A description is an aggregation of SDP fields.

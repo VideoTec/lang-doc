@@ -1,0 +1,4 @@
+Java Specification Request (JSR)
+
+JCP（Java Community Process) 
+是一个开放的国际组织，主要由Java开发者以及被授权者组成，职能是发展和更新

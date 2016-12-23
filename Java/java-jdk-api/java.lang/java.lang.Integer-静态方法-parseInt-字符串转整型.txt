@@ -1,0 +1,23 @@
+http://stackoverflow.com/questions/5585779/converting-string-to-int-in-java
+
+int foo = Integer.parseInt("1234");
+See the Java Documentation for more information.
+
+(If you have it in a StringBuffer, you'll need to do Integer.parseInt(myBuffer.toString()); instead).
+
+    /**
+     * Parses the specified string as a signed decimal integer value. The ASCII
+     * characters \u002d ('-') and \u002b ('+') are recognized as the minus and
+     * plus signs.
+     * @param string
+     *            the string representation of an integer value.
+     * @return the primitive integer value represented by {@code string}.
+     * @throws NumberFormatException
+     *             if {@code string} cannot be parsed as an integer value.
+     */
+    public static int parseInt(String string) throws NumberFormatException {
+        return parseInt(string, 10);
+    }
+	
+	异常： NumberFormatException parseException
+	D:\doc\video\WebRTC\webrtc-概念-SDP-问题-行尾不能有空格.txt
